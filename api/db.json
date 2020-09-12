@@ -1,0 +1,110 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "monica",
+      "email": "monica@kay.com",
+      "password": "me"
+    },
+    {
+      "email": "hey.monicakay@gmail.com",
+      "password": "me",
+      "name": "Monica Provence",
+      "id": 2
+    }
+  ],
+  "players": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Kaos",
+      "breed": "Aussie Shep Lab",
+      "age": 9,
+      "number": 49
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Vinnie",
+      "breed": "Great Pyrannese",
+      "age": 6,
+      "number": 17
+    },
+    {
+      "userId": 1,
+      "name": "Dr. Chomps",
+      "breed": "Basset Boxer Mix",
+      "age": "3",
+      "number": "7",
+      "id": 3
+    }
+  ],
+  "playtime": [
+    {
+      "id": 1,
+      "playerId": 1,
+      "misses": 0,
+      "catches": 5,
+      "note": "This was a great game!",
+      "date": "09/2/2020"
+    }
+  ],
+  "exercise": [
+    {
+      "id": 1,
+      "playerId": 1,
+      "duration": "20 min",
+      "exerciseTypeId": 4,
+      "rating": 2,
+      "note": "Kaos did not like swimming, but he was good at it.",
+      "date": "09/2/2020"
+    }
+  ],
+  "training": [
+    {
+      "id": 1,
+      "playerId": 1,
+      "duration": "10 min",
+      "trainingTypeId": 4,
+      "rating": 5,
+      "note": "Kaos was great at Shake!",
+      "date": "09/2/2020"
+    }
+  ],
+  "exerciseType": [
+    {
+      "id": 1,
+      "exercise": "Walk"
+    },
+    {
+      "id": 2,
+      "exercise": "Run"
+    },
+    {
+      "id": 3,
+      "exercise": "Hike"
+    },
+    {
+      "id": 4,
+      "exercise": "Swim"
+    }
+  ],
+  "trainingType": [
+    {
+      "id": 1,
+      "behavior": "Sit"
+    },
+    {
+      "id": 2,
+      "behavior": "Stay"
+    },
+    {
+      "id": 3,
+      "behavior": "Fetch"
+    },
+    {
+      "id": 4,
+      "behavior": "Shake"
+    }
+  ]
+}

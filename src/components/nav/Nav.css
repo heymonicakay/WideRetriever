@@ -1,0 +1,32 @@
+.navbar {
+  display: flex block;
+  flex-flow: column nowrap;
+  background-color: rgb(163, 59, 59);
+  padding: 0 0;
+  overflow-y: scroll;
+  color: white;
+
+  height: 700px;
+  width: 200px;
+}
+
+.navbar__link:hover {
+  background-color:  rgb(126, 45, 45)
+}
+
+.navbar__link {
+  display: block;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
+  margin: 0 0;
+  padding: .25rem 1rem;
+}
+
+.navbar__title {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: larger;
+  margin: .5rem;
+}
+
