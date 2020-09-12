@@ -1,5 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import "./images/ImageManager"
 import { Nav } from "./nav/Nav"
 import { PlayerForm } from "./players/PlayerForm"
 import { PlayerList } from "./players/PlayerList"
@@ -26,6 +27,7 @@ export const ApplicationViews = (props) => {
         <Route exact path="/players/create" render = {props =>
           <div className="cont__form--pl">
             <PlayerForm { ...props} />
+
           </div>
         } />
 

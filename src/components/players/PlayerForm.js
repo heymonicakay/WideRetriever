@@ -9,10 +9,34 @@ export const PlayerForm = (props) => {
 
   const editMode = props.match.params.hasOwnProperty("playerId")
 
+  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState("")
+
   const handleControlledInputChange = (event) => {
     const newPlayer = Object.assign({}, player)
     newPlayer[event.target.name] = event.target.value
     setPlayer(newPlayer)
+  }
+
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'wideRetriever')
+    setLoading(true)
+
+    const res = await fetch("	https://api.cloudinary.com/v1_1/heymonicakay/image/upload",
+    {
+      method: 'POST',
+      body: data
+    })
+
+    const file = await res.json()
+
+    console.log(file)
+
+    setImage(file.secure_url)
+    setLoading(false)
   }
 
   const getPlayerInEditMode = () => {
@@ -67,8 +91,20 @@ export const PlayerForm = (props) => {
           : "Add Player"
         }
       </h2>
-      
-      <input name="file" type="file" className="file-upload" data-cloudinary-field="image_id" data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"/>
+
+
+      <div className="upload--img">
+        <input type="file" name="file" placeholder="upload an image" onChange={uploadImage}/>
+        {
+          loading
+          ?(
+            <h3>Fetching...</h3>
+          )
+          :(
+            <img src={image} className="img" />
+          )
+        }
+      </div>
 
       <fieldset>
         <div className="form-pl__group form-pl__group--name">
