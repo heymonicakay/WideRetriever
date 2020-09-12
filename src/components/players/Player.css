@@ -40,3 +40,8 @@
   height: auto;
 }
 
+.pl-card--img {
+  width: 90%;
+  height: auto;
+  border-radius: 25rem;
+}

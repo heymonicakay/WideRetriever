@@ -7,6 +7,9 @@ export const Player = ({ player }) => (
           {player.name}
         </h3>
       <section className="pl-card--details">
+      <div className="pl-card--img">
+          <img className="pl-card--img" src={player.playerImg}/>
+        </div>
         <div className="pl-card--breed">
           Breed: {player.breed}
         </div>

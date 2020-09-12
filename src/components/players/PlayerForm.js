@@ -33,7 +33,8 @@ export const PlayerForm = (props) => {
 
     const file = await res.json()
 
-    console.log(file)
+    console.log(file.secure_url)
+    console.log(data)
 
     setImage(file.secure_url)
     setLoading(false)
@@ -62,6 +63,7 @@ export const PlayerForm = (props) => {
     if (editMode) {
       updatePlayer({
         id: player.id,
+        playerImg: image,
         userId: userId,
         name: player.name,
         breed: player.breed,
@@ -73,6 +75,7 @@ export const PlayerForm = (props) => {
     else {
       addPlayer({
         userId: userId,
+        playerImg: image,
         name: player.name,
         breed: player.breed,
         age: player.age,
@@ -98,10 +101,10 @@ export const PlayerForm = (props) => {
         {
           loading
           ?(
-            <h3>Fetching...</h3>
+            <h3>Fetching..</h3>
           )
           :(
-            <img src={image} className="img" />
+            <img src={image} className="img" style={{width: 300}} />
           )
         }
       </div>
