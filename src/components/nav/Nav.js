@@ -10,7 +10,10 @@ export const Nav = (props) => {
 
   return (
     <ul className="nav">
-      <PlayerSearch/>
+      <div className="cont--search">
+        <PlayerSearch/>
+      </div>
+
       <Link className="nav__link nav__link--logout" to="/" onClick={handleLogout}>
           Logout
       </Link>

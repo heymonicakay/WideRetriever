@@ -1,0 +1,10 @@
+.input__nav--search {
+  border-radius: 15rem;
+  border: solid 1px hsl(172, 97%, 29%);
+  padding-left: 10px;
+}
+
+.input__nav--search:focus {
+    outline: none;
+    border: solid 2px hsl(172, 97%, 29%);
+}

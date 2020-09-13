@@ -16,12 +16,32 @@ code {
 }
 
 ul {
-  padding: 0 0;
+  display: flex;
+  flex-flow: row nowrap;
   margin: 0 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
 }
 
 .btn {
-  background-color:rgb(163, 59, 59);
+  background-color:hsl(172, 97%, 29%);
   color: white;
   border: none;
+  margin: .5rem;
+}
+
+.list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cont--img {
+  padding: 0 0;
+}
+
+.cont--pl-view {
+  display: flex;
+  flex-flow: row nowrap;
 }

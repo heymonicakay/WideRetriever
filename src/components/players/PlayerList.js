@@ -22,9 +22,6 @@ export const PlayerList = (props) => {
   }, [players])
 
     return (
-        <div className="h2 header header--pl">
-        <h2>Players</h2>
-
         <article className="list list--pl">
 
           {filteredPlayers.map(p => {
@@ -36,7 +33,6 @@ export const PlayerList = (props) => {
             })
         }
         </article>
-        </div>
     )
 }
 

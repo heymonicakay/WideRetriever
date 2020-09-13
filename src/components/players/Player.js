@@ -1,24 +1,14 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import "./Player.css"
 
-export const Player = ({ player }) => (
-    <section className="pl-card">
-        <h3 className="pl-card--name">
-          {player.name}
-        </h3>
-      <section className="pl-card--details">
-      <div className="pl-card--img">
-          <img className="pl-card--img" src={player.playerImg}/>
-        </div>
-        <div className="pl-card--breed">
-          Breed: {player.breed}
-        </div>
-        <div className="pl-card--age">
-          Age: {player.age}
-        </div>
-        <div className="pl-card--number">
-          Number: {player.number}
-        </div>
-      </section>
-    </section>
+export const Player = ( {player} ) => (
+  <section className="pl-card">
+    <h3 className="h3 header pl-card__header--name">
+      {player.name}
+    </h3>
+    <Link className="cont--img" to={`/players/${player.id}`}>
+      <img className="pl-card--img" src={player.playerImg}/>
+    </Link>
+  </section>
 )

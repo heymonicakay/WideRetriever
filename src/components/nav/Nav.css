@@ -1,29 +1,30 @@
-.navbar {
+.cont--nav {
   display: flex block;
-  flex-flow: column nowrap;
-  background-color: rgb(163, 59, 59);
-  padding: 0 0;
-  overflow-y: scroll;
-  color: white;
-
-  height: 700px;
-  width: 200px;
+  flex-flow: row nowrap;
 }
 
-.navbar__link:hover {
-  background-color:  rgb(126, 45, 45)
+.cont--search {
+  display: flex;
+
+}
+.nav {
+  display: flex block;
+  flex-flow: row nowrap;
+  background-color: rgb(255, 255, 255);
+  padding: 1rem 1rem;
+  color: hsl(172, 97%, 29%);
 }
 
-.navbar__link {
+.nav__link {
   display: block;
   text-decoration: none;
   font-weight: 200;
-  color: white;
+  color: rgb(2, 144, 125);
   margin: 0 0;
   padding: .25rem 1rem;
 }
 
-.navbar__title {
+.nav__heading {
   text-decoration: none;
   font-weight: 600;
   font-size: larger;

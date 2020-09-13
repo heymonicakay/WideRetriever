@@ -1,21 +1,9 @@
-.players {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: left;
-  padding: 0 1rem
-}
-
-.pl-card {
-  flex-basis: 20%;
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid rgb(163, 59, 59);
-}
-
 .cont--pl {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: left;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
 }
 
 .list--pl {
@@ -26,22 +14,45 @@
   margin: 0 0;
 }
 
-.pl-card--details {
-  padding: 0 .5rem;
+.pl-card {
+  display: flex;
+  flex-flow: column;
+  flex-basis: 20%;
+  max-width: 200px;
+  max-height: 700px;
+  margin: 1em;
+  padding: 1em;
+  border: 3px solid hsl(207, 98%, 23%);
+  border-radius: 2rem;
+  background-color: hsl(207, 58%, 53%);
+  color: white;
+  justify-content: center;
+  align-content: center;
 }
 
-.pl-card--name {
+.pl-card__header--name {
+  display:flex;
   justify-self: center;
   align-self: center;
+}
+
+.pl-card--details {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.pl-card--img {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  border-radius: 25rem;
+  width: 100%;
+  height: auto;
 }
 
 .btn--add-pl {
   width: 50%;
   height: auto;
-}
-
-.pl-card--img {
-  width: 90%;
-  height: auto;
-  border-radius: 25rem;
 }

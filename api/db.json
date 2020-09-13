@@ -40,23 +40,15 @@
     },
     {
       "userId": 1,
-      "name": "Monica",
-      "breed": "Human",
-      "age": "29",
-      "number": "7",
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1599948840/wideretriever/udbahiwweiiaarlwwjoz.jpg",
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1599949590/wideretriever/fo4ng3la7ipslpngcxjv.jpg",
       "name": "Kaos",
       "breed": "Aussie Shep",
       "age": "9",
       "number": "47",
-      "id": 5
+      "id": 4
     }
   ],
-  "playtime": [
+  "playtimes": [
     {
       "id": 1,
       "playerId": 1,
