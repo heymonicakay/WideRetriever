@@ -1,6 +1,36 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Bangers', cursive;
+}
+
+body,
+div,
+p,
+section,
+article {
   margin: 0 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  align-content: center;
 }
 
 .wrapper {
@@ -25,16 +55,23 @@ ul {
 }
 
 .btn {
-  background-color:hsl(172, 97%, 29%);
+  background-color:hsl(152, 64%, 45%);
   color: white;
   border: none;
   margin: .5rem;
+  border-radius: .25rem;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 .list {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
+  position: relative;
+  top: 10%;
 }
 
 .cont--img {
@@ -44,4 +81,35 @@ ul {
 .cont--pl-view {
   display: flex;
   flex-flow: row nowrap;
+  position: relative;
+  top: 10%;
+  justify-content: space-evenly;
 }
+
+input {
+  margin: .25rem 0rem;
+  background-color: transparent;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-bottom-color: hsl(207, 98%, 23%);
+  transition: .25s;
+  color: hsl(207, 98%, 23%);
+}
+
+input:focus {
+  outline: none;
+  color: white;
+  border-bottom-color: white;
+}
+
+::placeholder {
+  font-style: italic;
+  color:hsl(207, 98%, 23%);
+  transition: .25s;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+

@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom";
 import "./Login.css"
+import "./Dialog.css"
 
 
 export const Login = props => {
@@ -34,63 +35,65 @@ export const Login = props => {
   }
 
   return (
-    <main className="cont--login">
+    <div className="cont--login">
 
       <dialog className="dialog dialog--auth" ref={existDialog}>
           <div>
-            User does not exist
+            Oops! Looks like that username doesn't exist. Would you like to register a new account?
           </div>
-          <button className="btn--close" onClick={e => existDialog.current.close()}>
-            Close
+
+          <button className="btn btn--close">
+            <Link className="link link--reg" to="/register">
+              Yes, take me to the registration page!
+            </Link>
           </button>
+          <div className="link link--login-retry" onClick={e => existDialog.current.close()}>
+            No, I'll try logging in again.
+          </div>
       </dialog>
 
-      <dialog className="dialog dialog--password" ref={pwDialog}>
-          <div>
-            Password does not match
+      <dialog className="dialog dialog--password"
+        ref={pwDialog}>
+          <div className="cont__dialog-msg--pw">
+            <p className="dialog-msg--text--pw">
+              Oops!
+            </p>
+            <p className="dialog-msg--text--pw">
+              That's not the right password.
+            </p>
+            <p className="dialog-msg--text--pw">
+            Please try again.
+            </p>
+            <button className="btn btn--close" onClick={e => pwDialog.current.close()}>
+              Try again.
+            </button>
           </div>
-          <button className="btn--close" onClick={e => pwDialog.current.close()}>
-            Close
-          </button>
       </dialog>
 
-      <section>
-        <form className="form form--login" onSubmit={handleLogin}>
-          <h1>
+      <section className="form">
+          <h1 className="h1 h1__form h1__form--login">
             Wide Retriever
           </h1>
 
-          <h2>
-            login
+          <h2 className="h2 h2__form h2__form--login">
+            Login
           </h2>
 
-          <fieldset>
-            <label htmlFor="inputUsername">
-              Username
-            </label>
-            <input ref={username} type="username" id="username" className="input input--username" placeholder="Username" required autoFocus />
-          </fieldset>
+          <input ref={username} type="username" id="username" className="input input--username" placeholder="Username" required autoFocus />
 
-          <fieldset>
-            <label htmlFor="inputPassword"> Password </label>
-            <input ref={pw} type="pw" id="pw" className="input--pw" placeholder="Password" required />
-          </fieldset>
+          <input ref={pw} type="pw" id="pw" className="input--pw" placeholder="Password" required />
 
-          <fieldset>
-            <button type="submit">
+          <button type="button" className="btn btn--login" onClick={handleLogin}>
               Login
-            </button>
-          </fieldset>
+          </button>
+          <Link className="link link--reg" to="/register">
+              I'm new!
+          </Link>
 
-        </form>
       </section>
 
-      <section className="link--reg">
-        <Link to="/register">
-          I'm new!
-        </Link>
-      </section>
 
-    </main>
+
+    </div>
   )
 }

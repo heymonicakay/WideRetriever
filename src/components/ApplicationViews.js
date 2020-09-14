@@ -30,11 +30,6 @@ export const ApplicationViews = (props) => {
           </div>
         } />
 
-        <Route exact path="/players/create" render = {props =>
-          <div className="cont__form--pl">
-            <PlayerForm { ...props} />
-          </div>
-        } />
         <PlaytimeProvider>
           <Route path="/players/:playerId(\d+)" render={
             props =>

@@ -23,7 +23,7 @@
   margin: 0em 0em;
 }
 
-.cont--login {
+.cont--form-pl {
   position: absolute;
   top: 10%;
   display: flex;
@@ -69,4 +69,3 @@
   justify-self: center;
   align-self: center
 }
-

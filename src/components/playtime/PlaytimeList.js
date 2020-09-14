@@ -8,12 +8,14 @@ export const PlaytimeList = (props) => {
 
     const [filteredPlaytimes, setFiltered] = useState([])
 
-    useEffect(() => {
-        getPlaytimes()
-    }, [])
+    const playerId = parseInt(props.match.params.playerId)
 
     useEffect(() => {
-      const matchingPlaytimes = playtimes.filter(pt => pt.playerId === "4")
+      getPlaytimes()
+  }, [])
+
+    useEffect(() => {
+      const matchingPlaytimes = playtimes.filter(playtime => playtime.playerId === playerId)
       setFiltered(matchingPlaytimes)
   }, [])
 

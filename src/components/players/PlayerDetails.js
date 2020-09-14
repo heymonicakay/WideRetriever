@@ -32,13 +32,14 @@ export const PlayerDetails = (props) => {
             Number: {player.number}
           </div>
         </section>
-        <button className="btn" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))} >
-          Remove Player
-        </button>
+
         <button className="btn" onClick={() => {
           props.history.push(`/players/edit/${player.id}`)
             }}>
-          Update Player
+          Edit Player
+        </button>
+        <button className="btn" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))} >
+          Remove From Roster
         </button>
       </section>
     )

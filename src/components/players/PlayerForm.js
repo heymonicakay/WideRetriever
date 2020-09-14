@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PlayerContext } from "./PlayerProvider"
+import "./PlayerForm.css"
 
 
 export const PlayerForm = (props) => {
@@ -32,9 +33,6 @@ export const PlayerForm = (props) => {
     })
 
     const file = await res.json()
-
-    console.log(file.secure_url)
-    console.log(data)
 
     setImage(file.secure_url)
     setLoading(false)
@@ -86,7 +84,9 @@ export const PlayerForm = (props) => {
   }
 
   return (
-    <form className="form form-pl">
+    <div className="cont--form-pl">
+
+      <section className="form">
 
       <h2 className="h2 header header__form header__form--pl">
         {editMode
@@ -101,7 +101,7 @@ export const PlayerForm = (props) => {
         {
           loading
           ?(
-            <h3>Fetching..</h3>
+            <h3 className="h3 h3--img-load">Fetching..</h3>
           )
           :(
             <img src={image} className="img" style={{width: 300}} />
@@ -109,7 +109,6 @@ export const PlayerForm = (props) => {
         }
       </div>
 
-      <fieldset>
         <div className="form-pl__group form-pl__group--name">
           <label htmlFor="name">
             Player name:
@@ -117,41 +116,30 @@ export const PlayerForm = (props) => {
           <input type="text" name="name" required autoFocus className="form-pl__ctrl form-pl__ctrl--name" placeholder="Name" defaultValue={player.name} onChange={handleControlledInputChange}
           />
         </div>
-      </fieldset>
 
-        <fieldset>
-          <div className="form-pl__group form-pl__group--breed">
-            <label htmlFor="breed">
-              Player breed:
-            </label>
-            <input type="text" name="breed" required className="form-pl__ctrl form-pl__ctrl--breed" placeholder="Breed" defaultValue={player.breed} onChange={handleControlledInputChange}
-            />
-          </div>
-        </fieldset>
+        <div className="form-pl__group form-pl__group--breed">
+          <label htmlFor="breed">
+            Player breed:
+          </label>
+          <input type="text" name="breed" required className="form-pl__ctrl form-pl__ctrl--breed" placeholder="Breed" defaultValue={player.breed} onChange={handleControlledInputChange}
+          />
+        </div>
 
-        <fieldset>
-          <div className="form-pl__group form-pl__group--age">
-            <label htmlFor="age">
-              Age:
-            </label>
-            <input type="text" name="age" required className="form-pl__ctrl form-pl__ctrl--age" placeholder="Player age" defaultValue={player.age} onChange={handleControlledInputChange}
-            />
-          </div>
-        </fieldset>
+        <div className="form-pl__group form-pl__group--age">
+          <label htmlFor="age">
+            Age:
+          </label>
+          <input type="text" name="age" required className="form-pl__ctrl form-pl__ctrl--age" placeholder="Player age" defaultValue={player.age} onChange={handleControlledInputChange}
+          />
+        </div>
 
-        <fieldset>
-          <div className="form-pl__group form-pl__group--number">
-            <label htmlFor="number">
-              Number:
-            </label>
-            <input type="text" name="number" required className="form-pl__ctrl form-pl__ctrl--number" placeholder="Player number" defaultValue={player.number} onChange={handleControlledInputChange}
-            />
-          </div>
-        </fieldset>
-
+        <div className="form-pl__group form-pl__group--number">
+          <input type="text" name="number" required className="form-pl__ctrl form-pl__ctrl--number" placeholder="Player number" defaultValue={player.number} onChange={handleControlledInputChange}
+          />
+        </div>
         <button type="submit" className="btn btn__sbmt btn__sbmt--pl" onClick={e => {
-            e.preventDefault()
-            constructNewPlayer()
+          e.preventDefault()
+          constructNewPlayer()
         }}>
           {editMode
             ? "Update"
@@ -159,6 +147,7 @@ export const PlayerForm = (props) => {
           }
         </button>
 
-      </form>
+        </section>
+      </div>
   )
 }

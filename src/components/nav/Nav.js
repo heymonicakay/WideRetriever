@@ -17,9 +17,9 @@ export const Nav = (props) => {
       <Link className="nav__link nav__link--logout" to="/" onClick={handleLogout}>
           Logout
       </Link>
-      <div className="nav__heading">
+      <h1 className="nav__heading">
         Wide Retriever
-      </div>
+      </h1>
       <Link className="nav__link nav__link--add-pl" to="/players/create">
         Add Player
       </Link>

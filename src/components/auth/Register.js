@@ -57,7 +57,7 @@ export const Register = (props) => {
 
         <form className="form--login" onSubmit={handleRegister}>
         <h1 className="h3 mb-3 font-weight-normal">
-          Please Register for NSS Kennels
+          Please Register for Wide Retriever
         </h1>
 
         <fieldset>

@@ -5,11 +5,14 @@
 
 .cont--search {
   display: flex;
-
 }
 .nav {
   display: flex block;
   flex-flow: row nowrap;
+  position: fixed;
+  top: 0;
+  justify-self: center;
+  width: 98%;
   background-color: rgb(255, 255, 255);
   padding: 1rem 1rem;
   color: hsl(172, 97%, 29%);
