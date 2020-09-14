@@ -70,3 +70,10 @@
   align-self: center
 }
 
+.btn--login {
+  background-color:hsl(152, 64%, 45%);
+  color: white;
+  border: none;
+  margin: .5rem;
+  border-radius: .25rem;
+}

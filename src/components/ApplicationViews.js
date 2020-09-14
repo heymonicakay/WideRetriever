@@ -1,12 +1,17 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Nav } from "./nav/Nav"
+
 import { PlayerForm } from "./players/PlayerForm"
 import { PlayerList } from "./players/PlayerList"
 import { PlayerProvider } from "./players/PlayerProvider"
 import { PlayerDetails } from "./players/PlayerDetails"
+
 import { PlaytimeProvider } from "./playtime/PlaytimeProvider"
 import { PlaytimeList } from "./playtime/PlaytimeList"
+
+import { TrainingProvider } from "./training/TrainingProvider"
+import { TrainingList } from "./training/TrainingList"
 
 export const ApplicationViews = (props) => {
   return (
@@ -31,13 +36,16 @@ export const ApplicationViews = (props) => {
         } />
 
         <PlaytimeProvider>
+          <TrainingProvider>
           <Route path="/players/:playerId(\d+)" render={
             props =>
             <div className="cont--pl-view">
             <PlayerDetails {...props} />
             <PlaytimeList {...props} />
+            <TrainingList {...props} />
             </div>
           } />
+          </TrainingProvider>
         </PlaytimeProvider>
 
         <Route path="/players/edit/:playerId(\d+)" render={

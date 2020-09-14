@@ -54,7 +54,7 @@
       "date": "09/2/2020"
     }
   ],
-  "training": [
+  "trainings": [
     {
       "id": 1,
       "playerId": 1,
@@ -63,24 +63,6 @@
       "rating": 5,
       "note": "Kaos was great at Shake!",
       "date": "09/2/2020"
-    }
-  ],
-  "exerciseType": [
-    {
-      "id": 1,
-      "exercise": "Walk"
-    },
-    {
-      "id": 2,
-      "exercise": "Run"
-    },
-    {
-      "id": 3,
-      "exercise": "Hike"
-    },
-    {
-      "id": 4,
-      "exercise": "Swim"
     }
   ],
   "trainingType": [
@@ -100,5 +82,24 @@
       "id": 4,
       "behavior": "Shake"
     }
+  ],
+  "exerciseType": [
+    {
+      "id": 1,
+      "exercise": "Walk"
+    },
+    {
+      "id": 2,
+      "exercise": "Run"
+    },
+    {
+      "id": 3,
+      "exercise": "Hike"
+    },
+    {
+      "id": 4,
+      "exercise": "Swim"
+    }
   ]
+
 }

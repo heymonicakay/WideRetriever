@@ -81,7 +81,7 @@ export const Login = props => {
 
           <input ref={username} type="username" id="username" className="input input--username" placeholder="Username" required autoFocus />
 
-          <input ref={pw} type="pw" id="pw" className="input--pw" placeholder="Password" required />
+          <input ref={pw} type="password" id="pw" className="input--pw" placeholder="Password" required />
 
           <button type="button" className="btn btn--login" onClick={handleLogin}>
               Login
