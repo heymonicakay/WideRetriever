@@ -8,7 +8,7 @@ import "./Retriever.css"
 export const Retriever = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("wr__user")) {
+            if (sessionStorage.getItem("wr__user")) {
                 return (
                     <>
                           <Route render={props => <ApplicationViews {...props} />} />

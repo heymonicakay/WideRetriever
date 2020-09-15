@@ -7,9 +7,15 @@
       "password": "me"
     },
     {
-      "email": "hey.monicakay@gmail.com",
-      "password": "me",
-      "name": "Monica Provence",
+      "email": "cammie@cammie.com",
+      "password": "cam",
+      "username": "cammie",
+      "id": 2
+    },
+    {
+      "email": "justin@justin.com",
+      "password": "jus",
+      "username": "cammie",
       "id": 2
     }
   ],
@@ -34,12 +40,19 @@
     },
     {
       "userId": 2,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600050221/wideretriever/ct20pf4eh0p1aktxqxuf.jpg",
-      "name": "Hallie",
-      "breed": "Blue Heeler",
-      "age": "3",
-      "number": "38",
-      "id": 2
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600196321/wideretriever/bu8esdscxutcz1xxohli.jpg",
+      "name": "Phoebe",
+      "breed": "Cavalier King Charles Spaniel",
+      "age": "6",
+      "number": "22",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600196459/wideretriever/ehenqvhgs8dwvgzmbysf.jpg",
+      "name": "Jarvis",
+      "breed": "Cavalier King Charles Spaniel",
+      "id": 4
     }
   ],
   "playtimes": [
@@ -52,7 +65,7 @@
       "date": "09/2/2020"
     },
     {
-      "id": 1,
+      "id": 2,
       "playerId": 2,
       "misses": 3,
       "catches": 2,
@@ -82,7 +95,7 @@
       "date": "09/2/2020"
     },
     {
-      "id": 1,
+      "id": 2,
       "playerId": 2,
       "duration": "20min",
       "trainingTypeId": 2,
@@ -127,5 +140,4 @@
       "exercise": "Swim"
     }
   ]
-
 }

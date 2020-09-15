@@ -59,8 +59,6 @@ export const ApplicationViews = (props) => {
                     props =>
                     <div className="cont--pl-view">
                       <PlayerDetails {...props} />
-                      <PlaytimeList {...props} />
-                      <TrainingList {...props} />
                     </div>
                   }
                 />

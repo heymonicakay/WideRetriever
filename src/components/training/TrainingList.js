@@ -22,11 +22,8 @@ export const TrainingList = (props) => {
     useEffect(() => {
       const matchingTrainings = trainings.filter(training => training.playerId === playerId)
       setFiltered(matchingTrainings)
-  }, [])
-
-  useEffect(() => {
-    setFiltered(trainings)
   }, [trainings])
+
 
     return (
       <>

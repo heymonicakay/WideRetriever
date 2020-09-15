@@ -56,7 +56,7 @@ export const PlayerForm = (props) => {
 
   const constructNewPlayer = () => {
 
-    const userId = parseInt(localStorage.getItem("wr__user"))
+    const userId = parseInt(sessionStorage.getItem("wr__user"))
 
     if (editMode) {
       updatePlayer({

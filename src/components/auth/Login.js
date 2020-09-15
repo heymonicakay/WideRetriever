@@ -22,7 +22,7 @@ export const Login = props => {
     existingUserCheck()
       .then(exists => {
         if (exists && exists.password === pw.current.value) {
-          localStorage.setItem("wr__user", exists.id)
+          sessionStorage.setItem("wr__user", exists.id)
           props.history.push("/")
         }
         else if (exists && exists.pw !== pw.current.value) {

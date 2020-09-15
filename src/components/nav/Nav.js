@@ -5,7 +5,7 @@ import "./Nav.css"
 
 export const Nav = (props) => {
   const handleLogout = () => {
-    localStorage.clear()
+    sessionStorage.clear()
   }
 
   return (

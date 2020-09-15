@@ -10,7 +10,7 @@ export const PlayerList = (props) => {
 
     const { getCurrentUser } = useContext(UserContext)
 
-    const currentUserId = parseInt(localStorage.getItem("wr__user"))
+    const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
     useEffect(() => {
         getCurrentUser()

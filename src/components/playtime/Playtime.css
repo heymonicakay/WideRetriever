@@ -8,6 +8,7 @@
 
 .cont__list--pt {
   display: flex;
+  height: -webkit-fill-available;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-content: flex-start;
