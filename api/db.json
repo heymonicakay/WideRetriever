@@ -31,6 +31,15 @@
       "age": "3",
       "number": "24",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600050221/wideretriever/ct20pf4eh0p1aktxqxuf.jpg",
+      "name": "Hallie",
+      "breed": "Blue Heeler",
+      "age": "3",
+      "number": "38",
+      "id": 2
     }
   ],
   "playtimes": [
@@ -41,9 +50,17 @@
       "catches": 5,
       "note": "This was a great game!",
       "date": "09/2/2020"
+    },
+    {
+      "id": 1,
+      "playerId": 2,
+      "misses": 3,
+      "catches": 2,
+      "note": "This was a great game!",
+      "date": "09/4/2020"
     }
   ],
-  "exercise": [
+  "exercises": [
     {
       "id": 1,
       "playerId": 1,
@@ -58,29 +75,38 @@
     {
       "id": 1,
       "playerId": 1,
-      "duration": "10 min",
+      "duration": "10min",
       "trainingTypeId": 4,
+      "rating": 5,
+      "note": "Kaos was great at Shake!",
+      "date": "09/2/2020"
+    },
+    {
+      "id": 1,
+      "playerId": 2,
+      "duration": "20min",
+      "trainingTypeId": 2,
       "rating": 5,
       "note": "Kaos was great at Shake!",
       "date": "09/2/2020"
     }
   ],
-  "trainingType": [
+  "trainingTypes": [
     {
       "id": 1,
-      "behavior": "Sit"
+      "type": "Sit"
     },
     {
       "id": 2,
-      "behavior": "Stay"
+      "type": "Stay"
     },
     {
       "id": 3,
-      "behavior": "Fetch"
+      "type": "Fetch"
     },
     {
       "id": 4,
-      "behavior": "Shake"
+      "type": "Shake"
     }
   ],
   "exerciseType": [

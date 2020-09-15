@@ -13,46 +13,69 @@ import { PlaytimeList } from "./playtime/PlaytimeList"
 import { TrainingProvider } from "./training/TrainingProvider"
 import { TrainingList } from "./training/TrainingList"
 
+import { TrainingTypeProvider } from "./trainingType/TrainingTypeProvider"
+
+import { UserProvider } from "./users/UserProvider"
+
 export const ApplicationViews = (props) => {
   return (
     <>
-      <PlayerProvider>
-        <Route path = "/" render = {props =>
-            <nav className="cont--nav">
-              <Nav {...props} />
-            </nav>
-        } />
+      <UserProvider>
+        <PlayerProvider>
+          <Route
+            path = "/"
+            render = {
+              props =>
+                <nav className="cont--nav">
+                  <Nav {...props} />
+                </nav>
+            }
+          />
+          <Route
+            exact path = "/"
+            render = {
+              props =>
+                <div className="cont--pl">
+                  <PlayerList { ...props} />
+                </div>
+            }
+          />
+          <Route
+            exact path="/players/create"
+            render = {
+              props =>
+                <div className="cont__form--pl">
+                  <PlayerForm { ...props} />
+                </div>
+            }
+          />
 
-        <Route exact path = "/" render = {props =>
-          <div className="cont--pl">
-            <PlayerList { ...props} />
-          </div>
-              } />
+          <PlaytimeProvider>
+            <TrainingProvider>
+              <TrainingTypeProvider>
+                <Route
+                  path="/players/:playerId(\d+)"
+                  render={
+                    props =>
+                    <div className="cont--pl-view">
+                      <PlayerDetails {...props} />
+                      <PlaytimeList {...props} />
+                      <TrainingList {...props} />
+                    </div>
+                  }
+                />
+              </TrainingTypeProvider>
+            </TrainingProvider>
+          </PlaytimeProvider>
 
-        <Route exact path="/players/create" render = {props =>
-          <div className="cont__form--pl">
-            <PlayerForm { ...props} />
-          </div>
-        } />
-
-        <PlaytimeProvider>
-          <TrainingProvider>
-          <Route path="/players/:playerId(\d+)" render={
-            props =>
-            <div className="cont--pl-view">
-            <PlayerDetails {...props} />
-            <PlaytimeList {...props} />
-            <TrainingList {...props} />
-            </div>
-          } />
-          </TrainingProvider>
-        </PlaytimeProvider>
-
-        <Route path="/players/edit/:playerId(\d+)" render={
-          props => <PlayerForm {...props} />
-        } />
-
-      </PlayerProvider>
+          <Route
+            path="/players/edit/:playerId(\d+)"
+            render={
+            props => <PlayerForm {...props} />
+            }
+          />
+        </PlayerProvider>
+      </UserProvider>
     </>
   )
 }

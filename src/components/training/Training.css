@@ -21,7 +21,9 @@
 
 .list--tr {
   display: flex;
+  flex-flow: column;
   padding: 0 0;
+  justify-content: center;
 }
 
 .list__header--tr {
@@ -32,14 +34,16 @@
 .tr-card {
   display: flex;
   flex-flow: row nowrap;
-  flex-basis: 20%;
   border: 2px solid hsl(207, 98%, 23%);
   background-color: hsl(207, 52%, 71%);
   border-radius: 2rem;
   padding: 1em;
+  margin: .25rem;
+  width: -webkit-fill-available;
   justify-content: center;
+  justify-self: center;
   align-content: center;
-  width: 100%;
+  align-self: flex-start;
 }
 
 .tr-card__header--name {

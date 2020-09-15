@@ -3,28 +3,24 @@ import { PlayerContext } from "./PlayerProvider"
 import { Player } from "./Player"
 import "./Player.css"
 
+import { UserContext } from "../users/UserProvider"
+
 export const PlayerList = (props) => {
-    const { getPlayers, players, searchTerms } = useContext(PlayerContext)
+    const { userPlayers, getUserPlayers } = useContext(PlayerContext)
 
-    const [filteredPlayers, setFiltered] = useState([])
+    const { getCurrentUser } = useContext(UserContext)
+
+    const currentUserId = parseInt(localStorage.getItem("wr__user"))
 
     useEffect(() => {
-        getPlayers()
+        getCurrentUser()
+        getUserPlayers(currentUserId)
     }, [])
-
-    useEffect(() => {
-      const matchingPlayers = players.filter(p => p.name.toLowerCase().includes(searchTerms.toLowerCase()))
-      setFiltered(matchingPlayers)
-  }, [searchTerms])
-
-  useEffect(() => {
-    setFiltered(players)
-  }, [players])
 
     return (
         <article className="list list--pl">
 
-          {filteredPlayers.map(p => {
+          {userPlayers.map(p => {
 
               return <Player
                   key={p.id}

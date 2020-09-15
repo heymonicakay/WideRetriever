@@ -6,6 +6,7 @@ import "./Playtime.css"
 export const PlaytimeList = (props) => {
     const { getPlaytimes, playtimes } = useContext(PlaytimeContext)
 
+
     const [filteredPlaytimes, setFiltered] = useState([])
 
     const playerId = parseInt(props.match.params.playerId)
