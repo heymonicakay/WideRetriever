@@ -3,9 +3,10 @@ import { PlaytimeContext } from "./PlaytimeProvider"
 import { Playtime } from "./Playtime"
 import "./Playtime.css"
 
+import { PlaytimeForm } from "./PlaytimeForm"
+
 export const PlaytimeList = (props) => {
     const { getPlaytimes, playtimes } = useContext(PlaytimeContext)
-
 
     const [filteredPlaytimes, setFiltered] = useState([])
 
@@ -25,25 +26,27 @@ export const PlaytimeList = (props) => {
 
     return (
       <>
-      <div className="cont__list cont__list--pt">
+        <div className="cont__list cont__list--pt">
 
-        <h2 className="list__header list__header--pt">
-          Playtime
-        </h2>
-        <button className="btn btn--add-pt">
-          Add Playtime
-        </button>
-        <article className="list list--pt">
+          <h2 className="list__header list__header--pt">
+            Playtime
+          </h2>
+          <button className="btn btn--add-pt" onClick={
+            () => props.history.push(`/players/playtime/add/${playerId}`)
+          }>
+            Add Playtime
+          </button>
+          <article className="list list--pt">
 
-          {filteredPlaytimes.map(pt => {
+            {filteredPlaytimes.map(pt => {
 
             return <Playtime
             key={pt.id}
             playtime={pt}
             />
-          })
-        }
-        </article>
+            })
+            }
+          </article>
         </div>
       </>
     )

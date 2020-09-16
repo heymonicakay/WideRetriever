@@ -14,7 +14,8 @@
   background-color: rgba(255, 255, 255, 0.582);
 }
 
-.cont__dialog-msg--pw {
+.cont__dialog-msg--pw,
+.cont__dialog-msg--del-check {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -22,3 +23,8 @@
   color: white;
 }
 
+.cont__dialog-btns--del-check {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+}

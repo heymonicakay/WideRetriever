@@ -1,0 +1,71 @@
+.h1 {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-size: 25px;
+  margin: 0em 0em;
+}
+
+.h2 {
+  position: relative;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-size: 15px;
+  margin: 0em 0em;
+}
+
+.cont--form-pt {
+  position: absolute;
+  top: 10%;
+  display: flex;
+  flex-basis: 20%;
+  width: 25%;
+  margin: 1em;
+  padding: 1em;
+  border: 3px solid hsl(207, 98%, 23%);
+  border-radius: 2rem;
+  background-color: hsl(207, 58%, 53%);
+  color: white;
+  justify-self: center;
+  justify-content: space-evenly;
+  align-content: center;
+  align-self: center;
+}
+
+.link--pt {
+  display: flex;
+  align-self: flex-end;
+  text-decoration: none;
+  color: hsl(207, 98%, 23%);
+  font-size: smaller;
+  transition: .25s;
+}
+
+.link--pt:hover {
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+  margin: 0em 1em;
+  font-style: italic;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center
+}

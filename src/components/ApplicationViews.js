@@ -8,10 +8,10 @@ import { PlayerProvider } from "./players/PlayerProvider"
 import { PlayerDetails } from "./players/PlayerDetails"
 
 import { PlaytimeProvider } from "./playtime/PlaytimeProvider"
-import { PlaytimeList } from "./playtime/PlaytimeList"
+import { PlaytimeForm } from "./playtime/PlaytimeForm"
 
 import { TrainingProvider } from "./training/TrainingProvider"
-import { TrainingList } from "./training/TrainingList"
+
 
 import { TrainingTypeProvider } from "./trainingType/TrainingTypeProvider"
 
@@ -60,6 +60,13 @@ export const ApplicationViews = (props) => {
                     <div className="cont--pl-view">
                       <PlayerDetails {...props} />
                     </div>
+                  }
+                />
+                <Route
+                  path="/players/playtime/add/:playerId(\d+)"
+                  render={
+                    props =>
+                    <PlaytimeForm {...props}/>
                   }
                 />
               </TrainingTypeProvider>

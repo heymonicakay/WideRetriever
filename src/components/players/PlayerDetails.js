@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useRef, useContext, useEffect, useState } from "react"
 import { PlayerContext } from "./PlayerProvider"
 import "./Player.css"
 
@@ -7,19 +7,37 @@ import { PlaytimeList } from "../playtime/PlaytimeList"
 import { TrainingList } from "../training/TrainingList"
 
 export const PlayerDetails = (props) => {
-    const { removePlayer, getPlayerById } = useContext(PlayerContext)
+  const delDialog = useRef()
 
-    const [player, setPlayer] = useState({})
+  const { removePlayer, getPlayerById } = useContext(PlayerContext)
 
-    useEffect(() => {
-        const playerId = parseInt(props.match.params.playerId)
-        getPlayerById(playerId)
-            .then(setPlayer)
-    }, [])
+  const [player, setPlayer] = useState({})
 
-    return (
+  useEffect(() => {
+    const playerId = parseInt(props.match.params.playerId)
+      getPlayerById(playerId)
+        .then(setPlayer)
+  }, [])
 
-      <>
+  return (
+
+    <>
+
+      <dialog className="dialog dialog--del-check" ref={delDialog}>
+        <div className="cont__dialog-msg--del-check">
+          Woof! Are you sure you want to remove {player.name} from the roster?
+        </div>
+
+        <div className="cont__dialog-btns--del-check">
+          <button className="btn btn-del--sure" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))}>
+              Yes, I'm sure.
+          </button>
+          <button className="btn btn-del--nvm" onClick={e => delDialog.current.close()}>
+              Actually, nevermind.
+          </button>
+        </div>
+      </dialog>
+
         <section className="pl-card">
           <h3 className="h3 header pl-card__header--name">
             {player.name}
@@ -44,16 +62,18 @@ export const PlayerDetails = (props) => {
               }}>
             Edit Player
           </button>
-          <button className="btn" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))} >
+          <button className="btn" onClick={() => {
+            delDialog.current.showModal()
+          }} >
             Remove From Roster
           </button>
         </section>
 
-        <section>
+        <section className="pl-pt-list">
           <PlaytimeList {...props} />
         </section>
 
-        <section>
+        <section className="pl-tr-list">
           <TrainingList {...props} />
         </section>
 

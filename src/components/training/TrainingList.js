@@ -27,29 +27,29 @@ export const TrainingList = (props) => {
 
     return (
       <>
-      <div className="cont__list cont__list--tr">
+        <div className="cont__list cont__list--tr">
 
-        <h2 className="list__header list__header--tr">
-          Training
-        </h2>
-        <button className="btn btn--add-tr">
-          Add Training
-        </button>
-        <article className="list list--tr">
+          <h2 className="list__header list__header--tr">
+            Training
+          </h2>
+          <button className="btn btn--add-tr">
+            Add Training
+          </button>
+          <article className="list list--tr">
 
-          {filteredTrainings.map(tr => {
+            {filteredTrainings.map(tr => {
 
-            const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId)
+              const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId)
 
-            return <Training
-            key={tr.id}
-            training={tr}
-            trainingType={trainingType}
-            />
-          })
-        }
-        </article>
-      </div>
+              return <Training
+              key={tr.id}
+              training={tr}
+              trainingType={trainingType}
+              />
+            })
+          }
+          </article>
+        </div>
       </>
     )
 }

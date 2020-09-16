@@ -47,7 +47,7 @@ export const PlayerProvider = (props) => {
   }
 
   const removePlayer = (playerId) => {
-    return fetch(`http://localhost:8088/animals/${playerId}`, {
+    return fetch(`http://localhost:8088/players/${playerId}`, {
         method: "DELETE"
     })
         .then(getPlayers)
