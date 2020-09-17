@@ -41,6 +41,12 @@
   align-self: center;
 }
 
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
 .link--pt {
   display: flex;
   align-self: flex-end;
@@ -68,4 +74,72 @@
   align-content: center;
   justify-self: center;
   align-self: center
+}
+
+.behind {
+  z-index: 4;
+}
+
+div > svg {
+  z-index: 5
+}
+
+.btn--toss {
+  background-color: rgb(255, 152, 56) !important;
+  font-family: 'Bangers';
+  font-size: 30px;
+  height: 160px;
+  width: 160px;
+}
+
+.btn--circle {
+  border-radius: 25rem !important;
+}
+
+.btn--catch {
+  height: 70px;
+  width: 70px;
+}
+
+.btn--catch:disabled {
+  background-color: hsla(152, 64%, 45%, 0.411) !important;
+  color: rgb(182, 179, 179);
+}
+
+.btn--miss {
+  height: 70px;
+  width: 70px;
+}
+
+.btn--red:disabled {
+  background-color: rgba(243, 61, 61, 0.438) !important;
+  color: rgb(182, 179, 179);
+}
+
+.btn--red {
+  background-color: rgb(243, 61, 61) !important;
+}
+
+.seconds {
+  font-family: 'Bangers';
+  font-size: 30px;
+}
+.cont--catch-miss {
+  display: flex;
+  flex-flow: row;
+  justify-self: center;
+  justify-content: space-evenly;
+}
+.cont--miss, .cont--catch {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.count {
+  font-size: 25px;
+  text-align: center;
+  justify-self: center;
+  padding: 0 0;
+  margin: 0 0;
 }

@@ -4,19 +4,10 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import "./PlaytimeForm.css"
 
-const renderTime = ({ remainingTime }) => {
-  if (remainingTime === 0) {
-    return <div className="timer">Too late...</div>;
-  }
-
-  return (
-    <div className="timer">
-      <div className="value">{remainingTime}</div>
-    </div>
-  );
-};
-
 export const PlaytimeForm = (props) => {
+
+  //identify the toss count button
+  const tossBtn = useRef()
 
   // identify miss count text and miss count button
   const missCountText = useRef()
@@ -34,6 +25,12 @@ export const PlaytimeForm = (props) => {
       getPlayerById(playerId)
         .then(setPlayer)
   }, [])
+
+  // increment the number of tosses
+  const [tossCount, setTossCount] = useState(0);
+  const handleTossIncrement = () => {
+    setTossCount(prevTossCount => prevTossCount + 1);
+  };
 
   // increment the number of catches
   const [catchCount, setCatchCount] = useState(0);
@@ -54,22 +51,57 @@ export const PlaytimeForm = (props) => {
     setKey(prevKey => prevKey + 1)
   }
 
+  // controls state of timer
   const [isPlaying, setIsPlaying] = useState(false)
 
+  // controls state of catch and miss buttons
+  const [isDisabled, setIsDisabled] = useState(true)
 
-  //if the misscounttext.current is greater than or equal to 5  then disable the 'miss button' and the 'count button
+  // controls state of toss button
+  const [isHidden, setIsHidden] = useState(false)
+
+  //renders the content inside of the circle timer
+  const renderTime = ({ remainingTime }) => {
+    if ( remainingTime == 11) {
+      return <button className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
+        handleTossIncrement()
+        setIsPlaying(true)
+        setIsDisabled(false)
+        setIsHidden(true)}}>
+          Toss
+      </button>;
+    }
+    if (remainingTime == 0) {
+      setIsPlaying(false)
+      handleReset()
+      setIsHidden(false)
+    }
+    else {
+      setIsHidden(true)
+      return (
+        <div className="timer">
+          <div className="seconds">
+            {remainingTime}
+          </div>
+        </div>
+      );
+    }
+
+
+  };
 
   return (
     <div className="cont--form-pt">
       <section className="form">
-        <h1>
+        <h1 className="h1 header__form header__form--pt">
           {player.name}
         </h1>
         <div className="timer-wrapper">
           <CountdownCircleTimer
+            className="circle-timer"
             key={key}
             isPlaying={isPlaying}
-            duration={10}
+            duration={11}
             colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
             onComplete={() => [false, 0]}
           >
@@ -77,36 +109,36 @@ export const PlaytimeForm = (props) => {
           </CountdownCircleTimer>
         </div>
 
-        <div>
+        <div className="cont--catch-miss">
+          <section className="cont--catch">
+            <button className="btn btn--circle btn--green btn--catch" disabled={isDisabled} ref={catchBtn} onClick={() => {
+              setIsPlaying(false)
+              handleReset()
+              handleCatchIncrement()
+              setIsDisabled(true)
+              setIsHidden(false)}}>
+                Catch
+            </button>
 
-        <button onClick={() => {
-          setIsPlaying(true)}}>
-          Toss
-        </button>
-        <br />
+            <h5 className="h5 count catch-count"ref={catchCountText}>
+              {catchCount}
+            </h5>
+          </section>
 
-        <button ref={catchBtn} onClick={() => {
-          setIsPlaying(false)
-          handleReset()
-          handleCatchIncrement()}}>
-          Catch
-        </button>
+          <section className="cont--miss">
+            <button className="btn btn--circle btn--red btn--miss" disabled={isDisabled} ref={missBtn} onClick={() => {
+              setIsPlaying(false)
+              handleReset()
+              handleMissIncrement()
+              setIsDisabled(true)
+              setIsHidden(false)}}>
+                Miss
+            </button>
 
-        <h5 ref={catchCountText}>
-          {catchCount}
-        </h5>
-
-        <button ref={missBtn} onClick={() => {
-          setIsPlaying(false)
-          handleReset()
-          handleMissIncrement()}}>
-          Miss
-        </button>
-
-        <h5 ref={missCountText}>
-          {missCount}
-        </h5>
-
+            <h5 className="h5 count miss-count" ref={missCountText}>
+              {missCount}
+            </h5>
+          </section>
         </div>
       </section>
     </div>
