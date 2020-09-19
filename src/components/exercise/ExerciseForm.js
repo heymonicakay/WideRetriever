@@ -46,6 +46,7 @@ export const ExerciseForm = (props) => {
       duration: exercise.duration,
       date: today,
       note: exercise.note,
+      rating: exercise.rating
     })
       .then(() => props.history.push(`/players/${playerId}`))}
   }
@@ -72,24 +73,36 @@ export const ExerciseForm = (props) => {
           {player.name}
         </h1>
 
-        <input type="text" ref={duration} name="duration" className="input input--ex input--duration" placeholder="Enter exercise duration" onChange={handleControlledInputChange}/>
+        <select defaultValue="" ref={duration} name="duration" className="input input--ex input--duration" onChange={handleControlledInputChange}>
+          <option value="0">How long did you exercise?</option>
+          <option value="5-10 min">5-10 min</option>
+          <option value="10-20 min">10-20 min</option>
+          <option value="20-30 min">20-30 min</option>
+          <option value="30-40 min">30-40 min</option>
+          <option value="40-50 min">40-50 min</option>
+          <option value="50-60 min">50-60 min</option>
+        </select>
 
         <select defaultValue="" name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
-              <option value="0">Select an exercise</option>
+              <option value="0">Select an activity!</option>
               {exerciseTypes.map(et => (
                   <option key={et.id} value={et.id}>
                       {et.type}
                   </option>
               ))}
           </select>
+
+          <label for="note">How did {player.name} do?</label>
+
           <textarea ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
+
           <button className="btn btn--submit btn--ex" type="button"
-            onClick={e => {
+              onClick={e => {
                 e.preventDefault()
                 constructNewExercise()
-            }}>
-            Save Exercise Session
-        </button>
+              }}>
+              Save Exercise Session
+              </button>
       </section>
     </div>
   );

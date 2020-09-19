@@ -106,6 +106,22 @@
       "rating": 2,
       "note": "Kaos did not like swimming, but he was good at it.",
       "date": "09/2/2020"
+    },
+    {
+      "playerId": 1,
+      "exerciseTypeId": 3,
+      "duration": "35 min",
+      "date": "9/18/2020",
+      "note": "This hike was great!",
+      "id": 2
+    },
+    {
+      "playerId": 2,
+      "exerciseTypeId": 1,
+      "duration": "10-20 min",
+      "date": "9/19/2020",
+      "note": "He did great!",
+      "id": 3
     }
   ],
   "trainings": [

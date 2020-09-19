@@ -73,7 +73,15 @@ export const TrainingForm = (props) => {
           {player.name}
         </h1>
 
-        <input type="text" ref={duration} name="duration" className="input input--tr input--duration" placeholder="Enter training duration" onChange={handleControlledInputChange}/>
+        <select defaultValue="" ref={duration} name="duration" className="input input--ex input--duration" onChange={handleControlledInputChange}>
+          <option value="0">How long did you exercise?</option>
+          <option value="1">5-10 min</option>
+          <option value="2">10-20 min</option>
+          <option value="3">20-30 min</option>
+          <option value="4">30-40 min</option>
+          <option value="4">40-50 min</option>
+          <option value="4">50-60 min</option>
+        </select>
 
         <select defaultValue="" name="trainingType" ref={trainingType} id="trainingType" className="select select--tr" onChange={handleControlledInputChange}>
               <option value="0">Select a behavior</option>

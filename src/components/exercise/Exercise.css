@@ -106,3 +106,13 @@
 .no-data-msg {
   text-align: center;
 }
+
+.ex-card--details:hover {
+  cursor: pointer;
+}
+
+.ex-card--note {
+  display: flex;
+  flex-flow: column;
+
+}
