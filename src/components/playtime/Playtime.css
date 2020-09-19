@@ -19,14 +19,18 @@
   background-color: hsl(207, 58%, 53%);
   color: white;
   justify-content: flex-start;
-  align-content: flex-start;;
+  align-content: flex-start;
 }
 
 .list--pt {
   display: flex;
   flex-flow: column;
-  padding: 0 0;
+  height: 300px;
+  padding: .5rem 0;
   justify-content: center;
+  align-content: center;
+  transform: translateY(-40px);
+  overflow-y: scroll;
 }
 
 .list__header--pt {
@@ -48,12 +52,6 @@
   justify-self: center;
   align-content: center;
   align-self: flex-start;
-}
-
-.pt-card__header--name {
-  display:flex;
-  justify-self: center;
-  align-self: center;
 }
 
 .pt-card--details {
@@ -91,6 +89,12 @@
 }
 
 .btn--add-pt {
-  width: 90%;
+  width: -webkit-fill-available;
   height: auto;
+  margin: 0 0;
+  transform: translateY(-15px);
+}
+
+.no-data-msg {
+  text-align: center;
 }

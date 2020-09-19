@@ -68,7 +68,7 @@ ul {
 
 .list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: flex-start;
   position: relative;
   top: 10%;
@@ -113,3 +113,18 @@ input:focus::placeholder {
   color: transparent;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* -webkit-appearance: none; */
+  border: none;
+  background-color: hsla(207, 98%, 23%, 0.514);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

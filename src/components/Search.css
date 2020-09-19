@@ -2,6 +2,7 @@
   border-radius: 15rem;
   border: solid 1px hsl(172, 97%, 29%);
   padding-left: 10px;
+  color: hsl(207, 98%, 23%) !important;
 }
 
 .input__nav--search:focus {

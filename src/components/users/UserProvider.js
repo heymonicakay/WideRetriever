@@ -12,7 +12,7 @@ export const UserProvider = (props) => {
     }
 
     const getCurrentUser = () => {
-      const currentUserId = sessionStorage.getItem("wr_user")
+      const currentUserId = sessionStorage.getItem("wr__user")
       const id = parseInt(currentUserId)
       return fetch(`http://localhost:8088/users/${id}`)
       .then(res => res.json())

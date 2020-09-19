@@ -58,4 +58,10 @@
   height: auto;
 }
 
+.btn--red {
+  background-color: rgb(243, 61, 61) !important;
+}
 
+.btn--circle {
+  border-radius: 25rem !important;
+}

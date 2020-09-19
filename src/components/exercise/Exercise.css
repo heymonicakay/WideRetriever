@@ -1,4 +1,4 @@
-.cont--tr {
+.cont--ex {
   display: flex;
   flex-flow: row wrap;
   align-content: left;
@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.pl-tr-list {
+.pl-ex-list {
   display: flex;
   flex-flow: column;
   flex-basis: 20%;
@@ -22,7 +22,7 @@
   align-content: flex-start;
 }
 
-.list--tr {
+.list--ex {
   display: flex;
   flex-flow: column;
   height: 300px;
@@ -33,12 +33,12 @@
   overflow-y: scroll;
 }
 
-.list__header--tr {
+.list__header--ex {
   display: flex;
   justify-content: center;
 }
 
-.tr-card {
+.ex-card {
   display: flex;
   position: relative;
   flex-flow: row nowrap;
@@ -54,23 +54,23 @@
   align-self: flex-start;
 }
 
-.tr-card--details {
+.ex-card--details {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-content: center;
 }
-.tr-card--detail {
+.ex-card--detail {
   display: flex;
   margin: .25rem;
 }
 
-.tr-card--stats {
+.ex-card--stats {
   display: flex;
   flex-flow: row nowrap;
 }
 
-.tr-card--img {
+.ex-card--img {
   display: flex;
   justify-self: center;
   align-self: center;
@@ -88,7 +88,7 @@
   border-radius: 2rem;
 }
 
-.btn--add-tr {
+.btn--add-ex {
   width: -webkit-fill-available;
   height: auto;
   margin: 0 0;
@@ -101,4 +101,8 @@
 
 .btn--red {
   background-color: rgb(243, 61, 61) !important;
+}
+
+.no-data-msg {
+  text-align: center;
 }

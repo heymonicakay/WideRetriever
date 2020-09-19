@@ -23,7 +23,7 @@
   margin: 0em 0em;
 }
 
-.cont--form-pl {
+.cont--form-ex {
   position: absolute;
   top: 10%;
   display: flex;
@@ -41,7 +41,13 @@
   align-self: center;
 }
 
-.link--reg {
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
+.link--ex {
   display: flex;
   align-self: flex-end;
   text-decoration: none;
@@ -50,7 +56,7 @@
   transition: .25s;
 }
 
-.link--reg:hover {
+.link--ex:hover {
   color: white;
 }
 
@@ -70,10 +76,13 @@
   align-self: center
 }
 
-.img-uploaded {
-  width: 200px;
-  height: 200px;
-  border-radius: 25rem;
-  overflow: hidden;
+.input--note {
+  margin: .25rem;
+  border-radius: .25rem;
 }
 
+.note-section {
+  display: flex;
+  flex-flow: column;
+  width: -webkit-fill-available;
+}

@@ -40,7 +40,7 @@ export const PlaytimeProvider = (props) => {
   }
 
   const removePlaytime = (playtimeId) => {
-    return fetch(`http://localhost:8088/animals/${playtimeId}`, {
+    return fetch(`http://localhost:8088/playtimes/${playtimeId}`, {
         method: "DELETE"
     })
         .then(getPlaytimes)

@@ -143,3 +143,23 @@ div > svg {
   padding: 0 0;
   margin: 0 0;
 }
+
+.btn-submit:disabled {
+  background-color: hsla(152, 64%, 45%, 0.411) !important;
+  color: rgb(182, 179, 179);
+}
+
+.input--note {
+  margin: .25rem;
+  border-radius: .25rem;
+}
+
+.note-section {
+  display: flex;
+  flex-flow: column;
+  width: -webkit-fill-available;
+}
+
+input[type="button"] {
+  outline:none;
+}

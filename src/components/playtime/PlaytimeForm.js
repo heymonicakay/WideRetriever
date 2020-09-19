@@ -1,10 +1,48 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { PlayerContext } from "../players/PlayerProvider"
+import { PlaytimeContext } from "./PlaytimeProvider"
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import "./PlaytimeForm.css"
 
 export const PlaytimeForm = (props) => {
+  // expose playtime provider components to this function
+  const { addPlaytime, playtimes, getPlaytimes } = useContext(PlaytimeContext)
+
+  const [playtime, setPlaytime] = useState({})
+
+  const handleControlledInputChange = (e) => {
+    const newPlaytime = Object.assign({}, playtime)
+
+    newPlaytime[e.target.name] = e.target.value
+
+    setPlaytime(newPlaytime)
+  }
+
+  useEffect(() => {
+    getPlaytimes()
+  }, [])
+
+  const constructNewPlaytime = () => {
+
+    const playerId = parseInt(props.match.params.playerId)
+
+    {addPlaytime({
+      playerId,
+      catches: catchCount,
+      misses: missCount,
+      date: today,
+      note: playtime.note,
+    })
+      .then(() => props.history.push(`/players/${playerId}`))}
+  }
+
+  // translate alien timstamp into human date
+  const todayTimestamp = Date.now()
+  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+
+  //identify the note section
+  const note = useRef()
 
   //identify the toss count button
   const tossBtn = useRef()
@@ -60,10 +98,13 @@ export const PlaytimeForm = (props) => {
   // controls state of toss button
   const [isHidden, setIsHidden] = useState(false)
 
+  //controls state of game in progress (when true, notes and submit disabled. When false notes and submit enabled)
+  const [isInProgress, setIsInProgress] = useState(true)
+
   //renders the content inside of the circle timer
   const renderTime = ({ remainingTime }) => {
     if ( remainingTime == 11) {
-      return <button className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
+      return <button type="button" className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
         handleTossIncrement()
         setIsPlaying(true)
         setIsDisabled(false)
@@ -86,9 +127,18 @@ export const PlaytimeForm = (props) => {
         </div>
       );
     }
-
-
   };
+
+  const [cannotSubmit, setCannotSubmit] = useState(true)
+
+  const handleCannotSubmit = () => {
+    if(tossCount == 5){
+      setCannotSubmit(false)
+    }
+    else {
+      setCannotSubmit(true)
+    }
+  }
 
   return (
     <div className="cont--form-pt">
@@ -113,6 +163,7 @@ export const PlaytimeForm = (props) => {
           <section className="cont--catch">
             <button className="btn btn--circle btn--green btn--catch" disabled={isDisabled} ref={catchBtn} onClick={() => {
               setIsPlaying(false)
+              handleCannotSubmit()
               handleReset()
               handleCatchIncrement()
               setIsDisabled(true)
@@ -120,7 +171,7 @@ export const PlaytimeForm = (props) => {
                 Catch
             </button>
 
-            <h5 className="h5 count catch-count"ref={catchCountText}>
+            <h5 className="h5 count catch-count" name={catchCountText} ref={catchCountText} onChange={handleControlledInputChange}>
               {catchCount}
             </h5>
           </section>
@@ -129,16 +180,31 @@ export const PlaytimeForm = (props) => {
             <button className="btn btn--circle btn--red btn--miss" disabled={isDisabled} ref={missBtn} onClick={() => {
               setIsPlaying(false)
               handleReset()
+              handleCannotSubmit()
               handleMissIncrement()
               setIsDisabled(true)
               setIsHidden(false)}}>
                 Miss
             </button>
 
-            <h5 className="h5 count miss-count" ref={missCountText}>
+            <h5 className="h5 count miss-count" name="missCountText" ref={missCountText} onChange={handleControlledInputChange}>
               {missCount}
             </h5>
           </section>
+        </div>
+        <div className="note-section">
+          {cannotSubmit
+            ? <textarea className="input input--note" disabled={cannotSubmit} name="note" ref={note} onChange={handleControlledInputChange} placeholder="Throw at least 5 tosses to log playtime...">
+            </textarea>
+            : <textarea className="input input--note" disabled={cannotSubmit} name="note" ref={note} onChange={handleControlledInputChange} placeholder="Add a note about today's playtime...">
+            </textarea>
+          }
+          <button disabled={cannotSubmit} type="button" className="btn btn-submit submit submit-pt" onClick={e => {
+          e.preventDefault()
+          constructNewPlaytime()
+          }}>
+            Log Playtime
+          </button>
         </div>
       </section>
     </div>

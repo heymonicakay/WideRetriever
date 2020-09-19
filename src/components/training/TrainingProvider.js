@@ -40,7 +40,7 @@ export const TrainingProvider = (props) => {
   }
 
   const removeTraining = (trainingId) => {
-    return fetch(`http://localhost:8088/animals/${trainingId}`, {
+    return fetch(`http://localhost:8088/trainings/${trainingId}`, {
         method: "DELETE"
     })
         .then(getTrainings)

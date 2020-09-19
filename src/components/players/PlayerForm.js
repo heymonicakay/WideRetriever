@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PlayerContext } from "./PlayerProvider"
-import "./PlayerForm.css"
+// import ReactCrop from 'react-image-crop';
+// import 'react-image-crop/dist/ReactCrop.css';
 
+import "./PlayerForm.css"
 
 export const PlayerForm = (props) => {
   const { addPlayer, players, updatePlayer, getPlayers } = useContext(PlayerContext)
@@ -12,6 +14,7 @@ export const PlayerForm = (props) => {
 
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState("")
+  console.log(image)
 
   const handleControlledInputChange = (event) => {
     const newPlayer = Object.assign({}, player)
@@ -104,7 +107,7 @@ export const PlayerForm = (props) => {
             <h3 className="h3 h3--img-load">Fetching..</h3>
           )
           :(
-            <img src={image} className="img" style={{width: 300}} />
+            <img src={image} className="img-uploaded" />
           )
         }
       </div>

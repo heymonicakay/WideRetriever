@@ -16,9 +16,11 @@
     "react-compound-timer": "^1.2.0",
     "react-countdown-circle-timer": "^2.3.7",
     "react-dom": "^16.13.1",
+    "react-image-crop": "^8.6.5",
     "react-popper": "^2.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-select-search": "^2.0.6",
     "react-tap-event-plugin": "^3.0.3",
     "reactstrap": "^8.5.1"
   },

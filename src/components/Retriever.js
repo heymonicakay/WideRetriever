@@ -11,7 +11,7 @@ export const Retriever = () => (
             if (sessionStorage.getItem("wr__user")) {
                 return (
                     <>
-                          <Route render={props => <ApplicationViews {...props} />} />
+                      <Route render={props => <ApplicationViews {...props} />} />
                     </>
                 )
             } else {

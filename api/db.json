@@ -65,12 +65,36 @@
       "date": "09/2/2020"
     },
     {
-      "id": 2,
-      "playerId": 2,
-      "misses": 3,
-      "catches": 2,
-      "note": "This was a great game!",
-      "date": "09/4/2020"
+      "playerId": 1,
+      "catches": 3,
+      "misses": 2,
+      "date": "9/17/2020",
+      "note": "Kaos was distracted during playtime today.",
+      "id": 3
+    },
+    {
+      "playerId": 1,
+      "catches": 0,
+      "misses": 5,
+      "date": "9/17/2020",
+      "note": "There were so many distractions he didn't catch a single ball!",
+      "id": 4
+    },
+    {
+      "playerId": 1,
+      "catches": 5,
+      "misses": 0,
+      "date": "9/17/2020",
+      "note": "Great game! ",
+      "id": 5
+    },
+    {
+      "playerId": 1,
+      "catches": 5,
+      "misses": 0,
+      "date": "9/17/2020",
+      "note": "lg",
+      "id": 6
     }
   ],
   "exercises": [
@@ -90,15 +114,6 @@
       "playerId": 1,
       "duration": "10min",
       "trainingTypeId": 4,
-      "rating": 5,
-      "note": "Kaos was great at Shake!",
-      "date": "09/2/2020"
-    },
-    {
-      "id": 2,
-      "playerId": 2,
-      "duration": "20min",
-      "trainingTypeId": 2,
       "rating": 5,
       "note": "Kaos was great at Shake!",
       "date": "09/2/2020"
@@ -122,22 +137,22 @@
       "type": "Shake"
     }
   ],
-  "exerciseType": [
+  "exerciseTypes": [
     {
       "id": 1,
-      "exercise": "Walk"
+      "type": "Walk"
     },
     {
       "id": 2,
-      "exercise": "Run"
+      "type": "Run"
     },
     {
       "id": 3,
-      "exercise": "Hike"
+      "type": "Hike"
     },
     {
       "id": 4,
-      "exercise": "Swim"
+      "type": "Swim"
     }
   ]
 }

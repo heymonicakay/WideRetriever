@@ -1,15 +1,17 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { PlayerContext } from "./PlayerProvider"
 import "../Search.css"
+import { PlayerSearchDisplay } from "./PlayerSearchDisplay"
 
-export const PlayerSearch = () => {
+export const PlayerSearch = (props) => {
     const { setTerms } = useContext(PlayerContext)
 
     return (
         <>
-            <input type="text" className="input input__nav input__nav--search" placeholder="Search" onChange={(e) => {
+            <input type="text" className="input input__nav input__nav--search" defaultValue="" placeholder="Search" onChange={(e) => {
               setTerms(e.target.value)
             }} />
         </>
     )
 }
+

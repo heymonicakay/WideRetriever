@@ -5,6 +5,7 @@ import "./Player.css"
 import { PlaytimeList } from "../playtime/PlaytimeList"
 
 import { TrainingList } from "../training/TrainingList"
+import { ExerciseList } from "../exercise/ExerciseList"
 
 export const PlayerDetails = (props) => {
   const delDialog = useRef()
@@ -39,9 +40,9 @@ export const PlayerDetails = (props) => {
       </dialog>
 
         <section className="pl-card">
-          <h3 className="h3 header pl-card__header--name">
+          <h1 className="h1 header pl-card__header--name">
             {player.name}
-          </h3>
+          </h1>
           <section className="pl-card--details">
             <div className="cont--img">
               <img className="pl-card--img" src={player.playerImg}/>
@@ -62,7 +63,7 @@ export const PlayerDetails = (props) => {
               }}>
             Edit Player
           </button>
-          <button className="btn" onClick={() => {
+          <button className="btn btn--red" onClick={() => {
             delDialog.current.showModal()
           }} >
             Remove From Roster
@@ -77,6 +78,9 @@ export const PlayerDetails = (props) => {
           <TrainingList {...props} />
         </section>
 
+        <section className="pl-ex-list">
+          <ExerciseList { ...props} />
+        </section>
       </>
     )
 }
