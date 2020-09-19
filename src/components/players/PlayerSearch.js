@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react"
 import { PlayerContext } from "./PlayerProvider"
 import "../Search.css"
-import { PlayerSearchDisplay } from "./PlayerSearchDisplay"
 
 export const PlayerSearch = (props) => {
     const { setTerms } = useContext(PlayerContext)

@@ -1,9 +1,20 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import "./PlayerSearchResult.css"
 
-export const PlayerSearchResult = ( props ) => (
-    <div className="pl-search-res" onClick={() => {
-      props.history.push(`/players/${props.player.id}`)}}>
+export const PlayerSearchResult = ( props ) => {
+
+  const refreshPage = ()=>{
+    window.location.reload();
+ }
+
+  const [ setTerms ] = useState("")
+
+  return (
+    <div className="pl-search-res" onClick={()=>{
+      props.history.push(`/players/${props.player.id}`)
+      setTerms("")
+      refreshPage()
+      }}>
 
       <div className="pl-search-res--c1">
         <img className="pl-search-res--img" src={props.player.playerImg}/>
@@ -19,4 +30,5 @@ export const PlayerSearchResult = ( props ) => (
           </div>
       </div>
     </div>
-)
+  )
+}

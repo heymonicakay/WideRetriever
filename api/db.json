@@ -22,15 +22,6 @@
   "players": [
     {
       "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1599949590/wideretriever/fo4ng3la7ipslpngcxjv.jpg",
-      "name": "Kaos",
-      "breed": "Aussie Shep",
-      "age": "9",
-      "number": "47",
-      "id": 1
-    },
-    {
-      "userId": 1,
       "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600050221/wideretriever/ct20pf4eh0p1aktxqxuf.jpg",
       "name": "Vinnie",
       "breed": "Great Pyr",
@@ -48,10 +39,12 @@
       "id": 3
     },
     {
-      "userId": 2,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600196459/wideretriever/ehenqvhgs8dwvgzmbysf.jpg",
-      "name": "Jarvis",
-      "breed": "Cavalier King Charles Spaniel",
+      "userId": 1,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600546960/wideretriever/xcbbdr2me4voypuobvts.jpg",
+      "name": "Kaos",
+      "breed": "Aussie Shep",
+      "age": "9",
+      "number": "47",
       "id": 4
     }
   ],
@@ -99,29 +92,20 @@
   ],
   "exercises": [
     {
-      "id": 1,
-      "playerId": 1,
-      "duration": "20 min",
-      "exerciseTypeId": 4,
-      "rating": 2,
-      "note": "Kaos did not like swimming, but he was good at it.",
-      "date": "09/2/2020"
-    },
-    {
-      "id": 2,
-      "playerId": 1,
-      "exerciseTypeId": 4,
-      "duration": "40-50 min",
-      "date": "9/19/2020",
-      "note": "This swim was ok."
-    },
-    {
       "playerId": 2,
       "exerciseTypeId": 1,
       "duration": "10-20 min",
       "date": "9/19/2020",
       "note": "He did great!",
       "id": 3
+    },
+    {
+      "playerId": 1,
+      "exerciseTypeId": 1,
+      "duration": "5-10 min",
+      "date": "9/19/2020",
+      "note": "blah blah",
+      "id": 4
     }
   ],
   "trainings": [

@@ -1,12 +1,10 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PlayerContext } from "./PlayerProvider"
-// import ReactCrop from 'react-image-crop';
-// import 'react-image-crop/dist/ReactCrop.css';
 
 import "./PlayerForm.css"
 
 export const PlayerForm = (props) => {
-  const { addPlayer, players, updatePlayer, getPlayers } = useContext(PlayerContext)
+  const { addPlayer, players, editPlayer, getPlayers } = useContext(PlayerContext)
 
   const [player, setPlayer] = useState({})
 
@@ -62,9 +60,9 @@ export const PlayerForm = (props) => {
     const userId = parseInt(sessionStorage.getItem("wr__user"))
 
     if (editMode) {
-      updatePlayer({
+      editPlayer({
         id: player.id,
-        playerImg: image,
+        playerImg: player.playerImg,
         userId: userId,
         name: player.name,
         breed: player.breed,
@@ -98,19 +96,27 @@ export const PlayerForm = (props) => {
         }
       </h2>
 
-
-      <div className="upload--img">
-        <input type="file" name="file" placeholder="upload an image" onChange={uploadImage}/>
-        {
-          loading
-          ?(
-            <h3 className="h3 h3--img-load">Fetching..</h3>
+      {editMode
+        ? (
+          <div className="upload--img">
+            <img src={player.playerImg} className="img-uploaded" />
+          </div>
           )
-          :(
-            <img src={image} className="img-uploaded" />
-          )
-        }
-      </div>
+        : (
+          <div className="upload--img">
+          <input type="file" name="file" placeholder="upload an image" onChange={uploadImage}/>
+          {
+            loading
+              ?(
+                <h3 className="h3 h3--img-load">Fetching..</h3>
+              )
+              :(
+                <img src={image} className="img-uploaded" />
+              )
+          }
+        </div>
+        )
+      }
 
         <div className="form-pl__group form-pl__group--name">
           <label htmlFor="name">
