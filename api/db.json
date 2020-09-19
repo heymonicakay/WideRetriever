@@ -108,12 +108,12 @@
       "date": "09/2/2020"
     },
     {
+      "id": 2,
       "playerId": 1,
-      "exerciseTypeId": 3,
-      "duration": "35 min",
-      "date": "9/18/2020",
-      "note": "This hike was great!",
-      "id": 2
+      "exerciseTypeId": 4,
+      "duration": "40-50 min",
+      "date": "9/19/2020",
+      "note": "This swim was ok."
     },
     {
       "playerId": 2,

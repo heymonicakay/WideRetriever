@@ -73,7 +73,7 @@ export const ExerciseList = (props) => {
 
                 const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
 
-                return <Exercise
+                return <Exercise {...props}
                     key={ex.id}
                     exercise={ex}
                     exerciseType={exerciseType}

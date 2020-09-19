@@ -116,3 +116,23 @@
   flex-flow: column;
 
 }
+
+.cont--form-edit-ex {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  border: 2px solid hsl(207, 98%, 23%);
+  background-color: hsl(207, 52%, 71%);
+  border-radius: 2rem;
+  padding: 1em;
+  margin: .25rem;
+  width: -webkit-fill-available;
+  justify-content: center;
+  justify-self: center;
+  align-content: center;
+  align-self: flex-start;
+}
+
+.input--ex-edit {
+
+}

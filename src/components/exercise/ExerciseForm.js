@@ -13,9 +13,9 @@ export const ExerciseForm = (props) => {
 
   // expose exercise provider components to this function
   const { addExercise } = useContext(ExerciseContext)
-
   const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
 
+  // get exercise types
   useEffect(() => {
     getExerciseTypes()
   }, [])
