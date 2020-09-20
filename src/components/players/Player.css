@@ -49,13 +49,22 @@
   align-content: center;
 }
 
+.cont--img {
+  height: 145px;
+  width: 145px;
+  border: 3px solid hsl(207, 98%, 23%);
+  border-radius: 25rem;
+  justify-self: center;
+  align-self: center;
+}
+
 .pl-card--img {
   display: flex;
   justify-self: center;
   align-self: center;
   border-radius: 25rem;
-  width: 100%;
-  height: auto;
+  width: 145px;
+  height: 145px;
 }
 
 .btn--red {

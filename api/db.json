@@ -105,6 +105,14 @@
       "date": "9/19/2020",
       "note": "blah blah",
       "id": 4
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "duration": "5-10 min",
+      "date": "9/19/2020",
+      "note": "We went for a quick walk.",
+      "id": 5
     }
   ],
   "trainings": [
@@ -116,6 +124,22 @@
       "rating": 5,
       "note": "Kaos was great at Shake!",
       "date": "09/2/2020"
+    },
+    {
+      "playerId": 4,
+      "trainingTypeId": 3,
+      "duration": "1",
+      "date": "9/19/2020",
+      "note": "This is a training session.",
+      "id": 2
+    },
+    {
+      "playerId": 4,
+      "trainingTypeId": 1,
+      "duration": "1",
+      "date": "9/19/2020",
+      "note": "This is a training session.",
+      "id": 3
     }
   ],
   "trainingTypes": [

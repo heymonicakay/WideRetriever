@@ -33,7 +33,7 @@ export const TrainingForm = (props) => {
   }
 
   const constructNewTraining = () => {
-    debugger
+    
     //define player ID
     const playerId = parseInt(props.match.params.playerId)
 

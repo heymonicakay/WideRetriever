@@ -1,11 +1,31 @@
 .input__nav--search {
   border-radius: 15rem;
   border: solid 1px hsl(172, 97%, 29%);
-  padding-left: 10px;
   color: hsl(207, 98%, 23%) !important;
+  height: 25px;
+  width: 25px;
+  transition: .5s;
+  color: transparent !important;
 }
 
 .input__nav--search:focus {
     outline: none;
     border: solid 2px hsl(172, 97%, 29%);
+    width: 165px;
+    padding-left: 30px;
+    box-shadow: 0px 0px 3px hsla(172, 97%, 29%, 0.548);
+    color: hsl(207, 89%, 21%) !important;
+}
+
+.input__nav--search::placeholder {
+  transform: translateX(30px)
+}
+
+.input__nav--search-img {
+  width: 18px;
+  height: 18px;
+  justify-self: center;
+  align-self: center;
+  transform: translateX(24px);
+  z-index: -4;
 }
