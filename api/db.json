@@ -92,12 +92,11 @@
   ],
   "exercises": [
     {
+      "id": 3,
       "playerId": 2,
       "exerciseTypeId": 1,
-      "duration": "10-20 min",
-      "date": "9/19/2020",
-      "note": "He did great!",
-      "id": 3
+      "duration": "40-50 min",
+      "date": "9/19/2020"
     },
     {
       "playerId": 1,

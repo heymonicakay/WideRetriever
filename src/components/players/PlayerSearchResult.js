@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react"
+import { PlayerContext } from "./PlayerProvider"
 import "./PlayerSearchResult.css"
 
 export const PlayerSearchResult = ( props ) => {
@@ -12,8 +13,8 @@ export const PlayerSearchResult = ( props ) => {
   return (
     <div className="pl-search-res" onClick={()=>{
       props.history.push(`/players/${props.player.id}`)
-      setTerms("")
       refreshPage()
+      setTerms("")
       }}>
 
       <div className="pl-search-res--c1">
