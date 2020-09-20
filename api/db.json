@@ -113,6 +113,14 @@
       "date": "9/19/2020",
       "note": "We went for a quick walk.",
       "id": 5
+    },
+    {
+      "playerId": 3,
+      "exerciseTypeId": 1,
+      "duration": "5-10 min",
+      "date": "9/20/2020",
+      "note": "Phoebe had a great time walking! ",
+      "id": 6
     }
   ],
   "trainings": [
@@ -140,6 +148,14 @@
       "date": "9/19/2020",
       "note": "This is a training session.",
       "id": 3
+    },
+    {
+      "playerId": 2,
+      "trainingTypeId": 2,
+      "duration": "2",
+      "date": "9/20/2020",
+      "note": "He stayed.",
+      "id": 4
     }
   ],
   "trainingTypes": [
@@ -176,6 +192,13 @@
     {
       "id": 4,
       "type": "Swim"
+    }
+  ],
+  "following": [
+    {
+      "id": 1,
+      "userId": 1,
+      "playerId": 3
     }
   ]
 }
