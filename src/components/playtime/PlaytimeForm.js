@@ -103,7 +103,7 @@ export const PlaytimeForm = (props) => {
 
   //renders the content inside of the circle timer
   const renderTime = ({ remainingTime }) => {
-    if ( remainingTime == 11) {
+    if ( remainingTime === 11) {
       return <button type="button" className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
         handleTossIncrement()
         setIsPlaying(true)
@@ -112,7 +112,7 @@ export const PlaytimeForm = (props) => {
           Toss
       </button>;
     }
-    if (remainingTime == 0) {
+    if (remainingTime === 0) {
       setIsPlaying(false)
       handleReset()
       setIsHidden(false)

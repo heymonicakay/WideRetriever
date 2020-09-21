@@ -1,13 +1,17 @@
-import React, { useContext, useState } from "react"
-import { PlayerContext } from "./PlayerProvider"
+import React, { useState, useContext } from "react"
+import { FollowingContext } from "../following/FollowingProvider"
 import "./PlayerSearchResult.css"
 
 export const PlayerSearchResult = ( props ) => {
+  //useContext
+  const { createNewFollowConnection } = useContext(FollowingContext)
 
+  // refreshes page when user selects player from search dropdown
   const refreshPage = ()=>{
     window.location.reload();
- }
+  }
 
+  // updates value of 'searchTerms' var
   const [ setTerms ] = useState("")
 
   return (
@@ -26,7 +30,9 @@ export const PlayerSearchResult = ( props ) => {
         </div>
       </div>
       <div className="pl-search-res--c3">
-          <div className="btn--pl-search-res btn--pl-search-res--follow">
+          <div className="btn--pl-search-res btn--pl-search-res--follow" onClick={() => {
+            createNewFollowConnection(props.player.id)
+          }}>
             +
           </div>
       </div>

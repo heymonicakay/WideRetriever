@@ -17,9 +17,9 @@ export const PlayerSearchDisplay = (props) => {
     setFilteredPlayers(matchingPlayers)
     }, [searchTerms])
 
-  useEffect(() => {
-    setFilteredPlayers(players)
-  }, [players])
+    useEffect(() => {
+      setFilteredPlayers(players)
+    }, [players])
 
     const resultVerify = () => {
       if(searchTerms.length < 1) {

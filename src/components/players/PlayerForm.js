@@ -99,7 +99,7 @@ export const PlayerForm = (props) => {
       {editMode
         ? (
           <div className="upload--img">
-            <img src={player.playerImg} className="img-uploaded" />
+            <img src={player.playerImg} alt="" className="img-uploaded" />
           </div>
           )
         : (
@@ -111,7 +111,7 @@ export const PlayerForm = (props) => {
                 <h3 className="h3 h3--img-load">Fetching..</h3>
               )
               :(
-                <img src={image} className="img-uploaded" />
+                <img src={image} alt="" className="img-uploaded" />
               )
           }
         </div>

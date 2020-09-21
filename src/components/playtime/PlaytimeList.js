@@ -27,6 +27,7 @@ export const PlaytimeList = (props) => {
     useEffect(() => {
 
       const matchingPlaytimes = playtimes.filter(playtime => playtime.playerId === playerId)
+
       const orderedPlaytimes = matchingPlaytimes.reverse()
 
       setFiltered(orderedPlaytimes)

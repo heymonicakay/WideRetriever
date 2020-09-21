@@ -34,3 +34,46 @@
   margin: .5rem;
 }
 
+.btn--account,
+.btn--create {
+  height: 25px;
+  width: 25px;
+  border: 3px solid black;
+  border-radius: 25rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.cont--create,
+.cont--account {
+  border: 3px solid black;
+  z-index: 4;
+}
+
+.cont--create {
+  right: 100px;
+}
+
+.cont--account {
+  right: 50px;
+}
+
+.btn--account,
+.btn--create{
+  align-self: center;
+  margin-left: .5rem;
+}
+
+.btn--account:hover {
+  cursor: pointer;
+}
+
+.btn--create:hover {
+  cursor: pointer;
+}
+
+.nav--right-btn-group {
+  display: flex;
+  position: fixed;
+  right: 2%;
+}

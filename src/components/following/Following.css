@@ -1,0 +1,6 @@
+.followed-pl-list {
+  display: flex;
+  flex-flow: column;
+  border: 3px solid black;
+  transform: translateY(130%);
+}

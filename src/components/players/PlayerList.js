@@ -6,10 +6,9 @@ import "./Player.css"
 import { UserContext } from "../users/UserProvider"
 
 export const PlayerList = (props) => {
+
     const { userPlayers, getUserPlayers } = useContext(PlayerContext)
-
     const { getCurrentUser } = useContext(UserContext)
-
     const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
     useEffect(() => {
@@ -18,17 +17,16 @@ export const PlayerList = (props) => {
     }, [])
 
     return (
-        <article className="list list--pl">
-
+        <>
           {userPlayers.map(p => {
 
-              return <Player
+              return <Player {...props}
                   key={p.id}
                   player={p}
               />
             })
         }
-        </article>
-    )
+      </>
+)
 }
 

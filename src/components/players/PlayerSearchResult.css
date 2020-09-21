@@ -80,3 +80,7 @@
   border: 1px solid rgb(92, 92, 92);
   transform: translateY(13px) translateX(60px)
 }
+
+.btn--pl-search-res--follow:hover {
+  cursor: pointer;
+}

@@ -46,48 +46,33 @@
       "age": "9",
       "number": "47",
       "id": 4
+    },
+    {
+      "userId": 2,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600702175/wideretriever/howo4d83l8ukk98kqsui.jpg",
+      "name": "Jarvis",
+      "breed": "Cavalier King Charles Spaniel",
+      "age": "6",
+      "number": "92",
+      "id": 5
     }
   ],
   "playtimes": [
     {
-      "id": 1,
-      "playerId": 1,
-      "misses": 0,
-      "catches": 5,
-      "note": "This was a great game!",
-      "date": "09/2/2020"
+      "playerId": 4,
+      "catches": 4,
+      "misses": 1,
+      "date": "9/20/2020",
+      "note": "Kaos caught almost all the popcorn I threw to him. ",
+      "id": 7
     },
     {
-      "playerId": 1,
-      "catches": 3,
-      "misses": 2,
-      "date": "9/17/2020",
-      "note": "Kaos was distracted during playtime today.",
-      "id": 3
-    },
-    {
-      "playerId": 1,
-      "catches": 0,
-      "misses": 5,
-      "date": "9/17/2020",
-      "note": "There were so many distractions he didn't catch a single ball!",
-      "id": 4
-    },
-    {
-      "playerId": 1,
-      "catches": 5,
-      "misses": 0,
-      "date": "9/17/2020",
-      "note": "Great game! ",
-      "id": 5
-    },
-    {
-      "playerId": 1,
-      "catches": 5,
-      "misses": 0,
-      "date": "9/17/2020",
-      "note": "lg",
-      "id": 6
+      "playerId": 5,
+      "catches": 1,
+      "misses": 4,
+      "date": "9/21/2020",
+      "note": "He was so uninterested in catching the treats, but was more than happy to pick them up from the floor haha!",
+      "id": 8
     }
   ],
   "exercises": [
@@ -97,14 +82,6 @@
       "exerciseTypeId": 1,
       "duration": "40-50 min",
       "date": "9/19/2020"
-    },
-    {
-      "playerId": 1,
-      "exerciseTypeId": 1,
-      "duration": "5-10 min",
-      "date": "9/19/2020",
-      "note": "blah blah",
-      "id": 4
     },
     {
       "playerId": 4,
@@ -121,34 +98,15 @@
       "date": "9/20/2020",
       "note": "Phoebe had a great time walking! ",
       "id": 6
+    },
+    {
+      "id": 7,
+      "playerId": 5,
+      "exerciseTypeId": 1,
+      "date": "9/21/2020"
     }
   ],
   "trainings": [
-    {
-      "id": 1,
-      "playerId": 1,
-      "duration": "10min",
-      "trainingTypeId": 4,
-      "rating": 5,
-      "note": "Kaos was great at Shake!",
-      "date": "09/2/2020"
-    },
-    {
-      "playerId": 4,
-      "trainingTypeId": 3,
-      "duration": "1",
-      "date": "9/19/2020",
-      "note": "This is a training session.",
-      "id": 2
-    },
-    {
-      "playerId": 4,
-      "trainingTypeId": 1,
-      "duration": "1",
-      "date": "9/19/2020",
-      "note": "This is a training session.",
-      "id": 3
-    },
     {
       "playerId": 2,
       "trainingTypeId": 2,
@@ -156,6 +114,38 @@
       "date": "9/20/2020",
       "note": "He stayed.",
       "id": 4
+    },
+    {
+      "playerId": 4,
+      "trainingTypeId": 1,
+      "duration": "5 min",
+      "date": "9/20/2020",
+      "note": "He did a great job sitting!",
+      "id": 5
+    },
+    {
+      "playerId": 4,
+      "trainingTypeId": 2,
+      "duration": "25 min",
+      "date": "9/20/2020",
+      "note": "Kaos is still working on stay.",
+      "id": 6
+    },
+    {
+      "playerId": 3,
+      "trainingTypeId": 1,
+      "duration": "5 min",
+      "date": "9/20/2020",
+      "note": "Phoebe was great at sitting!",
+      "id": 7
+    },
+    {
+      "playerId": 5,
+      "trainingTypeId": 2,
+      "duration": "5 min",
+      "date": "9/21/2020",
+      "note": "Jarvis is still working on Stay. He needed lots of treats as incentive! ",
+      "id": 8
     }
   ],
   "trainingTypes": [
@@ -194,11 +184,5 @@
       "type": "Swim"
     }
   ],
-  "following": [
-    {
-      "id": 1,
-      "userId": 1,
-      "playerId": 3
-    }
-  ]
+  "followings": []
 }

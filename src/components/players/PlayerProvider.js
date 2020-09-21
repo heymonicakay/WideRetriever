@@ -4,6 +4,8 @@ export const PlayerContext = React.createContext()
 export const PlayerProvider = (props) => {
     const [players, setPlayers] = useState([])
     const [searchTerms, setTerms] = useState("")
+    const [filteredPlayersFollowing, setFilteredPlayersFollowing] = useState([])
+
     const [userPlayers, setUserPlayers] = useState([])
 
 
@@ -55,8 +57,18 @@ export const PlayerProvider = (props) => {
 
     return (
         <PlayerContext.Provider value={{
-            players, addPlayer, getPlayers, getPlayerById,
-            searchTerms, setTerms, removePlayer, editPlayer,getUserPlayers, userPlayers
+            players,
+            addPlayer,
+            getPlayers,
+            getPlayerById,
+            searchTerms,
+            setTerms,
+            removePlayer,
+            editPlayer,
+            getUserPlayers,
+            userPlayers,
+            setFilteredPlayersFollowing,
+            filteredPlayersFollowing
         }}>
             {props.children}
         </PlayerContext.Provider>

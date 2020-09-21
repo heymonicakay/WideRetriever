@@ -37,7 +37,7 @@ export const ExerciseList = (props) => {
       const orderedExercises = matchingExercises.reverse()
       setFiltered(orderedExercises)
   }, [exercises])
-  
+
   //evaluates logged exercises and user:player relationship - displays data accordingly
   const exerciseListVerify = () => {
     if(filteredExercises.length < 1 && userId === player.userId) {
@@ -141,7 +141,6 @@ export const ExerciseList = (props) => {
       )
     }
   }
-
   return (
     <>
     {exerciseListVerify()}

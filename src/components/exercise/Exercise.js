@@ -14,7 +14,6 @@ export const Exercise = ( props ) => {
   const note = useRef(null)
 
   // useContext
-
   const  { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
   const {removeExercise, editExercise } = useContext(ExerciseContext)
 
@@ -49,7 +48,6 @@ export const Exercise = ( props ) => {
     duration: exercise.duration,
     date: today,
     note: exercise.note,
-    rating: exercise.rating
   })
   .then(() => props.history.push(`/players/${playerId}`))}
 }
@@ -77,19 +75,22 @@ const [noteHidden, setNoteHidden] = useState(true)
   const toggleHidden = () => {
     if (noteHidden === true) {
       setNoteHidden(false)
-    } else {
+    }
+    else {
       setNoteHidden(true)
     }
-}
+  }
+
   //toggles edit mode for individual exercise session
   const toggleEditMode = () => {
-    if (editMode ===true) {
+    if (editMode === true) {
       setEditMode(false)
     }
     else {
       setEditMode(true)
     }
   }
+
   //verifies user and displays player's exercise data accordingly
   const ExerciseVerify = () => {
     if(userId === player.userId) {
@@ -178,38 +179,38 @@ const [noteHidden, setNoteHidden] = useState(true)
           {editMode
             ?
             <>
-                <div className="cont--form-edit-ex">
-                    <select ref={duration} name="duration" className="input input--ex-edit input--duration" defaultValue={props.exercise.duration} onChange={handleControlledInputChange}>
-                      <option value="0">How long did you exercise?</option>
-                      <option value="5-10 min">5-10 min</option>
-                      <option value="10-20 min">10-20 min</option>
-                      <option value="20-30 min">20-30 min</option>
-                      <option value="30-40 min">30-40 min</option>
-                      <option value="40-50 min">40-50 min</option>
-                      <option value="50-60 min">50-60 min</option>
-                    </select>
+              <div className="cont--form-edit-ex">
+                  <select ref={duration} name="duration" className="input input--ex-edit input--duration" defaultValue={props.exercise.duration} onChange={handleControlledInputChange}>
+                    <option value="0">How long did you exercise?</option>
+                    <option value="5-10 min">5-10 min</option>
+                    <option value="10-20 min">10-20 min</option>
+                    <option value="20-30 min">20-30 min</option>
+                    <option value="30-40 min">30-40 min</option>
+                    <option value="40-50 min">40-50 min</option>
+                    <option value="50-60 min">50-60 min</option>
+                  </select>
 
-                    <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
-                      <option value="0">Select an activity!</option>
-                        {exerciseTypes.map(et => (
-                          <option key={et.id} value={et.id}>
-                            {et.type}
-                          </option>
-                        ))}
-                    </select>
+                  <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
+                    <option value="0">Select an activity!</option>
+                      {exerciseTypes.map(et => (
+                        <option key={et.id} value={et.id}>
+                          {et.type}
+                        </option>
+                      ))}
+                  </select>
 
-                    <label htmlfor="note">How did {player.name} do?</label>
+                  <label htmlfor="note">How did {player.name} do?</label>
 
-                    <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
+                  <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
 
-                    <button className="btn btn--submit btn--ex" type="button"
-                      onClick={e => {
-                        e.preventDefault()
-                        constructNewExercise()
-                        toggleEditMode()
-                      }}>
-                        Save Changes
-                    </button>
+                  <button className="btn btn--submit btn--ex" type="button"
+                    onClick={e => {
+                      e.preventDefault()
+                      constructNewExercise()
+                      toggleEditMode()
+                    }}>
+                      Save Changes
+                  </button>
                 </div>
               </>
             :

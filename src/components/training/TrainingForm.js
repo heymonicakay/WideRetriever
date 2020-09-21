@@ -33,7 +33,7 @@ export const TrainingForm = (props) => {
   }
 
   const constructNewTraining = () => {
-    
+
     //define player ID
     const playerId = parseInt(props.match.params.playerId)
 
@@ -74,13 +74,13 @@ export const TrainingForm = (props) => {
         </h1>
 
         <select defaultValue="" ref={duration} name="duration" className="input input--ex input--duration" onChange={handleControlledInputChange}>
-          <option value="0">How long did you exercise?</option>
-          <option value="1">5-10 min</option>
-          <option value="2">10-20 min</option>
-          <option value="3">20-30 min</option>
-          <option value="4">30-40 min</option>
-          <option value="4">40-50 min</option>
-          <option value="4">50-60 min</option>
+          <option value="0">How long did you train?</option>
+          <option value="5 min">5 min</option>
+          <option value="10 min">10 min</option>
+          <option value="15 min">15 min</option>
+          <option value="20 min">20 min</option>
+          <option value="25 min">25 min</option>
+          <option value="30 min">30 min</option>
         </select>
 
         <select defaultValue="" name="trainingType" ref={trainingType} id="trainingType" className="select select--tr" onChange={handleControlledInputChange}>

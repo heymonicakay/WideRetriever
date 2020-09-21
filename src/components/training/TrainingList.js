@@ -7,16 +7,17 @@ import "./Training.css"
 import { TrainingTypeContext } from "../trainingType/TrainingTypeProvider"
 
 export const TrainingList = (props) => {
-    const { getTrainings, trainings } = useContext(TrainingContext)
-    const { trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
-    const { getPlayerById } = useContext(PlayerContext)
+  //useContext
+  const { getTrainings, trainings } = useContext(TrainingContext)
+  const { trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
+  const { getPlayerById } = useContext(PlayerContext)
 
-    const [filteredTrainings, setFiltered] = useState([])
-    const [player, setPlayer] = useState({})
+  //useState
+  const [filteredTrainings, setFiltered] = useState([])
+  const [player, setPlayer] = useState({})
 
-
-    const playerId = parseInt(props.match.params.playerId)
-
+  //define playerId
+  const playerId = parseInt(props.match.params.playerId)
     useEffect(() => {
       const playerId = parseInt(props.match.params.playerId)
         getPlayerById(playerId)
@@ -77,7 +78,7 @@ export const TrainingList = (props) => {
               {filteredTrainings.map(tr => {
                 const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
 
-                return <Training
+                return <Training {...props}
                 key={tr.id}
                 training={tr}
                 trainingType={trainingType}

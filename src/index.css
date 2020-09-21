@@ -86,6 +86,12 @@ ul {
   justify-content: space-evenly;
 }
 
+.cont--pl {
+  display: flex;
+  position: relative;
+  top: 10%;
+}
+
 input {
   margin: .25rem 0rem;
   background-color: transparent;
