@@ -184,5 +184,11 @@
       "type": "Swim"
     }
   ],
-  "followings": []
+  "followings": [
+    {
+      "userId": 1,
+      "followedPlayerId": 5,
+      "id": 1
+    }
+  ]
 }

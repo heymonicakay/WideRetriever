@@ -9,7 +9,7 @@
   flex-flow: row nowrap;
   align-content: center;
   justify-content: stretch;
-  box-shadow: none;
+  z-index: 10;
 }
 
 .pl-search-res:hover {
@@ -28,10 +28,11 @@
 
 .search-results-list {
   position: absolute;
-  max-width: 200px;
+  max-width: 202px;
   max-height: 500px;
-  overflow-y: scroll;
-  z-index: 4;
+  overflow-x: scroll;
+  overflow-y:hidden;
+  z-index: 10;
   transform: translateY(55px) translateX(35px);
 }
 
@@ -46,7 +47,7 @@
   display: flex;
   flex-flow: row nowrap;
   transform: translateY(55px) translateX(35px);
-  z-index: 4;
+  z-index: 10;
   position: absolute;
 }
 

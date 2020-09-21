@@ -144,7 +144,7 @@ export const PlayerDetails = ( props ) => {
                 onClick={e => {
                     e.preventDefault()
                     findFollowConnection()
-                    refreshPage()
+                    unfollowDialog.current.close()
                 }}>
                         Yes, I'm sure.
               </button>

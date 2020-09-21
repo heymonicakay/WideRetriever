@@ -78,19 +78,7 @@ ul {
   padding: 0 0;
 }
 
-.cont--pl-view {
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  top: 10%;
-  justify-content: space-evenly;
-}
 
-.cont--pl {
-  display: flex;
-  position: relative;
-  top: 10%;
-}
 
 input {
   margin: .25rem 0rem;
@@ -133,4 +121,39 @@ input:focus::placeholder {
   border: none;
   background-color: hsla(207, 98%, 23%, 0.514);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.main--cont {
+  display: flex;
+  flex-flow: row nowrap;
+  transform: translateY(-20%) !important;
+}
+
+.followed-player-list-cont {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 20%;
+  height: auto;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  transform: translateX(35px);
+  z-index: 5;
+}
+
+.cont--pl-view {
+  display: flex;
+  flex-flow: row nowrap;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.cont--pl {
+  display: flex;
+  position: absolute;
+  top: 10%;
+  right: 0;
 }

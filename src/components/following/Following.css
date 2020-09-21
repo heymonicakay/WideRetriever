@@ -1,6 +1,60 @@
-.followed-pl-list {
+.followed-player-card-cont {
   display: flex;
-  flex-flow: column;
-  border: 3px solid black;
-  transform: translateY(130%);
+  flex-flow: row nowrap;
+  width: 200px;
+  height: 50px;
+  align-content: center;
+  justify-content: stretch;
+  box-shadow: none
+}
+
+.followed-player-img {
+  display:flex;
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  border-radius: 25rem;
+  align-self: center;
+  z-index: 1;
+}
+
+.followed-player-img:hover {
+  cursor: pointer;
+}
+
+.followed-player-pop-out {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+
+.followed-player-pop-out--name {
+  font-size: larger;
+  font-weight: 400;
+  margin-left: .25rem;
+  margin-right: .25rem;
+  transform: translateX(10px)
+}
+
+.followed-player-pop-out--name:hover {
+  cursor: pointer;
+}
+
+.btn--unfollow-img {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 25rem;
+  transform: translateX(20px);
+}
+
+.btn--unfollow--img-cont {
+  display: flex;
+  width: 25px !important;
+  height: 25px !important;
+  border: none;
+  border-radius: 25rem;
+  transform: translateX(40px);
+  align-self: center;
 }

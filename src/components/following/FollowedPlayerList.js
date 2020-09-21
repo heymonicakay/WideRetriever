@@ -8,32 +8,24 @@ export const FollowedPlayerList = props => {
 
   const activeUser = parseInt(sessionStorage.getItem("wr__user"))
   const { followings } = useContext(FollowingContext)
-  const { players, setFilteredPlayersFollowing,
-    filteredPlayersFollowing } = useContext(PlayerContext)
-  const activeUsersFollowings = followings.filter(f => f.userId === activeUser)
-
-console.log(activeUsersFollowings)
-
-  const playerIdsFollowed = activeUsersFollowings.map(auf=>auf.followedPlayerId)
-
-  console.log(playerIdsFollowed)
-
-  const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif))
-
+  const { players, setFilteredPlayersFollowing, filteredPlayersFollowing } = useContext(PlayerContext)
+  const activeUsersFollowings = followings.filter(f => f.userId === activeUser) || []
+  const playerIdsFollowed = activeUsersFollowings.map(auf=>auf.followedPlayerId) || []
+  const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
 
   //useEffect
+
   useEffect(() => {
     setFilteredPlayersFollowing(playersFollowed)
   }, [])
 
   useEffect(() => {
     setFilteredPlayersFollowing(playersFollowed)
-  }, [players])
+  }, [followings])
 
-  if (playersFollowed.length < 1) {
+  if (filteredPlayersFollowing.length < 1) {
     return (
       <>
-        <h2 className="h2 header followed-pl-list">Players</h2>
         <div className="no-followed-pl-msg">You are not currently following any players.</div>
       </>
     )
@@ -41,8 +33,7 @@ console.log(activeUsersFollowings)
   else {
     return (
       <>
-        <h2 className="h2 header followed-pl-list">Players</h2>
-        <div className="followed-pl-list">
+        <div className="followed-pl-list-cont">
           {
             filteredPlayersFollowing.map(player => {
                 return <FollowedPlayerCard {...props}

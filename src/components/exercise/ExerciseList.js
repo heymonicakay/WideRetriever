@@ -87,15 +87,12 @@ export const ExerciseList = (props) => {
       return (
         <>
         <div className="cont__list cont__list--ex">
-
           <h2 className="list__header list__header--ex">
             Exercise
           </h2>
             <article className="list list--ex">
               {filteredExercises.map(ex => {
-
               const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
-
               return <Exercise {...props}
                   key={ex.id}
                   exercise={ex}

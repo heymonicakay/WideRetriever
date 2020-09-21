@@ -19,6 +19,7 @@ import { FollowingProvider } from "./following/FollowingProvider"
 import { FollowedPlayerList } from "./following/FollowedPlayerList"
 
 export const ApplicationViews = (props) => {
+
   return (
     <>
       <UserProvider>
@@ -29,13 +30,12 @@ export const ApplicationViews = (props) => {
               render = {
                 props =>
                   <>
-                      <PlayerSearchDisplay { ...props} />
+                    <PlayerSearchDisplay
+                    { ...props} />
                     <nav className="cont--nav">
-                      <Nav {...props} />
+                      <Nav
+                      {...props} />
                     </nav>
-                    <div className="followed-player-list-cont">
-                      <FollowedPlayerList { ...props} />
-                    </div>
                   </>
               }
             />
@@ -44,8 +44,16 @@ export const ApplicationViews = (props) => {
               render = {
                 props =>
                   <>
-                    <div className="cont--pl">
-                    <PlayerList { ...props} />
+                    <div className="main-cont">
+
+                      <div className="followed-player-list-cont">
+                        <FollowedPlayerList
+                        { ...props} />
+                      </div>
+                      <div className="cont--pl">
+                        <PlayerList
+                        { ...props} />
+                      </div>
                     </div>
                   </>
               }
@@ -55,7 +63,8 @@ export const ApplicationViews = (props) => {
               render = {
                 props =>
                   <div className="cont__form--pl">
-                    <PlayerForm { ...props} />
+                    <PlayerForm
+                    { ...props} />
                   </div>
               }
             />
@@ -71,42 +80,56 @@ export const ApplicationViews = (props) => {
                       render={
                         props =>
                         <div className="cont--pl-view">
-                          <PlayerDetails {...props} />
+                          <PlayerDetails
+                          {...props} />
                         </div>
                       }
                       />
-                    <Route
-                      exact path="/players/playtime/add/:playerId(\d+)"
-                      render={
-                        props =>
-                        <PlaytimeForm {...props}/>
-                      }
-                      />
-                    <Route
-                      exact path="/players/training/add/:playerId(\d+)"
-                      render={
-                        props =>
-                        <TrainingForm {...props}/>
-                      }
-                      />
-                      <Route
-                      exact path="/players/exercise/add/:playerId(\d+)"
-                      render={
-                        props =>
-                        <ExerciseForm {...props}/>
-                      }
-                      />
-
                   </ExerciseTypeProvider>
                 </ExerciseProvider>
               </TrainingTypeProvider>
             </TrainingProvider>
           </PlaytimeProvider>
 
+          <ExerciseProvider>
+            <ExerciseTypeProvider>
+                <Route
+                exact path="/players/exercise/add/:playerId(\d+)"
+                render={
+                  props =>
+                  <ExerciseForm {...props}/>
+                }
+                />
+            </ExerciseTypeProvider>
+          </ExerciseProvider>
+
+          <TrainingProvider>
+            <TrainingTypeProvider>
+                      <Route
+                        exact path="/players/training/add/:playerId(\d+)"
+                        render={
+                          props =>
+                          <TrainingForm {...props}/>
+                        }
+                        />
+              </TrainingTypeProvider>
+            </TrainingProvider>
+
+            <PlaytimeProvider>
+              <Route
+                exact path="/players/playtime/add/:playerId(\d+)"
+                render={
+                  props =>
+                  <PlaytimeForm
+                  {...props}/>
+                }
+                />
+            </PlaytimeProvider>
+
           <Route
             path="/players/edit/:playerId(\d+)"
             render={
-            props => <PlayerForm {...props} />
+              props => <PlayerForm {...props} />
             }
           />
           </FollowingProvider>

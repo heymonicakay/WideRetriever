@@ -50,11 +50,14 @@ export const Nav = (props) => {
       <div className="nav--right-btn-group">
         <div className="btn--create" onClick={()=>{
           toggleCreate()
+          setHideAccountDropdown(true)
         }}>
           +
         </div>
         <div className="btn--account" onClick={()=>{
           toggleAccount()
+          setHideCreateDropdown(true)
+
         }}>
           M
         </div>
@@ -62,10 +65,11 @@ export const Nav = (props) => {
 
       <div className="cont--create" hidden={hideCreateDropdown}>
 
-        <Link className="nav__link nav__link--add-pl" to="/players/create" onClick={()=>{
-          toggleCreate()
-        }}>
-          Add Player
+        <Link className="nav__link nav__link--add-pl" to="/players/create"
+          onClick={()=>{
+            toggleCreate()
+          }}>
+            Add Player
         </Link>
         <Link className="nav__link nav__link--add-reminder" to="/reminders/create" onClick={()=>{
           toggleCreate()
