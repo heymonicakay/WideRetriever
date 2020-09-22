@@ -23,7 +23,7 @@ export const PlayerForm = (props) => {
     newPlayer[event.target.name] = event.target.value
     setPlayer(newPlayer)
   }
-  
+
   const handleClick = e => {
     hiddenFileInput.current.click();
   };
@@ -107,27 +107,35 @@ export const PlayerForm = (props) => {
           ? (
             <div className="upload--img">
               <img src={player.playerImg} alt="" className="img-uploaded" />
+              <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png" alt="" className="img-overlay" onClick={()=>{
+                  handleClick()}}/>
+
+              <div className="file-input-container">
+                  <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
+                </div>
             </div>
             )
           :
             (
-              <div className="upload--img">
+              <>
                 <div className="file-input-container">
                   <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
                 </div>
-                <button hidden={isHidden} className="btn styled-upload-btn" onClick={()=>{
-                  handleClick()}}>
-                    Choose A Different Image
-                </button>
               {loading
                 ?(
                     <h3 className="h3 h3--img-load">Fetching..</h3>
                   )
                 :(
+                  <>
                     <img src={image} alt="" className="img-uploaded" onClick={handleClick}/>
+                    <span className="img-overlay" hidden={isHidden} alt=""
+                      onClick={()=>{
+                        handleClick()}}
+                    ></span>
+                  </>
                   )
               }
-              </div>
+              </>
             )
         }
 

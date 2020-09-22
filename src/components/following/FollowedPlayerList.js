@@ -12,9 +12,7 @@ export const FollowedPlayerList = props => {
   const activeUsersFollowings = followings.filter(f => f.userId === activeUser) || []
   const playerIdsFollowed = activeUsersFollowings.map(auf=>auf.followedPlayerId) || []
   const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
-
   //useEffect
-
   useEffect(() => {
     setFilteredPlayersFollowing(playersFollowed)
   }, [])
@@ -23,10 +21,12 @@ export const FollowedPlayerList = props => {
     setFilteredPlayersFollowing(playersFollowed)
   }, [followings])
 
-  if (filteredPlayersFollowing.length < 1) {
+  if (filteredPlayersFollowing.length < 1 || filteredPlayersFollowing === [] ) {
     return (
       <>
-        <div className="no-followed-pl-msg">You are not currently following any players.</div>
+        <div className="no-followed-pl-msg">
+          You are not currently following any players.
+        </div>
       </>
     )
   }
@@ -36,10 +36,11 @@ export const FollowedPlayerList = props => {
         <div className="followed-pl-list-cont">
           {
             filteredPlayersFollowing.map(player => {
+
                 return <FollowedPlayerCard {...props}
                     key={player.id}
                     player={player}
-                />
+                    />
             })
           }
         </div>

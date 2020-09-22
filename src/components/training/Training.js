@@ -5,7 +5,6 @@ import { PlayerContext } from "../players/PlayerProvider"
 import "./Training.css"
 
 export const Training = ( props ) => {
-
   //define user id
   const userId = parseInt(sessionStorage.getItem("wr__user"))
 
@@ -13,6 +12,7 @@ export const Training = ( props ) => {
   const duration = useRef(null)
   const trainingType = useRef(null)
   const note = useRef(null)
+  const arrow = useRef(null)
 
   //useContext
   const {  trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
@@ -21,7 +21,7 @@ export const Training = ( props ) => {
   //useEffect
   useEffect(() => {
     getTrainingTypes()
-  })
+  }, [])
 
   // func to build new training obj on input change
   const handleControlledInputChange = (e) => {
@@ -138,9 +138,7 @@ export const Training = ( props ) => {
           </>
           :
             <section className="tr-card">
-              <div className="tr-card--details" onClick={()=>{
-                  toggleHidden()
-              }}>
+              <div className="tr-card--details">
                 <span className="tr-card--detail tr-card--date">
                   {props.training.date}
                 </span>
@@ -154,7 +152,7 @@ export const Training = ( props ) => {
                 </div>
                 <div className="tr-card--detail tr-card--note">
                   {noteHidden
-                    ? <span hidden></span>
+                    ? null
                     : <>
                         <span className="note">
                           {props.training.note}
@@ -169,6 +167,12 @@ export const Training = ( props ) => {
                           </button>
                         </>
                     }
+                  </div>
+                <div ref={arrow} className="down-arrow"
+                  onClick={()=>{
+                    toggleHidden()
+                  }}>
+                    <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
                 </div>
               </div>
             </section>

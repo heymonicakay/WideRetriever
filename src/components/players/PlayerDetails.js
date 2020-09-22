@@ -23,18 +23,13 @@ export const PlayerDetails = ( props ) => {
   }, [])
 
   const activeUser = parseInt(sessionStorage.getItem("wr__user"))
-
   useEffect(() => {
     alreadyFollowing()
   }, [followings])
 
   const [player, setPlayer] = useState({})
   const [iAmFollowing, setIAmFollowing] = useState(false)
-  const [followConnectionTBD, setFollowConnectionTBD] = useState({})
 
-  useEffect(() => {
-    unfollow(followConnectionTBD.id)
-  }, [followConnectionTBD])
 /********************************** CREATE new follow */
   const createNewFollowConnection = () => {
     const newFollowConnection = {
@@ -42,6 +37,7 @@ export const PlayerDetails = ( props ) => {
         followedPlayerId: player.id
     }
     addFollowing(newFollowConnection)
+    .then(getFollowings)
   }
 /*************************************************** FORCE RELOAD FUNC */
   const refreshPage = ()=>{
@@ -59,8 +55,11 @@ export const PlayerDetails = ( props ) => {
   }
  /************************************* FINDS followingObj that exists between active user and targeted player. Obj stored in followConnection var - Obj required for DELETE */
   const findFollowConnection = () => {
-    const followConnection = followings.find(f => f.followedPlayerId === player.id && f.userId === activeUser)
-    setFollowConnectionTBD(followConnection)
+    const followConnectionId = followings.find(f => f.followedPlayerId === player.id && f.userId === activeUser).id
+
+    console.log(followConnectionId,"followConnection")
+
+    unfollow(followConnectionId).then(getFollowings)
   }
 
   const playerValidation = () => {

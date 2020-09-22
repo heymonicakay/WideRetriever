@@ -46,7 +46,7 @@ export const FollowingProvider = (props) => {
                 setFollowings,
                 getFollowings,
                 addFollowing,
-                unfollow
+                unfollow,
             }
         }>
             {props.children}

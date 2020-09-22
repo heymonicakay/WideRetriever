@@ -33,7 +33,7 @@
   padding: 1em;
   border: 3px solid hsl(207, 98%, 23%);
   border-radius: 2rem;
-  background-color: hsl(207, 58%, 53%);
+  background-color: hsl(207, 61%, 61%);
   color: white;
   justify-self: center;
   justify-content: space-evenly;
@@ -68,14 +68,13 @@
   justify-items: center;
   align-content: center;
   justify-self: center;
-  align-self: center
+  align-self: center;
 }
 
 .img-uploaded {
   width: 200px;
   height: 200px;
   border-radius: 25rem;
-  border: 2px solid black;
   overflow: hidden;
   justify-self: center;
   align-self: center;
@@ -100,3 +99,32 @@
   font-size: 30px !important;
 }
 
+.img-overlay {
+  z-index: 3;
+  width: 200px;
+  height: 200px;
+  border-radius: 25rem;
+  border: 2px solid black;
+  overflow: hidden;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  transform: translateY(-50%);
+  position: absolute;
+  background:url("https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png") 0 0 no-repeat;
+  background-size: cover;
+}
+
+.uploaded-img-container {
+  z-index: 3;
+  width: 199px !important;
+  height: 199px !important;
+  border-radius: 25rem;
+  border: 2px solid black;
+  background-color: transparent;
+  overflow: hidden;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  overflow: hidden;
+}
