@@ -128,6 +128,13 @@ useEffect(() => {
             <br />
             {playerExerciseGoal.goalSet}
           </div>
+
+          <div className="exercise-acheived">
+            Acheived:
+            <br />
+            {thisWeek}
+            </div>
+
           </>
           }
 
@@ -226,6 +233,12 @@ useEffect(() => {
             <br />
             {playerExerciseGoal.goalSet} per week.
             </div>
+
+            <div className="playtime-acheived">
+              Acheived:
+              <br />
+              {thisWeek}
+              </div>
               </>
             }
 
