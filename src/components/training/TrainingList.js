@@ -228,6 +228,12 @@ export const TrainingList = (props) => {
             <br />
             {playerTrainingGoal.goalSet} per week.
             </div>
+
+            <div className="exercise-acheived">
+            Acheived:
+            <br />
+            {thisWeek}
+            </div>
             </>
             }
             <button className="btn btn--add-tr" onClick={

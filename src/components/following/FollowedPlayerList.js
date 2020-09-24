@@ -74,7 +74,6 @@ export const FollowedPlayerList = props => {
             const playerId = player.id
 
             const handleClick = (e) => {
-              setUserFollowings(playersFollowed)
               e.preventDefault()
               props.history.push(`/players/${playerId}`)
             }
