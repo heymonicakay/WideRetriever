@@ -28,16 +28,16 @@ export const PlaytimeGoalForm = (props) => {
 
   const constructNewPlaytimeGoal = () => {
     //define player ID
-    const assignedPlayerId = parseInt(props.match.params.playerId)
+    const playerId = parseInt(props.match.params.playerId)
 
     // call the func add playtime and pass it the arg of a whole playtime obj and then take the user back to the player details view
     {addPlaytimeGoal({
-      assignedPlayerId,
+      playerId,
       goalSet: playtimeGoal.goalSet,
       timestamp: Date.now(),
       date: today,
     })
-      .then(() => props.history.push(`/players/${assignedPlayerId}`))}
+      .then(() => props.history.push(`/players/${playerId}`))}
   }
 
   // translate alien timstamp into human date

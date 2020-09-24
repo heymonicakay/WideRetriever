@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, useRef } from "react"
 import { PlayerContext } from "../players/PlayerProvider"
 import { TrainingContext } from "./TrainingProvider"
 import { Training } from "./Training"
@@ -8,23 +8,25 @@ import "./Training.css"
 import { TrainingTypeContext } from "../trainingType/TrainingTypeProvider"
 
 export const TrainingList = (props) => {
+  //refs
+  const goalSet = useRef(null)
+
   //useContext
   const { getTrainings, trainings, removeTraining } = useContext(TrainingContext)
   const { trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
   const { getPlayerById } = useContext(PlayerContext)
-  const { getTrainingGoals, trainingGoals } = useContext(TrainingGoalContext)
+  const { getTrainingGoals, getPlayerTrainingGoals, editTrainingGoal,  trainingGoals } = useContext(TrainingGoalContext)
 
   //useState
   const [filteredTrainings, setFiltered] = useState([])
   const [player, setPlayer] = useState({})
-  const [playerGoals, setPlayerGoals] = useState([])
-  const [ goal, setGoal ] = useState({})
-  const [isLoading, setIsLoading] = useState(null)
+  const [playerTrainingGoal, setPlayerTrainingGoal] = useState([])
+  const [editMode, setEditMode] = useState(false)
 
   //define ids
   const playerId = parseInt(props.match.params.playerId)
   const userId = parseInt(sessionStorage.getItem("wr__user"))
-
+  const thisWeek = props.trainingsThisWeek.length
   //useEffect
     useEffect(() => {
         getPlayerById(playerId)
@@ -35,23 +37,59 @@ export const TrainingList = (props) => {
       getTrainingGoals()
     }, [])
 
+    useEffect(()=>{
+      const playerTrainingGoal = trainingGoals.filter(eg => eg.playerId === playerId) || []
+      const goal = playerTrainingGoal[0] || {}
+    setPlayerTrainingGoal(playerTrainingGoal[0])
+    }, [trainingGoals])
     useEffect(() => {
       getTrainingTypes()
       .then(getTrainings)
   }, [])
 
   useEffect(()=>{
-    const playerGoals = trainingGoals.filter(eg => eg.playerId === playerId) || []
-    const goal = playerGoals[0] || {}
-    setPlayerGoals(playerGoals[0])
-    setGoal(goal)
+    const playerTrainingGoal = trainingGoals.filter(eg => eg.playerId === playerId) || []
+    const goal = playerTrainingGoal[0] || {}
+    setPlayerTrainingGoal(goal)
   }, [trainingGoals])
+
+  console.log(playerTrainingGoal, "test pl tr goal")
 
     useEffect(() => {
       const matchingTrainings = trainings.filter(training => training.playerId === playerId)
       const orderedTrainings = matchingTrainings.reverse()
       setFiltered(orderedTrainings)
   }, [trainings])
+
+  const toggleEditMode = () => {
+    if (editMode === true) {
+      setEditMode(false)
+    }
+    else {
+      setEditMode(true)
+    }
+  }
+
+  const handleControlledInputChange = (e) => {
+    const newPlayerTrainingGoal = Object.assign({}, playerTrainingGoal)
+    newPlayerTrainingGoal[e.target.name] = e.target.value
+    setPlayerTrainingGoal(newPlayerTrainingGoal)
+  }
+  const todayTimestamp = Date.now()
+  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+
+  const constructNewTrainingGoal = () => {
+    //define player ID
+
+    {editTrainingGoal({
+      id: props.playerTrainingGoal.id,
+      playerId: playerId,
+      goalSet: playerTrainingGoal.goalSet,
+      timestamp:Date.now(),
+      date: today,
+    })
+    .then(() => props.history.push(`/players/${playerId}`))}
+  }
 
   //evaluates logged exercises and user:player relationship - displays data accordingly
   const trainingListVerify = () => {
@@ -62,11 +100,37 @@ export const TrainingList = (props) => {
           <h2 className="list__header list__header--tr">
             Training
           </h2>
-          <div className="exercise-goals">
-            Goal:
-            <br />
-            {goal.goalSet} per week.
-          </div>
+          {editMode
+            ? <>
+                <select defaultValue="" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange}>
+                <option value="0">0</option>
+                <option value="1">1 day a week</option>
+                <option value="2">2 days a week</option>
+                <option value="3">3 days a week</option>
+                <option value="4">4 days a week</option>
+                <option value="5">5 days a week</option>
+                <option value="6">6 days a week</option>
+                <option value="7">7 days a week</option>
+              </select>
+
+              <button className="btn btn--submit btn--ex" type="button"
+              onClick={e => {
+                e.preventDefault()
+                constructNewTrainingGoal()
+                toggleEditMode()
+              }}>
+              Update Goal!
+              </button>
+            </>
+            :
+            <>
+              <div className="exercise-goals" onClick={toggleEditMode}>
+              Goal:
+              <br />
+              {playerTrainingGoal.goalSet}
+              </div>
+            </>
+          }
           <button className="btn btn--add-tr" onClick={
             () => props.history.push(`/players/training/add/${playerId}`)
           }>
@@ -134,11 +198,38 @@ export const TrainingList = (props) => {
             <h2 className="list__header list__header--tr">
               Training
             </h2>
-            <div className="exercise-goals">
+            {editMode
+            ?
+            <>
+        <select defaultValue="" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange}>
+          <option value="0">0</option>
+          <option value="1">1 day a week</option>
+          <option value="2">2 days a week</option>
+          <option value="3">3 days a week</option>
+          <option value="4">4 days a week</option>
+          <option value="5">5 days a week</option>
+          <option value="6">6 days a week</option>
+          <option value="7">7 days a week</option>
+        </select>
+
+            <button className="btn btn--submit btn--ex" type="button"
+              onClick={e => {
+                e.preventDefault()
+                constructNewTrainingGoal()
+                toggleEditMode()
+              }}>
+              Update Goal!
+              </button>
+            </>
+            :
+            <>
+            <div className="exercise-goals" onClick={toggleEditMode}>
             Goal:
             <br />
-            {goal.goalSet} per week.
+            {playerTrainingGoal.goalSet} per week.
             </div>
+            </>
+            }
             <button className="btn btn--add-tr" onClick={
             () => props.history.push(`/players/training/add/${playerId}`)
             }>

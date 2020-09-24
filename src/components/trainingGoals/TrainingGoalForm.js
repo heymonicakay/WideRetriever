@@ -10,10 +10,6 @@ export const TrainingGoalForm = (props) => {
 
   const { addTrainingGoal } = useContext(TrainingGoalContext)
 
-  // // declare and set training state var
-  // const [frequencyTypes, setFrequencyTypes] = useState({})
-  // const [ measurementTypes]
-
   const [ trainingGoal, setTrainingGoal ] = useState({})
 
   // func to build new training obj on input change
@@ -27,16 +23,16 @@ export const TrainingGoalForm = (props) => {
 
   const constructNewTrainingGoal = () => {
     //define player ID
-    const assignedPlayerId = parseInt(props.match.params.playerId)
+    const playerId = parseInt(props.match.params.playerId)
 
     // call the func add training and pass it the arg of a whole training obj and then take the user back to the player details view
     {addTrainingGoal({
-      assignedPlayerId,
+      playerId,
       goalSet: trainingGoal.goalSet,
       timestamp: Date.now(),
       date: today,
     })
-      .then(() => props.history.push(`/players/${assignedPlayerId}`))}
+      .then(() => props.history.push(`/players/${playerId}`))}
   }
 
   // translate alien timstamp into human date

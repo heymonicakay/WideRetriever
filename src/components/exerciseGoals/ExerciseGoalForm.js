@@ -27,16 +27,16 @@ export const ExerciseGoalForm = (props) => {
 
   const constructNewExerciseGoal = () => {
     //define player ID
-    const assignedPlayerId = parseInt(props.match.params.playerId)
+    const playerId = parseInt(props.match.params.playerId)
 
     // call the func add exercise and pass it the arg of a whole exercise obj and then take the user back to the player details view
     {addExerciseGoal({
-      assignedPlayerId,
+      playerId,
       goalSet: exerciseGoal.goalSet,
       timestamp: Date.now(),
       date: today,
     })
-      .then(() => props.history.push(`/players/${assignedPlayerId}`))}
+      .then(() => props.history.push(`/players/${playerId}`))}
   }
 
   // translate alien timstamp into human date

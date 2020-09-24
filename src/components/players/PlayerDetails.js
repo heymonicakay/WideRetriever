@@ -2,13 +2,15 @@ import React, { useRef, useContext, useEffect, useState } from "react"
 import { FollowingContext } from "../following/FollowingProvider"
 import { PlayerContext } from "./PlayerProvider"
 import "./Player.css"
-import { PlaytimeList } from "../playtime/PlaytimeList"
-import { PlaytimeGoalContext } from "../playtimeGoals/PlaytimeGoalProvider"
 import { PlaytimeContext } from "../playtime/PlaytimeProvider"
-import { TrainingList } from "../training/TrainingList"
-import { ExerciseList } from "../exercise/ExerciseList"
+  import { PlaytimeList } from "../playtime/PlaytimeList"
+  import { PlaytimeGoalContext } from "../playtimeGoals/PlaytimeGoalProvider"
+import { TrainingContext } from "../training/TrainingProvider"
+  import { TrainingList } from "../training/TrainingList"
+  import { TrainingGoalContext } from "../trainingGoals/TrainingGoalProvider"
 import { ExerciseContext } from "../exercise/ExerciseProvider"
-import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
+  import { ExerciseList } from "../exercise/ExerciseList"
+  import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
 import { TodaysProgress } from "../goals/TodaysProgress"
 import { WeeksProgress } from "../goals/WeeksProgress"
 
@@ -18,96 +20,135 @@ export const PlayerDetails = ( props ) => {
 
   //useContext
   const { userFollowings, currentUserId, addFollowing, unfollow, getUserFollowings } = useContext(FollowingContext)
-  const { exercises, getExercises} = useContext(ExerciseContext)
   const { getPlayerById } = useContext(PlayerContext)
   const { playtimes, getPlaytimes} = useContext(PlaytimeContext)
+  const { trainings, getTrainings } = useContext(TrainingContext)
+  const { exercises, getExercises} = useContext(ExerciseContext)
+  const { getPlaytimeGoals, playtimeGoals } = useContext(PlaytimeGoalContext)
+  const { getTrainingGoals, trainingGoals } = useContext(TrainingGoalContext)
   const { getExerciseGoals, exerciseGoals } = useContext(ExerciseGoalContext)
 
   //useState
-  const [player, setPlayer] = useState({})
-  const [playerExercises, setPlayerExercises] = useState([])
-  const [playerExerciseGoal, setPlayerExerciseGoal] = useState([])
-  const [playerPlaytimes, setPlayerPlaytimes] = useState([])
-  const [exercisesThisWeek, setExercisesThisWeek] = useState([])
-  const [playtimesThisWeek, setPlaytimesThisWeek] = useState([])
-  const [exercisesToday, setExercisesToday] = useState([])
-  const [playtimesToday, setPlaytimesToday] = useState([])
-  const [iAmFollowing, setIAmFollowing] = useState(null)
-  const [followConnectionTBD, setFollowConnectionTBD] = useState({})
+  //PLAYER
+    const [player, setPlayer] = useState({})
+  //EXERCISE
+    const [playerExercises, setPlayerExercises] = useState([])
+    const [exercisesToday, setExercisesToday] = useState([])
+    const [exercisesThisWeek, setExercisesThisWeek] = useState([])
+    const [playerExerciseGoal, setPlayerExerciseGoal] = useState([])
+  //PLAYTIMES
+    const [playerPlaytimes, setPlayerPlaytimes] = useState([])
+    const [playtimesToday, setPlaytimesToday] = useState([])
+    const [playtimesThisWeek, setPlaytimesThisWeek] = useState([])
+    const [playerPlaytimeGoal, setPlayerPlaytimeGoal] = useState([])
+  //TRAININGS
+    const [playerTrainings, setPlayerTrainings] = useState([])
+    const [trainingsToday, setTrainingsToday] = useState([])
+    const [trainingsThisWeek, setTrainingsThisWeek] = useState([])
+    const [playerTrainingGoal, setPlayerTrainingGoal] = useState([])
+  //FOLLOWING
+    const [iAmFollowing, setIAmFollowing] = useState(null)
+    const [followConnectionTBD, setFollowConnectionTBD] = useState({})
 
   const playerId = parseInt(props.match.params.playerId)
 
   //define date vars
-  const todayTimestamp = Date.now()
-  // ---> returns alien timestamp 1600896829415
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
-  // ----> accepts a TIMESTAMP returns LOCAL date STRING  TIMESTAMP
-  const current = new Date()
-  // ----> returns date OBJECT
-  // --------> Wed Sep 23 2020 16:33:08 GMT-0500 (Central Daylight Time)
-  const weekstart = current.getDate() - current.getDay()
-  const thisMonth = current.getMonth()
-  // ----> returns week start DATE as INT
-  // ---------> (subtracts todays 'day of the week' index from todays DATE
-  const sun = new Date(current.setDate(weekstart))
-  const mon = new Date(current.setDate(weekstart + 1))
-  const tues = new Date(current.setDate(weekstart + 2))
-  const wed = new Date(current.setDate(weekstart + 3))
-  const thurs = new Date(current.setDate(weekstart + 4))
-  const fri = new Date(current.setDate(weekstart + 5))
-  const sat = new Date(current.setDate(weekstart + 6))
+  //TODAY
+    const todayTimestamp = Date.now() /* (TIMESTAMP) => date STRING */
+    const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+    const current = new Date() /* => date OBJECT | Ex: Wed Sep 23 2020 16:33:08 GMT-0500 (Central Daylight Time)*/
+  //THIS WEEK
+  const weekstart = current.getDate() - current.getDay() /*=> week start DATE as INT */
+  const sun = new Date(current.setDate(weekstart)) /* sets WEEKS to current week */
+    const mon = new Date(current.setDate(weekstart + 1)) /* */
+    const tues = new Date(current.setDate(weekstart + 2)) /* */
+    const wed = new Date(current.setDate(weekstart + 3)) /* */
+    const thurs = new Date(current.setDate(weekstart + 4)) /* */
+    const fri = new Date(current.setDate(weekstart + 5)) /* */
+    const sat = new Date(current.setDate(weekstart + 6)) /* */
 
-  const thisSun = sun.getDate()
-  const thisMon = mon.getDate()
-  const thisTues = tues.getDate()
-  const thisWed = wed.getDate()
-  const thisThurs = thurs.getDate()
-  const thisFri = fri.getDate()
-  const thisSat = sat.getDate()
+  const thisSun = sun.getDate() /* gets DATES for each day of current week*/
+    const thisMon = mon.getDate()
+    const thisTues = tues.getDate()
+    const thisWed = wed.getDate()
+    const thisThurs = thurs.getDate()
+    const thisFri = fri.getDate()
+    const thisSat = sat.getDate()
+
+  const thisMonth = current.getMonth() /* */
 
   //useEffect
   useEffect(() => {
       getPlayerById(playerId)
         .then(setPlayer)
-  }, [])
+  }, []) /* get/set player OBJECT*/
 
   useEffect(() => {
     getUserFollowings(currentUserId)
     getExercises()
     getPlaytimes()
+    getTrainings()
+    getPlaytimeGoals()
+    getTrainingGoals()
     getExerciseGoals()
-  }, [])
+  }, []) /* fetches data: userFollowings, exercises, playtimes, trainings, etc. */
 
   useEffect(() => {
     const alreadyFollowing = userFollowings.find(uf => uf.followedPlayerId === player.id)
-    setIAmFollowing(alreadyFollowing)
-  }, [userFollowings])
-
-  useEffect(()=>{
-    const playerExercises = exercises.filter(ex => ex.playerId === player.id) || []
-    setPlayerExercises(playerExercises)
-  }, [exercises])
-
-  useEffect(()=>{
-  const playerExerciseGoal = exerciseGoals.filter(eg => eg.assignedPlayerId === playerId) || []
-  const goal = playerExerciseGoal[0] || {}
-  setPlayerExerciseGoal(playerExerciseGoal[0])
-}, [exerciseGoals])
-
+  setIAmFollowing(alreadyFollowing)
+  }, [userFollowings]) /* determines if current user is following target player */
   useEffect(()=>{
     const playerPlaytimes = playtimes.filter(pt => pt.playerId === player.id) || []
-    setPlayerPlaytimes(playerPlaytimes)
-  }, [playtimes])
+  setPlayerPlaytimes(playerPlaytimes)
+  }, [playtimes]) /* sets ALL PLAYTIMES ARRAY for target player */
 
+  useEffect(()=>{
+    const playerTrainings = trainings.filter(tr => tr.playerId === player.id) || []
+  setPlayerTrainings(playerTrainings)
+  }, [trainings]) /* sets ALL TRAININGS ARRAY for target player */
+  useEffect(()=>{
+    const playerExercises = exercises.filter(ex => ex.playerId === player.id) || []
+  setPlayerExercises(playerExercises)
+  }, [exercises]) /* sets ALL EXERCISES ARRAY for target player */
+
+  useEffect(()=>{
+    const playerPlaytimeGoal = playtimeGoals.filter(eg => eg.playerId === playerId) || []
+  setPlayerPlaytimeGoal(playerPlaytimeGoal[0])
+  }, [playtimeGoals]) /* sets PLAYTIME GOAL OBJECT for target player */
+
+  useEffect(()=>{
+    const playerTrainingGoal = trainingGoals.filter(eg => eg.playerId === playerId) || []
+  setPlayerTrainingGoal(playerTrainingGoal[0])
+  }, [trainingGoals]) /* sets TRAINING GOAL OBJECT for target player */
+
+  useEffect(()=>{
+    const playerExerciseGoal = exerciseGoals.filter(eg => eg.playerId === playerId) || []
+  setPlayerExerciseGoal(playerExerciseGoal[0])
+  }, [exerciseGoals]) /* sets EXERCISE GOAL OBJECT for target player */
+
+  useEffect(()=> {
+    const todaysPlaytimes = playerPlaytimes.filter(pt => pt.date === today) || []
+  setPlaytimesToday(todaysPlaytimes)
+  }, [playerPlaytimes]) /* sets TODAYS PLAYTIMES ARRAY for target player */
+
+  useEffect(()=> {
+    const todaysTrainings = playerTrainings.filter(tr => tr.date === today) || []
+  setTrainingsToday(todaysTrainings)
+  }, [playerTrainings]) /* sets TODAYS TRAININGS ARRAY for target player */
   useEffect(()=> {
     const todaysExercises = playerExercises.filter(pe => pe.date === today) || []
-    setExercisesToday(todaysExercises)
-    }, [playerExercises])
+  setExercisesToday(todaysExercises)
+  }, [playerExercises]) /* sets TODAYS EXERCISES ARRAY for target player */
 
-  useEffect(()=> {
-    const todaysPlaytimes = playerPlaytimes.filter(pp => pp.date === today) || []
-    setPlaytimesToday(todaysPlaytimes)
-    }, [playerPlaytimes])
+  useEffect(() => {
+    const thisWeeksTr = playerTrainings.map(e => {
+      const trDate = new Date(e.timestamp).getDate()
+      if( trDate === thisSun || thisMon || thisTues || thisWed || thisThurs || thisFri || thisSat ) {
+        return e
+      }
+    }) || []
+  setTrainingsThisWeek(thisWeeksTr)
+  }, [playerTrainings]) /* sets this WEEKS TRAININGS ARRAY for target player */
 
   useEffect(() => {
     const thisWeeksEx = playerExercises.map(e => {
@@ -117,7 +158,7 @@ export const PlayerDetails = ( props ) => {
       }
     }) || []
   setExercisesThisWeek(thisWeeksEx)
-  }, [playerExercises])
+  }, [playerExercises]) /* sets this WEEKS EXERCISES ARRAY for target player */
 
   useEffect(() => {
     const thisWeeksPt = playerPlaytimes.map(e => {
@@ -128,26 +169,24 @@ export const PlayerDetails = ( props ) => {
     }) || []
     console.log(thisWeeksPt)
   setPlaytimesThisWeek(thisWeeksPt)
-  }, [playerPlaytimes])
+  }, [playerPlaytimes]) /* sets this WEEKS PLAYTIMES ARRAY for target player */
 
   useEffect(()=>{
     const followConnection = userFollowings.find(uf => uf.followedPlayerId === player.id) || {}
     setFollowConnectionTBD(followConnection.id)
-  }, [userFollowings])
+  }, [userFollowings]) /* finds follow connection to be deleted */
 
-/* ----> MATH */
-const findSum = (arr) => {
-  let total = 0
-    arr.forEach(k => {
-      total += k
-    })
-  return total
-  }
+  const findSum = (arr) => {
+    let total = 0
+      arr.forEach(k => {
+        total += k
+      })
+    return total
+  } /* ----> MATH */
   const catchesArray = playerPlaytimes.map(pp=> pp.catches) || []
-  const missesArray = playerPlaytimes.map(pp => pp.misses) || []
   const tossesArray = playerPlaytimes.map(pp => pp.catches + pp.misses) || []
   const successRate = (findSum(catchesArray) / findSum(tossesArray)).toLocaleString("en", {style: "percent"}) || 0
-/****************************** CREATE new follow */
+
   const createNewFollowConnection = () => {
     const newFollowConnection = {
         userId: currentUserId,
@@ -155,26 +194,22 @@ const findSum = (arr) => {
     }
     addFollowing(newFollowConnection)
     .then(getUserFollowings(currentUserId))
-  }
-/*************************************** FORCE RELOAD FUNC */
+  } /* CREATE new follow connection */
   const refreshPage = ()=>{
     window.location.reload();
-  }
+  } /* force refresh */
 
+  console.log(playerTrainingGoal, "in pl details")
   const playerValidation = () => {
-    // if the player belongs to the active user, afford EDIT
     if(currentUserId === player.userId) {
       return (
         <>
-  <>{/***************** PLAYER DETAILS - PLAYER OWNED BY USER*/ }</>
-          <div className="player-detail-container">
+        <div className="player-detail-container">
           <section className="pl-card pl-card-det-sec">
             <div className="pl-card-top">
-
               <div className="cont--img cont--img--detail">
                 <img className="pl-card--img pl-card-img-detail" alt="" src={player.playerImg}/>
               </div>
-
               <section className="pl-card--details">
                 <h1 className="h1 header pl-card__header--name">
                 {player.name}
@@ -191,18 +226,20 @@ const findSum = (arr) => {
               </section>
               <section className="daily-progress-section">
                 <TodaysProgress
-                player={player}
-                exercisesToday={exercisesToday}
-                playtimesToday={playtimesToday}
-                playerId={playerId}
-                {...props}
+                  player={ player }
+                  exercisesToday={ exercisesToday }
+                  playtimesToday={ playtimesToday }
+                  playerId={ playerId }
+                  {...props}
                 />
               </section>
               <section className="weekly-progress-section">
               <WeeksProgress
-              player={player}
-              exercisesThisWeek={exercisesThisWeek}
-              playtimesThisWeek={playtimesThisWeek}
+                player={ player }
+                playerId={ playerId }
+                playtimesThisWeek={ playtimesThisWeek }
+                trainingsThisWeek={ trainingsThisWeek }
+                exercisesThisWeek={ exercisesThisWeek }
               />
               </section>
             </div>
@@ -212,30 +249,55 @@ const findSum = (arr) => {
                 }}>
               Edit Player
             </button>
+            <button className="btn" onClick={()=>{
+              props.history.push(`/players/goals/playtime/add/${player.id}`)
+            }}>
+              Add Playtime Goal
+            </button>
+            <button className="btn" onClick={()=>{
+              props.history.push(`/players/goals/training/add/${player.id}`)
+            }}>
+              Add Training Goal
+            </button>
+            <button className="btn" onClick={()=>{
+            props.history.push(`/players/goals/exercise/add/${player.id}`)
+            }}>
+              Add Exercise Goal
+            </button>
+
             </div>
           </section>
-
-  <>{/********************************** ADD'L PLAYER DETAILS*/}</>
         <div className="activity-section">
           <section className="pl-pt-list">
             <PlaytimeList
-            player={player}
-            playtimesThisWeek={playtimesThisWeek}
+              player={ player }
+              playerId={ playerId }
+              playerPlaytimeGoal={ playerPlaytimeGoal }
+              playerPlaytimes={ playerPlaytimes }
+              playtimesToday={ playtimesToday }
+              playtimesThisWeek={ playtimesThisWeek }
             {...props} />
           </section>
 
           <section className="pl-tr-list">
-            <TrainingList {...props} />
+            <TrainingList
+              player={player}
+              playerId={playerId}
+              playerTrainingGoal={ playerTrainingGoal }
+              playerTrainings={ playerTrainings }
+              trainingsToday={ trainingsToday }
+              trainingsThisWeek={ trainingsThisWeek }
+            {...props} />
           </section>
 
           <section className="pl-ex-list">
             <ExerciseList
-            player={player}
-            playerExercises={playerExercises}
-            exercisesThisWeek={exercisesThisWeek}
-            exercisesToday={exercisesToday}
-            playerId={playerId}
-            playerExerciseGoal={playerExerciseGoal}
+              player={ player }
+              playerId={ playerId }
+              playerExerciseGoal={ playerExerciseGoal }
+              playerExercises={ playerExercises }
+              exercisesToday={ exercisesToday }
+              exercisesThisWeek={ exercisesThisWeek }
             { ...props}>
             </ExerciseList>
           </section>
@@ -245,10 +307,8 @@ const findSum = (arr) => {
   )
   }
     else {
-      //if player does NOT belong to the user, afford FOLLOW && UNFOLLOW
       return (
         <>
-  <>{/************************************* DIALOG - UNFOLLOW DOUBLE CHECK*/ }</>
           <dialog className="dialog dialog--unf-check" ref={unfollowDialog}>
             <div className="cont__dialog-msg--unf-check">
               Are you sure you want to unfollow {player.name}?
@@ -261,80 +321,82 @@ const findSum = (arr) => {
                     .then(getUserFollowings(currentUserId))
                     unfollowDialog.current.close()
                 }}>
-                        Yes, I'm sure.
+                  Yes, I'm sure.
               </button>
-              <button className="btn btn-unf--nvm" onClick={e => unfollowDialog.current.close()}>
+              <button className="btn btn-unf--nvm"
+                onClick={e => unfollowDialog.current.close()}>
                   Actually, nevermind.
               </button>
             </div>
           </dialog>
-  <>{/************ PLAYER DETAILS - PLAYER NOT OWNED BY USER*/}</>
           <div className="player-detail-section">
             <section className="pl-card pl-card-det-sec">
-            <div className="pl-card-top">
-              <div className="cont--img cont--img--detail">
-                <img className="pl-card--img pl-card-img-detail" alt="" src={player.playerImg}/>
-              </div>
-              <section className="pl-card--details">
-              <h1 className="h1 header pl-card__header--name-det-sec">
-                {player.name}
-              </h1>
-                <div className="pl-card--breed">
-                  Breed: {player.breed}
+              <div className="pl-card-top">
+                <div className="cont--img cont--img--detail">
+                  <img className="pl-card--img pl-card-img-detail"
+                    alt=""
+                    src={player.playerImg}/>
                 </div>
-                <div className="pl-card--age">
-                  Age: {player.age}
-                </div>
-  <>{/***************** ALREADY FOLLOWING TERNARY STATEMENT*/}</>
-              {iAmFollowing
-                ?
-                  <>
-                    <button className="btn btn--unfollow" onClick={() => {
-                      unfollowDialog.current.showModal()
-                    }}>
-                      Unfollow {player.name}
+                <section className="pl-card--details">
+                  <h1 className="h1 header pl-card__header--name-det-sec">
+                    {player.name}
+                  </h1>
+                  <div className="pl-card--breed">
+                    Breed: {player.breed}
+                  </div>
+                  <div className="pl-card--age">
+                    Age: {player.age}
+                  </div>
+                  {iAmFollowing
+                  ? <>
+                    <button className="btn btn--unfollow"
+                      onClick={() => {
+                        unfollowDialog.current.showModal()
+                      }}>
+                        Unfollow {player.name}
                     </button>
-                  </>
-                :
-                  <>
-                    <button className="btn btn--follow" onClick={(e) => {
+                    </>
+                  : <>
+                    <button className="btn btn--follow"
+                      onClick={(e) => {
                         e.preventDefault()
                         createNewFollowConnection()
-                    }}>
-                      Follow {player.name}
+                      }}>
+                        Follow {player.name}
                     </button>
-                  </>
-              }
+                    </>
+                  }
+                </section>
+              </div>
             </section>
+            <div className="activity-section">
+              <section className="pl-pt-list">
+                <PlaytimeList
+                  player={player}
+                  playerId={playerId}
+                  playerPlaytimes={playerPlaytimes}
+                  playtimesThisWeek={playtimesThisWeek}
+                {...props} />
+              </section>
+
+              <section className="pl-tr-list">
+                <TrainingList
+                  player={player}
+                  playerId={playerId}
+                  playerTrainings={ playerTrainings }
+                  trainingsThisWeek={ trainingsThisWeek }
+                {...props} />
+              </section>
+
+              <section className="pl-ex-list">
+                <ExerciseList
+                  player={player}
+                  playerId={playerId}
+                  playerExercises={playerExercises}
+                  exercisesThisWeek={ exercisesThisWeek}
+                { ...props} />
+              </section>
             </div>
-          </section>
-
-  <>{/***************************************************** ADD'L PLAYER DETAILS*/}</>
-
-      <div className="activity-section">
-          <section className="pl-pt-list">
-            <PlaytimeList
-            player={player}
-            playerPlaytimes={playerPlaytimes}
-            playtimesThisWeek={playtimesThisWeek}
-            playerId={playerId}
-            {...props} />
-          </section>
-
-          <section className="pl-tr-list">
-            <TrainingList
-            player={player}
-            {...props} />
-          </section>
-
-          <section className="pl-ex-list">
-            <ExerciseList
-            player={player}
-            playerExercises={playerExercises}
-            playerId={playerId}
-            { ...props} />
-          </section>
-          </div>
           </div>
         </>
       )
@@ -345,4 +407,5 @@ const findSum = (arr) => {
     {playerValidation()}
     </>
   )
+
 }

@@ -135,7 +135,7 @@ export const ApplicationViews = (props) => {
 
             <ExerciseGoalProvider>
             <Route
-                  exact path="/players/exercise-goal/add/:playerId(\d+)"
+                  exact path="/players/goals/exercise/add/:playerId(\d+)"
                   render={
                     props =>
 
@@ -160,7 +160,7 @@ export const ApplicationViews = (props) => {
 
               <TrainingGoalProvider>
               <Route
-                  exact path="/players/training-goal/add/:playerId(\d+)"
+                  exact path="/players/goals/training/add/:playerId(\d+)"
                   render={
                     props =>
 
@@ -183,7 +183,7 @@ export const ApplicationViews = (props) => {
 
               <PlaytimeGoalProvider>
               <Route
-                  exact path="/players/playtime-goal/add/:playerId(\d+)"
+                  exact path="/players/goals/playtime/add/:playerId(\d+)"
                   render={
                     props =>
 

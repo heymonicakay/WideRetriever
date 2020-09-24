@@ -14,7 +14,6 @@ export const Exercise = ( props ) => {
   const note = useRef(null)
   const arrow = useRef(null)
 
-
   // useContext
   const  { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
   const {removeExercise, editExercise } = useContext(ExerciseContext)
@@ -24,33 +23,25 @@ export const Exercise = ( props ) => {
     getExerciseTypes()
   }, [])
 
-  // func to build new exercise obj on input change
   const handleControlledInputChange = (e) => {
     const newExercise = Object.assign({}, exercise)
-
     newExercise[e.target.name] = e.target.value
-
     setExercise(newExercise)
   }
 
   const constructNewExercise = () => {
-    //define player ID
     const playerId = parseInt(props.exercise.playerId)
-
-    // define exerciseTypeId
     const exerciseTypeId = parseInt(exerciseType.current.value)
-
-    //define exerciseId
     const exerciseId = parseInt(props.exercise.id)
 
-  {editExercise({
-    id: props.exercise.id,
-    playerId,
-    exerciseTypeId,
-    duration: exercise.duration,
-    date: today,
-    note: exercise.note,
-  })
+    {editExercise({
+      id: props.exercise.id,
+      playerId,
+      exerciseTypeId,
+      duration: exercise.duration,
+      date: today,
+      note: exercise.note,
+    })
   .then(() => props.history.push(`/players/${playerId}`))}
 }
 

@@ -61,6 +61,20 @@
       "goalSet": 1,
       "frequencyId": 1,
       "goalSetDate": 1600809829371
+    },
+    {
+      "id": 2,
+      "playerId": 4,
+      "goalSet": 5,
+      "frequencyId": 1,
+      "goalSetDate": 1600809829371
+    },
+    {
+      "playerId": 4,
+      "goalSet": "1",
+      "timestamp": 1600969709205,
+      "date": "9/24/2020",
+      "id": 3
     }
   ],
   "exerciseGoals": [
@@ -72,20 +86,34 @@
       "goalSetDate": 1600809829371
     },
     {
-      "assignedPlayerId": 2,
-      "goalSet": "4",
-      "timestamp": 1600873987837,
-      "date": "9/23/2020",
-      "id": 2
+      "id": 2,
+      "playerId": 4,
+      "goalSet": "3",
+      "timestamp": 1600971545661,
+      "date": "9/24/2020"
+    },
+    {
+      "playerId": 4,
+      "goalSet": "2",
+      "timestamp": 1600969722634,
+      "date": "9/24/2020",
+      "id": 3
     }
   ],
   "trainingGoals": [
     {
       "id": 1,
       "playerId": 2,
-      "goalSet": 1,
-      "frequencyId": 1,
-      "goalSetDate": 1600809829371
+      "goalSet": "1 day a week",
+      "timestamp": 1600953905984,
+      "date": "9/24/2020"
+    },
+    {
+      "id": 2,
+      "playerId": 4,
+      "goalSet": "5",
+      "timestamp": 1600971551828,
+      "date": "9/24/2020"
     }
   ],
   "measurementTypes": [
@@ -155,26 +183,9 @@
       "note": "This was a perfect game!",
       "timestamp": 1600917526911,
       "id": 10
-    },
-    {
-      "playerId": 2,
-      "catches": 1,
-      "misses": 4,
-      "date": "9/24/2020",
-      "note": "Vinnie didn't really catch very well.",
-      "timestamp": 1600934986419,
-      "id": 11
     }
   ],
   "exercises": [
-    {
-      "id": 3,
-      "playerId": 2,
-      "exerciseTypeId": 2,
-      "duration": "40-50 min",
-      "date": "9/19/2020",
-      "timestamp": 1600549781
-    },
     {
       "playerId": 4,
       "exerciseTypeId": 2,
@@ -229,12 +240,12 @@
   ],
   "trainings": [
     {
+      "id": 4,
       "playerId": 2,
-      "trainingTypeId": 2,
-      "duration": "2",
-      "date": "9/20/2020",
-      "note": "He stayed.",
-      "id": 4
+      "trainingTypeId": 3,
+      "duration": "20 min",
+      "date": "9/24/2020",
+      "note": "He did a good fetch!"
     },
     {
       "playerId": 4,
@@ -297,7 +308,13 @@
       "type": "Swim"
     }
   ],
-  "followings": [],
+  "followings": [
+    {
+      "userId": 1,
+      "followedPlayerId": 3,
+      "id": 1
+    }
+  ],
   "defaultIcons": [
     {
       "id": 1,
