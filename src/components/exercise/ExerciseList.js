@@ -1,52 +1,61 @@
 import React, { useState, useContext, useEffect } from "react"
-import { PlayerContext } from "../players/PlayerProvider"
+// import { PlayerContext } from "../players/PlayerProvider"
 import { ExerciseContext } from "./ExerciseProvider"
 import { Exercise } from "./Exercise"
+// import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
+
 import "./Exercise.css"
 
 import { ExerciseTypeContext } from "../exerciseType/ExerciseTypeProvider"
 
 export const ExerciseList = (props) => {
   // useContext
-    const { getExercises, exercises, removeExercise } = useContext(ExerciseContext)
+    const { removeExercise } = useContext(ExerciseContext)
     const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
-    const { getPlayerById } = useContext(PlayerContext)
+    // const { getExerciseGoals, exerciseGoals } = useContext(ExerciseGoalContext)
 
   // useState
     const [filteredExercises, setFiltered] = useState([])
-    const [player, setPlayer] = useState({})
+    const [isLoading, setIsLoading] = useState(null)
+    const [editMode, setEditMode] = useState(false)
 
-    //define Player Id
-    const playerId = parseInt(props.match.params.playerId)
-
-    //define user id
-    const userId = parseInt(sessionStorage.getItem("wr__user"))
 
     //useEffect
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
-        .then(setPlayer)
-  }, [])
     useEffect(() => {
       getExerciseTypes()
-      .then(getExercises)
   }, [])
-    useEffect(() => {
-      const matchingExercises = exercises.filter(exercise => exercise.playerId === playerId)
-      const orderedExercises = matchingExercises.reverse()
-      setFiltered(orderedExercises)
-  }, [exercises])
+
+    const toggleEdit = ()=>{
+      if(editMode === false) {
+        setEditMode(true)
+      }
+      else {
+        setEditMode(false)
+      }
+    }
+
+    //define vars
+    const playerId = props.player.id
+    const player = props.player
+    const userId = parseInt(sessionStorage.getItem("wr__user"))
+    const playerExercises = props.playerExercises.reverse()
+    const playerExerciseGoal = props.playerExerciseGoal
+
+    console.log(playerExerciseGoal, "in ex list")
 
   //evaluates logged exercises and user:player relationship - displays data accordingly
   const exerciseListVerify = () => {
-    if(filteredExercises.length < 1 && userId === player.userId) {
+    if(playerExercises.length < 1 && userId === player.userId) {
       return (
       <>
         <div className="cont__list cont__list--ex">
           <h2 className="list__header list__header--ex">
             Exercise
           </h2>
+          <div className="exercise-goals" onClick={toggleEdit}>
+            Weekly Goal:
+            <br />
+          </div>
           <button className="btn btn--add-ex" onClick={
             () => props.history.push(`/players/exercise/add/${playerId}`)
             }>
@@ -64,7 +73,7 @@ export const ExerciseList = (props) => {
       </>
     )
     }
-    if(filteredExercises.length < 1 && userId !== player.userId) {
+    if(playerExercises.length < 1 && userId !== player.userId) {
       return (
       <>
         <div className="cont__list cont__list--ex">
@@ -114,13 +123,18 @@ export const ExerciseList = (props) => {
             <h2 className="list__header list__header--ex">
               Exercise
             </h2>
+            <div className="exercise-goals">
+            Goal:
+            <br />
+            {/* {goal.goalSet} per week. */}
+            </div>
             <button className="btn btn--add-ex" onClick={
               () => props.history.push(`/players/exercise/add/${playerId}`)
             }>
               Add Exercise
             </button>
               <article className="list list--ex">
-                {filteredExercises.map(ex => {
+                {playerExercises.map(ex => {
 
                 const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
 

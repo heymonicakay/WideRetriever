@@ -26,7 +26,6 @@
       "name": "Vinnie",
       "breed": "Great Pyr",
       "age": "3",
-      "number": "24",
       "id": 2
     },
     {
@@ -35,17 +34,15 @@
       "name": "Phoebe",
       "breed": "Cavalier King Charles Spaniel",
       "age": "6",
-      "number": "22",
       "id": 3
     },
     {
-      "userId": 1,
+      "id": 4,
       "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600546960/wideretriever/xcbbdr2me4voypuobvts.jpg",
+      "userId": 1,
       "name": "Kaos",
       "breed": "Aussie Shep",
-      "age": "9",
-      "number": "47",
-      "id": 4
+      "age": "9"
     },
     {
       "userId": 2,
@@ -57,12 +54,78 @@
       "id": 5
     }
   ],
+  "playtimeGoals": [
+    {
+      "id": 1,
+      "playerId": 2,
+      "goalSet": 1,
+      "frequencyId": 1,
+      "goalSetDate": 1600809829371
+    }
+  ],
+  "exerciseGoals": [
+    {
+      "id": 1,
+      "playerId": 2,
+      "goalSet": 1,
+      "frequencyId": 1,
+      "goalSetDate": 1600809829371
+    },
+    {
+      "assignedPlayerId": 2,
+      "goalSet": "4",
+      "timestamp": 1600873987837,
+      "date": "9/23/2020",
+      "id": 2
+    }
+  ],
+  "trainingGoals": [
+    {
+      "id": 1,
+      "playerId": 2,
+      "goalSet": 1,
+      "frequencyId": 1,
+      "goalSetDate": 1600809829371
+    }
+  ],
+  "measurementTypes": [
+    {
+      "id": 1,
+      "measurement": "minute",
+      "plural": "minutes"
+    },
+    {
+      "id": 2,
+      "measurement": "hour",
+      "plural": "hours"
+    },
+    {
+      "id": 4,
+      "measurement": "time",
+      "plural": "times"
+    }
+  ],
+  "frequencyTypes": [
+    {
+      "id": 1,
+      "each": "day"
+    },
+    {
+      "id": 2,
+      "each": "week"
+    },
+    {
+      "id": 3,
+      "each": "month"
+    }
+  ],
   "playtimes": [
     {
       "playerId": 4,
       "catches": 4,
       "misses": 1,
       "date": "9/20/2020",
+      "timestamp": 1600809829371,
       "note": "Kaos caught almost all the popcorn I threw to him. ",
       "id": 7
     },
@@ -71,25 +134,55 @@
       "catches": 1,
       "misses": 4,
       "date": "9/21/2020",
+      "timestamp": 1600809829371,
       "note": "He was so uninterested in catching the treats, but was more than happy to pick them up from the floor haha!",
       "id": 8
+    },
+    {
+      "playerId": 4,
+      "catches": 4,
+      "misses": 1,
+      "date": "9/23/2020",
+      "note": "Kaos is such a good boy!",
+      "timestamp": 1600917437350,
+      "id": 9
+    },
+    {
+      "playerId": 4,
+      "catches": 5,
+      "misses": 0,
+      "date": "9/23/2020",
+      "note": "This was a perfect game!",
+      "timestamp": 1600917526911,
+      "id": 10
+    },
+    {
+      "playerId": 2,
+      "catches": 1,
+      "misses": 4,
+      "date": "9/24/2020",
+      "note": "Vinnie didn't really catch very well.",
+      "timestamp": 1600934986419,
+      "id": 11
     }
   ],
   "exercises": [
     {
       "id": 3,
       "playerId": 2,
-      "exerciseTypeId": 1,
+      "exerciseTypeId": 2,
       "duration": "40-50 min",
-      "date": "9/19/2020"
+      "date": "9/19/2020",
+      "timestamp": 1600549781
     },
     {
       "playerId": 4,
-      "exerciseTypeId": 1,
+      "exerciseTypeId": 2,
       "duration": "5-10 min",
       "date": "9/19/2020",
       "note": "We went for a quick walk.",
-      "id": 5
+      "id": 5,
+      "timestamp": 1600538981
     },
     {
       "playerId": 3,
@@ -97,13 +190,41 @@
       "duration": "5-10 min",
       "date": "9/20/2020",
       "note": "Phoebe had a great time walking! ",
-      "id": 6
+      "id": 1600625381
     },
     {
       "id": 7,
       "playerId": 5,
       "exerciseTypeId": 1,
-      "date": "9/21/2020"
+      "date": "9/21/2020",
+      "timestamp": 1600711781
+    },
+    {
+      "playerId": 2,
+      "exerciseTypeId": 2,
+      "duration": "5-10 min",
+      "date": "9/23/2020",
+      "note": "asdgweget",
+      "id": 8,
+      "timestamp": 1600884581
+    },
+    {
+      "playerId": 2,
+      "exerciseTypeId": 2,
+      "duration": "5-10 min",
+      "date": "9/23/2020",
+      "note": "This is an exercise session added on 9/23",
+      "timestamp": 1600912616901,
+      "id": 1600625382
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 2,
+      "duration": "5-10 min",
+      "date": "9/24/2020",
+      "note": "Great!",
+      "timestamp": 1600929310499,
+      "id": 1600625383
     }
   ],
   "trainings": [
@@ -122,14 +243,6 @@
       "date": "9/20/2020",
       "note": "He did a great job sitting!",
       "id": 5
-    },
-    {
-      "playerId": 4,
-      "trainingTypeId": 2,
-      "duration": "25 min",
-      "date": "9/20/2020",
-      "note": "Kaos is still working on stay.",
-      "id": 6
     },
     {
       "playerId": 3,
@@ -184,11 +297,137 @@
       "type": "Swim"
     }
   ],
-  "followings": [
+  "followings": [],
+  "defaultIcons": [
     {
-      "userId": 1,
-      "followedPlayerId": 3,
-      "id": 3
+      "id": 1,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745137/wideRetriever/5EFC056F-DCEA-40C8-8F4E-E6DAF7C20621_wisyun.png",
+      "letter": "a"
+    },
+    {
+      "id": 2,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/57A74A06-0DA4-48B5-9BD0-EFA11677BA3B_ww5agp.png",
+      "letter": "b"
+    },
+    {
+      "id": 3,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745137/wideRetriever/F0B4DD06-6748-48A3-957A-BD5B49B153BD_ihya9e.png",
+      "letter": "c"
+    },
+    {
+      "id": 4,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/EE9A1BD9-5130-4271-AD10-C0A1ABA57964_xvpsra.png",
+      "letter": "d"
+    },
+    {
+      "id": 5,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/DEFDB829-C896-42FB-8DE9-E0A9E5C32056_uaoucy.png",
+      "letter": "e"
+    },
+    {
+      "id": 6,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/1B89E136-7F70-46A9-A4C7-7E5D3447BFB4_ivp1ps.png",
+      "letter": "f"
+    },
+    {
+      "id": 7,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/8887DA9E-A760-4096-BA40-BB2CE3B0ACEF_lqcooe.png",
+      "letter": "g"
+    },
+    {
+      "id": 8,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/881B4FF5-15AD-4802-A864-76DAEBDC8B05_emjuhg.png",
+      "letter": "h"
+    },
+    {
+      "id": 9,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/12EBC234-6A8A-4694-BFF7-F331A30523CB_wrcxfa.png",
+      "letter": "i"
+    },
+    {
+      "id": 10,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/97158AD4-1D9B-4238-B50F-0A71A2588B53_f8eera.png",
+      "letter": "j"
+    },
+    {
+      "id": 11,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/BA3AEDD9-01E0-4116-A28B-A305A0469A72_quulyp.png",
+      "letter": "k"
+    },
+    {
+      "id": 12,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/6E28D38F-6430-48FD-8DD3-AAB3E60A5DC8_qngwd1.png",
+      "letter": "l"
+    },
+    {
+      "id": 13,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/F31BF28B-4D7D-4C30-AA97-642E676291A7_v0pc1i.png",
+      "letter": "m"
+    },
+    {
+      "id": 14,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/6CFAE5E7-C092-47B9-9D48-8ECDB011B5C5_uv6ehh.png",
+      "letter": "n"
+    },
+    {
+      "id": 15,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745136/wideRetriever/8887DA9E-A760-4096-BA40-BB2CE3B0ACEF_lqcooe.png",
+      "letter": "o"
+    },
+    {
+      "id": 16,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/BA60007B-C472-4511-95C7-A5A625E0CC8E_ocav0o.png",
+      "letter": "p"
+    },
+    {
+      "id": 17,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/210D355C-33FD-4463-9B60-460E08992F07_aosuzo.png",
+      "letter": "q"
+    },
+    {
+      "id": 17,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/B321138A-8525-42B9-8F98-EDDD36CB3395_p0kb8v.png",
+      "letter": "r"
+    },
+    {
+      "id": 19,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/FA99D6FF-910B-4CB3-8AE1-201261922F2D_uglhgw.png",
+      "letter": "s"
+    },
+    {
+      "id": 20,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/7708F44C-C697-4A8F-AE3F-E5C710AB44C5_kbzvmv.png",
+      "letter": "t"
+    },
+    {
+      "id": 21,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/77CE9121-D67E-4D5A-9F55-A46A6906BC01_oeuzmf.png",
+      "letter": "u"
+    },
+    {
+      "id": 22,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/08E55774-22AC-4A82-8B5C-7BC98B3CA8B6_vyttj6.png",
+      "letter": "v"
+    },
+    {
+      "id": 23,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/3FB9D980-1858-4175-B7A2-A00122F25EC1_wae91g.png",
+      "letter": "w"
+    },
+    {
+      "id": 24,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/1307E5B1-0D0A-4125-AA41-2EF9FC545B9B_hahrhu.png",
+      "letter": "x"
+    },
+    {
+      "id": 25,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745135/wideRetriever/37FAE5D6-69DC-49BC-A1BF-E357A0761D5C_bregie.png",
+      "letter": "y"
+    },
+    {
+      "id": 26,
+      "iconURL": "https://res.cloudinary.com/heymonicakay/image/upload/v1600745137/wideRetriever/FD8C4EA9-B187-40CB-90E8-921BAC4264F5_vzwdnb.png",
+      "letter": "z"
     }
   ]
 }

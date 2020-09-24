@@ -1,105 +1,72 @@
-import React, { useState, useContext, useEffect, useRef } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { PlayerSearch } from "../players/PlayerSearch"
 import { UserContext } from "../users/UserProvider"
+import { DefaultIconContext } from "../icons/DefaultIconProvider"
+import { AccountDropdown } from "./AccountDropdown"
+import { CreateDropdown} from "./CreateDropdown"
 import "./Nav.css"
 
 export const Nav = (props) => {
-  const createDropdown = useRef(null)
-  const accountDropdown = useRef(null)
-  const acctBtn = useRef(null)
-  const crtBtn = useRef(null)
-
-  const [hideCreateDropdown, setHideCreateDropdown] = useState(true)
-  const [hideAccountDropdown, setHideAccountDropdown] = useState(true)
-  const [currentUser, setCurrentUser] = useState([])
-
-  const { getCurrentUser } = useContext(UserContext)
-
-  useEffect(()=>{
-    getCurrentUser()
-    .then(setCurrentUser)
-  }, [])
-
-
-  const toggleCreate = () => {
-    if(hideCreateDropdown === true) {
-      setHideCreateDropdown(false)
-    }
-    else{
-      setHideCreateDropdown(true)
-    }
-  }
+  const [showAccountDropdown, setShowAccountDropdown] = useState(false)
+  const [ showCreateDropdown, setShowCreateDropdown] = useState(false)
 
   const toggleAccount = () => {
-    if(hideAccountDropdown === true) {
-      setHideAccountDropdown(false)
+    setShowCreateDropdown(false)
+
+    if(showAccountDropdown === false) {
+      setShowAccountDropdown(true)
     }
-    else{
-      setHideAccountDropdown(true)
+    else {
+      setShowAccountDropdown(false)
     }
   }
 
-  const handleLogout = () => {
-    sessionStorage.clear()
+  const toggleCreate =()=>{
+    setShowAccountDropdown(false)
+
+    if (showCreateDropdown === false) {
+      setShowCreateDropdown(true)
+    }
+    else {
+      setShowCreateDropdown(false)
+    }
   }
 
   return (
-
-    <ul className="nav">
-      <div className="cont--search">
-        <PlayerSearch {...props}/>
-      </div>
-
-      <div className="nav--right-btn-group">
-        <div className="btn--create" ref={crtBtn} onClick={()=>{
-          toggleCreate()
-          setHideAccountDropdown(true)
-        }}>
-          +
+    <>
+      <div className="nav">
+        <div className="cont--search">
+          <PlayerSearch {...props}/>
         </div>
-        <div className="btn--account" ref={acctBtn} onClick={()=>{
-          toggleAccount()
-          setHideCreateDropdown(true)
 
-        }}>
-          M
+          <div className="nav-group--create">
+            <div className={`cont--create ${showCreateDropdown ? "cont--create--open" : "cont--create--collapsed" }`}>
+              <CreateDropdown
+              showCreateDropdown={showCreateDropdown}
+              toggleCreate={toggleCreate}
+              {...props} />
+            </div>
+            <div className="create-icon"
+              onClick={toggleCreate}>
+              <img className="create-icon-url" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600784857/wideRetriever/7F4591F1-F810-4472-AD7E-F70045A6A887_oq1csy.png" alt="" />
+            </div>
+          </div>
+
+          <div className="nav-group--account">
+            <div className={`cont--account ${showAccountDropdown ? "cont--account--open" : "cont--account--collapsed" }`}>
+              <AccountDropdown
+              showAccountDropdown={showAccountDropdown}
+              toggleAccount={toggleAccount}
+              {...props} />
+            </div>
+            <div className="home-icon"
+              onClick={toggleAccount}>
+              <img className="home-icon-url" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600784430/wideRetriever/90E85FCC-F4DF-4AF1-8A15-844FA8C28E7E_ofq71f.png" alt="" />
+            </div>
+
         </div>
       </div>
-
-      <div className="cont--create" ref={accountDropdown} hidden={hideCreateDropdown}>
-
-        <Link className="nav__link nav__link--add-pl" to="/players/create"
-          onClick={()=>{
-            toggleCreate()
-          }}>
-            Add Player
-        </Link>
-        <Link className="nav__link nav__link--add-reminder" to="/reminders/create" onClick={()=>{
-          toggleCreate()
-        }}>
-          Add Reminder
-        </Link>
-        <Link className="nav__link nav__link--add-todo" to="/todo/create" onClick={()=>{
-          toggleCreate()
-        }}>
-          Add To Do
-        </Link>
-      </div>
-
-      <div className="cont--account" ref={createDropdown} hidden={hideAccountDropdown}>
-        <Link className="nav__link nav__link--home" to="/" onClick={()=>{
-          toggleAccount()
-        }}>
-          Home
-        </Link>
-        <Link className="nav__link nav__link--logout" to="/" onClick={()=>{
-          toggleAccount()
-          handleLogout()
-        }}>
-          Logout
-        </Link>
-      </div>
-    </ul>
+    </>
   )
 }

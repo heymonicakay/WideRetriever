@@ -39,7 +39,7 @@ export const ExerciseTypeProvider = (props) => {
   }
 
   const removeExerciseType = (exerciseTypeId) => {
-    return fetch(`http://localhost:8088/animals/${exerciseTypeId}`, {
+    return fetch(`http://localhost:8088/exerciseTypes/${exerciseTypeId}`, {
         method: "DELETE"
     })
         .then(getExerciseTypes)
@@ -47,8 +47,14 @@ export const ExerciseTypeProvider = (props) => {
 
     return (
         <ExerciseTypeContext.Provider value={{
-            exerciseTypes, addExerciseType, getExerciseTypes, getExerciseTypeById,
-            searchTerms, setTerms, removeExerciseType, editExerciseType
+            exerciseTypes,
+            addExerciseType,
+            getExerciseTypes,
+            getExerciseTypeById,
+            searchTerms,
+            setTerms,
+            removeExerciseType,
+            editExerciseType
         }}>
             {props.children}
         </ExerciseTypeContext.Provider>

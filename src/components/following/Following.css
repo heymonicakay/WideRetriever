@@ -1,29 +1,60 @@
+.followed-player-list-cont {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 15%;
+  height: -webkit-fill-available;
+  position: fixed;
+  padding: 1rem 2rem;
+}
+
 .followed-player-card-cont {
   display: flex;
   flex-flow: row nowrap;
-  width: 200px;
-  height: 50px;
+  justify-self: center;
+  align-self: flex-start;
   align-content: center;
-  justify-content: stretch;
-  box-shadow: none
-}
-
-.followed-player-img {
-  display:flex;
-  height: 40px;
-  width: 40px;
-  border: 1px solid black;
+  justify-content: center;
+  transform-origin: left;
   border-radius: 25rem;
-  align-self: center;
-  z-index: 1;
-}
-
-.followed-player-img:hover {
+  transition: .5s;
+  height: 52px;
+  width: 52px;
+  background-color: white;
   cursor: pointer;
 }
 
-.followed-player-pop-out {
-  display: flex;
+.followed-player-img {
+  pointer-events: inherit;
+  height: 46px;
+  width: 46px;
+  border-radius: 25rem;
+  align-self: center;
+  justify-self: center;
+  z-index: 1;
+  transition: .5s;
+}
+
+.followed-player-card-cont:hover {
+  box-shadow: 1px 1px 5px hsla(172, 97%, 29%, 0.548);
+  border-radius: 0rem;
+  transform: scale(2, 1);
+  transform-origin: left;
+  justify-content: space-evenly;
+
+}
+
+.followed-player-card-cont:hover > .followed-player-img {
+  transform-origin: top left;
+  transform: scale(.45, .90);
+  justify-self:flex-start;
+}
+
+.followed-player-pop-out--name {
+  display: none;
+}
+
+.followed-player-card-cont:hover > .followed-player-pop-out--name {
+  display: visible;
   justify-items: center;
   align-items: center;
   width: -webkit-fill-available;
@@ -34,27 +65,4 @@
   font-weight: 400;
   margin-left: .25rem;
   margin-right: .25rem;
-  transform: translateX(10px)
-}
-
-.followed-player-pop-out--name:hover {
-  cursor: pointer;
-}
-
-.btn--unfollow-img {
-  width: 25px;
-  height: 25px;
-  border: none;
-  border-radius: 25rem;
-  transform: translateX(20px);
-}
-
-.btn--unfollow--img-cont {
-  display: flex;
-  width: 25px !important;
-  height: 25px !important;
-  border: none;
-  border-radius: 25rem;
-  transform: translateX(40px);
-  align-self: center;
 }

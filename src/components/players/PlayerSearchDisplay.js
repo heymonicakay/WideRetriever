@@ -23,9 +23,7 @@ export const PlayerSearchDisplay = (props) => {
 
     const resultVerify = () => {
       if(searchTerms.length < 1) {
-        return (
-          <span hidden></span>
-        )
+        return null
       }
       if(filteredPlayers.length < 1) {
         return (

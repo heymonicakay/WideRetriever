@@ -1,21 +1,33 @@
 .cont--nav {
-  display: flex block;
-  flex-flow: row nowrap;
+  display: flex;
+  width: wibkit-fill-available;
+  max-height: 45px;
+  background-color: hsla(173, 43%, 68%, 0.548);
+  box-shadow: 2px 2px 10px hsla(172, 97%, 29%, 0.548);
+  z-index: 2;
+  position: sticky;
+  top: 0px;
 }
 
 .cont--search {
   display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-self: flex-start;
 }
+
 .nav {
-  display: flex block;
+  display: flex;
   flex-flow: row nowrap;
-  position: fixed;
-  top: 0;
-  justify-self: center;
-  width: 98%;
-  background-color: rgb(255, 255, 255);
-  padding: 1rem 1rem;
+  justify-content: stretch;
+  position: sticky;
+  max-height: 40px;
+  width: -webkit-fill-available;
+  padding-left: 2rem;
+  padding-right: 2rem;
   color: hsl(172, 97%, 29%);
+  background-color: hsla(173, 43%, 68%, 0.548);
+  z-index: 2;
 }
 
 .nav__link {
@@ -23,59 +35,134 @@
   text-decoration: none;
   font-weight: 200;
   color: rgb(2, 144, 125);
-  margin: 0 0;
-  padding: .25rem 1rem;
+  margin: 0rem .25rem;
+  padding: 0 0;
+  justify-self: center;
+  align-self: center;
+  text-align:center;
 }
 
-.nav__heading {
-  text-decoration: none;
-  font-weight: 600;
-  font-size: larger;
-  margin: .5rem;
+.nav-group--account,
+.nav-group--create {
+  display: flex;
+  position: relative;
+  padding-left:1rem;
 }
 
-.btn--account,
-.btn--create {
-  height: 25px;
-  width: 25px;
-  border: 3px solid black;
-  border-radius: 25rem;
-  justify-content: center;
-  align-content: center;
+.nav-group--create  {
+  margin-left: 48rem;
 }
 
 .cont--create,
 .cont--account {
-  border: 3px solid black;
-  z-index: 4;
-  position: absolute;
-  top: 80%;
-}
-
-.cont--create {
-  right: 100px;
-}
-
-.cont--account {
-  right: 10px;
-}
-
-.btn--account,
-.btn--create{
-  align-self: center;
-  margin-left: .5rem;
-}
-
-.btn--account:hover {
-  cursor: pointer;
-}
-
-.btn--create:hover {
-  cursor: pointer;
-}
-
-.nav--right-btn-group {
   display: flex;
-  position: fixed;
-  right: 2%;
+  flex-flow: column nowrap;
+  width: 125px;
+  height: auto;
+  position: absolute;
+  top: -145px;
+  right: -5px;
+  z-index: -2;
+  background-color: white;
+  box-shadow: 2px 2px 10px hsla(172, 97%, 29%, 0.548);
+  overflow: hidden;
+  transition: 1s;
 }
+
+.cont--create--collapsed,
+.cont--account--collapsed {
+  visibility: hidden;
+}
+
+ .cont--create--open {
+  visibility: visible;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 125px;
+  height: auto;
+  position: absolute;
+  top: 40px;
+  background-color: white;
+  box-shadow: 2px 2px 10px hsla(172, 97%, 29%, 0.548);
+  overflow: hidden;
+}
+
+
+.cont--account--open {
+  visibility: visible;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 125px;
+  height: auto;
+  position: absolute;
+  top: 40px;
+  background-color: white;
+  box-shadow: 2px 2px 10px hsla(172, 97%, 29%, 0.548);
+  overflow: hidden;
+}
+
+.create-icon,
+.create-icon-url,
+.home-icon,
+.home-icon-url {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: none;
+  border-radius: 25rem;
+  justify-content: center;
+  align-self: center;
+  z-index: 1;
+}
+
+.create-icon:hover,
+.create-icon-url:hover,
+.home-icon:hover,
+.home-icon-url:hover,
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+.create-icon-url:hover,
+.home-icon-url:hover,
+.create-icon-url:hover,
+.home-icon-url:hover,
+.arrow-up-img:hover {
+  transition: .25s;
+  -webkit-filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
+  filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
+}
+
+
+.dropdown-item {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  height: 35px;
+  width: 125px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.233);
+}
+
+.dropdown-item:last-of-type {
+  border:none;
+}
+
+.arrow-up-img {
+  justify-self: center;
+  transform: scale(1, .5);
+  transform-origin: center;
+}
+
+/* .nav-group--account {
+  transform: translateX(-500px)
+} */
+
+/* @keyframes dropdownExpand {
+  0% {
+
+  }
+} */

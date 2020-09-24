@@ -6,26 +6,43 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import "./PlaytimeForm.css"
 
 export const PlaytimeForm = (props) => {
-  // expose playtime provider components to this function
+  //useRef
+  const note = useRef()
+  const tossBtn = useRef()
+  const missCountText = useRef()
+  const missBtn = useRef()
+  const catchCountText = useRef()
+  const catchBtn = useRef()
+
+  //useContext
   const { addPlaytime, playtimes, getPlaytimes } = useContext(PlaytimeContext)
+  const { getPlayerById } = useContext(PlayerContext)
 
+  //useState
   const [playtime, setPlaytime] = useState({})
+  const [player, setPlayer] = useState({})
+  const [tossCount, setTossCount] = useState(0);
+  const [catchCount, setCatchCount] = useState(0);
+  const [missCount, setMissCount] = useState(0);
+  const [key, setKey] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [isHidden, setIsHidden] = useState(false)
+  const [isInProgress, setIsInProgress] = useState(true)
+  const [cannotSubmit, setCannotSubmit] = useState(true)
 
-  const handleControlledInputChange = (e) => {
-    const newPlaytime = Object.assign({}, playtime)
-
-    newPlaytime[e.target.name] = e.target.value
-
-    setPlaytime(newPlaytime)
-  }
-
+  //useEffect
   useEffect(() => {
     getPlaytimes()
   }, [])
-
-  const constructNewPlaytime = () => {
-
+  useEffect(() => {
     const playerId = parseInt(props.match.params.playerId)
+      getPlayerById(playerId)
+        .then(setPlayer)
+  }, [])
+
+  //obj constructor
+  const constructNewPlaytime = () => {
 
     {addPlaytime({
       playerId,
@@ -33,77 +50,46 @@ export const PlaytimeForm = (props) => {
       misses: missCount,
       date: today,
       note: playtime.note,
+      timestamp: todayTimestamp
     })
       .then(() => props.history.push(`/players/${playerId}`))}
   }
 
-  // translate alien timstamp into human date
+  //define vars
   const todayTimestamp = Date.now()
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+  const playerId = parseInt(props.match.params.playerId)
 
-  //identify the note section
-  const note = useRef()
-
-  //identify the toss count button
-  const tossBtn = useRef()
-
-  // identify miss count text and miss count button
-  const missCountText = useRef()
-  const missBtn = useRef()
-
-  // identify catch count text and catch count button
-  const catchCountText = useRef()
-  const catchBtn = useRef()
-
-  // get player info and set player state to the player obj matching the ID in url
-  const { getPlayerById } = useContext(PlayerContext)
-  const [player, setPlayer] = useState({})
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
-        .then(setPlayer)
-  }, [])
-
-  // increment the number of tosses
-  const [tossCount, setTossCount] = useState(0);
+  //event handlers
   const handleTossIncrement = () => {
     setTossCount(prevTossCount => prevTossCount + 1);
   };
-
-  // increment the number of catches
-  const [catchCount, setCatchCount] = useState(0);
   const handleCatchIncrement = () => {
     setCatchCount(prevCatchCount => prevCatchCount + 1);
   };
-
-  // increment the number of misses
-  const [missCount, setMissCount] = useState(0);
-
   const handleMissIncrement = () => {
     setMissCount(prevMissCount => prevMissCount + 1);
   };
-
-  // reset the countdown
-  const [key, setKey] = useState(0)
   const handleReset = () => {
     setKey(prevKey => prevKey + 1)
   }
-
-  // controls state of timer
-  const [isPlaying, setIsPlaying] = useState(false)
-
-  // controls state of catch and miss buttons
-  const [isDisabled, setIsDisabled] = useState(true)
-
-  // controls state of toss button
-  const [isHidden, setIsHidden] = useState(false)
-
-  //controls state of game in progress (when true, notes and submit disabled. When false notes and submit enabled)
-  const [isInProgress, setIsInProgress] = useState(true)
+  const handleControlledInputChange = (e) => {
+    const newPlaytime = Object.assign({}, playtime)
+    newPlaytime[e.target.name] = e.target.value
+    setPlaytime(newPlaytime)
+  }
+  const handleCannotSubmit = () => {
+    if(tossCount == 5){
+      setCannotSubmit(false)
+    }
+    else {
+      setCannotSubmit(true)
+    }
+  }
 
   //renders the content inside of the circle timer
   const renderTime = ({ remainingTime }) => {
-    if ( remainingTime === 11) {
+    if ( remainingTime === 10) {
       return <button type="button" className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
         handleTossIncrement()
         setIsPlaying(true)
@@ -129,17 +115,6 @@ export const PlaytimeForm = (props) => {
     }
   };
 
-  const [cannotSubmit, setCannotSubmit] = useState(true)
-
-  const handleCannotSubmit = () => {
-    if(tossCount == 5){
-      setCannotSubmit(false)
-    }
-    else {
-      setCannotSubmit(true)
-    }
-  }
-
   return (
     <div className="cont--form-pt">
       <section className="form">
@@ -151,7 +126,7 @@ export const PlaytimeForm = (props) => {
             className="circle-timer"
             key={key}
             isPlaying={isPlaying}
-            duration={11}
+            duration={10}
             colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
             onComplete={() => [false, 0]}
           >

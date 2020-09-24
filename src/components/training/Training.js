@@ -112,9 +112,9 @@ export const Training = ( props ) => {
                 <option value="30 min">30 min</option>
               </select>
 
-              <select defaultValue={props.exercise.trainingTypeId} name="Type" ref={trainingType} id="trainingType" className="select select--tr" onChange=
+              <select defaultValue={props.training.trainingTypeId} name="Type" ref={trainingType} id="trainingType" className="select select--tr" onChange=
                 {handleControlledInputChange}>
-                  <option value="0">Select an behavior</option>
+                  <option value="0">Select a behavior</option>
                     {trainingTypes.map(tt => (
                       <option key={tt.id} value={tt.id}>
                         {tt.type}
@@ -124,7 +124,7 @@ export const Training = ( props ) => {
 
               <label htmlfor="note">How did {player.name} do?</label>
 
-              <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
+              <textarea defaultValue={props.training.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
 
               <button className="btn btn--submit btn--ex" type="button"
                 onClick={e => {
@@ -134,6 +134,11 @@ export const Training = ( props ) => {
                 }}>
                   Save Changes
               </button>
+              <span className="delete-training"
+                onClick={() => {
+                  removeTraining(props.training.id)}}>
+                    Delete
+              </span>
             </div>
           </>
           :
@@ -143,9 +148,9 @@ export const Training = ( props ) => {
                   {props.training.date}
                 </span>
                 <div className="tr-card--stats">
-                  <span className="tr-card--detail tr-card--duration">
+                  <div className="tr-card--detail tr-card--duration">
                     {props.training.duration}
-                  </span>
+                  </div>
                   <span className="tr-card--detail tr-card--type">
                     {props.trainingType.type}
                   </span>
@@ -161,10 +166,6 @@ export const Training = ( props ) => {
                           toggleEditMode()}}>
                             Edit
                         </span>
-                        <button className="btn btn--circle btn--red btn--del" onClick={() => {
-                          removeTraining(props.training.id)}}>
-                            X
-                          </button>
                         </>
                     }
                   </div>
@@ -176,82 +177,45 @@ export const Training = ( props ) => {
                 </div>
               </div>
             </section>
-          }
+        }
         </>
       )
     }
     else {
       return (
-        <>
-          {editMode
-            ?
-            <>
-              <div className="cont--form-edit-tr">
-                <select ref={duration} name="duration" className="input input--tr-edit input--duration" defaultValue={props.training.duration} onChange={handleControlledInputChange}>
-                  <option value="0">How long did you train?</option>
-                  <option value="5 min">5 min</option>
-                  <option value="10 min">10 min</option>
-                  <option value="15 min">15 min</option>
-                  <option value="20 min">20 min</option>
-                  <option value="25 min">25 min</option>
-                  <option value="30 min">30 min</option>
-                </select>
-
-                <select defaultValue={props.training.trainingTypeId} name="trainingType" ref={trainingType} id="trainingType" className="select select--tr" onChange={handleControlledInputChange}>
-                  <option value="0">Select a behavior</option>
-                    {trainingTypes.map(tt => (
-                      <option key={tt.id} value={tt.id}>
-                        {tt.type}
-                      </option>
-                    ))}
-                </select>
-
-                <label htmlfor="note">How did {player.name} do?</label>
-
-                <textarea defaultValue={props.training.note} ref={note} name="note" className="input input--note-tr" onChange={handleControlledInputChange} />
-
-                <button className="btn btn--submit btn--tr" type="button"
-                  onClick={e => {
-                    e.preventDefault()
-                    constructNewTraining()
-                    toggleEditMode()
-                  }}>
-                    Save Changes
-                </button>
-              </div>
-            </>
-            :
-            <>
-              <section className="tr-card">
-                <div className="tr-card--details" onClick={()=>{
-                  toggleHidden()
-                }}>
-                  <span className="tr-card--detail tr-card--date">
-                    {props.training.date}
-                  </span>
-                  <div className="tr-card--stats">
-                    <div className="tr-card--detail tr-card--catches">
-                      {props.training.duration}
-                    </div>
-                    <span className="tr-card--detail tr-card--misses">
-                      {props.trainingType.type}
+              <>
+                <section className="tr-card">
+                  <div className="tr-card--details">
+                    <span className="tr-card--detail tr-card--date">
+                      {props.training.date}
                     </span>
-                  </div>
-                  <div className="tr-card--detail tr-card--note">
+                    <div className="tr-card--stats">
+                      <div className="tr-card--detail">
+                        {props.training.duration}
+                      </div>
+                      <span className="tr-card--detail">
+                        {props.trainingType.type}
+                      </span>
+                    </div>
+                    <div className="tr-card--detail tr-card--note">
                       {noteHidden
-                        ? <span hidden></span>
+                        ? null
                         : <>
                             <span className="note">
                               {props.training.note}
                             </span>
                           </>
                       }
+                    </div>
+                    <div ref={arrow} className="down-arrow"
+                      onClick={()=>{
+                        toggleHidden()
+                    }}>
+                      <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
+                    </div>
                   </div>
-                </div>
-              </section>
-            </>
-          }
-        </>
+                </section>
+              </>
       )
     }
   }

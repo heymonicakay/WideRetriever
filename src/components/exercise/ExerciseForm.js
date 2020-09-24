@@ -46,7 +46,7 @@ export const ExerciseForm = (props) => {
       duration: exercise.duration,
       date: today,
       note: exercise.note,
-      rating: exercise.rating
+      timestamp: todayTimestamp
     })
       .then(() => props.history.push(`/players/${playerId}`))}
   }

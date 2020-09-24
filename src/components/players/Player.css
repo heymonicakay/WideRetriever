@@ -1,17 +1,35 @@
 .cont--pl {
   display: flex;
-  position: absolute;
-  top: 10%;
+  position: fixed;
+  top: 0%;
+  right: 20%;
+  left: 18%;
+  justify-self: center;
   flex-flow: row wrap;
-  width: 80%;
-  height: 100%;
+  padding: 5rem 2rem 0rem 2rem ;
+  width: 60%;
+  height: -webkit-fill-available;
   justify-content: center;
   align-items: flex-start;
+  background-color: hsla(180, 33%, 80%, 0.548)
+}
+
+.player-detail-section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.activity-section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }
 
 .list--pl {
   display: flex;
-  position: relative;
+  /* position: relative; */
   flex-flow: row wrap;
   padding: 0 0;
   margin: 0 0;
@@ -21,19 +39,27 @@
 
 .pl-card {
   display: flex;
-  flex-flow: row-reverse nowrap;
-  flex-basis: 20%;
-  max-width: 300px;
-  max-height: 100px;
+  flex-flow: column nowrap;
+  width: -webkit-fill-available;
+  max-height: auto;
   margin: 1em;
   padding: 1em 0em;
   border: 3px solid hsl(207, 98%, 23%);
-  border-radius: 2rem;
   background-color: hsl(207, 61%, 61%);
   color: white;
   justify-content: space-evenly;
   align-content: center;
-  transform: translateX(-50%);
+}
+
+.pl-card-top {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.pl-card-bottom {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 
 .pl-card__header--name {
@@ -58,14 +84,22 @@
   align-self: center;
 }
 
+.cont--img--detail {
+  transform: scale(1.5, 1.5) translate(-20px, -15px)
+}
+
 .pl-card--img {
   display: flex;
   justify-self: center;
   align-self: center;
   border-radius: 25rem;
-  width: 79px;
-  height: 79px;
+  width: 80px;
+  height: 80px;
 }
+
+/* .pl-card-img-detail {
+  transform: scale(1.5, 1.5) translate(-20px, -20px)
+} */
 
 .btn--red {
   background-color: rgb(243, 61, 61) !important;

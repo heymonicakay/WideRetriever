@@ -5,12 +5,20 @@ export const FollowingContext = React.createContext()
 export const FollowingProvider = (props) => {
 
     const [followings, setFollowings] = useState([])
+    const [userFollowings, setUserFollowings ] = useState([])
+    const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
     const getFollowings = () => {
         return fetch("http://localhost:8088/followings")
             .then(res => res.json())
             .then(setFollowings)
     }
+
+    const getUserFollowings = (currentUserId) => {
+      return fetch(`http://localhost:8088/followings?userId=${currentUserId}`)
+          .then(res => res.json())
+          .then(setUserFollowings)
+  }
 
     const addFollowing = followingObj => {
         return fetch("http://localhost:8088/followings", {
@@ -35,10 +43,6 @@ export const FollowingProvider = (props) => {
             .then(getFollowings)
     }
 
-    useEffect(() => {
-        getFollowings()
-    }, [])
-
     return (
         <FollowingContext.Provider value={
             {
@@ -47,6 +51,10 @@ export const FollowingProvider = (props) => {
                 getFollowings,
                 addFollowing,
                 unfollow,
+                userFollowings,
+                setUserFollowings,
+                getUserFollowings,
+                currentUserId
             }
         }>
             {props.children}

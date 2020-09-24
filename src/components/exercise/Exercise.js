@@ -12,6 +12,8 @@ export const Exercise = ( props ) => {
   const duration = useRef(null)
   const exerciseType = useRef(null)
   const note = useRef(null)
+  const arrow = useRef(null)
+
 
   // useContext
   const  { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
@@ -111,7 +113,7 @@ const [noteHidden, setNoteHidden] = useState(true)
                     </select>
 
                     <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
-                      <option value="0">Select an activity!</option>
+                      <option value="0">Select an activity</option>
                         {exerciseTypes.map(et => (
                           <option key={et.id} value={et.id}>
                             {et.type}
@@ -122,7 +124,6 @@ const [noteHidden, setNoteHidden] = useState(true)
                     <label htmlfor="note">How did {player.name} do?</label>
 
                     <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
-
                     <button className="btn btn--submit btn--ex" type="button"
                       onClick={e => {
                         e.preventDefault()
@@ -131,13 +132,16 @@ const [noteHidden, setNoteHidden] = useState(true)
                       }}>
                         Save Changes
                     </button>
+                    <span className="delet-exercise"
+                      onClick={() => {
+                        removeExercise(props.exercise.id)}}>
+                        X
+                    </span>
                 </div>
               </>
             :
               <section className="ex-card">
-                <div className="ex-card--details" onClick={()=>{
-                  toggleHidden()
-                }}>
+                <div className="ex-card--details">
                   <span className="ex-card--detail ex-card--date">
                     {props.exercise.date}
                   </span>
@@ -151,7 +155,7 @@ const [noteHidden, setNoteHidden] = useState(true)
                   </div>
                   <div className="ex-card--detail ex-card--note">
                       {noteHidden
-                        ? <span hidden></span>
+                        ? null
                         : <>
                             <span className="note">
                               {props.exercise.note}
@@ -160,14 +164,16 @@ const [noteHidden, setNoteHidden] = useState(true)
                             toggleEditMode()}>
                               Edit
                             </span>
-                            <button className="btn btn--circle btn--red btn--del" onClick={() => {
-                              removeExercise(props.exercise.id)}}>
-                              X
-                            </button>
                           </>
                       }
+                      </div>
+                    <div ref={arrow} className="down-arrow"
+                      onClick={()=>{
+                        toggleHidden()
+                      }}>
+                        <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
+                    </div>
                   </div>
-                </div>
               </section>
           }
         </>
@@ -176,72 +182,37 @@ const [noteHidden, setNoteHidden] = useState(true)
     else {
       return (
         <>
-          {editMode
-            ?
-            <>
-              <div className="cont--form-edit-ex">
-                  <select ref={duration} name="duration" className="input input--ex-edit input--duration" defaultValue={props.exercise.duration} onChange={handleControlledInputChange}>
-                    <option value="0">How long did you exercise?</option>
-                    <option value="5-10 min">5-10 min</option>
-                    <option value="10-20 min">10-20 min</option>
-                    <option value="20-30 min">20-30 min</option>
-                    <option value="30-40 min">30-40 min</option>
-                    <option value="40-50 min">40-50 min</option>
-                    <option value="50-60 min">50-60 min</option>
-                  </select>
-
-                  <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
-                    <option value="0">Select an activity!</option>
-                      {exerciseTypes.map(et => (
-                        <option key={et.id} value={et.id}>
-                          {et.type}
-                        </option>
-                      ))}
-                  </select>
-
-                  <label htmlfor="note">How did {player.name} do?</label>
-
-                  <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
-
-                  <button className="btn btn--submit btn--ex" type="button"
-                    onClick={e => {
-                      e.preventDefault()
-                      constructNewExercise()
-                      toggleEditMode()
-                    }}>
-                      Save Changes
-                  </button>
+          <section className="ex-card">
+            <div className="ex-card--details">
+              <span className="ex-card--detail ex-card--date">
+                {props.exercise.date}
+              </span>
+              <div className="ex-card--stats">
+                <div className="ex-card--detail">
+                  {props.exercise.duration}
                 </div>
-              </>
-            :
-              <section className="ex-card">
-                <div className="ex-card--details" onClick={()=>{
+                <span className="ex-card--detail">
+                  {props.exerciseType.type}
+                </span>
+              </div>
+              <div className="ex-card--detail ex-card--note">
+                {noteHidden
+                  ? null
+                  : <>
+                      <span className="note">
+                        {props.exercise.note}
+                      </span>
+                    </>
+                }
+              </div>
+              <div ref={arrow} className="down-arrow"
+                onClick={()=>{
                   toggleHidden()
                 }}>
-                  <span className="ex-card--detail ex-card--date">
-                    {props.exercise.date}
-                  </span>
-                  <div className="ex-card--stats">
-                    <div className="ex-card--detail ex-card--catches">
-                      {props.exercise.duration}
-                    </div>
-                    <span className="ex-card--detail ex-card--misses">
-                      {props.exerciseType.type}
-                    </span>
-                  </div>
-                  <div className="ex-card--detail ex-card--note">
-                      {noteHidden
-                        ? <span hidden></span>
-                        : <>
-                            <span className="note">
-                              {props.exercise.note}
-                            </span>
-                          </>
-                      }
-                  </div>
+                  <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
                 </div>
-              </section>
-          }
+            </div>
+          </section>
         </>
       )
     }

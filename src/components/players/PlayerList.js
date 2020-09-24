@@ -9,12 +9,18 @@ export const PlayerList = (props) => {
 
     const { userPlayers, getUserPlayers } = useContext(PlayerContext)
     const { getCurrentUser } = useContext(UserContext)
+
+    const [currentUser, setCurrentUser] = useState("")
+    const [ customWelcomeName, setCustomWelcomeName] = useState("")
+
     const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
     useEffect(() => {
-        getCurrentUser()
+        getCurrentUser(currentUserId)
         getUserPlayers(currentUserId)
     }, [])
+
+    const name = currentUser.username
 
     return (
         <>

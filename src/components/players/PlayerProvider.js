@@ -4,10 +4,8 @@ export const PlayerContext = React.createContext()
 export const PlayerProvider = (props) => {
     const [players, setPlayers] = useState([])
     const [searchTerms, setTerms] = useState("")
-    const [filteredPlayersFollowing, setFilteredPlayersFollowing] = useState([])
-
     const [userPlayers, setUserPlayers] = useState([])
-
+    const currentUserId = sessionStorage.getItem("wr__user")
 
     const getPlayers = () => {
         return fetch("http://localhost:8088/players")
@@ -20,8 +18,8 @@ export const PlayerProvider = (props) => {
           .then(res => res.json())
   }
 
-  const getUserPlayers = (userId) => {
-        return fetch(`http://localhost:8088/players?userId=${userId}`)
+  const getUserPlayers = (currentUserId) => {
+        return fetch(`http://localhost:8088/players?userId=${currentUserId}`)
             .then(res => res.json())
             .then(setUserPlayers)
     }
@@ -67,8 +65,6 @@ export const PlayerProvider = (props) => {
             editPlayer,
             getUserPlayers,
             userPlayers,
-            setFilteredPlayersFollowing,
-            filteredPlayersFollowing
         }}>
             {props.children}
         </PlayerContext.Provider>

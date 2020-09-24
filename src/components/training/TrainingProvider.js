@@ -4,6 +4,7 @@ export const TrainingContext = React.createContext()
 export const TrainingProvider = (props) => {
     const [trainings, setTrainings] = useState([])
     const [searchTerms, setTerms] = useState("")
+    const [playerTrainings, setPlayerTrainings] = useState([])
 
 
     const getTrainings = () => {
@@ -11,6 +12,12 @@ export const TrainingProvider = (props) => {
             .then(res => res.json())
             .then(setTrainings)
     }
+
+    const getTrainingByPlayerId = (playerId) => {
+      return fetch(`http://localhost:8088/trainings?playerId=${playerId}`)
+          .then(res => res.json())
+          .then(setPlayerTrainings)
+  }
 
     const getTrainingById = (id) => {
       return fetch(`http://localhost:8088/trainings/${id}`)
@@ -49,7 +56,8 @@ export const TrainingProvider = (props) => {
     return (
         <TrainingContext.Provider value={{
             trainings, addTraining, getTrainings, getTrainingById,
-            searchTerms, setTerms, removeTraining, editTraining
+            searchTerms, setTerms, removeTraining, editTraining,
+            getTrainingByPlayerId
         }}>
             {props.children}
         </TrainingContext.Provider>

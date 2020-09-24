@@ -8,7 +8,7 @@ export const PlayerForm = (props) => {
   const playerName = useRef(null)
   const breed = useRef(null)
   const age = useRef(null)
-  const number = useRef(null)
+  const delDialog = useRef(null)
 
   const editMode = props.match.params.hasOwnProperty("playerId")
   const [player, setPlayer] = useState({})
@@ -16,7 +16,7 @@ export const PlayerForm = (props) => {
   const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png")
   const [isHidden, setIsHidden] = useState(true)
 
-  const { addPlayer, players, editPlayer, getPlayers } = useContext(PlayerContext)
+  const { addPlayer, players, editPlayer, getPlayers, removePlayer } = useContext(PlayerContext)
 
   const handleControlledInputChange = (event) => {
     const newPlayer = Object.assign({}, player)
@@ -74,7 +74,6 @@ export const PlayerForm = (props) => {
         name: player.name,
         breed: player.breed,
         age: player.age,
-        number: player.number
       })
       .then(() => props.history.push("/"))
     }
@@ -85,13 +84,28 @@ export const PlayerForm = (props) => {
         name: player.name,
         breed: player.breed,
         age: player.age,
-        number: player.number
       })
       .then(() => props.history.push("/"))
     }
   }
 
   return (
+    <>
+    <dialog className="dialog dialog--del-check" ref={delDialog}>
+            <div className="cont__dialog-msg--del-check">
+              Woof! Are you sure you want to remove {player.name} from the roster?
+            </div>
+
+            <div className="cont__dialog-btns--del-check">
+              <button className="btn btn-del--sure" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))}>
+                  Yes, I'm sure.
+              </button>
+              <button className="btn btn-del--nvm" onClick={e => delDialog.current.close()}>
+                  Actually, nevermind.
+              </button>
+            </div>
+          </dialog>
+
     <div className="cont--form-pl">
 
       <section className="form">
@@ -151,10 +165,6 @@ export const PlayerForm = (props) => {
           <input type="text" name="age" required className="form-pl__ctrl form-pl__ctrl--age" placeholder="Ex: 4" defaultValue={player.age} ref={age} onChange={handleControlledInputChange}
           />
 
-          <label className="label label__pl-form--name" htmlFor="age">Player Number</label>
-          <input type="text" name="number" required className="form-pl__ctrl form-pl__ctrl--number" placeholder="Ex: 42" defaultValue={player.number} ref={number} onChange={handleControlledInputChange}
-          />
-
           <button type="button" className="btn btn__sbmt btn__sbmt--pl"
             onClick={e => {
               e.preventDefault()
@@ -165,7 +175,19 @@ export const PlayerForm = (props) => {
                 : "Add Player"
               }
           </button>
+          {editMode
+            ? (
+            <button className="btn btn--red"
+                  onClick={() => {
+                delDialog.current.showModal()
+              }}>
+                Remove From Roster
+            </button>
+            )
+            : null
+          }
       </section>
     </div>
+    </>
   )
 }

@@ -109,7 +109,6 @@
   justify-self: center;
   align-self: center;
   cursor: pointer;
-  transform: translateY(-50%);
   position: absolute;
   background:url("https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png") 0 0 no-repeat;
   background-size: cover;
