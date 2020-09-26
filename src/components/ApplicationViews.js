@@ -29,7 +29,7 @@ export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
   return (
     <>
-      <UserProvider currentUserId={currentUserId} {...props}>
+      <UserProvider >
         <DefaultIconProvider>
           <PlayerProvider>
             <FollowingProvider>

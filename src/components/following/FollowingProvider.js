@@ -4,7 +4,6 @@ export const FollowingContext = React.createContext()
 
 export const FollowingProvider = (props) => {
     const [currentUserFollowings, setCurrentUserFollowings] = useState([])
-
     const [followings, setFollowings] = useState([])
 
     const getFollowings = () => {
@@ -18,12 +17,6 @@ export const FollowingProvider = (props) => {
           .then(res => res.json())
           .then(setCurrentUserFollowings)
   }
-
-  const getStackedFollowings = (currentUserId) => {
-    return fetch(`http://localhost:8088/followings?userId=${currentUserId}`)
-        .then(res => res.json())
-        .then(setCurrentUserFollowings)
-}
 
     const addFollowing = followingObj => {
         return fetch("http://localhost:8088/followings", {

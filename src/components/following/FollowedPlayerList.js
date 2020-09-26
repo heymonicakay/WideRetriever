@@ -6,13 +6,14 @@ import "./Following.css"
 
 export const FollowedPlayerList = props => {
 
-  const { currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
+  const { followings, getFollowings, currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
   const { players, getPlayers } = useContext(PlayerContext)
 
   const [playerIdsFollowed, setPlayerIdsFollowed] = useState([])
   const [playersFollowed, setPlayersFollowed] = useState("...fetching")
   useEffect(() => {
-    getPlayers()
+    getFollowings()
+    .then(getPlayers)
     .then(getUserFollowings(props.currentUserId))
   }, [])
 
