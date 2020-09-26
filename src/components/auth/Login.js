@@ -23,7 +23,7 @@ export const Login = props => {
       .then(exists => {
         if (exists && exists.password === pw.current.value) {
           sessionStorage.setItem("wr__user", exists.id)
-          props.history.push("/")
+          props.history.push("/players")
         }
         else if (exists && exists.pw !== pw.current.value) {
           pwDialog.current.showModal()

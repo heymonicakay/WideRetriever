@@ -2,7 +2,6 @@ import React, {useContext } from "react"
 import { Route } from "react-router-dom"
 import { Nav } from "./nav/Nav"
 import { PlayerForm } from "./players/PlayerForm"
-import { PlayerList } from "./players/PlayerList"
 import { PlayerProvider } from "./players/PlayerProvider"
 import { PlayerDetails } from "./players/PlayerDetails"
 import { PlayerSearchDisplay } from "./players/PlayerSearchDisplay"
@@ -24,6 +23,7 @@ import { PlaytimeGoalProvider } from "./playtimeGoals/PlaytimeGoalProvider"
 import { PlaytimeGoalForm } from "./playtimeGoals/PlaytimeGoalForm"
 import { TrainingGoalProvider } from "./trainingGoals/TrainingGoalProvider"
 import { TrainingGoalForm } from "./trainingGoals/TrainingGoalForm"
+import { UserDash } from  "./users/Dashboard"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
@@ -52,17 +52,24 @@ export const ApplicationViews = (props) => {
                           currentUserId={currentUserId}
                           { ...props} />
                       </div>
-                      <div className="cont--pl">
-                        <PlayerList
-                          currentUserId={currentUserId}
-                          { ...props} />
-                      </div>
+                      <Route
+                        exact path="/players"
+                        render = {
+                        props =>
+                          <div className="cont--pl">
+                            <UserDash
+                            currentUserId={currentUserId}
+                            { ...props} />
+                          </div>
+                      }
+                      />
                       <div className="reminder-list-cont">
                           {/* INSERT REMINDERS LIST */}
                       </div>
                     </div>
                   </>
                 }/>
+
               <Route
                 exact path="/players/create"
                 render = {

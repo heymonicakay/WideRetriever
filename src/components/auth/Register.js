@@ -38,7 +38,7 @@ export const Register = (props) => {
           .then(createdUser => {
             if (createdUser.hasOwnProperty("id")) {
               sessionStorage.setItem("wr__user", createdUser.id)
-              props.history.push("/")
+              props.history.push("/players")
             }
           })
           })

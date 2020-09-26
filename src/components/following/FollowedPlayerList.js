@@ -33,6 +33,7 @@ export const FollowedPlayerList = props => {
 
   const handleClick = (playerId) => {
     props.history.push(`/players/${playerId}`)
+    refreshPage()
   }
 
   if (currentUserFollowings.length < 1) {

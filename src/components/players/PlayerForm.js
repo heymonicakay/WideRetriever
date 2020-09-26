@@ -75,7 +75,7 @@ export const PlayerForm = (props) => {
         breed: player.breed,
         age: player.age,
       })
-      .then(() => props.history.push("/"))
+      .then(() => props.history.push("/players"))
     }
     else {
       addPlayer({
@@ -85,7 +85,7 @@ export const PlayerForm = (props) => {
         breed: player.breed,
         age: player.age,
       })
-      .then(() => props.history.push("/"))
+      .then(() => props.history.push("/players"))
     }
   }
 

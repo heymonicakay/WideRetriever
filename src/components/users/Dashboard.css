@@ -1,0 +1,23 @@
+.user-dash-top {
+  display: flex;
+  flex-flow: column;
+  width: 700px;
+  height: 750px;
+  justify-self: center;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.player-list-dash {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin: -1.5rem;
+}
+
+.hello {
+  font-weight: 500;
+  font-size: 40px;
+  color: white;
+}

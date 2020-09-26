@@ -37,15 +37,15 @@
   height: 100%;
 }
 
-.pl-card {
+.pl-card-dash {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   width: -webkit-fill-available;
   max-height: auto;
   margin: 1em;
   padding: 1em 0em;
-  border: 3px solid hsl(207, 98%, 23%);
-  background-color: hsl(207, 61%, 61%);
+  /* border: 3px solid hsl(207, 98%, 23%);
+  background-color: hsl(207, 61%, 61%); */
   color: white;
   justify-content: space-evenly;
   align-content: center;

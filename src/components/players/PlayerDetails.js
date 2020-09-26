@@ -199,7 +199,6 @@ export const PlayerDetails = ( props ) => {
     window.location.reload();
   } /* force refresh */
 
-  console.log(playerTrainingGoal, "in pl details")
   const playerValidation = () => {
     if(props.currentUserId === player.userId) {
       return (

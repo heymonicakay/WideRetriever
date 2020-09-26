@@ -311,13 +311,13 @@
   "followings": [
     {
       "userId": 1,
-      "followedPlayerId": 3,
-      "id": 1
+      "followedPlayerId": 5,
+      "id": 2
     },
     {
       "userId": 1,
       "followedPlayerId": 5,
-      "id": 2
+      "id": 3
     }
   ],
   "defaultIcons": [
