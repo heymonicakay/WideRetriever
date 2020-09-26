@@ -16,11 +16,12 @@
   justify-content: center;
   transform-origin: left;
   border-radius: 25rem;
-  transition: .5s;
+  transition: .25s;
   height: 52px;
   width: 52px;
   background-color: white;
   cursor: pointer;
+  margin: .75rem 0rem;
 }
 
 .followed-player-img {
@@ -31,13 +32,13 @@
   align-self: center;
   justify-self: center;
   z-index: 1;
-  transition: .5s;
+  transition: .25s;
 }
 
 .followed-player-card-cont:hover {
   box-shadow: 1px 1px 5px hsla(172, 97%, 29%, 0.548);
   border-radius: 0rem;
-  transform: scale(2, 1);
+  transform: scale(4, 1.2);
   transform-origin: left;
   justify-content: space-evenly;
 
@@ -45,19 +46,22 @@
 
 .followed-player-card-cont:hover > .followed-player-img {
   transform-origin: top left;
-  transform: scale(.45, .90);
+  transform: scale(.29, .90) translate(40px, 2px);
   justify-self:flex-start;
 }
 
 .followed-player-pop-out--name {
   display: none;
+  transition: .25s;
 }
 
 .followed-player-card-cont:hover > .followed-player-pop-out--name {
-  display: visible;
+  display: inline;
   justify-items: center;
   align-items: center;
-  width: -webkit-fill-available;
+  text-align: center;
+  width: 30%;
+  transform: scale(.29, .90) translateX(-50px);
 }
 
 .followed-player-pop-out--name {
