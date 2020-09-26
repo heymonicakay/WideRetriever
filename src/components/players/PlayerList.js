@@ -7,28 +7,25 @@ import { UserContext } from "../users/UserProvider"
 
 export const PlayerList = (props) => {
 
-    const { userPlayers, getUserPlayers } = useContext(PlayerContext)
-    const { getCurrentUser } = useContext(UserContext)
-
-    const [currentUser, setCurrentUser] = useState("")
-    const [ customWelcomeName, setCustomWelcomeName] = useState("")
-
-    const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
+    const { userPlayers, getUserPlayers, setUsersPlayers } = useContext(PlayerContext)
+    const { getCurrentUser, currentUser, setCurrentUser } = useContext(UserContext)
 
     useEffect(() => {
-        getCurrentUser(currentUserId)
-        getUserPlayers(currentUserId)
+        getCurrentUser(props.currentUserId)
+        .then(setCurrentUser)
+        getUserPlayers(props.currentUserId)
+        .then(setUsersPlayers)
     }, [])
-
-    const name = currentUser.username
 
     return (
         <>
           {userPlayers.map(p => {
 
-              return <Player {...props}
+              return <Player
+                {...props}
                   key={p.id}
                   player={p}
+                  currentUser={currentUser}
               />
             })
         }

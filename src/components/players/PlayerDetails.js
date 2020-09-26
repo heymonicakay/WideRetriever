@@ -19,14 +19,14 @@ export const PlayerDetails = ( props ) => {
   const unfollowDialog = useRef()
 
   //useContext
-  const { userFollowings, currentUserId, addFollowing, unfollow, getUserFollowings } = useContext(FollowingContext)
-  const { getPlayerById } = useContext(PlayerContext)
-  const { playtimes, getPlaytimes} = useContext(PlaytimeContext)
-  const { trainings, getTrainings } = useContext(TrainingContext)
-  const { exercises, getExercises} = useContext(ExerciseContext)
-  const { getPlaytimeGoals, playtimeGoals } = useContext(PlaytimeGoalContext)
-  const { getTrainingGoals, trainingGoals } = useContext(TrainingGoalContext)
-  const { getExerciseGoals, exerciseGoals } = useContext(ExerciseGoalContext)
+    const { currentUserFollowings, addFollowing, unfollow, getUserFollowings } = useContext(FollowingContext)
+    const { getPlayerById } = useContext(PlayerContext)
+    const { playtimes, getPlaytimes} = useContext(PlaytimeContext)
+    const { trainings, getTrainings } = useContext(TrainingContext)
+    const { exercises, getExercises} = useContext(ExerciseContext)
+    const { getPlaytimeGoals, playtimeGoals } = useContext(PlaytimeGoalContext)
+    const { getTrainingGoals, trainingGoals } = useContext(TrainingGoalContext)
+    const { getExerciseGoals, exerciseGoals } = useContext(ExerciseGoalContext)
 
   //useState
   //PLAYER
@@ -47,7 +47,7 @@ export const PlayerDetails = ( props ) => {
     const [trainingsThisWeek, setTrainingsThisWeek] = useState([])
     const [playerTrainingGoal, setPlayerTrainingGoal] = useState([])
   //FOLLOWING
-    const [iAmFollowing, setIAmFollowing] = useState(null)
+    const [iAmFollowing, setIAmFollowing] = useState(true)
     const [followConnectionTBD, setFollowConnectionTBD] = useState({})
 
   const playerId = parseInt(props.match.params.playerId)
@@ -84,19 +84,19 @@ export const PlayerDetails = ( props ) => {
   }, []) /* get/set player OBJECT*/
 
   useEffect(() => {
-    getUserFollowings(currentUserId)
+    getUserFollowings(props.currentUserId)
     getExercises()
     getPlaytimes()
     getTrainings()
     getPlaytimeGoals()
     getTrainingGoals()
     getExerciseGoals()
-  }, []) /* fetches data: userFollowings, exercises, playtimes, trainings, etc. */
+  }, []) /* fetches data: currentUserFollowings, exercises, playtimes, trainings, etc. */
 
   useEffect(() => {
-    const alreadyFollowing = userFollowings.find(uf => uf.followedPlayerId === player.id)
+    const alreadyFollowing = currentUserFollowings.find(uf => uf.followedPlayerId === player.id)
   setIAmFollowing(alreadyFollowing)
-  }, [userFollowings]) /* determines if current user is following target player */
+  }, [currentUserFollowings]) /* determines if current user is following target player */
   useEffect(()=>{
     const playerPlaytimes = playtimes.filter(pt => pt.playerId === player.id) || []
   setPlayerPlaytimes(playerPlaytimes)
@@ -172,9 +172,9 @@ export const PlayerDetails = ( props ) => {
   }, [playerPlaytimes]) /* sets this WEEKS PLAYTIMES ARRAY for target player */
 
   useEffect(()=>{
-    const followConnection = userFollowings.find(uf => uf.followedPlayerId === player.id) || {}
+    const followConnection = currentUserFollowings.find(uf => uf.followedPlayerId === player.id) || {}
     setFollowConnectionTBD(followConnection.id)
-  }, [userFollowings]) /* finds follow connection to be deleted */
+  }, [currentUserFollowings]) /* finds follow connection to be deleted */
 
   const findSum = (arr) => {
     let total = 0
@@ -189,11 +189,11 @@ export const PlayerDetails = ( props ) => {
 
   const createNewFollowConnection = () => {
     const newFollowConnection = {
-        userId: currentUserId,
+        userId: props.currentUserId,
         followedPlayerId: player.id
     }
     addFollowing(newFollowConnection)
-    .then(getUserFollowings(currentUserId))
+    .then(getUserFollowings(props.currentUserId))
   } /* CREATE new follow connection */
   const refreshPage = ()=>{
     window.location.reload();
@@ -201,7 +201,7 @@ export const PlayerDetails = ( props ) => {
 
   console.log(playerTrainingGoal, "in pl details")
   const playerValidation = () => {
-    if(currentUserId === player.userId) {
+    if(props.currentUserId === player.userId) {
       return (
         <>
         <div className="player-detail-container">
@@ -318,7 +318,7 @@ export const PlayerDetails = ( props ) => {
                 onClick={e => {
                     e.preventDefault()
                     unfollow(followConnectionTBD)
-                    .then(getUserFollowings(currentUserId))
+                    .then(getUserFollowings(props.currentUserId))
                     unfollowDialog.current.close()
                 }}>
                   Yes, I'm sure.

@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react"
 export const FollowingContext = React.createContext()
 
 export const FollowingProvider = (props) => {
+    const [currentUserFollowings, setCurrentUserFollowings] = useState([])
 
     const [followings, setFollowings] = useState([])
-    const [userFollowings, setUserFollowings ] = useState([])
-    const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
     const getFollowings = () => {
         return fetch("http://localhost:8088/followings")
@@ -17,8 +16,14 @@ export const FollowingProvider = (props) => {
     const getUserFollowings = (currentUserId) => {
       return fetch(`http://localhost:8088/followings?userId=${currentUserId}`)
           .then(res => res.json())
-          .then(setUserFollowings)
+          .then(setCurrentUserFollowings)
   }
+
+  const getStackedFollowings = (currentUserId) => {
+    return fetch(`http://localhost:8088/followings?userId=${currentUserId}`)
+        .then(res => res.json())
+        .then(setCurrentUserFollowings)
+}
 
     const addFollowing = followingObj => {
         return fetch("http://localhost:8088/followings", {
@@ -51,10 +56,9 @@ export const FollowingProvider = (props) => {
                 getFollowings,
                 addFollowing,
                 unfollow,
-                userFollowings,
-                setUserFollowings,
                 getUserFollowings,
-                currentUserId
+                currentUserFollowings,
+                setCurrentUserFollowings,
             }
         }>
             {props.children}

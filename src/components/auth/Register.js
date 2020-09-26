@@ -28,6 +28,7 @@ export const Register = (props) => {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
+                username: username.current.value,
                 email: email.current.value,
                 password: pw.current.value,
                 name: `${firstName.current.value} ${lastName.current.value}`

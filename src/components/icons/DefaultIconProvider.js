@@ -3,7 +3,6 @@ export const DefaultIconContext = React.createContext()
 
 export const DefaultIconProvider = (props) => {
     const [defaultIcons, setDefaultIcons] = useState([])
-    const [searchTerms, setTerms] = useState("")
 
     const getDefaultIcons = () => {
         return fetch("http://localhost:8088/defaultIcons")
@@ -11,8 +10,8 @@ export const DefaultIconProvider = (props) => {
             .then(setDefaultIcons)
     }
 
-    const getDefaultIconById = (id) => {
-      return fetch(`http://localhost:8088/defaultIcons/${id}`)
+    const getDefaultIconByInitial = (M) => {
+      return fetch(`http://localhost:8088/defaultIcons/${M}`)
           .then(res => res.json())
   }
 
@@ -21,9 +20,7 @@ export const DefaultIconProvider = (props) => {
             defaultIcons,
             setDefaultIcons,
             getDefaultIcons,
-            getDefaultIconById,
-            searchTerms,
-            setTerms
+            getDefaultIconByInitial,
         }}>
             {props.children}
         </DefaultIconContext.Provider>

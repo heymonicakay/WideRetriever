@@ -6,54 +6,35 @@ import "./Following.css"
 
 export const FollowedPlayerList = props => {
 
-  const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
-
-  const { userFollowings, setUserFollowings, getFollowings, getUserFollowings, followings } = useContext(FollowingContext)
+  const { currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
   const { players, getPlayers } = useContext(PlayerContext)
 
-  const [isLoading, setIsLoading] = useState(true)
-
-  const playerIdsFollowed = userFollowings.map(auf=>auf.followedPlayerId) || []
-  const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
-
-  //useEffect
+  const [playerIdsFollowed, setPlayerIdsFollowed] = useState([])
+  const [playersFollowed, setPlayersFollowed] = useState("...fetching")
   useEffect(() => {
     getPlayers()
-    getFollowings()
+    .then(getUserFollowings(props.currentUserId))
   }, [])
 
-  useEffect(() => {
-    getUserFollowings(currentUserId)
-    .then(setIsLoading(false))
-  }, [followings])
+  useEffect(()=>{
+    const playerIdsFollowed = currentUserFollowings.map(auf=>auf.followedPlayerId) || []
+    setPlayerIdsFollowed(playerIdsFollowed)
+  }, [currentUserFollowings])
 
-  useEffect(() => {
-    getUserFollowings(currentUserId)
-  }, [])
+  useEffect(()=>{
+    const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
+    setPlayersFollowed(playersFollowed)
+  }, [playerIdsFollowed])
 
   const refreshPage = ()=>{
     window.location.reload();
   }
 
-  if (isLoading === true) {
-    return (
-      <>
-        <div className="fetching-followed-pl-msg">
-          Fetching...
-        </div>
-      </>
-    )
+  const handleClick = (playerId) => {
+    props.history.push(`/players/${playerId}`)
   }
-  else if (playersFollowed === undefined ) {
-    return (
-      <>
-        <div className="oops-followed-pl-msg">
-          Oops...
-        </div>
-      </>
-    )
-  }
-  else if (isLoading !== true && playersFollowed.length < 1) {
+
+  if (currentUserFollowings.length < 1) {
     return (
       <>
           <div className="no-followed-pl-msg">
@@ -66,27 +47,32 @@ export const FollowedPlayerList = props => {
       </>
     )
   }
-  else if (isLoading !== true && playersFollowed !== []) {
+  if (playersFollowed === []) {
     return (
       <>
-        <div className="followed-pl-list-cont">
-          {playersFollowed.map(player => {
-            const playerId = player.id
-
-            const handleClick = (e) => {
-              e.preventDefault()
-              props.history.push(`/players/${playerId}`)
-            }
-            return <FollowedPlayerCard {...props}
-                    refreshPage={refreshPage}
-                    key={player.id}
-                    player={player}
-                    handleClick={handleClick}
-                  />
-            })
-          }
+        <div className="fetching-followed-pl-msg">
+          Fetching...
         </div>
       </>
     )
+  }
+  else {
+    return (
+      <>
+        <div className="followed-pl-list-cont">
+          {playersFollowed.map(p => {
+
+              return <FollowedPlayerCard {...props}
+                refreshPage={refreshPage}
+                key={p.id}
+                player={p}
+                onClick={()=> handleClick(p.id)}
+                currentUserId={props.currentUserId}
+            />
+          })
+        }
+      </div>
+    </>
+  )
   }
 }

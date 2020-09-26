@@ -26,70 +26,54 @@ import { TrainingGoalProvider } from "./trainingGoals/TrainingGoalProvider"
 import { TrainingGoalForm } from "./trainingGoals/TrainingGoalForm"
 
 export const ApplicationViews = (props) => {
+  const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
   return (
     <>
-      <DefaultIconProvider>
-        <UserProvider>
+      <UserProvider currentUserId={currentUserId} {...props}>
+        <DefaultIconProvider>
           <PlayerProvider>
             <FollowingProvider>
               <Route
                 path = "/"
-                render = {
-                  props =>
+                render = {props =>
                   <>
+                    <nav className="cont--nav">
                       <PlayerSearchDisplay
-                      { ...props} />
-
-                      <nav className="cont--nav">
-                        <Nav
+                        currentUserId={currentUserId}
+                        { ...props} />
+                      <Nav
+                        currentUserId={currentUserId}
                         {...props}
-                        />
-                      </nav>
-                  </>
-                  }
-                />
-              <Route
-                path = "/"
-                render = {
-                  props =>
-                  <>
+                      />
+                    </nav>
                     <div className="main-cont">
                       <div className="followed-player-list-cont">
                         <FollowedPlayerList
-
+                          currentUserId={currentUserId}
                           { ...props} />
                       </div>
-                      <Route
-                        exact path ="/"
-                        render = {
-                          props=>
-                            <>
-                              <div className="cont--pl">
-                                <PlayerList
-
-                                { ...props} />
-                              </div>
-                            </>
-                        }
-                      />
+                      <div className="cont--pl">
+                        <PlayerList
+                          currentUserId={currentUserId}
+                          { ...props} />
+                      </div>
                       <div className="reminder-list-cont">
                           {/* INSERT REMINDERS LIST */}
                       </div>
                     </div>
                   </>
-                }
-              />
+                }/>
               <Route
                 exact path="/players/create"
                 render = {
                   props =>
-                  <div className="cont__form--pl">
+                    <div className="cont__form--pl">
                       <PlayerForm
-
-                      { ...props} />
+                        currentUserId={currentUserId}
+                        { ...props} />
                     </div>
                 }
-                />
+              />
 
             <PlaytimeProvider>
               <TrainingProvider>
@@ -105,7 +89,8 @@ export const ApplicationViews = (props) => {
                                 props =>
                                 <div className="cont--pl">
                                   <PlayerDetails
-                                  {...props}
+                                    currentUserId={currentUserId}
+                                    {...props}
                                   />
                                 </div>
                               }
@@ -125,9 +110,9 @@ export const ApplicationViews = (props) => {
                   exact path="/players/exercise/add/:playerId(\d+)"
                   render={
                     props =>
-
                     <ExerciseForm
-                    {...props}/>
+                      currentUserId={currentUserId}
+                      {...props}/>
                   }
                   />
               </ExerciseTypeProvider>
@@ -140,7 +125,8 @@ export const ApplicationViews = (props) => {
                     props =>
 
                     <ExerciseGoalForm
-                    {...props}/>
+                      currentUserId={currentUserId}
+                      {...props}/>
                   }
                   />
             </ExerciseGoalProvider>
@@ -152,7 +138,8 @@ export const ApplicationViews = (props) => {
                           render={
                             props =>
                             <TrainingForm
-                            {...props}/>
+                              currentUserId={currentUserId}
+                              {...props}/>
                           }
                           />
                 </TrainingTypeProvider>
@@ -165,6 +152,7 @@ export const ApplicationViews = (props) => {
                     props =>
 
                     <TrainingGoalForm
+                    currentUserId={currentUserId}
                     {...props}/>
                   }
                   />
@@ -176,6 +164,7 @@ export const ApplicationViews = (props) => {
                   render={
                     props =>
                     <PlaytimeForm
+                    currentUserId={currentUserId}
                     {...props}/>
                   }
                   />
@@ -188,6 +177,7 @@ export const ApplicationViews = (props) => {
                     props =>
 
                     <PlaytimeGoalForm
+                    currentUserId={currentUserId}
                     {...props}/>
                   }
                   />
@@ -196,14 +186,17 @@ export const ApplicationViews = (props) => {
             <Route
               path="/players/edit/:playerId(\d+)"
               render={
-                props => <PlayerForm {...props}
+                props =>
+                <PlayerForm
+                currentUserId={currentUserId}
+                {...props}
               />
               }
               />
             </FollowingProvider>
           </PlayerProvider>
-        </UserProvider>
-      </DefaultIconProvider>
+        </DefaultIconProvider>
+      </UserProvider>
     </>
   )
 }

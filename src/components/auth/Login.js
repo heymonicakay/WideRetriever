@@ -38,18 +38,22 @@ export const Login = props => {
     <div className="cont--login">
 
       <dialog className="dialog dialog--auth" ref={existDialog}>
-          <div>
-            Oops! Looks like that username doesn't exist. Would you like to register a new account?
+          <div className="exists-msg">
+            <span className="oops">Oops!</span>
+            Looks like that username doesn't exist.
+            <br />
+            Would you like to register a new account?
           </div>
-
-          <button className="btn btn--close">
-            <Link className="link link--reg" to="/register">
+          <div className="dialog selection-container">
+            <button className="btn btn--close">
+              <Link className="link link--reg-dialog" to="/register">
               Yes, take me to the registration page!
-            </Link>
-          </button>
-          <div className="link link--login-retry" onClick={e => existDialog.current.close()}>
+              </Link>
+            </button>
+            <div className="link link--login-retry" onClick={e => existDialog.current.close()}>
             No, I'll try logging in again.
           </div>
+        </div>
       </dialog>
 
       <dialog className="dialog dialog--password"

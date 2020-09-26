@@ -8,11 +8,15 @@ export const PlayerSearch = (props) => {
 
     return (
         <>
+          <div className="search-container">
+
               <img className="input__nav--search-img" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600576161/wideRetriever/search_ccx8jf.png" alt=""
               />
               <input type="text" className="input input__nav input__nav--search" defaultValue="" onChange={(e) => {
                 setTerms(e.target.value)
               }} />
+              
+          </div>
         </>
     )
 }

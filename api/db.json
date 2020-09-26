@@ -313,6 +313,11 @@
       "userId": 1,
       "followedPlayerId": 3,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "followedPlayerId": 5,
+      "id": 2
     }
   ],
   "defaultIcons": [

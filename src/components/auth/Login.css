@@ -22,6 +22,13 @@
   font-size: 15px;
   margin: 0em 0em;
 }
+.selection-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: -webkit-fill-available;
+  border: none !important;
+}
 
 .cont--login {
   position: absolute;
@@ -41,7 +48,26 @@
   align-self: center;
 }
 
-.link--reg {
+.oops {
+  color: white;
+  justify-self: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  font-size: larger;
+  margin: .5rem;
+}
+
+.exists-msg {
+  display: flex;
+  flex-flow: column;
+  color: hsl(207, 98%, 23%);
+  margin: .5rem;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.link--login-retry {
   display: flex;
   align-self: flex-end;
   text-decoration: none;
@@ -50,8 +76,20 @@
   transition: .25s;
 }
 
-.link--reg:hover {
+.link--reg,
+{
+  display: flex;
+  align-self: flex-end;
+  text-decoration: none;
+  color: hsl(207, 98%, 23%);
+  font-size: smaller;
+  transition: .25s;
+}
+
+.link--reg:hover,
+.link--login-retry:hover {
   color: white;
+  cursor: pointer;
 }
 
 .link {
@@ -70,10 +108,44 @@
   align-self: center
 }
 
-.btn--login {
-  background-color:hsl(152, 64%, 45%);
+.btn--login,
+{
+  background-color: white;
+  color: hsl(152, 64%, 45%);
+  border: 1px solid hsl(152, 64%, 45%);
+  margin: .5rem;
+  border-radius: .25rem;
+  transition: .25s;
+  font-weight: 500;
+}
+
+.link--reg-dialog {
+  text-decoration: none;
+  text-emphasis: none;
+  background-color: hsl(152, 64%, 45%);
   color: white;
+  border: 1px solid hsl(152, 64%, 45%);
+  margin: .5rem;
+  border-radius: .25rem;
+  transition: .25s;
+  font-weight: 500;
+  outline: none;
+}
+
+.link--reg-dialog:hover {
+  color: white !important;
   border: none;
   margin: .5rem;
   border-radius: .25rem;
+  transition: .25s;
+  outline: none;
+}
+
+.btn--login:hover,{
+  background-color: hsl(152, 64%, 45%) !important;
+  color: white !important;
+  border: 1px solid white;
+  margin: .5rem;
+  border-radius: .25rem;
+  transition: .25s;
 }

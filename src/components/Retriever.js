@@ -10,13 +10,12 @@ export const Retriever = () => (
     <>
         <Route render={() => {
             if (sessionStorage.getItem("wr__user")) {
-              const currentUserId = sessionStorage.getItem("wr__user")
 
                 return (
                     <>
-                      <Route render={props => <ApplicationViews
-                                            currentUserId={currentUserId}
-                                            {...props}  />} />
+                      <Route render={props =>
+                        <ApplicationViews
+                          {...props}  />} />
                     </>
                 )
             } else {
