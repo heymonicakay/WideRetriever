@@ -55,9 +55,17 @@ export const TrainingProvider = (props) => {
 
     return (
         <TrainingContext.Provider value={{
-            trainings, addTraining, getTrainings, getTrainingById,
-            searchTerms, setTerms, removeTraining, editTraining,
-            getTrainingByPlayerId
+            trainings,
+            addTraining,
+            getTrainings,
+            getTrainingById,
+            searchTerms,
+            setTerms,
+            removeTraining,
+            editTraining,
+            getTrainingByPlayerId,
+            playerTrainings,
+            setPlayerTrainings
         }}>
             {props.children}
         </TrainingContext.Provider>

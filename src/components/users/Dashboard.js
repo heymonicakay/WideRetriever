@@ -28,13 +28,15 @@ export const UserDash = (props) => {
             <PlayerList
               {...props}
               currentUser={currentUser}
-              usersPlayers={userPlayers}
+              userPlayers={userPlayers}
               />
           </div>
           <p className="welcome-msg summary">
             Here's a summary of your upcoming tasks.
           </p>
         </div>
+        
+
       </>
 )
 }

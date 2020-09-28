@@ -24,6 +24,8 @@ import { PlaytimeGoalForm } from "./playtimeGoals/PlaytimeGoalForm"
 import { TrainingGoalProvider } from "./trainingGoals/TrainingGoalProvider"
 import { TrainingGoalForm } from "./trainingGoals/TrainingGoalForm"
 import { UserDash } from  "./users/Dashboard"
+import { ReminderForm } from "./reminders/ReminderForm"
+import { ReminderProvider } from "./reminders/ReminderProvider"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
@@ -33,6 +35,7 @@ export const ApplicationViews = (props) => {
         <DefaultIconProvider>
           <PlayerProvider>
             <FollowingProvider>
+              <ReminderProvider>
               <Route
                 path = "/"
                 render = {props =>
@@ -64,12 +67,13 @@ export const ApplicationViews = (props) => {
                       }
                       />
                       <div className="reminder-list-cont">
-                          {/* INSERT REMINDERS LIST */}
+                        <ReminderForm
+                          currentUserId={currentUserId}
+                          {...props}/>
                       </div>
                     </div>
                   </>
                 }/>
-
               <Route
                 exact path="/players/create"
                 render = {
@@ -200,6 +204,7 @@ export const ApplicationViews = (props) => {
               />
               }
               />
+              </ReminderProvider>
             </FollowingProvider>
           </PlayerProvider>
         </DefaultIconProvider>

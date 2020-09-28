@@ -6,7 +6,7 @@ export const PlayerList = (props) => {
 
         return (
           <>
-        {props.usersPlayers.map(p => {
+        {props.userPlayers.map(p => {
 
           return <Player
           {...props}

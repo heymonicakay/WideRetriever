@@ -8,13 +8,13 @@ export const CreateDropdown = ( {toggleCreate})=> {
         to="/players/create"
         onClick={toggleCreate}
         >
-          Create Player
+          Add Player
       </Link>
       <Link className="dropdown-item nav__link nav__link--add-reminder"
         to="/reminders/create"
         onClick={toggleCreate}
         >
-        Set Reminder
+        Add Reminder
       </Link>
       <Link className="dropdown-item nav__link nav__link--add-todo"
         to="/todo/create"
