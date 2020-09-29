@@ -4,7 +4,6 @@ import { PlayerContext } from "../players/PlayerProvider"
 import { ExerciseContext } from "./ExerciseProvider"
 import { ExerciseTypeContext } from "../exerciseType/ExerciseTypeProvider"
 import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
-import { ExerciseTypeSearchDisplay } from "../exerciseType/ExerciseTypeSearchDisplay"
 
 import "./ExerciseForm.css"
 
@@ -14,10 +13,12 @@ export const ExerciseForm = (props) => {
 
   // refs
   const note = useRef(null)
+  const exerciseType = useRef(null)
+  const newExerciseType = useRef(null)
 
   // expose exercise provider components to this function
   const { addExercise } = useContext(ExerciseContext)
-  const { exerciseTypes, getExerciseTypes, searchTerms, setTerms } = useContext(ExerciseTypeContext)
+  const { exerciseTypes, getExerciseTypes, searchTerms, addExerciseType } = useContext(ExerciseTypeContext)
   const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
 
   // get exercise types
@@ -28,24 +29,27 @@ export const ExerciseForm = (props) => {
 
   // declare and set exercise state var
   const [exercise, setExercise] = useState({})
+  const [activity, setActivity] = useState({})
   const [filteredExerciseTypes, setFilteredExerciseTypes] = useState([])
 
   // func to build new exercise obj on input change
   const handleControlledInputChange = (e) => {
     const newExercise = Object.assign({}, exercise)
     newExercise[e.target.name] = e.target.value
-    console.log(etValue, "et value")
     setExercise(newExercise)
   }
 
-  const constructNewExercise = () => {
-    //define player ID
-    const playerId = parseInt(props.match.params.playerId)
+  const handleNewExerciseInput= (e) => {
+    const newActivity = Object.assign({}, activity)
+    newActivity[e.target.name] = e.target.value
+    setActivity(newActivity)
+  }
 
-    // call the func add exercise and pass it the arg of a whole exercise obj and then take the user back to the player details view
+  const constructNewExercise = () => {
+    const playerId = parseInt(props.match.params.playerId)
     {addExercise({
       playerId,
-      exerciseTypeId: etValue,
+      exerciseTypeId: parseInt(exerciseType.current.value),
       date: today,
       note: exercise.note,
       timestamp: todayTimestamp
@@ -53,7 +57,12 @@ export const ExerciseForm = (props) => {
       .then(() => props.history.push(`/players/${playerId}`))}
   }
 
-
+  const constructNewExerciseType = () => {
+    {addExerciseType({
+      type: activity.newExerciseType
+    })
+  }
+}
   // translate alien timstamp into human date
   const todayTimestamp = Date.now()
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
@@ -74,16 +83,17 @@ export const ExerciseForm = (props) => {
     setFilteredExerciseTypes(matchingExerciseTypes)
     }, [searchTerms])
 
-  useEffect(() => {
-    setFilteredExerciseTypes(exerciseTypes)
-  }, [exerciseTypes])
+    const toggleEdit = () =>{
+      if(edit === false){
+        setEdit(true)
+      }
+      else {
+        setEdit(false)
+      }
+    }
 
-  const handleSearchChange = (e) => {
-    setTerms(e.target.value)
-  }
+    const [edit, setEdit] = useState(false)
 
-  const [etValue, setEtValue] = useState(0)
-  const [etType, setEtType] = useState("")
 
   return (
     <div className="cont--form-ex">
@@ -92,16 +102,29 @@ export const ExerciseForm = (props) => {
           {player.name}
         </h1>
 
-        <input type="text" key={etValue} value={etType}className="exercise-type-search" onChange={handleSearchChange} />
-          <ExerciseTypeSearchDisplay
-          setEtType={setEtType}
-          setEtValue={setEtValue}
-          filteredExerciseTypes={filteredExerciseTypes}
-          exerciseTypes={exerciseTypes}
-          searchTerms={searchTerms}
-          setTerms={setTerms}
-          {...props}
-          />
+        <select defaultValue="" name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--et" onChange={handleControlledInputChange}>
+              <option value="0">Select an activity</option>
+              {exerciseTypes.map(et => (
+                  <option key={et.id} value={et.id}>
+                      {et.type}
+                  </option>
+              ))}
+        </select>
+        <p className="add-ex-type" onClick={toggleEdit}>Add Activity +</p>
+        {edit
+          ?
+          <>
+          <input className="input-ex-type" name="newExerciseType" onChange={handleNewExerciseInput} ref={newExerciseType}/>
+          <button onClick={()=>{
+            constructNewExerciseType()
+            toggleEdit()}}>
+              Save
+          </button>
+          </>
+          :
+          <>
+          </>
+        }
 
           <div>
             <div style={{textAlign: 'center'}}>
