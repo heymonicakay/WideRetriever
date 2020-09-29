@@ -1,61 +1,39 @@
 import React, { useState, useContext, useEffect, useRef } from "react"
-import { PlayerContext } from "../players/PlayerProvider"
 import { ExerciseContext } from "./ExerciseProvider"
 import { Exercise } from "./Exercise"
 import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
-
-import "./Exercise.css"
-
 import { ExerciseTypeContext } from "../exerciseType/ExerciseTypeProvider"
-
+import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
+import { FrequencyContext } from "../goals/FrequencyProvider"
+import "./Exercise.css"
 export const ExerciseList = (props) => {
   //refs
-  const goalSet = useRef(null)
+    const goalSet = useRef(null)
+    const measurementType = useRef(null)
+    const frequency = useRef(null)
 
   // useContext
-    const { getExercises, exercises, removeExercise } = useContext(ExerciseContext)
+    const { getExercises, removeExercise } = useContext(ExerciseContext)
     const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
-    const { getPlayerById } = useContext(PlayerContext)
-
-    const { getExerciseGoals, exerciseGoals, editExerciseGoal } = useContext(ExerciseGoalContext)
+    const { editExerciseGoal } = useContext(ExerciseGoalContext)
+    const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
+    const { frequencies, getFrequencies } = useContext(FrequencyContext)
 
   // useState
-    const [filteredExercises, setFiltered] = useState([])
-    const [player, setPlayer] = useState({})
-    const [playerExerciseGoal, setPlayerExerciseGoal] = useState([])
+    const [exGoal, setExGoal] = useState([])
     const [editMode, setEditMode] = useState(false)
+    const [ singular, setSingular ] = useState(true)
 
   //define ids
-  const playerId = parseInt(props.match.params.playerId)
-  const userId = parseInt(sessionStorage.getItem("wr__user"))
-  const thisWeek = props.exercisesThisWeek.length
+    const thisWeek = props.exercisesThisWeek.length
 
-    //useEffect
+  //useEffect
     useEffect(() => {
       getExerciseTypes()
+      getMeasurementTypes()
+      getFrequencies()
       .then(getExercises)
   }, [])
-
-  useEffect(() => {
-    getPlayerById(playerId)
-      .then(setPlayer)
-}, [])
-
-useEffect(()=>{
-  getExerciseGoals()
-}, [])
-
-useEffect(()=>{
-  const playerExerciseGoal = exerciseGoals.filter(eg => eg.playerId === playerId) || []
-  const goal = playerExerciseGoal[0] || {}
-  setPlayerExerciseGoal(goal)
-}, [exerciseGoals])
-
-useEffect(() => {
-  const matchingExercises = exercises.filter(exercise => exercise.playerId === playerId)
-  const orderedExercises = matchingExercises.reverse()
-  setFiltered(orderedExercises)
-}, [exercises])
 
     const toggleEditMode = ()=>{
       if(editMode === false) {
@@ -67,33 +45,35 @@ useEffect(() => {
     }
 
     const handleControlledInputChange = (e) => {
-      const newPlayerExerciseGoal = Object.assign({}, playerExerciseGoal)
-      newPlayerExerciseGoal[e.target.name] = e.target.value
-      setPlayerExerciseGoal(newPlayerExerciseGoal)
+      if(goalSet.current.value <= 1) {
+        setSingular(true)
+      }
+      else {
+        setSingular(false)
+      }
+      const newExGoal = Object.assign({}, exGoal)
+      newExGoal[e.target.name] = e.target.value
+      setExGoal(newExGoal)
     }
-    const todayTimestamp = Date.now()
-    const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
     const constructNewExerciseGoal = () => {
       //define player ID
 
       {editExerciseGoal({
         id: props.playerExerciseGoal.id,
-        playerId: playerId,
-        goalSet: playerExerciseGoal.goalSet,
-        timestamp:Date.now(),
-        date: today,
+        playerId: props.playerId,
+        goalSet: exGoal.goalSet,
+        measurementTypeId: exGoal.measurementType,
+        frequencyId: exGoal.frequency,
+        timestamp: props.todayTimestamp,
+        date: props.today,
       })
-      .then(() => props.history.push(`/players/${playerId}`))}
+      .then(() => props.history.push(`/players/${props.playerId}`))}
     }
-
-    //define vars
-
-    console.log(player, "in ex list")
 
   //evaluates logged exercises and user:player relationship - displays data accordingly
   const exerciseListVerify = () => {
-    if(filteredExercises.length < 1 && userId === player.userId) {
+    if(props.playerExercises.length < 1 && props.currentUserId === props.player.userId) {
       return (
       <>
         <div className="cont__list cont__list--ex">
@@ -101,16 +81,40 @@ useEffect(() => {
             Exercise
           </h2>
           {editMode
-          ?<>
-          <select defaultValue="" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange}>
-                <option value="0">0</option>
-                <option value="1">1 day a week</option>
-                <option value="2">2 days a week</option>
-                <option value="3">3 days a week</option>
-                <option value="4">4 days a week</option>
-                <option value="5">5 days a week</option>
-                <option value="6">6 days a week</option>
-                <option value="7">7 days a week</option>
+            ?
+            <>
+              <input type="number" defaultValue="" min="1" max="60" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
+
+              {singular
+                ?
+                <>
+                  <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
+                    {measurementTypes.map(mt => (
+                        <option key={mt.id} value={mt.id}>
+                            {mt.measurement}
+                        </option>
+                    ))}
+                </select>
+                </>
+                :
+                <>
+                <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
+                    {measurementTypes.map(mt => (
+                        <option key={mt.id} value={mt.id}>
+                            {mt.plural}
+                        </option>
+                    ))}
+                </select>
+                </>
+              }
+              <label forHTML="frequency">every</label>
+
+              <select defaultValue="" name="frequency" ref={frequency} id="frequency" className="select select--fq" onChange={handleControlledInputChange}>
+                    {frequencies.map(f => (
+                        <option key={f.id} value={f.id}>
+                            {f.each}
+                        </option>
+                    ))}
               </select>
 
               <button className="btn btn--submit btn--ex" type="button"
@@ -126,7 +130,7 @@ useEffect(() => {
           <div className="exercise-goals" onClick={toggleEditMode}>
             Goal:
             <br />
-            {playerExerciseGoal.goalSet}
+            {props.playerExerciseGoal.goalSet}
           </div>
 
           <div className="exercise-acheived">
@@ -134,12 +138,11 @@ useEffect(() => {
             <br />
             {thisWeek}
             </div>
-
           </>
           }
 
           <button className="btn btn--add-ex" onClick={
-            () => props.history.push(`/players/exercise/add/${playerId}`)
+            () => props.history.push(`/players/exercise/add/${props.playerId}`)
             }>
               Add Exercise
           </button>
@@ -148,14 +151,14 @@ useEffect(() => {
               Woof!
             </h1>
             <h3 className="h5 no-data-msg no-ex-msg">
-                {player.name} doesn't have any exercise sessions, yet!
+                {props.player.name} doesn't have any exercise sessions, yet!
             </h3>
           </article>
         </div>
       </>
     )
     }
-    if(filteredExercises.length < 1 && userId !== player.userId) {
+    if(props.playerExercises.length < 1 && props.currentUserId !== props.player.userId) {
       return (
       <>
         <div className="cont__list cont__list--ex">
@@ -167,14 +170,14 @@ useEffect(() => {
               Woof!
             </h1>
             <h3 className="h5 no-data-msg no-ex-msg">
-                {player.name} doesn't have any exercise sessions, yet!
+                {props.player.name} doesn't have any exercise sessions, yet!
             </h3>
           </article>
         </div>
       </>
     )
     }
-    if ( userId !== player.userId ) {
+    if ( props.currentUserId !== props.player.userId ) {
       return (
         <>
         <div className="cont__list cont__list--ex">
@@ -182,13 +185,18 @@ useEffect(() => {
             Exercise
           </h2>
             <article className="list list--ex">
-              {filteredExercises.map(ex => {
+              {props.playerExercises.map(ex => {
               const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
+              const frequency = frequencies.find(f => f.id === ex.frequencyId) || {}
+              const measuermentType = measurementTypes.find(mt => mt.id === ex.measurementTypeId) || {}
+
               return <Exercise {...props}
                   key={ex.id}
                   exercise={ex}
                   exerciseType={exerciseType}
                   removeExercise={removeExercise}
+                  frequency={frequency}
+                  measurementType={measuermentType}
                 />
               })
             }
@@ -206,32 +214,57 @@ useEffect(() => {
               Exercise
             </h2>
             {editMode
-              ? <>
-              <select defaultValue="" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange}>
-          <option value="0">0</option>
-          <option value="1">1 day a week</option>
-          <option value="2">2 days a week</option>
-          <option value="3">3 days a week</option>
-          <option value="4">4 days a week</option>
-          <option value="5">5 days a week</option>
-          <option value="6">6 days a week</option>
-          <option value="7">7 days a week</option>
-        </select>
-        <button className="btn btn--submit btn--ex" type="button"
-              onClick={e => {
-                e.preventDefault()
-                constructNewExerciseGoal()
-                toggleEditMode()
-              }}>
-              Update Goal!
-              </button>
-              </>
+              ?
+              <>
+                <input type="number" defaultValue="" min="1" max="60" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
+
+                {singular
+                  ?
+                  <>
+                    <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
+                      {measurementTypes.map(mt => (
+                          <option key={mt.id} value={mt.id}>
+                              {mt.measurement}
+                          </option>
+                      ))}
+                  </select>
+                  </>
+                  :
+                  <>
+                  <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
+                      {measurementTypes.map(mt => (
+                          <option key={mt.id} value={mt.id}>
+                              {mt.plural}
+                          </option>
+                      ))}
+                  </select>
+                  </>
+                }
+                <label forHTML="frequency">every</label>
+
+                <select defaultValue="" name="frequency" ref={frequency} id="frequency" className="select select--fq" onChange={handleControlledInputChange}>
+                      {frequencies.map(f => (
+                          <option key={f.id} value={f.id}>
+                              {f.each}
+                          </option>
+                      ))}
+                </select>
+
+                <button className="btn btn--submit btn--ex" type="button"
+                onClick={e => {
+                  e.preventDefault()
+                  constructNewExerciseGoal()
+                  toggleEditMode()
+                }}>
+                Update Goal!
+                </button>
+            </>
               :
               <>
               <div className="exercise-goals" onClick={toggleEditMode}>
             Goal:
             <br />
-            {playerExerciseGoal.goalSet} per week.
+            {props.playerExerciseGoal.goalSet} per week.
             </div>
 
             <div className="playtime-acheived">
@@ -243,24 +276,27 @@ useEffect(() => {
             }
 
             <button className="btn btn--add-ex" onClick={
-              () => props.history.push(`/players/exercise/add/${playerId}`)
+              () => props.history.push(`/players/exercise/add/${props.playerId}`)
             }>
               Add Exercise
             </button>
-              <article className="list list--ex">
-                {filteredExercises.map(ex => {
+            <article className="list list--ex">
+              {props.playerExercises.map(ex => {
+              const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
+              const frequency = frequencies.find(f => f.id === ex.frequencyId) || {}
+              const measuermentType = measurementTypes.find(mt => mt.id === ex.measurementTypeId) || {}
 
-                const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
-
-                return <Exercise {...props}
-                    key={ex.id}
-                    exercise={ex}
-                    exerciseType={exerciseType}
-                    removeExercise={removeExercise}
-                  />
-                })
-              }
-              </article>
+              return <Exercise {...props}
+                  key={ex.id}
+                  exercise={ex}
+                  exerciseType={exerciseType}
+                  removeExercise={removeExercise}
+                  frequency={frequency}
+                  measurementType={measuermentType}
+                />
+              })
+            }
+            </article>
           </div>
         </>
       )

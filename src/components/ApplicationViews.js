@@ -26,6 +26,8 @@ import { TrainingGoalForm } from "./trainingGoals/TrainingGoalForm"
 import { UserDash } from  "./users/Dashboard"
 import { ReminderForm } from "./reminders/ReminderForm"
 import { ReminderProvider } from "./reminders/ReminderProvider"
+import { MeasurementTypeProvider } from "./goals/MeasurementTypeProvider"
+import { FrequencyProvider } from "./goals/FrequencyProvider"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
@@ -94,18 +96,23 @@ export const ApplicationViews = (props) => {
                       <ExerciseGoalProvider>
                         <PlaytimeGoalProvider>
                           <TrainingGoalProvider>
-                            <Route
-                              exact path="/players/:playerId(\d+)"
-                              render={
-                                props =>
-                                <div className="cont--pl">
-                                  <PlayerDetails
-                                    currentUserId={currentUserId}
-                                    {...props}
+                            <MeasurementTypeProvider>
+                              <FrequencyProvider>
+
+                                <Route
+                                  exact path="/players/:playerId(\d+)"
+                                  render={
+                                    props =>
+                                    <div className="cont--pl">
+                                      <PlayerDetails
+                                        currentUserId={currentUserId}
+                                        {...props}
+                                        />
+                                    </div>
+                                  }
                                   />
-                                </div>
-                              }
-                              />
+                              </FrequencyProvider>
+                            </MeasurementTypeProvider>
                           </TrainingGoalProvider>
                         </PlaytimeGoalProvider>
                       </ExerciseGoalProvider>
@@ -117,56 +124,73 @@ export const ApplicationViews = (props) => {
 
             <ExerciseProvider>
               <ExerciseTypeProvider>
+                <MeasurementTypeProvider>
+                  <FrequencyProvider>
+
                   <Route
                   exact path="/players/exercise/add/:playerId(\d+)"
                   render={
                     props =>
                     <ExerciseForm
-                      currentUserId={currentUserId}
-                      {...props}/>
+                    currentUserId={currentUserId}
+                    {...props}/>
                   }
                   />
+                  </FrequencyProvider>
+                </MeasurementTypeProvider>
               </ExerciseTypeProvider>
             </ExerciseProvider>
 
             <ExerciseGoalProvider>
-            <Route
-                  exact path="/players/goals/exercise/add/:playerId(\d+)"
-                  render={
-                    props =>
+              <MeasurementTypeProvider>
+                <FrequencyProvider>
+                <Route
+                      exact path="/players/goals/exercise/add/:playerId(\d+)"
+                      render={
+                        props =>
 
-                    <ExerciseGoalForm
-                      currentUserId={currentUserId}
-                      {...props}/>
-                  }
-                  />
+                        <ExerciseGoalForm
+                        currentUserId={currentUserId}
+                        {...props}/>
+                      }
+                      />
+                </FrequencyProvider>
+              </MeasurementTypeProvider>
             </ExerciseGoalProvider>
 
             <TrainingProvider>
               <TrainingTypeProvider>
+                <MeasurementTypeProvider>
+                  <FrequencyProvider>
                         <Route
                           exact path="/players/training/add/:playerId(\d+)"
                           render={
                             props =>
                             <TrainingForm
-                              currentUserId={currentUserId}
-                              {...props}/>
+                            currentUserId={currentUserId}
+                            {...props}/>
                           }
                           />
+                    </FrequencyProvider>
+                  </MeasurementTypeProvider>
                 </TrainingTypeProvider>
               </TrainingProvider>
 
               <TrainingGoalProvider>
-              <Route
-                  exact path="/players/goals/training/add/:playerId(\d+)"
-                  render={
-                    props =>
+                <MeasurementTypeProvider>
+                  <FrequencyProvider>
+                    <Route
+                        exact path="/players/goals/training/add/:playerId(\d+)"
+                        render={
+                          props =>
 
-                    <TrainingGoalForm
-                    currentUserId={currentUserId}
-                    {...props}/>
-                  }
-                  />
+                          <TrainingGoalForm
+                          currentUserId={currentUserId}
+                          {...props}/>
+                        }
+                        />
+                    </FrequencyProvider>
+                  </MeasurementTypeProvider>
               </TrainingGoalProvider>
 
               <PlaytimeProvider>
@@ -201,9 +225,10 @@ export const ApplicationViews = (props) => {
                 <PlayerForm
                 currentUserId={currentUserId}
                 {...props}
-              />
+                />
               }
               />
+
               </ReminderProvider>
             </FollowingProvider>
           </PlayerProvider>

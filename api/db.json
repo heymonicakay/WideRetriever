@@ -19,9 +19,7 @@
       "id": 3
     }
   ],
-  "reminders": [
-    
-  ],
+  "reminders": [],
   "players": [
     {
       "userId": 1,
@@ -84,16 +82,17 @@
     {
       "id": 1,
       "playerId": 2,
-      "goalSet": 1,
-      "frequencyId": 1,
-      "goalSetDate": 1600809829371
+      "goalSet": "3",
+      "timestamp": 1601343496175,
+      "date": "9/28/2020"
     },
     {
       "id": 2,
       "playerId": 4,
-      "goalSet": "3",
-      "timestamp": 1600971545661,
-      "date": "9/24/2020"
+      "goalSet": "4",
+      "measurementTypeId": 2,
+      "timestamp": 1601344115713,
+      "date": "9/28/2020"
     },
     {
       "playerId": 4,
@@ -101,6 +100,22 @@
       "timestamp": 1600969722634,
       "date": "9/24/2020",
       "id": 3
+    },
+    {
+      "playerId": 2,
+      "goalSet": "10",
+      "timestamp": 1601339592476,
+      "date": "9/28/2020",
+      "id": 4
+    },
+    {
+      "playerId": 2,
+      "goalSet": "3",
+      "measurementTypeId": 2,
+      "frequencyId": 2,
+      "timestamp": 1601339954723,
+      "date": "9/28/2020",
+      "id": 5
     }
   ],
   "trainingGoals": [
@@ -131,12 +146,12 @@
       "plural": "hours"
     },
     {
-      "id": 4,
+      "id": 3,
       "measurement": "time",
       "plural": "times"
     }
   ],
-  "frequencyTypes": [
+  "frequencies": [
     {
       "id": 1,
       "each": "day"
@@ -186,6 +201,15 @@
       "note": "This was a perfect game!",
       "timestamp": 1600917526911,
       "id": 10
+    },
+    {
+      "playerId": 2,
+      "catches": 5,
+      "misses": 0,
+      "date": "9/28/2020",
+      "note": "This was a great playtime!",
+      "timestamp": 1601339674842,
+      "id": 11
     }
   ],
   "exercises": [
@@ -218,15 +242,6 @@
       "exerciseTypeId": 2,
       "duration": "5-10 min",
       "date": "9/23/2020",
-      "note": "asdgweget",
-      "id": 8,
-      "timestamp": 1600884581
-    },
-    {
-      "playerId": 2,
-      "exerciseTypeId": 2,
-      "duration": "5-10 min",
-      "date": "9/23/2020",
       "note": "This is an exercise session added on 9/23",
       "timestamp": 1600912616901,
       "id": 1600625382
@@ -239,6 +254,21 @@
       "note": "Great!",
       "timestamp": 1600929310499,
       "id": 1600625383
+    },
+    {
+      "playerId": 2,
+      "exerciseTypeId": 1,
+      "duration": "5-10 min",
+      "date": "9/28/2020",
+      "timestamp": 1601341229302,
+      "id": 1600625384
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "date": "9/28/2020",
+      "timestamp": 1601354096296,
+      "id": 1600625385
     }
   ],
   "trainings": [

@@ -92,7 +92,7 @@ export const PlayerDetails = ( props ) => {
     getTrainingGoals()
     getExerciseGoals()
   }, []) /* fetches data: currentUserFollowings, exercises, playtimes, trainings, etc. */
-
+  console.log(exerciseGoals, "exercise goals")
   useEffect(() => {
     const alreadyFollowing = currentUserFollowings.find(uf => uf.followedPlayerId === player.id)
   setIAmFollowing(alreadyFollowing)
@@ -122,10 +122,10 @@ export const PlayerDetails = ( props ) => {
   }, [trainingGoals]) /* sets TRAINING GOAL OBJECT for target player */
 
   useEffect(()=>{
-    const playerExerciseGoal = exerciseGoals.filter(eg => eg.playerId === playerId) || []
-  setPlayerExerciseGoal(playerExerciseGoal[0])
+    const playerExerciseGoal = exerciseGoals.find(eg => eg.playerId === playerId) || {}
+  setPlayerExerciseGoal(playerExerciseGoal)
   }, [exerciseGoals]) /* sets EXERCISE GOAL OBJECT for target player */
-
+  console.log(playerExerciseGoal, "player exercise goal")
   useEffect(()=> {
     const todaysPlaytimes = playerPlaytimes.filter(pt => pt.date === today) || []
   setPlaytimesToday(todaysPlaytimes)
@@ -167,7 +167,6 @@ export const PlayerDetails = ( props ) => {
         return e
       }
     }) || []
-    console.log(thisWeeksPt)
   setPlaytimesThisWeek(thisWeeksPt)
   }, [playerPlaytimes]) /* sets this WEEKS PLAYTIMES ARRAY for target player */
 
@@ -199,6 +198,8 @@ export const PlayerDetails = ( props ) => {
     window.location.reload();
   } /* force refresh */
 
+  console.log(playerExerciseGoal, "player ex goaal in player details")
+
   const playerValidation = () => {
     if(props.currentUserId === player.userId) {
       return (
@@ -229,6 +230,7 @@ export const PlayerDetails = ( props ) => {
                   exercisesToday={ exercisesToday }
                   playtimesToday={ playtimesToday }
                   playerId={ playerId }
+                  currentUserId={ props.currentuserId }
                   {...props}
                 />
               </section>
@@ -239,6 +241,7 @@ export const PlayerDetails = ( props ) => {
                 playtimesThisWeek={ playtimesThisWeek }
                 trainingsThisWeek={ trainingsThisWeek }
                 exercisesThisWeek={ exercisesThisWeek }
+                currentUserId={ props.currentuserId }
               />
               </section>
             </div>
@@ -275,6 +278,9 @@ export const PlayerDetails = ( props ) => {
               playerPlaytimes={ playerPlaytimes }
               playtimesToday={ playtimesToday }
               playtimesThisWeek={ playtimesThisWeek }
+              today={ today }
+              todayTimestamp={ todayTimestamp }
+              currentUserId={ props.currentuserId }
             {...props} />
           </section>
 
@@ -286,6 +292,9 @@ export const PlayerDetails = ( props ) => {
               playerTrainings={ playerTrainings }
               trainingsToday={ trainingsToday }
               trainingsThisWeek={ trainingsThisWeek }
+              today={ today }
+              todayTimestamp={ todayTimestamp }
+              currentUserId={ props.currentuserId }
             {...props} />
           </section>
 
@@ -297,6 +306,9 @@ export const PlayerDetails = ( props ) => {
               playerExercises={ playerExercises }
               exercisesToday={ exercisesToday }
               exercisesThisWeek={ exercisesThisWeek }
+              today={ today }
+              todayTimestamp={ todayTimestamp }
+              currentUserId={ props.currentuserId }
             { ...props}>
             </ExerciseList>
           </section>
@@ -375,6 +387,9 @@ export const PlayerDetails = ( props ) => {
                   playerId={playerId}
                   playerPlaytimes={playerPlaytimes}
                   playtimesThisWeek={playtimesThisWeek}
+                  today={ today }
+                  todayTimestamp={ todayTimestamp }
+                  currentUserId={ props.currentuserId }
                 {...props} />
               </section>
 
@@ -384,6 +399,9 @@ export const PlayerDetails = ( props ) => {
                   playerId={playerId}
                   playerTrainings={ playerTrainings }
                   trainingsThisWeek={ trainingsThisWeek }
+                  today={ today }
+                  todayTimestamp={ todayTimestamp }
+                  currentUserId={ props.currentuserId }
                 {...props} />
               </section>
 
@@ -393,6 +411,9 @@ export const PlayerDetails = ( props ) => {
                   playerId={playerId}
                   playerExercises={playerExercises}
                   exercisesThisWeek={ exercisesThisWeek}
+                  today={ today }
+                  todayTimestamp={ todayTimestamp }
+                  currentUserId={ props.currentuserId }
                 { ...props} />
               </section>
             </div>

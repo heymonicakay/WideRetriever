@@ -38,7 +38,7 @@ export const TrainingList = (props) => {
     }, [])
 
     useEffect(()=>{
-      const playerTrainingGoal = trainingGoals.filter(eg => eg.playerId === playerId) || []
+      const playerTrainingGoal = trainingGoals.filter(tg => tg.playerId === playerId) || []
       const goal = playerTrainingGoal[0] || {}
     setPlayerTrainingGoal(playerTrainingGoal[0])
     }, [trainingGoals])
@@ -52,8 +52,6 @@ export const TrainingList = (props) => {
     const goal = playerTrainingGoal[0] || {}
     setPlayerTrainingGoal(goal)
   }, [trainingGoals])
-
-  console.log(playerTrainingGoal, "test pl tr goal")
 
     useEffect(() => {
       const matchingTrainings = trainings.filter(training => training.playerId === playerId)
