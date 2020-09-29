@@ -269,6 +269,15 @@
       "date": "9/28/2020",
       "timestamp": 1601354096296,
       "id": 1600625385
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "duration": 3,
+      "date": "9/29/2020",
+      "note": "He did great!",
+      "timestamp": 1601392924472,
+      "id": 1600625386
     }
   ],
   "trainings": [

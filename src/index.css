@@ -32,6 +32,10 @@ SEARCH RESULTS
 
 MAIN CONTENT
   background - hsla(180, 33%, 80%, 0.548)
+
+PNG SHADOW
+  -webkit-filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
+  filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
 */
 
 h1,

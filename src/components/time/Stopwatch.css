@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.time {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
+}
+
+.min-column,
+.sec-column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
+}
+
+.second,
+.minute,
+.colon {
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.start-btn {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
+  background: url("https://res.cloudinary.com/heymonicakay/image/upload/v1601416449/wideRetriever/60E0728A-353C-429A-BC91-F82F71CD5299_j11qcy.png");
+}

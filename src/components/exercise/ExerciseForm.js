@@ -1,48 +1,97 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
-import { useStopwatch } from 'react-timer-hook'
 import { PlayerContext } from "../players/PlayerProvider"
 import { ExerciseContext } from "./ExerciseProvider"
+import { ExerciseTypeForm } from "../exerciseType/ExerciseTypeForm"
 import { ExerciseTypeContext } from "../exerciseType/ExerciseTypeProvider"
 import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
+import { Stopwatch } from "../time/Stopwatch"
 
 import "./ExerciseForm.css"
 
-
 export const ExerciseForm = (props) => {
-    const { seconds, minutes, isRunning, start, pause, reset } = useStopwatch({ autoStart: false })
-
-  // refs
+// useRef
   const note = useRef(null)
   const exerciseType = useRef(null)
-  const newExerciseType = useRef(null)
 
-  // expose exercise provider components to this function
+//useContext
   const { addExercise } = useContext(ExerciseContext)
-  const { exerciseTypes, getExerciseTypes, searchTerms, addExerciseType } = useContext(ExerciseTypeContext)
+  const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
   const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
+  const { getPlayerById } = useContext(PlayerContext)
 
-  // get exercise types
+//useEffect
   useEffect(() => {
     getExerciseTypes()
     getMeasurementTypes()
   }, [])
 
-  // declare and set exercise state var
-  const [exercise, setExercise] = useState({})
-  const [activity, setActivity] = useState({})
-  const [filteredExerciseTypes, setFilteredExerciseTypes] = useState([])
+  useEffect(() => {
+    const playerId = parseInt(props.match.params.playerId)
+      getPlayerById(playerId)
+        .then(setPlayer)
+  }, [])
 
-  // func to build new exercise obj on input change
+//useState
+  const [exercise, setExercise] = useState({})
+  const [filteredExerciseTypes, setFilteredExerciseTypes] = useState([])
+  const [player, setPlayer] = useState({})
+  const [edit, setEdit] = useState(false)
+  const [intSecond, setIntSecond] = useState(0)
+  const [intMinute, setIntMinute] = useState(0)
+  const [exTypeSelected, setExTypeSelected] = useState("")
+  const [exTypeSelectedLower, setExTypeSelectedLower] = useState("")
+  const [stepOne, setStepOne] = useState(false)
+  const [stepTwo, setStepTwo] = useState(true)
+  const [stepThree, setStepThree] = useState(true)
+  const [alertOne, setAlertOne] = useState(false)
+  const [startTime, setStartTime] = useState("")
+  const [endTime, setEndTime] = useState("")
+  const [isReady, setIsReady] = useState(false)
+
+// dates
+  const todayTimestamp = Date.now()
+  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+  const current = new Date()
+  const currentTime = current.toLocaleTimeString()
+  const weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+  const day = current.getDay()
+  const date = current.getDate()
+  const dayOfTheWeek = weekDays[day]
+  const months = ["jan", "feb", "march", "april", "may", "june", "july", "aug", "sept", "oct", "nov", "dec"]
+  const month = current.getMonth()
+  const thisMonth = months[month]
+  const year = current.getFullYear()
+
+//event handlers
+  const handleClickStepOne = () => {
+    if(exerciseType.current.value === "0") {
+      setAlertOne(true)
+    }
+    else {
+      setAlertOne(false)
+      setStepOne(true)
+      setStepTwo(false)
+      setStepThree(true)
+    }
+  }
+
+  const handleETChange = (e) => {
+    if(e.target.value !== "0"){
+      const exTypeSelected = exerciseTypes.find(et => parseInt(e.target.value) === et.id).type
+      const exTypeSelectedLower = exTypeSelected.toLowerCase()
+      setExTypeSelected(exTypeSelected)
+      setExTypeSelectedLower(exTypeSelectedLower)
+      setIsReady(true)
+    }
+    else if(e.target.value === "0") {
+      setIsReady(false)
+    }
+  }
+
   const handleControlledInputChange = (e) => {
     const newExercise = Object.assign({}, exercise)
     newExercise[e.target.name] = e.target.value
     setExercise(newExercise)
-  }
-
-  const handleNewExerciseInput= (e) => {
-    const newActivity = Object.assign({}, activity)
-    newActivity[e.target.name] = e.target.value
-    setActivity(newActivity)
   }
 
   const constructNewExercise = () => {
@@ -50,6 +99,9 @@ export const ExerciseForm = (props) => {
     {addExercise({
       playerId,
       exerciseTypeId: parseInt(exerciseType.current.value),
+      startTime: startTime,
+      minutes: intMinute,
+      seconds: intSecond,
       date: today,
       note: exercise.note,
       timestamp: todayTimestamp
@@ -57,97 +109,137 @@ export const ExerciseForm = (props) => {
       .then(() => props.history.push(`/players/${playerId}`))}
   }
 
-  const constructNewExerciseType = () => {
-    {addExerciseType({
-      type: activity.newExerciseType
-    })
-  }
-}
-  // translate alien timstamp into human date
-  const todayTimestamp = Date.now()
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
-
-  // exposing functionality to get and set player
-  const { getPlayerById } = useContext(PlayerContext)
-  const [player, setPlayer] = useState({})
-
-  // get whole player obj then set player
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
-        .then(setPlayer)
-  }, [])
-
-  useEffect(() => {
-    const matchingExerciseTypes = exerciseTypes.filter(et => et.type.toLowerCase().includes(searchTerms.toLowerCase()))
-    setFilteredExerciseTypes(matchingExerciseTypes)
-    }, [searchTerms])
-
-    const toggleEdit = () =>{
-      if(edit === false){
-        setEdit(true)
-      }
-      else {
-        setEdit(false)
-      }
+  const toggleEdit = () =>{
+    if(edit === false){
+      setEdit(true)
     }
+    else {
+      setEdit(false)
+    }
+  }
 
-    const [edit, setEdit] = useState(false)
-
-
+//return statement
   return (
     <div className="cont--form-ex">
       <section className="form">
-        <h1 className="h1 header__form header__form--ex">
-          {player.name}
+        <h1
+          className="h1 header__form header__form--ex">
+            {player.name}
         </h1>
-
-        <select defaultValue="" name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--et" onChange={handleControlledInputChange}>
-              <option value="0">Select an activity</option>
-              {exerciseTypes.map(et => (
+        <section className={`steps ${stepOne ? "hidden" : "visible"}`}>
+          <div className="moving">
+            <div className="get-moving">
+            {isReady
+            ? "Great choice!"
+            : "Choose an activity to get started..."
+            }
+            </div>
+          </div>
+          <div className="instructions">
+            <div className={`instructions-step-one ${alertOne ? "visible" : "hidden"}`}>
+              {alertOne ? 'Woah! Pick an activity first!' : <></>}
+            </div>
+            <select defaultValue="" name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--et"
+              onChange={(e) => {
+                setAlertOne(false)
+                handleETChange(e)
+                handleControlledInputChange(e)}}>
+              <option className="first-option" value="0">
+                  Select an activity...
+              </option>
+                {exerciseTypes.map(et => (
                   <option key={et.id} value={et.id}>
                       {et.type}
                   </option>
-              ))}
-        </select>
-        <p className="add-ex-type" onClick={toggleEdit}>Add Activity +</p>
-        {edit
-          ?
-          <>
-          <input className="input-ex-type" name="newExerciseType" onChange={handleNewExerciseInput} ref={newExerciseType}/>
-          <button onClick={()=>{
-            constructNewExerciseType()
-            toggleEdit()}}>
-              Save
-          </button>
-          </>
-          :
-          <>
-          </>
-        }
-
-          <div>
-            <div style={{textAlign: 'center'}}>
-              <span>{minutes}</span>:<span>{seconds}</span>
+                ))}
+            </select>
+            <div className="custom-cont">
+              <span className="add-ex-type" onClick={toggleEdit}>
+                  Custom
+              </span>
             </div>
-            <p>{isRunning ? 'Running' : 'Not running'}</p>
-            <button onClick={start}>Start</button>
-            <button onClick={pause}>Pause</button>
-            <button onClick={reset}>Reset</button>
           </div>
+          <div className="input-ex-type-placeholder">
+            {edit
+              ? <ExerciseTypeForm toggleEdit={toggleEdit} {...props}/> : <> </>
+            }
+          </div>
+          <div className="lets-go-cont">
+            {isReady
+              ? <div className="lets-go">Let's go!"</div>
+              : <></>
+            }
+          </div>
+          <img className={`next ${isReady ? "jiggle" : ""}`} src="https://res.cloudinary.com/heymonicakay/image/upload/v1601408603/wideRetriever/FB962FED-6991-4FCE-8D65-1A3A33211BA9_rnqjrl.png" alt="" onClick={()=> handleClickStepOne()} />
+        </section>
 
-          <label>How did {player.name} do?</label>
-
-          <textarea ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
-
-          <button className="btn btn--submit btn--ex" type="button"
-              onClick={e => {
-                e.preventDefault()
-                constructNewExercise()
-              }}>
-              Save Exercise Session
-              </button>
+      <section className={`steps ${stepTwo ? "hidden" : "visible"}`}>
+        <div className="stopwatch">
+          <Stopwatch
+            setStepThree={setStepThree}
+            setStepTwo={setStepTwo}
+            setStepOne={setStepOne}
+            setIntSecond={setIntSecond}
+            setIntMinute={setIntMinute}
+            intMinute={intMinute}
+            currentTime={currentTime}
+            setStartTime={setStartTime}
+            setEndTime={setEndTime}
+            {...props} />
+        </div>
       </section>
+
+      <section className={`steps ${stepThree ? "hidden" : "visible"}`}>
+        <div className="ex-msg">
+          <p>
+            Great job {player.name}!
+          </p>
+          <p>
+            Exercise Summary
+          </p>
+          <p>
+            Activity: {exTypeSelected}
+          </p>
+          <p>
+            Start: {startTime}
+          </p>
+          <p>
+            End: {endTime}
+          </p>
+          <p>
+            Total Active Time: {intMinute}min {intSecond}s
+          </p>
+        </div>
+
+          <label>Add a note about today's {exTypeSelectedLower}...</label>
+          <textarea
+            ref={note}
+            name="note"
+            className="input input--note-ex"
+            onChange={handleControlledInputChange} />
+
+          <button
+            className="btn btn--submit btn--ex"
+            type="button"
+            onClick={e => {
+              e.preventDefault()
+              constructNewExercise()
+            }}>
+              Save Exercise Session
+          </button>
+
+        </section>
+
+      </section>
+
+        <div className="prog-bar-cont">
+          <div className="ex-form-prog">
+            <div className={`prog-bar ${stepOne ? "" : "current"}`}></div>
+            <div className={`prog-bar ${stepTwo ? "" : "current"}`}></div>
+            <div className={`prog-bar ${stepThree ? "" : "current"}`}></div>
+          </div>
+        </div>
+
     </div>
   );
 }
