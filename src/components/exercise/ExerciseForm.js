@@ -31,9 +31,39 @@ export const ExerciseForm = (props) => {
         .then(setPlayer)
   }, [])
 
+  const FlyingDiv = ({ title="Let's go\!", isHidden }) => {
+    const visibilityClasses = { hidden: 'hidden', visible: 'visible'}
+
+    const animationClasses = { goRight: 'lets-go', fadeIn: 'fade-in'}
+
+    const [animationClass, setAnimationClass] = useState(animationClasses.fadeIn)
+
+    const [divHiddenClass, setDivHiddenClass] = useState(visibilityClasses.visible)
+
+    useEffect(()=>{
+      let hiddenClassTimer = null
+
+      if (isHidden === false) {
+        setAnimationClass(animationClasses.goRight)
+        hiddenClassTimer = setTimeout(()=>{
+          setDivHiddenClass(visibilityClasses.hidden)}, 2800)}
+      else {
+        setAnimationClass(animationClasses.fadeIn)
+        setDivHiddenClass(visibilityClasses.visible)
+      }
+      return()=> {
+        clearTimeout(hiddenClassTimer)
+      }}, [isHidden])
+
+      return (
+        <div className={`div ${animationClass} ${divHiddenClass}`}>
+          <p>{title}</p>
+        </div>
+      )
+  }
+
 //useState
   const [exercise, setExercise] = useState({})
-  const [filteredExerciseTypes, setFilteredExerciseTypes] = useState([])
   const [player, setPlayer] = useState({})
   const [edit, setEdit] = useState(false)
   const [intSecond, setIntSecond] = useState(0)
@@ -47,6 +77,7 @@ export const ExerciseForm = (props) => {
   const [startTime, setStartTime] = useState("")
   const [endTime, setEndTime] = useState("")
   const [isReady, setIsReady] = useState(false)
+  const [isHidden, setIsHidden] = useState(true)
 
 // dates
   const todayTimestamp = Date.now()
@@ -82,6 +113,7 @@ export const ExerciseForm = (props) => {
       setExTypeSelected(exTypeSelected)
       setExTypeSelectedLower(exTypeSelectedLower)
       setIsReady(true)
+      setIsHidden(!isHidden)
     }
     else if(e.target.value === "0") {
       setIsReady(false)
@@ -122,11 +154,11 @@ export const ExerciseForm = (props) => {
   return (
     <div className="cont--form-ex">
       <section className="form">
+        <section className={`steps ${stepOne ? "hidden" : "visible"}`}>
         <h1
           className="h1 header__form header__form--ex">
             {player.name}
         </h1>
-        <section className={`steps ${stepOne ? "hidden" : "visible"}`}>
           <div className="moving">
             <div className="get-moving">
             {isReady
@@ -166,14 +198,23 @@ export const ExerciseForm = (props) => {
           </div>
           <div className="lets-go-cont">
             {isReady
-              ? <div className="lets-go">Let's go!"</div>
+              ? <FlyingDiv
+                isHidden={isHidden}
+                {...props}/>
               : <></>
             }
           </div>
-          <img className={`next ${isReady ? "jiggle" : ""}`} src="https://res.cloudinary.com/heymonicakay/image/upload/v1601408603/wideRetriever/FB962FED-6991-4FCE-8D65-1A3A33211BA9_rnqjrl.png" alt="" onClick={()=> handleClickStepOne()} />
+          <div className="jiggle-container">
+            <span className="jiggle-wrapper" onClick={()=> handleClickStepOne()}>
+              <img className={`next ${isReady ? "jiggle" : ""}`} src="https://res.cloudinary.com/heymonicakay/image/upload/v1601408603/wideRetriever/FB962FED-6991-4FCE-8D65-1A3A33211BA9_rnqjrl.png" alt="" />
+            </span>
+          </div>
         </section>
 
       <section className={`steps ${stepTwo ? "hidden" : "visible"}`}>
+        <div className="step-two-header">
+          Enjoy your {exTypeSelectedLower}, {player.name}!
+        </div>
         <div className="stopwatch">
           <Stopwatch
             setStepThree={setStepThree}
@@ -185,6 +226,7 @@ export const ExerciseForm = (props) => {
             currentTime={currentTime}
             setStartTime={setStartTime}
             setEndTime={setEndTime}
+            exTypeSelectedLower={exTypeSelectedLower}
             {...props} />
         </div>
       </section>

@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
 .time {
@@ -22,6 +22,14 @@
   align-content: center;
   justify-self: center;
   align-self: center;
+  text-align: center;
+}
+
+.minute-text,
+.second-text {
+  padding-top: 0;
+  margin-top: 0;
+  transform: translateY(-15px)
 }
 
 .second,
@@ -29,14 +37,85 @@
 .colon {
   font-size: 60px;
   font-weight: 400;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-.start-btn {
+.start-btn,
+.break-btn {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-content: center;
+  justify-self: flex-end;
+  align-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25rem;
+  cursor: pointer;
+  background-color: white;
+}
+
+.start-btn:hover,
+.break-btn:hover {
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+}
+
+.start-btn-img,
+.break-btn-img {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   justify-self: center;
   align-self: center;
-  background: url("https://res.cloudinary.com/heymonicakay/image/upload/v1601416449/wideRetriever/60E0728A-353C-429A-BC91-F82F71CD5299_j11qcy.png");
+  width: 40px;
+  height: 30px;
+  border-radius: 25rem;
+  cursor: pointer;
+  transform: translateX(-5px);
+}
+
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-self: flex-end;
+  align-self: flex-end;
+  text-align: center;
+  width: -webkit-fill-available;
+}
+
+.are-you-sure-msg {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  padding-bottom: 1rem;
+  width: -webkit-fill-available;
+}
+
+.woah {
+  display:flex;
+  flex-flow:column nowrap;
+  font-size: 24px;
+  font-weight: 400;
+  transform-origin: center;
+  animation: woah 1s;
+}
+
+@keyframes woah {
+  0% {
+    transform: scale(1, 1)
+  }
+  50% {
+    transform: scale(1.4, 1.4);
+    -webkit-filter: drop-shadow(2px 2px 6px hsl(207, 98%, 23%))
+  }
+  100% {
+    transform: scale(1, 1)
+  }
 }

@@ -71,119 +71,102 @@ export const Stopwatch = (props) => {
       </div>
 
       <div className="buttons">
-
           {isActive
-            ?
-            <>
-            {areYouSure
-              ?
-              <>
-                <p>
-                  Woah! Are you sure you want to end this session so soon?
-                </p>
-                <button
-                  onClick={() => {
-                    setBreakTime(true)
-                    setIsActive(!isActive)
-                    setAreYouSure(false)}}
-                  className="btn pause-ex">
-                    Take A Break Instead
-                </button>
-
-                <button
-                  onClick={() => setAreYouSure(false)}
-                  className="btn pause-ex">
-                    Oops! Nevermind!
-                </button>
-
-                <button
-                  onClick={()=>{
-                    props.setStepOne(true)
-                    props.setStepTwo(true)
-                    props.setStepThree(false)
-                    props.setEndTime(props.currentTime)
-                    stopTimer()
-                  }}
-                  className="btn end-ex">
-                    Yes, I'm sure!
-                </button>
-              </>
-              :
-              <>
-              <button
-                  onClick={() => {
-                    setBreakTime(true)
-                    setIsActive(!isActive)}}
-                  className="btn pause-ex">
-                    Take A Break
-              </button>
-
-              <button
-                onClick={()=>{handleClick()
-                  }}
-                className="btn end-ex">
-                  End Exercise Session
-              </button>
-              </>
-            }
+            ? <>
+              {areYouSure
+                ? <div className="are-you-sure">
+                    <div className="are-you-sure-msg">
+                      <div className="woah">
+                        Woah!
+                      </div>
+                      <div className="sure">
+                        Are you sure you want to end this {props.exTypeSelectedLower}?
+                      </div>
+                    </div>
+                    <button onClick={() => setAreYouSure(false)}
+                      className="btn pause-ex">
+                        Oops! Nevermind!
+                    </button>
+                    <button onClick={()=>{
+                      props.setStepOne(true)
+                      props.setStepTwo(true)
+                      props.setStepThree(false)
+                      props.setEndTime(props.currentTime)
+                      stopTimer()
+                      }}
+                      className="btn end-ex">
+                        Yes, I'm sure!
+                    </button>
+                  </div>
+                : <>
+                  <div onClick={() => {
+                      setBreakTime(true)
+                      setIsActive(!isActive)}}
+                      className="break-btn">
+                        <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1601416449/wideRetriever/60E0728A-353C-429A-BC91-F82F71CD5299_j11qcy.png" alt="" className="break-btn-img" title="Click to pause the timer."/>
+                  </div>
+                  <button onClick={handleClick}
+                    className="btn end-ex">
+                      End Exercise Session
+                  </button>
+                </>
+              }
             </>
             :
             <>
-            <button
-              onClick={() => {
+            <div onClick={() => {
                 props.setStartTime(props.currentTime)
                 setBreakTime(false)
                 setAreYouSure(false)
                 setIsActive(!isActive)}}
-              className={`btn ${breakTime ? "resume-btn" : "start-btn"}`}>
-                {breakTime ? "Keep It Goin'" : "Let's Go!"}
-            </button>
-
+                className="start-btn">
+                  <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1601416449/wideRetriever/60E0728A-353C-429A-BC91-F82F71CD5299_j11qcy.png" alt="" className="start-btn-img" title={`${breakTime ? "Click to resume\.\.\." : "Click to start!"}`}/>
+            </div>
             {breakTime
-            ?
-            <>
-            {areYouSure
-              ?
-              <>
-                <p>
-                  Woah! Are you sure you want to end this session so soon?
-                </p>
-                <button
-                  onClick={() => setAreYouSure(false)}
-                  className="btn pause-ex">
-                    Oops! Nevermind!
-                </button>
-
-                <button
-                  onClick={()=>{
-                    props.setStepOne(true)
-                    props.setStepTwo(true)
-                    props.setStepThree(false)
-                    props.setEndTime(props.currentTime)
-                    stopTimer()
-                  }}
-                  className="btn end-ex">
-                    Yes, I'm sure!
-                </button>
+              ? <>
+                {areYouSure
+                  ? <>
+                    <div className="are-you-sure">
+                      <div className="are-you-sure-msg">
+                        <div className="woah">
+                          Woah!
+                        </div>
+                        <div className="sure">
+                          Are you sure you want to end this {props.exTypeSelectedLower}?
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setAreYouSure(false)}
+                        className="btn pause-ex">
+                          Oops! Nevermind!
+                      </button>
+                      <button onClick={()=>{
+                          props.setStepOne(true)
+                          props.setStepTwo(true)
+                          props.setStepThree(false)
+                          props.setEndTime(props.currentTime)
+                          stopTimer()
+                          }}
+                          className="btn end-ex">
+                            Yes, I'm sure!
+                      </button>
+                    </div>
+                  </>
+                  :
+                  <>
+                    <button onClick={handleClick}
+                      className="btn end-ex">
+                        End Exercise Session
+                    </button>
+                  </>
+                }
               </>
               :
-              <>
-              <button
-                onClick={()=>{handleClick()
-                  }}
-                className="btn end-ex">
-                  End Exercise Session
-              </button>
-              </>
+              <></>
             }
-            </>
-            :
-            <>
-            </>
-            }
-            </>
-        }
+          </>
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
 }
