@@ -4,9 +4,7 @@ import "../exercise/ExerciseForm.css"
 
 export const ExerciseTypeForm = (props) => {
   const newExerciseType = useRef(null)
-
   const [exerciseType, setExerciseType] = useState({})
-
   const { addExerciseType } = useContext(ExerciseTypeContext)
 
   const handleControlledInputChange= (e) => {

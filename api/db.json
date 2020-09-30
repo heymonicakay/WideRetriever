@@ -69,48 +69,21 @@
       "goalSet": 5,
       "frequencyId": 1,
       "goalSetDate": 1600809829371
-    },
-    {
-      "playerId": 4,
-      "goalSet": "1",
-      "timestamp": 1600969709205,
-      "date": "9/24/2020",
-      "id": 3
     }
   ],
   "exerciseGoals": [
     {
       "id": 1,
       "playerId": 2,
-      "goalSet": "3",
+      "goalSet": 3,
+      "measurementTypeId": 2,
+      "frequencyId": 2,
       "timestamp": 1601343496175,
       "date": "9/28/2020"
     },
     {
-      "id": 2,
       "playerId": 4,
-      "goalSet": "4",
-      "measurementTypeId": 2,
-      "timestamp": 1601344115713,
-      "date": "9/28/2020"
-    },
-    {
-      "playerId": 4,
-      "goalSet": "2",
-      "timestamp": 1600969722634,
-      "date": "9/24/2020",
-      "id": 3
-    },
-    {
-      "playerId": 2,
-      "goalSet": "10",
-      "timestamp": 1601339592476,
-      "date": "9/28/2020",
-      "id": 4
-    },
-    {
-      "playerId": 2,
-      "goalSet": "3",
+      "goalSet": 3,
       "measurementTypeId": 2,
       "frequencyId": 2,
       "timestamp": 1601339954723,
@@ -278,6 +251,16 @@
       "note": "He did great!",
       "timestamp": 1601392924472,
       "id": 1600625386
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "startTime": "2:35:18 PM",
+      "minutes": 0,
+      "seconds": 4,
+      "date": "9/30/2020",
+      "timestamp": 1601494528841,
+      "id": 1600625387
     }
   ],
   "trainings": [

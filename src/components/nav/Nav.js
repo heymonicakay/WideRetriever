@@ -39,7 +39,6 @@ export const Nav = (props) => {
         <div className="cont--search">
           <PlayerSearch {...props}/>
         </div>
-
           <div className="nav-group--create">
             <div className={`cont--create ${showCreateDropdown ? "cont--create--open" : "cont--create--collapsed" }`}>
               <CreateDropdown

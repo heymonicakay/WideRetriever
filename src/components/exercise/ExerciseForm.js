@@ -17,27 +17,20 @@ export const ExerciseForm = (props) => {
   const { addExercise } = useContext(ExerciseContext)
   const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
   const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
 
 //useEffect
+const playerId = parseInt(props.match.params.playerId)
   useEffect(() => {
+    getPlayerByPlayerId(playerId)
     getExerciseTypes()
     getMeasurementTypes()
   }, [])
 
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
-        .then(setPlayer)
-  }, [])
-
   const FlyingDiv = ({ title="Let's go\!", isHidden }) => {
     const visibilityClasses = { hidden: 'hidden', visible: 'visible'}
-
     const animationClasses = { goRight: 'lets-go', fadeIn: 'fade-in'}
-
     const [animationClass, setAnimationClass] = useState(animationClasses.fadeIn)
-
     const [divHiddenClass, setDivHiddenClass] = useState(visibilityClasses.visible)
 
     useEffect(()=>{
@@ -119,13 +112,11 @@ export const ExerciseForm = (props) => {
       setIsReady(false)
     }
   }
-
   const handleControlledInputChange = (e) => {
     const newExercise = Object.assign({}, exercise)
     newExercise[e.target.name] = e.target.value
     setExercise(newExercise)
   }
-
   const constructNewExercise = () => {
     const playerId = parseInt(props.match.params.playerId)
     {addExercise({

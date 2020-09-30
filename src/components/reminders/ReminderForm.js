@@ -44,13 +44,13 @@ export const ReminderForm = (props) => {
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
   // exposing functionality to get and set player
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
 
   // get whole player obj then set player
   // useEffect(() => {
   //   const playerId = parseInt(props.match.params.playerId)
-  //     getPlayerById(playerId)
+  //     getPlayerByPlayerId(playerId)
   //       .then(setPlayer)
   // }, [])
 
@@ -59,7 +59,6 @@ export const ReminderForm = (props) => {
           <input ref={reminderTitle} defaultValue="" placeholder="Add a reminder..." name="reminderTitle" className="input intput-reminder-title" onChange={handleControlledInputChange} />
 
           <div className="due-date">
-          <label className="due-date-label" forHTML="dueDate">Due Date</label>
           <input className="due-date-input" type="date" ref={dueDate} defaultValue="" name="dueDate" className="input input-reminder-date" onChange={handleControlledInputChange} />
           </div>
 

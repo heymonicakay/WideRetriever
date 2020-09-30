@@ -3,8 +3,9 @@ export const PlaytimeGoalContext = React.createContext()
 
 export const PlaytimeGoalProvider = (props) => {
     const [playtimeGoals, setPlaytimeGoals] = useState([])
-    const [playerPlaytimeGoals, setPlayerPlaytimeGoals] = useState([])
+    const [playerPlaytimeGoal, setPlayerPlaytimeGoal] = useState({})
     const [searchTerms, setTerms] = useState("")
+    const [noPtGoal, setNoPtGoal] = useState(null)
 
 
     const getPlaytimeGoals = () => {
@@ -13,10 +14,15 @@ export const PlaytimeGoalProvider = (props) => {
             .then(setPlaytimeGoals)
     }
 
-    const getPlayerPlaytimeGoals = (playerId) => {
-      return fetch(`http://localhost:8088/playtimeGoals?playerId=${ playerId }`)
-          .then(res => res.json())
-          .then(setPlayerPlaytimeGoals)
+    const getPlayerPlaytimeGoal = (playerId) => {
+      const playerPlaytimeGoal = playtimeGoals.find(pg => pg.playerId === playerId) || {}
+      setPlayerPlaytimeGoal(playerPlaytimeGoal)
+      if(playerPlaytimeGoal === {}){
+        setNoPtGoal(true)
+      }
+      else{
+        setNoPtGoal(false)
+      }
   }
 
     const getPlaytimeGoalById = (id) => {
@@ -63,9 +69,10 @@ export const PlaytimeGoalProvider = (props) => {
             setTerms,
             removePlaytimeGoal,
             editPlaytimeGoal,
-            getPlayerPlaytimeGoals,
-            setPlayerPlaytimeGoals,
-            playerPlaytimeGoals
+            getPlayerPlaytimeGoal,
+            setPlayerPlaytimeGoal,
+            playerPlaytimeGoal,
+            noPtGoal, setNoPtGoal
         }}>
             {props.children}
         </PlaytimeGoalContext.Provider>

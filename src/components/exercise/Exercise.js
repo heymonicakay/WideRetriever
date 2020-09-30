@@ -4,9 +4,10 @@ import { ExerciseTypeContext } from "../exerciseType/ExerciseTypeProvider"
 import { PlayerContext } from "../players/PlayerProvider"
 import "./Exercise.css"
 
+// goalset = x many
+// measurement type = minute, hour, times
+//frequency = every day, week, month
 export const Exercise = ( props ) => {
-  //define user id
-  const userId = parseInt(sessionStorage.getItem("wr__user"))
 
   //refs
   const duration = useRef(null)
@@ -54,13 +55,13 @@ const [noteHidden, setNoteHidden] = useState(true)
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
   // exposing functionality to get and set player
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
 
   //useEffect
   useEffect(() => {
     const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
+      getPlayerByPlayerId(playerId)
         .then(setPlayer)
   }, [])
 
@@ -86,7 +87,7 @@ const [noteHidden, setNoteHidden] = useState(true)
 
   //verifies user and displays player's exercise data accordingly
   const ExerciseVerify = () => {
-    if(userId === player.userId) {
+    if(props.currentUserId === player.userId) {
       return (
         <>
           {editMode

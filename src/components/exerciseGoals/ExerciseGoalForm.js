@@ -63,13 +63,13 @@ export const ExerciseGoalForm = (props) => {
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
   // exposing functionality to get and set player
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
 
   // get whole player obj then set player
   useEffect(() => {
     const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
+      getPlayerByPlayerId(playerId)
         .then(setPlayer)
   }, [])
 

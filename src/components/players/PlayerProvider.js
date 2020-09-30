@@ -3,6 +3,7 @@ export const PlayerContext = React.createContext()
 
 export const PlayerProvider = (props) => {
     const [players, setPlayers] = useState([])
+    const [player, setPlayer] = useState({})
     const [searchTerms, setTerms] = useState("")
     const [userPlayers, setUserPlayers] = useState([])
 
@@ -12,9 +13,10 @@ export const PlayerProvider = (props) => {
             .then(setPlayers)
     }
 
-    const getPlayerById = (id) => {
+    const getPlayerByPlayerId = (id) => {
       return fetch(`http://localhost:8088/players/${id}`)
           .then(res => res.json())
+          .then(setPlayer)
   }
 
   const getUserPlayers = (currentUserId) => {
@@ -57,13 +59,15 @@ export const PlayerProvider = (props) => {
             players,
             addPlayer,
             getPlayers,
-            getPlayerById,
             searchTerms,
             setTerms,
             removePlayer,
             editPlayer,
             getUserPlayers,
             userPlayers,
+            getPlayerByPlayerId,
+            player,
+            setPlayer
         }}>
             {props.children}
         </PlayerContext.Provider>

@@ -28,11 +28,14 @@ import { ReminderForm } from "./reminders/ReminderForm"
 import { ReminderProvider } from "./reminders/ReminderProvider"
 import { MeasurementTypeProvider } from "./goals/MeasurementTypeProvider"
 import { FrequencyProvider } from "./goals/FrequencyProvider"
+import { DateProvider } from "./time/DateProvider"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
+  
   return (
     <>
+    <DateProvider>
       <UserProvider >
         <DefaultIconProvider>
           <PlayerProvider>
@@ -45,7 +48,7 @@ export const ApplicationViews = (props) => {
                     <nav className="cont--nav">
                       <PlayerSearchDisplay
                         currentUserId={currentUserId}
-                        { ...props} />
+                        {...props} />
                       <Nav
                         currentUserId={currentUserId}
                         {...props}
@@ -234,6 +237,7 @@ export const ApplicationViews = (props) => {
           </PlayerProvider>
         </DefaultIconProvider>
       </UserProvider>
+    </DateProvider>
     </>
   )
 }

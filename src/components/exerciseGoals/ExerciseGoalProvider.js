@@ -3,21 +3,22 @@ export const ExerciseGoalContext = React.createContext()
 
 export const ExerciseGoalProvider = (props) => {
     const [exerciseGoals, setExerciseGoals] = useState([])
-    const [playerExerciseGoals, setPlayerExerciseGoals] = useState([])
+    const [playerExerciseGoal, setPlayerExerciseGoal] = useState({})
     const [searchTerms, setTerms] = useState("")
+    
 
 
     const getExerciseGoals = () => {
+
         return fetch("http://localhost:8088/exerciseGoals")
             .then(res => res.json())
             .then(setExerciseGoals)
     }
 
-    const getPlayerExerciseGoals = (playerId) => {
-      return fetch(`http://localhost:8088/exerciseGoals?playerId=${ playerId }`)
-          .then(res => res.json())
-          .then(setPlayerExerciseGoals)
-  }
+    const getPlayerExerciseGoal = (playerId) => {
+      const playerExerciseGoal = exerciseGoals.find(eg => eg.playerId === playerId) || {}
+      setPlayerExerciseGoal(playerExerciseGoal)
+    }
 
     const getExerciseGoalById = (id) => {
       return fetch(`http://localhost:8088/exerciseGoals/${id}`)
@@ -63,9 +64,9 @@ export const ExerciseGoalProvider = (props) => {
             setTerms,
             removeExerciseGoal,
             editExerciseGoal,
-            getPlayerExerciseGoals,
-            setPlayerExerciseGoals,
-            playerExerciseGoals
+            getPlayerExerciseGoal,
+            setPlayerExerciseGoal,
+            playerExerciseGoal
         }}>
             {props.children}
         </ExerciseGoalContext.Provider>

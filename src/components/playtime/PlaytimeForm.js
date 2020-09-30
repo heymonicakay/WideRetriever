@@ -16,7 +16,7 @@ export const PlaytimeForm = (props) => {
 
   //useContext
   const { addPlaytime, playtimes, getPlaytimes } = useContext(PlaytimeContext)
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
 
   //useState
   const [playtime, setPlaytime] = useState({})
@@ -37,7 +37,7 @@ export const PlaytimeForm = (props) => {
   }, [])
   useEffect(() => {
     const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
+      getPlayerByPlayerId(playerId)
         .then(setPlayer)
   }, [])
 

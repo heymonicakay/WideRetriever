@@ -63,13 +63,13 @@ export const Training = ( props ) => {
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
   //exposing functionality to get an set player
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
 
   //useEffect
   useEffect(()=>{
     const playerId = parseInt(props.match.params.playerId)
-      getPlayerById(playerId)
+      getPlayerByPlayerId(playerId)
         .then(setPlayer)
   }, [])
 
@@ -95,7 +95,7 @@ export const Training = ( props ) => {
 
   //verifies user and displays player's training data accordingly
   const TrainingVerify = () => {
-    if(userId === player.userId) {
+    if(userId === props.player.userId) {
       return (
         <>
         {editMode
@@ -122,7 +122,7 @@ export const Training = ( props ) => {
                     ))}
               </select>
 
-              <label htmlfor="note">How did {player.name} do?</label>
+              <label htmlfor="note">How did {props.player.name} do?</label>
 
               <textarea defaultValue={props.training.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
 

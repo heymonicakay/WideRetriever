@@ -14,11 +14,11 @@ export const TrainingList = (props) => {
   //useContext
   const { getTrainings, trainings, removeTraining } = useContext(TrainingContext)
   const { trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
-  const { getPlayerById } = useContext(PlayerContext)
+  const { getPlayerByPlayerId } = useContext(PlayerContext)
   const { getTrainingGoals, getPlayerTrainingGoals, editTrainingGoal,  trainingGoals } = useContext(TrainingGoalContext)
 
   //useState
-  const [filteredTrainings, setFiltered] = useState([])
+  const [playerTrainings, setFiltered] = useState([])
   const [player, setPlayer] = useState({})
   const [playerTrainingGoal, setPlayerTrainingGoal] = useState([])
   const [editMode, setEditMode] = useState(false)
@@ -29,7 +29,7 @@ export const TrainingList = (props) => {
   const thisWeek = props.trainingsThisWeek.length
   //useEffect
     useEffect(() => {
-        getPlayerById(playerId)
+        getPlayerByPlayerId(playerId)
           .then(setPlayer)
     }, [])
 
@@ -38,7 +38,7 @@ export const TrainingList = (props) => {
     }, [])
 
     useEffect(()=>{
-      const playerTrainingGoal = trainingGoals.filter(tg => tg.playerId === playerId) || []
+      const playerTrainingGoal = trainingGoals.filter(tg => tg.playerId === props.playerId) || []
       const goal = playerTrainingGoal[0] || {}
     setPlayerTrainingGoal(playerTrainingGoal[0])
     }, [trainingGoals])
@@ -73,8 +73,6 @@ export const TrainingList = (props) => {
     newPlayerTrainingGoal[e.target.name] = e.target.value
     setPlayerTrainingGoal(newPlayerTrainingGoal)
   }
-  const todayTimestamp = Date.now()
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
   const constructNewTrainingGoal = () => {
     //define player ID
@@ -84,14 +82,14 @@ export const TrainingList = (props) => {
       playerId: playerId,
       goalSet: playerTrainingGoal.goalSet,
       timestamp:Date.now(),
-      date: today,
+      date: props.todayObj,
     })
     .then(() => props.history.push(`/players/${playerId}`))}
   }
 
   //evaluates logged exercises and user:player relationship - displays data accordingly
   const trainingListVerify = () => {
-    if(filteredTrainings.length < 1 && userId === player.userId) {
+    if(playerTrainings.length < 1 && userId === props.player.userId) {
     return (
       <>
         <div className="cont__list cont__list--tr">
@@ -139,14 +137,14 @@ export const TrainingList = (props) => {
               Woof!
             </h1>
             <h3 className="h5 no-data-msg no-tr-msg">
-                {player.name} doesn't have any training sessions, yet!
+                {props.player.name} doesn't have any training sessions, yet!
             </h3>
           </article>
         </div>
       </>
     )
     }
-    if(filteredTrainings.length < 1 && userId !== player.userId) {
+    if(playerTrainings.length < 1 && userId !==props.player.userId) {
       return (
         <>
           <div className="cont__list cont__list--tr">
@@ -165,7 +163,7 @@ export const TrainingList = (props) => {
         </>
       )
     }
-    if ( userId !== player.userId ) {
+    if ( userId !==props.player.userId ) {
       return (
         <>
           <div className="cont__list cont__list--tr">
@@ -173,7 +171,7 @@ export const TrainingList = (props) => {
               Training
             </h2>
             <article className="list list--tr">
-              {filteredTrainings.map(tr => {
+              {playerTrainings.map(tr => {
                 const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
 
                 return <Training {...props}
@@ -240,7 +238,7 @@ export const TrainingList = (props) => {
               Add Training
             </button>
             <article className="list list--tr">
-              {filteredTrainings.map(tr => {
+              {playerTrainings.map(tr => {
                 const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
 
                 return <Training {...props}

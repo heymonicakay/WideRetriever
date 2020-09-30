@@ -3,6 +3,8 @@ export const PlaytimeContext = React.createContext()
 
 export const PlaytimeProvider = (props) => {
     const [playtimes, setPlaytimes] = useState([])
+    const [playerPlaytimes, setPlayerPlaytimes] = useState([])
+
     const [searchTerms, setTerms] = useState("")
 
 
@@ -16,6 +18,11 @@ export const PlaytimeProvider = (props) => {
       return fetch(`http://localhost:8088/playtimes/${id}`)
           .then(res => res.json())
   }
+
+    const getPlayerPlaytimes = (playerId) => {
+      const playerPlaytimes = playtimes.filter(pt => pt.playerId === playerId) || []
+      setPlayerPlaytimes(playerPlaytimes)
+    }
 
     const addPlaytime = playtime => {
         return fetch("http://localhost:8088/playtimes", {
@@ -49,7 +56,7 @@ export const PlaytimeProvider = (props) => {
     return (
         <PlaytimeContext.Provider value={{
             playtimes, addPlaytime, getPlaytimes, getPlaytimeById,
-            searchTerms, setTerms, removePlaytime, editPlaytime
+            searchTerms, setTerms, removePlaytime, editPlaytime, getPlayerPlaytimes, playerPlaytimes, setPlayerPlaytimes
         }}>
             {props.children}
         </PlaytimeContext.Provider>

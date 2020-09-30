@@ -3,6 +3,7 @@ export const ExerciseContext = React.createContext()
 
 export const ExerciseProvider = (props) => {
     const [exercises, setExercises] = useState([])
+    const [playerExercises, setPlayerExercises] = useState([])
     const [searchTerms, setTerms] = useState("")
 
 
@@ -16,6 +17,10 @@ export const ExerciseProvider = (props) => {
       return fetch(`http://localhost:8088/exercises/${id}`)
           .then(res => res.json())
   }
+    const getPlayerExercises = (playerId) => {
+      const playerExercises = exercises.filter(ex => ex.playerId === playerId) || []
+      setPlayerExercises(playerExercises)
+    }
 
     const addExercise = exercise => {
         return fetch("http://localhost:8088/exercises", {
@@ -49,7 +54,7 @@ export const ExerciseProvider = (props) => {
     return (
         <ExerciseContext.Provider value={{
             exercises, addExercise, getExercises, getExerciseById,
-            searchTerms, setTerms, removeExercise, editExercise
+            searchTerms, setTerms, removeExercise, editExercise, getPlayerExercises, playerExercises, setPlayerExercises
         }}>
             {props.children}
         </ExerciseContext.Provider>

@@ -3,8 +3,9 @@ export const TrainingGoalContext = React.createContext()
 
 export const TrainingGoalProvider = (props) => {
     const [trainingGoals, setTrainingGoals] = useState([])
-    const [playerTrainingGoals, setPlayerTrainingGoals] = useState([])
+    const [playerTrainingGoal, setPlayerTrainingGoal] = useState({})
     const [searchTerms, setTerms] = useState("")
+    const [noTrGoal, setNoTrGoal] = useState(true)
 
 
     const getTrainingGoals = () => {
@@ -13,10 +14,9 @@ export const TrainingGoalProvider = (props) => {
             .then(setTrainingGoals)
     }
 
-    const getPlayerTrainingGoals = (playerId) => {
-      return fetch(`http://localhost:8088/trainingGoals?playerId=${ playerId }`)
-          .then(res => res.json())
-          .then(setPlayerTrainingGoals)
+    const getPlayerTrainingGoal = (playerId) => {
+      const playerTrainingGoal = trainingGoals.find(tg=> tg.playerId === playerId) || {}
+      setPlayerTrainingGoal(playerTrainingGoal)
   }
 
     const getTrainingGoalById = (id) => {
@@ -63,9 +63,10 @@ export const TrainingGoalProvider = (props) => {
             setTerms,
             removeTrainingGoal,
             editTrainingGoal,
-            getPlayerTrainingGoals,
-            setPlayerTrainingGoals,
-            playerTrainingGoals
+            getPlayerTrainingGoal,
+            setPlayerTrainingGoal,
+            playerTrainingGoal,
+            noTrGoal, setNoTrGoal
         }}>
             {props.children}
         </TrainingGoalContext.Provider>

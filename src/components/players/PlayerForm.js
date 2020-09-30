@@ -64,13 +64,11 @@ export const PlayerForm = (props) => {
 
   const constructNewPlayer = () => {
 
-    const userId = parseInt(sessionStorage.getItem("wr__user"))
-
     if (editMode) {
       editPlayer({
         id: player.id,
         playerImg: player.playerImg,
-        userId: userId,
+        userId: props.currentUserId,
         name: player.name,
         breed: player.breed,
         age: player.age,
@@ -79,7 +77,7 @@ export const PlayerForm = (props) => {
     }
     else {
       addPlayer({
-        userId: userId,
+        userId: props.currentUserId,
         playerImg: image,
         name: player.name,
         breed: player.breed,
@@ -91,33 +89,30 @@ export const PlayerForm = (props) => {
 
   return (
     <>
-    <dialog className="dialog dialog--del-check" ref={delDialog}>
-            <div className="cont__dialog-msg--del-check">
-              Woof! Are you sure you want to remove {player.name} from the roster?
-            </div>
+      <dialog className="dialog dialog--del-check" ref={delDialog}>
+        <div className="cont__dialog-msg--del-check">
+          Woof! Are you sure you want to remove {player.name} from the roster?
+        </div>
+        <div className="cont__dialog-btns--del-check">
+          <button className="btn btn-del--sure" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))}>
+              Yes, I'm sure.
+          </button>
+          <button className="btn btn-del--nvm" onClick={e => delDialog.current.close()}>
+              Actually, nevermind.
+          </button>
+        </div>
+      </dialog>
 
-            <div className="cont__dialog-btns--del-check">
-              <button className="btn btn-del--sure" onClick={() => removePlayer(player.id).then(() => props.history.push("/players"))}>
-                  Yes, I'm sure.
-              </button>
-              <button className="btn btn-del--nvm" onClick={e => delDialog.current.close()}>
-                  Actually, nevermind.
-              </button>
-            </div>
-          </dialog>
-
-    <div className="cont--form-pl">
-
-      <section className="form">
-
-        <h2 className="h2 header header__form header__form--pl">
+      <div className="cont--form-pl">
+        <section className="form">
+          <h2 className="h2 header header__form header__form--pl">
           {editMode
             ? "Update Player"
             : "Add Player"
           }
-        </h2>
+          </h2>
 
-        {editMode
+          {editMode
           ? (
             <div className="upload--img">
               <img src={player.playerImg} alt="" className="img-uploaded" />

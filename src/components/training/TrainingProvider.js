@@ -13,10 +13,9 @@ export const TrainingProvider = (props) => {
             .then(setTrainings)
     }
 
-    const getTrainingByPlayerId = (playerId) => {
-      return fetch(`http://localhost:8088/trainings?playerId=${playerId}`)
-          .then(res => res.json())
-          .then(setPlayerTrainings)
+    const getPlayerTrainings = (playerId) => {
+      const playerTrainings = trainings.filter(tr => tr.playerId === playerId)
+      setPlayerTrainings(playerTrainings)
   }
 
     const getTrainingById = (id) => {
@@ -63,9 +62,9 @@ export const TrainingProvider = (props) => {
             setTerms,
             removeTraining,
             editTraining,
-            getTrainingByPlayerId,
-            playerTrainings,
-            setPlayerTrainings
+            getPlayerTrainings,
+            setPlayerTrainings,
+            playerTrainings
         }}>
             {props.children}
         </TrainingContext.Provider>
