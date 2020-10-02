@@ -17,10 +17,11 @@ export const ExerciseProvider = (props) => {
       return fetch(`http://localhost:8088/exercises/${id}`)
           .then(res => res.json())
   }
-    const getPlayerExercises = (playerId) => {
-      const playerExercises = exercises.filter(ex => ex.playerId === playerId) || []
-      setPlayerExercises(playerExercises)
-    }
+  const getPlayerExercises = (playerId) => {
+    return fetch(`http://localhost:8088/exercises?playerId=${playerId}`)
+        .then(res => res.json())
+        .then(setPlayerExercises)
+  }
 
     const addExercise = exercise => {
         return fetch("http://localhost:8088/exercises", {

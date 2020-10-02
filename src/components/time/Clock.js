@@ -14,7 +14,7 @@ export const Clock = (props) => {
 
   return (
       <div>
-        <h2>It is {date.toLocaleTimeString()}.</h2>
+          {date.toLocaleTimeString()}.
       </div>
     );
 }

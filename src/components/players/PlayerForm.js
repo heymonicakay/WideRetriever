@@ -16,7 +16,7 @@ export const PlayerForm = (props) => {
   const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png")
   const [isHidden, setIsHidden] = useState(true)
 
-  const { addPlayer, players, editPlayer, getPlayers, removePlayer } = useContext(PlayerContext)
+  const { addPlayer, players, editPlayer, removePlayer } = useContext(PlayerContext)
 
   const handleControlledInputChange = (event) => {
     const newPlayer = Object.assign({}, player)
@@ -54,9 +54,6 @@ export const PlayerForm = (props) => {
       setPlayer(selectedPlayer)
     }
   }
-  useEffect(() => {
-    getPlayers()
-  }, [])
 
   useEffect(() => {
     getPlayerInEditMode()

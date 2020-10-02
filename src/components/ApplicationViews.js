@@ -29,10 +29,11 @@ import { ReminderProvider } from "./reminders/ReminderProvider"
 import { MeasurementTypeProvider } from "./goals/MeasurementTypeProvider"
 import { FrequencyProvider } from "./goals/FrequencyProvider"
 import { DateProvider } from "./time/DateProvider"
+import { ReminderList } from "./reminders/ReminderList"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
-  
+
   return (
     <>
     <DateProvider>
@@ -75,6 +76,9 @@ export const ApplicationViews = (props) => {
                         <ReminderForm
                           currentUserId={currentUserId}
                           {...props}/>
+                          <ReminderList
+                          currentUserId={currentUserId}
+                          {...props} />
                       </div>
                     </div>
                   </>

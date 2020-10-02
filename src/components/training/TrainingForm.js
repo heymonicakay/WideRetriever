@@ -14,11 +14,7 @@ export const TrainingForm = (props) => {
   // expose training provider components to this function
   const { addTraining } = useContext(TrainingContext)
 
-  const { trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
-
-  useEffect(() => {
-    getTrainingTypes()
-  }, [])
+  const { trainingTypes } = useContext(TrainingTypeContext)
 
   // declare and set training state var
   const [training, setTraining] = useState({})

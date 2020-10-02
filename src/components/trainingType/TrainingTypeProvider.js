@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const TrainingTypeContext = React.createContext()
 
 export const TrainingTypeProvider = (props) => {
@@ -45,6 +45,10 @@ export const TrainingTypeProvider = (props) => {
     })
         .then(getTrainingTypes)
 }
+
+useEffect(()=>{
+  getTrainingTypes()
+}, [])
 
     return (
         <TrainingTypeContext.Provider value={{

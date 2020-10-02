@@ -5,26 +5,36 @@
   right: 20%;
   left: 18%;
   justify-self: center;
-  flex-flow: row wrap;
-  padding: 5rem 2rem 0rem 2rem ;
+  flex-flow: column wrap;
   width: 60%;
   height: -webkit-fill-available;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: hsla(180, 33%, 80%, 0.548)
 }
 
-.player-detail-section {
+.button-bar {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.player-detail-container {
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: center;
   align-content: center;
+  width: -webkit-fill-available;
+  height: auto;
 }
 
 .activity-section {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 
 .list--pl {
@@ -44,8 +54,6 @@
   max-height: auto;
   margin: 1em;
   padding: 1em 0em;
-  /* border: 3px solid hsl(207, 98%, 23%);
-  background-color: hsl(207, 61%, 61%); */
   color: white;
   justify-content: space-evenly;
   align-content: center;

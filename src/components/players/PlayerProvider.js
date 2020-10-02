@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const PlayerContext = React.createContext()
 
 export const PlayerProvider = (props) => {
@@ -53,6 +53,10 @@ export const PlayerProvider = (props) => {
     })
         .then(getPlayers)
 }
+
+useEffect(()=>{
+  getPlayers()
+},[])
 
     return (
         <PlayerContext.Provider value={{

@@ -19,9 +19,10 @@ export const PlaytimeProvider = (props) => {
           .then(res => res.json())
   }
 
-    const getPlayerPlaytimes = (playerId) => {
-      const playerPlaytimes = playtimes.filter(pt => pt.playerId === playerId) || []
-      setPlayerPlaytimes(playerPlaytimes)
+  const getPlayerPlaytimes = (playerId) => {
+    return fetch(`http://localhost:8088/playtimes?playerId=${playerId}`)
+        .then(res => res.json())
+        .then(setPlayerPlaytimes)
     }
 
     const addPlaytime = playtime => {

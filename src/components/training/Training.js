@@ -15,13 +15,9 @@ export const Training = ( props ) => {
   const arrow = useRef(null)
 
   //useContext
-  const {  trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
+  const {  trainingTypes } = useContext(TrainingTypeContext)
   const { removeTraining, editTraining } = useContext(TrainingContext)
 
-  //useEffect
-  useEffect(() => {
-    getTrainingTypes()
-  }, [])
 
   // func to build new training obj on input change
   const handleControlledInputChange = (e) => {

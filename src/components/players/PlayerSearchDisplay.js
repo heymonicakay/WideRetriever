@@ -4,13 +4,9 @@ import { PlayerSearchResult } from "./PlayerSearchResult"
 import "./Player.css"
 
 export const PlayerSearchDisplay = (props) => {
-  const { players, getPlayers, searchTerms} = useContext(PlayerContext)
+  const { players, searchTerms} = useContext(PlayerContext)
 
   const [filteredPlayers, setFilteredPlayers] = useState([])
-
-  useEffect(()=>{
-    getPlayers()
-  }, [])
 
   useEffect(() => {
     const matchingPlayers = players.filter(p => p.name.toLowerCase().includes(searchTerms.toLowerCase()))

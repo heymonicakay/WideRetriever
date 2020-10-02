@@ -10,10 +10,11 @@ import "./Exercise.css"
 export const Exercise = ( props ) => {
 
   //refs
-  const duration = useRef(null)
   const exerciseType = useRef(null)
   const note = useRef(null)
   const arrow = useRef(null)
+  const date = useRef(null)
+  const minutes = useRef(null)
 
   // useContext
   const  { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
@@ -31,169 +32,104 @@ export const Exercise = ( props ) => {
   }
 
   const constructNewExercise = () => {
-    const playerId = parseInt(props.exercise.playerId)
     const exerciseTypeId = parseInt(exerciseType.current.value)
-    const exerciseId = parseInt(props.exercise.id)
 
     {editExercise({
       id: props.exercise.id,
-      playerId,
+      playerId: props.playerId,
       exerciseTypeId,
-      duration: exercise.duration,
-      date: today,
+      hours: exercise.hours,
+      minutes: exercise.minutes,
+      date: exercise.date,
       note: exercise.note,
     })
-  .then(() => props.history.push(`/players/${playerId}`))}
+  .then(() => props.history.push(`/players/${props.playerId}`))}
 }
 
 const [noteHidden, setNoteHidden] = useState(true)
   const [editMode, setEditMode] = useState(false)
   const [exercise, setExercise] = useState({})
 
-  // translate alien timestamp into human date
-  const todayTimestamp = Date.now()
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
-
-  // exposing functionality to get and set player
-  const { getPlayerByPlayerId } = useContext(PlayerContext)
-  const [player, setPlayer] = useState({})
-
-  //useEffect
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerByPlayerId(playerId)
-        .then(setPlayer)
-  }, [])
-
-  //toggles whether the exercise note is hidden or not
   const toggleHidden = () => {
     if (noteHidden === true) {
-      setNoteHidden(false)
-    }
+      setNoteHidden(false)}
     else {
-      setNoteHidden(true)
-    }
-  }
+      setNoteHidden(true)}}
 
-  //toggles edit mode for individual exercise session
   const toggleEditMode = () => {
     if (editMode === true) {
-      setEditMode(false)
-    }
+      setEditMode(false)}
     else {
-      setEditMode(true)
-    }
-  }
+      setEditMode(true)}}
 
-  //verifies user and displays player's exercise data accordingly
-  const ExerciseVerify = () => {
-    if(props.currentUserId === player.userId) {
-      return (
+  return (
+    <>
+      {editMode
+        ?
         <>
-          {editMode
-            ?
-            <>
-                <div className="cont--form-edit-ex">
-                    <select ref={duration} name="duration" className="input input--ex-edit input--duration" defaultValue={props.exercise.duration} onChange={handleControlledInputChange}>
-                      <option value="0">How long did you exercise?</option>
-                      <option value="5-10 min">5-10 min</option>
-                      <option value="10-20 min">10-20 min</option>
-                      <option value="20-30 min">20-30 min</option>
-                      <option value="30-40 min">30-40 min</option>
-                      <option value="40-50 min">40-50 min</option>
-                      <option value="50-60 min">50-60 min</option>
-                    </select>
+          <div className="cont--form-edit-ex">
+            <input type="date" defaultValue={props.exercise.date} name="date" ref={date} onChange={handleControlledInputChange} />
 
-                    <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
-                      <option value="0">Select an activity</option>
-                        {exerciseTypes.map(et => (
-                          <option key={et.id} value={et.id}>
-                            {et.type}
-                          </option>
-                        ))}
-                    </select>
+            <select defaultValue={props.exercise.exerciseTypeId} name="exerciseType" ref={exerciseType} id="exerciseType" className="select select--ex" onChange={handleControlledInputChange}>
+              <option value="0">Select an activity</option>
+                {exerciseTypes.map(et => (
+                  <option key={et.id} value={et.id}>
+                    {et.type}
+                  </option>
+                ))}
+            </select>
+            <div>How long did you exercise?</div>
+            <input type="number" defaultValue={props.exercise.minutes} onChange={handleControlledInputChange} ref={minutes}/><span>minutes</span>
 
-                    <label htmlfor="note">How did {player.name} do?</label>
-
-                    <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
-                    <button className="btn btn--submit btn--ex" type="button"
-                      onClick={e => {
-                        e.preventDefault()
-                        constructNewExercise()
-                        toggleEditMode()
-                      }}>
-                        Save Changes
-                    </button>
-                    <span className="delet-exercise"
-                      onClick={() => {
-                        removeExercise(props.exercise.id)}}>
-                        X
-                    </span>
-                </div>
-              </>
-            :
-              <section className="ex-card">
-                <div className="ex-card--details">
-                  <span className="ex-card--detail ex-card--date">
-                    {props.exercise.date}
-                  </span>
-                  <div className="ex-card--stats">
-                    <div className="ex-card--detail ex-card--catches">
-                      {props.exercise.duration}
-                    </div>
-                    <span className="ex-card--detail ex-card--misses">
-                      {props.exerciseType.type}
-                    </span>
-                  </div>
-                  <div className="ex-card--detail ex-card--note">
-                      {noteHidden
-                        ? null
-                        : <>
-                            <span className="note">
-                              {props.exercise.note}
-                            </span>
-                            <span className="edit" onClick={()=>
-                            toggleEditMode()}>
-                              Edit
-                            </span>
-                          </>
-                      }
-                      </div>
-                    <div ref={arrow} className="down-arrow"
-                      onClick={()=>{
-                        toggleHidden()
-                      }}>
-                        <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
-                    </div>
-                  </div>
-              </section>
-          }
+            <span>How did {props.player.name} do?</span>
+            <textarea defaultValue={props.exercise.note} ref={note} name="note" className="input input--note-ex" onChange={handleControlledInputChange} />
+            <button className="btn btn--submit btn--ex" type="button"
+              onClick={e => {
+                e.preventDefault()
+                constructNewExercise()
+                toggleEditMode()
+              }}>
+                Save Changes
+            </button>
+            <span className="delete-exercise"
+              onClick={() => {
+                removeExercise(props.key)}}>
+                X
+            </span>
+          </div>
         </>
-      )
-    }
-    else {
-      return (
-        <>
+        :
           <section className="ex-card">
             <div className="ex-card--details">
               <span className="ex-card--detail ex-card--date">
                 {props.exercise.date}
               </span>
+              <span className="ex-card--detail">
+                {props.exerciseType.type}
+              </span>
               <div className="ex-card--stats">
                 <div className="ex-card--detail">
-                  {props.exercise.duration}
+                  Start: {props.exercise.startTime}
                 </div>
-                <span className="ex-card--detail">
-                  {props.exerciseType.type}
-                </span>
+                <div className="ex-card--detail">
+                  Total Active Time: {props.exercise.minutes}min {props.exercise.seconds}s
+                </div>
               </div>
               <div className="ex-card--detail ex-card--note">
                 {noteHidden
-                  ? null
+                  ? <></>
                   : <>
                       <span className="note">
                         {props.exercise.note}
                       </span>
+                      {props.isOwner
+                      ?<>
+                        <span className="edit" onClick={()=>toggleEditMode()}>
+                            Edit
+                        </span>
+                        </>
+                      :<></>
+                      }
                     </>
                 }
               </div>
@@ -202,16 +138,10 @@ const [noteHidden, setNoteHidden] = useState(true)
                   toggleHidden()
                 }}>
                   <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
-                </div>
+              </div>
             </div>
           </section>
-        </>
-      )
-    }
-  }
-  return (
-    <>
-      {ExerciseVerify()}
+      }
     </>
   )
 }

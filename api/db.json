@@ -19,7 +19,17 @@
       "id": 3
     }
   ],
-  "reminders": [],
+  "reminders": [
+    {
+      "userId": 1,
+      "reminderTitle": "Flea & Tick",
+      "reminderNote": "Administer flea & tick medication.",
+      "dueDate": "2020-10-26",
+      "dateSet": "10/2/2020",
+      "timestamp": 1601619104327,
+      "id": 1
+    }
+  ],
   "players": [
     {
       "userId": 1,
@@ -140,15 +150,6 @@
   ],
   "playtimes": [
     {
-      "playerId": 4,
-      "catches": 4,
-      "misses": 1,
-      "date": "9/20/2020",
-      "timestamp": 1600809829371,
-      "note": "Kaos caught almost all the popcorn I threw to him. ",
-      "id": 7
-    },
-    {
       "playerId": 5,
       "catches": 1,
       "misses": 4,
@@ -156,24 +157,6 @@
       "timestamp": 1600809829371,
       "note": "He was so uninterested in catching the treats, but was more than happy to pick them up from the floor haha!",
       "id": 8
-    },
-    {
-      "playerId": 4,
-      "catches": 4,
-      "misses": 1,
-      "date": "9/23/2020",
-      "note": "Kaos is such a good boy!",
-      "timestamp": 1600917437350,
-      "id": 9
-    },
-    {
-      "playerId": 4,
-      "catches": 5,
-      "misses": 0,
-      "date": "9/23/2020",
-      "note": "This was a perfect game!",
-      "timestamp": 1600917526911,
-      "id": 10
     },
     {
       "playerId": 2,

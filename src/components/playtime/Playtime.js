@@ -8,7 +8,7 @@ export const Playtime = ( props ) => {
   return(
   <section className="pt-card">
     <button className="btn btn--circle btn--red btn--del" onClick={() => {
-      removePlaytime(props.playtime.id)
+      removePlaytime(props.key)
     }}>
       X
     </button>

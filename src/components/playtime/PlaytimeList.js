@@ -12,13 +12,12 @@ export const PlaytimeList = (props) => {
   const [editMode, setEditMode] = useState(false)
   const [emptyMsg, setEmptyMsg] = useState(false)
 //EFFECT
-
   useEffect(()=>{
-    if(props.playerPlaytimes.length < 1){
+    if(props.playerPlaytimes === []){
       setEmptyMsg(true)}
     else {
       setEmptyMsg(false)}
-  }, [])
+  }, [props.playerPlaytimes])
 //HANDLE
   const toggleEditMode = () => {
     if (editMode === true) {

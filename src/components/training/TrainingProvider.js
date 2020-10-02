@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const TrainingContext = React.createContext()
 
 export const TrainingProvider = (props) => {
@@ -14,9 +14,10 @@ export const TrainingProvider = (props) => {
     }
 
     const getPlayerTrainings = (playerId) => {
-      const playerTrainings = trainings.filter(tr => tr.playerId === playerId)
-      setPlayerTrainings(playerTrainings)
-  }
+      return fetch(`http://localhost:8088/trainings?playerId=${playerId}`)
+          .then(res => res.json())
+          .then(setPlayerTrainings)
+    }
 
     const getTrainingById = (id) => {
       return fetch(`http://localhost:8088/trainings/${id}`)
@@ -51,6 +52,10 @@ export const TrainingProvider = (props) => {
     })
         .then(getTrainings)
 }
+
+useEffect(()=>{
+  getTrainings()
+}, [])
 
     return (
         <TrainingContext.Provider value={{

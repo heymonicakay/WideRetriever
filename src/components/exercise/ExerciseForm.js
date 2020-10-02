@@ -228,7 +228,7 @@ const playerId = parseInt(props.match.params.playerId)
             Great job {player.name}!
           </p>
           <p>
-            Exercise Summary
+            Summary
           </p>
           <p>
             Activity: {exTypeSelected}

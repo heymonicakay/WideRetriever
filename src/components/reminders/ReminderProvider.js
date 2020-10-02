@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const ReminderContext = React.createContext()
 
 export const ReminderProvider = (props) => {
@@ -46,12 +46,26 @@ export const ReminderProvider = (props) => {
           .then(getReminders)
   }
 
+  const patchReminder = reminder => {
+    return fetch(`http://localhost:8088/reminders/${reminder.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reminder)
+    }).then(getReminders);
+  };
+
   const removeReminder = (reminderId) => {
     return fetch(`http://localhost:8088/reminders/${reminderId}`, {
         method: "DELETE"
     })
         .then(getReminders)
 }
+
+useEffect(()=>{
+  getReminders()
+}, [])
 
     return (
         <ReminderContext.Provider value={{
@@ -66,6 +80,7 @@ export const ReminderProvider = (props) => {
             getReminderByPlayerId,
             playerReminders,
             setPlayerReminders,
+            patchReminder
         }}>
             {props.children}
         </ReminderContext.Provider>

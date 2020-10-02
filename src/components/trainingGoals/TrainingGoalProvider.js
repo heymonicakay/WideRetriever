@@ -7,7 +7,6 @@ export const TrainingGoalProvider = (props) => {
     const [searchTerms, setTerms] = useState("")
     const [noTrGoal, setNoTrGoal] = useState(true)
 
-
     const getTrainingGoals = () => {
         return fetch("http://localhost:8088/trainingGoals")
             .then(res => res.json())

@@ -7,25 +7,27 @@ import "./Following.css"
 export const FollowedPlayerList = props => {
 
   const { followings, getFollowings, currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
-  const { players, getPlayers } = useContext(PlayerContext)
+  const { players } = useContext(PlayerContext)
 
   const [playerIdsFollowed, setPlayerIdsFollowed] = useState([])
   const [playersFollowed, setPlayersFollowed] = useState("...fetching")
-  useEffect(() => {
-    getFollowings()
-    .then(getPlayers)
-    .then(getUserFollowings(props.currentUserId))
-  }, [])
 
   useEffect(()=>{
-    const playerIdsFollowed = currentUserFollowings.map(auf=>auf.followedPlayerId) || []
+    getFollowings()
+  },[])
+  useEffect(() => {
+  getUserFollowings(props.currentUserId)
+  }, [followings])
+
+  useEffect(()=>{
+    const playerIdsFollowed = currentUserFollowings.map(auf=>auf.followedPlayerId)
     setPlayerIdsFollowed(playerIdsFollowed)
   }, [currentUserFollowings])
 
   useEffect(()=>{
     const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
     setPlayersFollowed(playersFollowed)
-  }, [playerIdsFollowed])
+  }, [players])
 
   const refreshPage = ()=>{
     window.location.reload();

@@ -24,11 +24,11 @@ export const ExerciseList = (props) => {
       getFrequencies()
     }, [])
   useEffect(()=>{
-    if(props.playerExercises.length < 1){
+    if(props.playerExercises === []){
       setEmptyMsg(true)}
     else {
       setEmptyMsg(false)}
-  }, [])
+  }, [props.playerExercises])
 //HANDLE
   const toggleEditMode = ()=>{
     if(editMode === false) {
@@ -41,17 +41,11 @@ export const ExerciseList = (props) => {
         {emptyMsg
         ?<>
           <div className="cont__list cont__list--ex">
-            <h2 className="list__header list__header--ex">
-              Exercise
-            </h2>
             <NoExercises {...props}/>
           </div>
         </>
         :<>
           <div className="cont__list cont__list--ex">
-            <h2 className="list__header list__header--ex">
-              Exercise
-            </h2>
             <article className="list list--ex">
               {props.playerExercises.map(ex => {
                 const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
@@ -69,6 +63,7 @@ export const ExerciseList = (props) => {
                   measurementType={measuermentType}
                   toggleEditMode={toggleEditMode}
                   isOwner={props.isOwner}
+                  todayObj={props.todayObj}
                 />
               })}
             </article>

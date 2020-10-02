@@ -41,6 +41,7 @@ export const FollowingProvider = (props) => {
             .then(getFollowings)
     }
 
+
     return (
         <FollowingContext.Provider value={
             {
