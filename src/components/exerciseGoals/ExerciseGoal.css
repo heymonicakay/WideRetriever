@@ -1,0 +1,33 @@
+.chart-container {
+display: flex;
+flex-flow: column nowrap;
+justify-content: center;
+align-content: center;
+border: 1ps
+}
+
+.week-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.goal-container {
+  display:flex;
+  border: 1px solid black;
+  width: 40px;
+  height: 100px;
+  margin: 0 .25rem;
+}
+
+.achieved-container {
+  display: flex;
+  background-color: gray;
+  width: 40px;
+  height: 80%;
+  align-self: flex-end;
+}
+
+.day-label {
+  text-align: center;
+}
+

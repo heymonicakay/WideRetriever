@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const DateContext = React.createContext()
 
 export const DateProvider = (props) => {
@@ -25,7 +25,7 @@ export const DateProvider = (props) => {
 
     const [date, setDate] = useState(new Date())
     const [currentTimestamp, setCurrentTimestamp] = useState(Date.now())
-    const [thisWeekstart, setThisWeekstart] = useState(new Date().getDate() - new Date().getDay()) /*returns date int*/
+    const [thisWeekstart, setThisWeekstart] = useState(0) /*returns date int*/
 
     const getCurrentTimestamp = () => {
       const currentTimestamp = Date.now()
@@ -101,9 +101,6 @@ export const DateProvider = (props) => {
     setThisSaturDate(thisSaturDate)
     }
 
-
-
-
     const [thisMonthInt, setThisMonthInt] = useState(new Date().getMonth())
 
     const [weekArray, setWeekArray] = useState(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
@@ -146,6 +143,7 @@ export const DateProvider = (props) => {
       })
       return filteredByThisWeek
     }
+
 
     return (
         <DateContext.Provider value={{

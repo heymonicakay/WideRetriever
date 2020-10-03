@@ -13,7 +13,7 @@
   import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
   import { TodaysProgress } from "../goals/TodaysProgress"
   import { WeeksProgress } from "../goals/WeeksProgress"
-  import { ExerciseGoal } from "../exerciseGoals/ExerciseGoal"
+  import { WeeklyExerciseGoalTime } from "../exerciseGoals/WeeklyExerciseGoalTime"
   import { DateContext} from "../time/DateProvider"
   import { PlayerGoalButtons } from "./PlayerGoalButtons"
   import { PlayerActivityButtons } from "./PlayerActivityButtons"
@@ -185,7 +185,7 @@ const showTraining = () => {
                     {...props}/>
                   </div>
                   <section className="exercise-goal-section">
-                    <ExerciseGoal
+                    <WeeklyExerciseGoalTime
                       player={ player }
                       exercisesToday={ exercisesToday }
                       playerId={ playerId }

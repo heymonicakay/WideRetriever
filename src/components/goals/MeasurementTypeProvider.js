@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 export const MeasurementTypeContext = React.createContext()
 
@@ -26,6 +26,10 @@ export const MeasurementTypeProvider = (props) => {
                 return createdMeasurementType
             })
     }
+
+    useEffect(()=>{
+      getMeasurementTypes()
+    }, [])
 
     return (
         <MeasurementTypeContext.Provider value={

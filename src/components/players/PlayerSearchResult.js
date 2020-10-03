@@ -29,13 +29,6 @@ export const PlayerSearchResult = ( props ) => {
         {props.player.name}
         </div>
       </div>
-      <div className="pl-search-res--c3">
-          <div className="btn--pl-search-res btn--pl-search-res--follow" onClick={() => {
-            createNewFollowConnection(props.player.id)
-          }}>
-            +
-          </div>
-      </div>
     </div>
   )
 }

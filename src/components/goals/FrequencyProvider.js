@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 export const FrequencyContext = React.createContext()
 
@@ -26,6 +26,10 @@ export const FrequencyProvider = (props) => {
                 return createdFrequency
             })
     }
+
+    useEffect(()=>{
+      getFrequencies()
+    }, [])
 
     return (
         <FrequencyContext.Provider value={

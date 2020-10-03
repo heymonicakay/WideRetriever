@@ -1,12 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const ExerciseGoalContext = React.createContext()
 
 export const ExerciseGoalProvider = (props) => {
     const [exerciseGoals, setExerciseGoals] = useState([])
     const [playerExerciseGoal, setPlayerExerciseGoal] = useState({})
     const [searchTerms, setTerms] = useState("")
-    
-
 
     const getExerciseGoals = () => {
 
@@ -53,6 +51,10 @@ export const ExerciseGoalProvider = (props) => {
     })
         .then(getExerciseGoals)
 }
+
+useEffect(()=>{
+  getExerciseGoals()
+}, [])
 
     return (
         <ExerciseGoalContext.Provider value={{

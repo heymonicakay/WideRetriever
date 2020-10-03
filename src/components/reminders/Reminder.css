@@ -26,3 +26,12 @@
   transform: translateX(10px)
 
 }
+
+.due-date-time {
+  border: none !important;
+}
+
+.due-date-time-input {
+  border: none !important;
+  border-bottom-color:transparent !important;
+}

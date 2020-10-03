@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 export const ExerciseContext = React.createContext()
 
 export const ExerciseProvider = (props) => {
@@ -51,6 +51,10 @@ export const ExerciseProvider = (props) => {
     })
         .then(getExercises)
 }
+
+useEffect(()=>{
+  getExercises()
+}, [])
 
     return (
         <ExerciseContext.Provider value={{

@@ -28,6 +28,16 @@
       "dateSet": "10/2/2020",
       "timestamp": 1601619104327,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "reminderTitle": "Grooming Appt",
+      "reminderNote": "Groomer: Shirley",
+      "dueDate": "2020-10-30",
+      "timeDue": "11:00",
+      "dateSet": "10/2/2020",
+      "timestamp": 1601688723218,
+      "id": 2
     }
   ],
   "players": [
