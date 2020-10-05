@@ -56,13 +56,36 @@
   background-color: white;
 }
 
+.break-btn-img {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
+  width: 35px;
+  height: 25px;
+  border-radius: none;
+  cursor: pointer;
+}
+
+.btn-oops {
+  background-color: hsla(172, 30%, 52%, 0.61);
+  font-style: italic;
+  border: 2px solid white !important;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+  padding: .5rem !important;
+}
+
+.end-ex {
+  background-color: transparent !important;
+}
+
 .start-btn:hover,
 .break-btn:hover {
   box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
 }
 
-.start-btn-img,
-.break-btn-img {
+.start-btn-img {
   display: flex;
   justify-content: center;
   align-content: center;

@@ -227,6 +227,54 @@
   bottom: 25px;
 }
 
+.ex-msg {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+.btn--submit {
+  background-color: hsla(172, 30%, 52%, 0.61);
+  border: 2px solid white !important;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+  padding: .5rem !important;
+}
+
+.discard {
+  font-style: italic;
+  cursor: pointer;
+  color: hsla(174, 76%, 20%, 0.61);
+  font-size: small;
+  text-align: center;
+}
+
+.note-section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+  width: 85%;
+}
+
+.great-job {
+  font-size: 20px;
+}
+
+.summary {
+  font-size: larger;
+}
+
 .lets-go-cont {
   width: -webkit-fill-available;
   height: 30px;

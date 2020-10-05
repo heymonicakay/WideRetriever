@@ -205,7 +205,7 @@ const playerId = parseInt(props.match.params.playerId)
 
       <section className={`steps ${stepTwo ? "hidden" : "visible"}`}>
         <div className="step-two-header">
-          Enjoy your {exTypeSelectedLower}, {player.name}!
+          Enjoy your {exTypeSelectedLower}!
         </div>
         <div className="stopwatch">
           <Stopwatch
@@ -225,27 +225,28 @@ const playerId = parseInt(props.match.params.playerId)
 
       <section className={`steps ${stepThree ? "hidden" : "visible"}`}>
         <div className="ex-msg">
-          <p>
-            Great job {player.name}!
-          </p>
-          <p>
+          <div className="great-job">
+            Great job!
+          </div>
+          <div className="summary">
             Summary
-          </p>
+          </div>
           <p>
             Activity: {exTypeSelected}
           </p>
           <p>
-            Start: {startTime}
+            Start Time: {startTime}
           </p>
           <p>
-            End: {endTime}
+            End Time: {endTime}
           </p>
           <p>
             Total Active Time: {intMinute}min {intSecond}s
           </p>
         </div>
+        <div className="note-section">
 
-          <label>Add a note about today's {exTypeSelectedLower}...</label>
+          <label className="note-label">Add a note about today's {exTypeSelectedLower}...</label>
           <textarea
             ref={note}
             name="note"
@@ -261,6 +262,10 @@ const playerId = parseInt(props.match.params.playerId)
             }}>
               Save Exercise Session
           </button>
+          <div className="discard" onClick={()=>props.history.push(`/players/${playerId}`)}>
+            Discard Exercise Session
+          </div>
+        </div>
 
         </section>
 

@@ -84,7 +84,7 @@ export const Stopwatch = (props) => {
                       </div>
                     </div>
                     <button onClick={() => setAreYouSure(false)}
-                      className="btn pause-ex">
+                      className="btn btn-oops pause-ex">
                         Oops! Nevermind!
                     </button>
                     <button onClick={()=>{
@@ -103,7 +103,7 @@ export const Stopwatch = (props) => {
                       setBreakTime(true)
                       setIsActive(!isActive)}}
                       className="break-btn">
-                        <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1601416449/wideRetriever/60E0728A-353C-429A-BC91-F82F71CD5299_j11qcy.png" alt="" className="break-btn-img" title="Click to pause the timer."/>
+                        <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1601928981/wideRetriever/FCDD1687-36D9-4E07-8DA6-E57A24C01284_r7yemf.png" alt="" className="break-btn-img" title="Click to pause the timer."/>
                   </div>
                   <button onClick={handleClick}
                     className="btn end-ex">
@@ -137,7 +137,7 @@ export const Stopwatch = (props) => {
                       </div>
                       <button
                         onClick={() => setAreYouSure(false)}
-                        className="btn pause-ex">
+                        className="btn btn-oops pause-ex">
                           Oops! Nevermind!
                       </button>
                       <button onClick={()=>{
