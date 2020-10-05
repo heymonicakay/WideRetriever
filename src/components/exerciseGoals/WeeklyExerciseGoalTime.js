@@ -485,7 +485,6 @@ export const WeeklyExerciseGoalTime = (props) => {
 // 1 hour per day
 // 3 times per day
 
-
   return (
     <>
     <div className="goal-statement">
