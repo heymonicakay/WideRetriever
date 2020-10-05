@@ -137,30 +137,6 @@ const changeDate = () => {
 
   console.log(tz, "timezone offset")
 
-
-
-  // const newDateFormat = new Date(dueDate.current.value).toISOString().substr(0, 10)
-  // console.log(newDateFormat, "new date NEW CONFIG format")
-
-  // const newDate = newDateFormat.getDate()
-  // console.log(newDate, "new date get date")
-  // const monthInt = newDateFormat.getMonth()
-  // const newMonth = monthArrayShort[monthInt]
-  // console.log(newMonth, "new date get month")
-  // const newYear = newDateFormat.getFullYear()
-  // console.log(newYear, "new date get year")
-
-  // const today = new Date()
-  // if(newDateFormat > today) {
-  //   console.log("future date")
-  // }
-  // if(newDateFormat < today) {
-  //   console.log("past date")
-  // }
-  // if(newDateFormat === today) {
-  //   console.log("today")
-  // }
-
 }
   const toggleNotes = () => {
     if(showNotes === false){

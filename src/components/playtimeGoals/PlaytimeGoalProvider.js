@@ -38,7 +38,6 @@ export const PlaytimeGoalProvider = (props) => {
             },
             body: JSON.stringify(playtimeGoal)
         })
-        .then(res => res.json())
         .then(getPlaytimeGoals)
     }
 
@@ -59,6 +58,7 @@ export const PlaytimeGoalProvider = (props) => {
     })
         .then(getPlaytimeGoals)
 }
+
 
     return (
         <PlaytimeGoalContext.Provider value={{

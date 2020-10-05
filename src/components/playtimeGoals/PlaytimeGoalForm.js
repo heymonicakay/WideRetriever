@@ -49,8 +49,8 @@ export const PlaytimeGoalForm = (props) => {
       timestamp: Date.now(),
       date: today,
     })
-      .then(() => props.history.push(`/players/${playerId}`))}
-  }
+      .then(props.history.push(`/players/${playerId}`))
+  }}
 
   const measType = measurementTypes.find(mt => mt.id === 3) || {}
 

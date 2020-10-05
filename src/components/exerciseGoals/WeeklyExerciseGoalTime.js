@@ -10,7 +10,7 @@ export const WeeklyExerciseGoalTime = (props) => {
   const { measurementTypes } = useContext(MeasurementTypeContext)
   const { frequencies } = useContext(FrequencyContext)
   const { weekArray } = useContext(DateContext)
-
+  const { patchExerciseGoal, getExerciseGoals } = useContext(ExerciseGoalContext)
   const thisDay = new Date()
   const todayLocal = new Date().toLocaleDateString('en-US', {timeZone: "America/Chicago"})
   const thisTimestamp = Date.now(thisDay)
@@ -473,23 +473,74 @@ export const WeeklyExerciseGoalTime = (props) => {
 
   console.log(weeklyGoalInSeconds, "WEEKLY GOAL")
   console.log(weekProgress, "WEEK PROGRESS")
-// three
-// hours
-// week
 
-// days per week
-// hours per week
-// times per week
+  const handleGoalDoubleClick = () => {
+    setGoalEdit(true)
+  }
+  const handleGoalKeyPress = (e) => {
+    if(e.key === "Enter"){
+      {patchExerciseGoal({
+        id: props.playerExerciseGoal.id,
+        goalSet: parseInt(goalEditInput.current.value)
+      })
+      .then(getExerciseGoals())
+      .then(setGoalEdit(false))
+    }
+  }}
 
-// 30 minutes per day
-// 1 hour per day
-// 3 times per day
-
+  const handleMeasureDoubleClick = () => {
+    setMeasurementTypeEdit(true)
+  }
+  const handleMeasureKeyPress = (e)=>{
+    if(e.key === "Enter"){
+      {patchExerciseGoal({
+        id: props.playerExerciseGoal.id,
+        measurementTypeId: parseInt(measurementTypeEditInput.current.value)
+      })
+      .then(getExerciseGoals())
+      .then(setMeasurementTypeEdit(false))
+    }
+    }}
+  const [measurementTypeEdit, setMeasurementTypeEdit]=useState(false)
+  const [goalEdit, setGoalEdit] = useState(false)
+  const goalEditInput = useRef(null)
+  const measurementTypeEditInput = useRef(null)
   return (
     <>
     <div className="goal-statement">
-      Exercise goal: {goal} {measurement} every {frequency}
+      Exercise goal:
+      {goalEdit
+      ? <>
+      <input type="number" defaultValue={goal} min="0" max="60" ref={goalEditInput} name="goalEditInput" className="input input--ex input--goalSet" onKeyPress={(e) => {
+        handleGoalKeyPress(e)
+        }} />
+        </>
+      :<>
+        <span className="goal" onDoubleClick={handleGoalDoubleClick}>
+          {goal}
+        </span>
+        </>
+      }
+      {measurementTypeEdit
+      ?<>
+      <select defaultValue={measurement} name="measurementType" ref={measurementTypeEditInput} id="measurementTypeEditInput" className="select select--mt" onKeyPress={(e) => {
+        handleMeasureKeyPress(e)
+        }}>
+              {measurementTypes.map(mt => (
+                  <option key={mt.id} value={mt.id}>
+                      {mt.plural}
+                  </option>
+              ))}
+        </select>
+      </>
+      :<>
+      <span className="measure" onDoubleClick={handleMeasureDoubleClick}>
+        {measurement}
+      </span>
+      </>
+      } every {frequency}
     </div>
+
       <div className="chart-container column">
 
         <div className="heading-container column">

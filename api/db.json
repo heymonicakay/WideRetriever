@@ -64,7 +64,7 @@
     },
     {
       "userId": 1,
-      "reminderTitle": "Oder Food",
+      "reminderTitle": "Order Food",
       "dueDate": "2020-10-31",
       "dueDateTimestamp": 1601855986743,
       "dateSet": "2020-10-04T23:59:32.990Z",
@@ -108,40 +108,15 @@
       "name": "Jarvis",
       "breed": "Cavalier King Charles Spaniel",
       "age": "6",
-      "number": "92",
       "id": 5
     },
     {
-      "id": 6,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601912440/wideretriever/zrj37vyw73t8m359yreu.jpg",
       "userId": 1,
-      "name": "Hallie",
-      "breed": "Other",
-      "age": "7"
-    },
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
-      "name": "Example",
-      "breed": "example",
-      "age": "8",
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
-      "name": "Example",
-      "breed": "example",
-      "age": "8",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
-      "name": "Example",
-      "breed": "example",
-      "age": "7",
-      "id": 9
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601920143/wideretriever/oohvnovqc1xrs6t6cuxu.jpg",
+      "name": "bug",
+      "breed": "pug",
+      "age": "5",
+      "id": 6
     }
   ],
   "playtimeGoals": [
@@ -160,9 +135,9 @@
       "goalSetDate": 1600809829371
     },
     {
-      "playerId": 9,
-      "goalSet": 2,
-      "timestamp": 1601918480976,
+      "playerId": 6,
+      "goalSet": 5,
+      "timestamp": 1601920309302,
       "date": "10/5/2020",
       "id": 3
     }
@@ -187,11 +162,11 @@
       "id": 5
     },
     {
-      "playerId": 9,
-      "goalSet": 30,
-      "measurementTypeId": 1,
+      "playerId": 6,
+      "goalSet": 2,
+      "measurementTypeId": 2,
       "frequencyId": 1,
-      "timestamp": 1601916331094,
+      "timestamp": 1601920282651,
       "date": "10/5/2020",
       "id": 6
     }
@@ -212,11 +187,11 @@
       "date": "9/24/2020"
     },
     {
-      "playerId": 9,
+      "playerId": 6,
       "goalSet": 10,
       "measurementTypeId": 1,
       "frequencyId": 1,
-      "timestamp": 1601916565987,
+      "timestamp": 1601920304840,
       "date": "10/5/2020",
       "id": 3
     }
@@ -394,6 +369,18 @@
       "note": "We had so much fun hiking!",
       "timestamp": 1601890111330,
       "id": 1600625390
+    },
+    {
+      "id": 1600625391,
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "startTime": "4:20 PM",
+      "endTime": "4:27 PM",
+      "minutes": 55,
+      "seconds": 6,
+      "date": "10/5/2020",
+      "note": "We had so much fun hiking!",
+      "timestamp": 1601890111330
     }
   ],
   "trainings": [

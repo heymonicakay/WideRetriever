@@ -39,7 +39,8 @@ const constructNewTrainingGoal = () => {
     timestamp: Date.now(),
     date: today,
   })
-    .then(() => props.history.push(`/players/goals/playtime/add/${playerId}`))}
+    .then(props.history.push(`/players/goals/playtime/add/${playerId}`))}
+    
   }
   const handleControlledInputChange = (e) => {
     if(goalSet.current.value <= 1) {

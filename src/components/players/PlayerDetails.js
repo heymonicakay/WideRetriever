@@ -26,9 +26,9 @@ export const PlayerDetails = ( props ) => {
   const { playtimes, playerPlaytimes, getPlayerPlaytimes} = useContext(PlaytimeContext)
   const { trainings, playerTrainings, getPlayerTrainings } = useContext(TrainingContext)
   const { exercises, playerExercises, getPlayerExercises} = useContext(ExerciseContext)
-  const { playtimeGoals, getPlayerPlaytimeGoal, playerPlaytimeGoal } = useContext(PlaytimeGoalContext)
-  const { trainingGoals, getPlayerTrainingGoal, playerTrainingGoal } = useContext(TrainingGoalContext)
-  const { exerciseGoals, getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
+  const { playtimeGoals, getPlaytimeGoals, getPlayerPlaytimeGoal, playerPlaytimeGoal } = useContext(PlaytimeGoalContext)
+  const { trainingGoals, getTrainingGoals, getPlayerTrainingGoal, playerTrainingGoal } = useContext(TrainingGoalContext)
+  const { exerciseGoals, getExerciseGoals, getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
   const { date, getCurrentTimestamp,currentTimestamp, todayObj, thisMonthVar, thisWeekstart, filterByThisWeek, filteredByThisWeek, filterByToday, filteredByToday} = useContext(DateContext)
 //STATE
   const [exercisesToday, setExercisesToday] = useState([])
@@ -50,6 +50,11 @@ export const PlayerDetails = ( props ) => {
 
   //EFFECT
   useEffect(()=>{
+    getPlaytimeGoals()
+    getExerciseGoals()
+    getTrainingGoals()
+  }, [])
+  useEffect(()=>{
     if(isOwner){
       setIsHidden(false)}
     else{
@@ -57,6 +62,7 @@ export const PlayerDetails = ( props ) => {
   }, [isOwner])
 
   useEffect(() => {
+    const playerId = parseInt(props.match.params.playerId)
     getCurrentTimestamp()
     getPlayerByPlayerId(playerId)
     getPlayerPlaytimeGoal(playerId)
@@ -65,7 +71,7 @@ export const PlayerDetails = ( props ) => {
     getPlayerExercises(playerId)
     getPlayerPlaytimes(playerId)
     getPlayerTrainings(playerId)
-  }, [playtimes, trainings, exercises, exerciseGoals, playtimeGoals, trainingGoals])
+  }, [playerId, playtimes, trainings, exercises, exerciseGoals, playtimeGoals, trainingGoals])
 
   useEffect(()=>{
     if(player.userId === props.currentUserId){

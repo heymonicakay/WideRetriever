@@ -31,7 +31,6 @@ export const ExerciseGoalProvider = (props) => {
             },
             body: JSON.stringify(exerciseGoal)
         })
-          .then(res => res.json())
           .then(getExerciseGoals)
     }
 
@@ -45,6 +44,15 @@ export const ExerciseGoalProvider = (props) => {
       })
           .then(getExerciseGoals)
   }
+  const patchExerciseGoal = exerciseGoal => {
+    return fetch(`http://localhost:8088/exerciseGoals/${exerciseGoal.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(exerciseGoal)
+    }).then(getExerciseGoals);
+  };
 
   const removeExerciseGoal = (exerciseGoalId) => {
     return fetch(`http://localhost:8088/exerciseGoals/${exerciseGoalId}`, {
@@ -69,7 +77,8 @@ useEffect(()=>{
             editExerciseGoal,
             getPlayerExerciseGoal,
             setPlayerExerciseGoal,
-            playerExerciseGoal
+            playerExerciseGoal,
+            patchExerciseGoal
         }}>
             {props.children}
         </ExerciseGoalContext.Provider>

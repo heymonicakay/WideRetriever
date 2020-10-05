@@ -46,12 +46,12 @@ export const ExerciseGoalForm = (props) => {
     {addExerciseGoal({
       playerId,
       goalSet: parseInt(exerciseGoal.goalSet),
-      measurementTypeId: parseInt(3),
+      measurementTypeId: parseInt(measurementType.current.value),
       frequencyId: parseInt(frequency.current.value),
       timestamp: Date.now(),
       date: today,
     })
-    .then(() => props.history.push(`/players/goals/training/add/${playerId}`))}
+    .then(props.history.push(`/players/goals/training/add/${playerId}`))}
   }
 
   return (
