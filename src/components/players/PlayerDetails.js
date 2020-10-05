@@ -186,6 +186,7 @@ const showTraining = () => {
                   </div>
                   <section className="exercise-goal-section">
                     <WeeklyExerciseGoalTime
+                      findSum={findSum}
                       player={ player }
                       exercisesToday={ exercisesToday }
                       playerId={ playerId }

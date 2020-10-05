@@ -76,7 +76,7 @@ const playerId = parseInt(props.match.params.playerId)
   const todayTimestamp = Date.now()
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
   const current = new Date()
-  const currentTime = current.toLocaleTimeString()
+  const currentTime = current.toLocaleTimeString('en-US', {timeStyle: "short"})
   const weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
   const day = current.getDay()
   const date = current.getDate()
@@ -123,6 +123,7 @@ const playerId = parseInt(props.match.params.playerId)
       playerId,
       exerciseTypeId: parseInt(exerciseType.current.value),
       startTime: startTime,
+      endTime: endTime,
       minutes: intMinute,
       seconds: intSecond,
       date: today,

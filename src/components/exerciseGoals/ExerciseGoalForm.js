@@ -82,7 +82,7 @@ export const ExerciseGoalForm = (props) => {
 
         <label forHTML="goalSet">How often would you like {player.name} to exercise?</label>
 
-        <input type="number" defaultValue="" min="1" max="60" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
+        <input type="number" defaultValue="" min="1" max="60" step="5" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
 
         {singular
           ?

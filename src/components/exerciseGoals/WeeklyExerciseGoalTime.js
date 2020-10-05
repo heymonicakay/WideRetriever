@@ -7,70 +7,110 @@ import "./ExerciseGoal.css"
 
 export const WeeklyExerciseGoalTime = (props) => {
   // useContext
-    const { measurementTypes } = useContext(MeasurementTypeContext)
-    const { frequencies } = useContext(FrequencyContext)
-    const { weekArray } = useContext(DateContext)
+  const { measurementTypes } = useContext(MeasurementTypeContext)
+  const { frequencies } = useContext(FrequencyContext)
+  const { weekArray } = useContext(DateContext)
 
-    const thisDay = new Date()
-    //date object
-    // console.log(thisDay, "this day")
+  const thisDay = new Date()
+  const todayLocal = new Date().toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+  const thisTimestamp = Date.now(thisDay)
+  const thisDayOfTheWeekInt = thisDay.getDay()
+  const today = Date.now()
+  const todayDate = new Date(today)
+  const todayDay = todayDate.getDay()
+  const dayToday = weekArray[todayDay]
+  useEffect(()=>{
+    const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
+    const freq = frequency.each
 
-    const thisTimestamp = Date.now(thisDay)
-    //timestamp of date object
-    // console.log(thisTimestamp , " this timestamp")
+    const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
+    const measure = meas.measurement
+    const plural = meas.plural
 
-    const thisDayOfTheWeekInt = thisDay.getDay()
-    //integer for current day
-    // console.log(thisDayOfTheWeekInt , "this Day Of The Week Int")
+    const goal = parseInt(props.playerExerciseGoal.goalSet)
+    if(goal <= 1){
+      setMeasurement(measure)
+    }
+    else {
+      setMeasurement(plural)
+    }
+    setGoal(goal)
+    setFrequency(freq)
+  }, [props.playerExerciseGoal])
 
 
-    const thisDayMinusOne = thisTimestamp - 1 * 24 * 60 * 60 * 1000
-    const minusOne = new Date(thisDayMinusOne)
+//STATE
+  const [sunArray, setSunArray] = useState([])
+  const [monArray, setMonArray] = useState([])
+  const [tuesArray, setTuesArray] = useState([])
+  const [wedArray, setWedArray] = useState([])
+  const [thursArray, setThursArray] = useState([])
+  const [friArray, setFriArray] = useState([])
+  const [satArray, setSatArray] = useState([])
 
-    const thisDayPlusOne = thisTimestamp + 1 * 24 * 60 * 60 * 1000
-    const plusOne = new Date(thisDayPlusOne)
+  const [sunday, setSunday] = useState({})
+  const [monday, setMonday] = useState({})
+  const [tuesday, setTuesday] = useState({})
+  const [wednesday, setWednesday] = useState({})
+  const [thursday, setThursday] = useState({})
+  const [friday, setFriday] = useState({})
+  const [saturday, setSaturday] = useState({})
+/* set array length for goals with measurement TIMES frequency DAY */
+  const [sundayLength, setSundayLength] = useState(0)
+  const [mondayLength, setMondayLength] = useState(0)
+  const [tuesdayLength, setTuesdayLength] = useState(0)
+  const [wednesdayLength, setWednesdayLength] = useState(0)
+  const [thursdayLength, setThursdayLength] = useState(0)
+  const [fridayLength, setFridayLength] = useState(0)
+  const [saturdayLength, setSaturdayLength] = useState(0)
+/* set array lenth for goals with measurement TIMES frequency WEEK */
+  const [weekLength, setWeekLength] = useState(0)
+/* */
+  const [goal, setGoal] = useState(0)
+  const [frequency, setFrequency] = useState("")
+  const [measurement, setMeasurement] = useState("")
 
-    const thisDayMinusTwo = thisTimestamp - 2 * 24 * 60 * 60 * 1000
-    const minusTwo = new Date(thisDayMinusTwo)
+//WEEK
+  const thisDayMinusOne = thisTimestamp - 1 * 24 * 60 * 60 * 1000
+  const minusOne = new Date(thisDayMinusOne).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayPlusTwo = thisTimestamp + 2 * 24 * 60 * 60 * 1000
-    const plusTwo = new Date(thisDayPlusTwo)
+  const thisDayPlusOne = thisTimestamp + 1 * 24 * 60 * 60 * 1000
+  const plusOne = new Date(thisDayPlusOne).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayMinusThree = thisTimestamp - 3 * 24 * 60 * 60 * 1000
-    const minusThree = new Date(thisDayMinusThree)
+  const thisDayMinusTwo = thisTimestamp - 2 * 24 * 60 * 60 * 1000
+  const minusTwo = new Date(thisDayMinusTwo).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayPlusThree = thisTimestamp + 3 * 24 * 60 * 60 * 1000
-    const plusThree = new Date(thisDayPlusThree)
+  const thisDayPlusTwo = thisTimestamp + 2 * 24 * 60 * 60 * 1000
+  const plusTwo = new Date(thisDayPlusTwo).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayMinusFour = thisTimestamp - 4 * 24 * 60 * 60 * 1000
-    const minusFour = new Date(thisDayMinusFour)
+  const thisDayMinusThree = thisTimestamp - 3 * 24 * 60 * 60 * 1000
+  const minusThree = new Date(thisDayMinusThree).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayPlusFour = thisTimestamp + 4 * 24 * 60 * 60 * 1000
-    const plusFour = new Date(thisDayPlusFour)
+  const thisDayPlusThree = thisTimestamp + 3 * 24 * 60 * 60 * 1000
+  const plusThree = new Date(thisDayPlusThree).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayMinusFive = thisTimestamp - 5 * 24 * 60 * 60 * 1000
-    const minusFive = new Date(thisDayMinusFive)
+  const thisDayMinusFour = thisTimestamp - 4 * 24 * 60 * 60 * 1000
+  const minusFour = new Date(thisDayMinusFour).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayPlusFive = thisTimestamp + 5 * 24 * 60 * 60 * 1000
-    const plusFive = new Date(thisDayPlusFive)
+  const thisDayPlusFour = thisTimestamp + 4 * 24 * 60 * 60 * 1000
+  const plusFour = new Date(thisDayPlusFour).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayMinusSix = thisTimestamp - 6 * 24 * 60 * 60 * 1000
-    const minusSix = new Date(thisDayMinusSix)
+  const thisDayMinusFive = thisTimestamp - 5 * 24 * 60 * 60 * 1000
+  const minusFive = new Date(thisDayMinusFive).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const thisDayPlusSix = thisTimestamp + 6 * 24 * 60 * 60 * 1000
-    const plusSix = new Date(thisDayPlusSix)
+  const thisDayPlusFive = thisTimestamp + 5 * 24 * 60 * 60 * 1000
+  const plusFive = new Date(thisDayPlusFive).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-    const [sunday, setSunday] = useState({})
-    const [monday, setMonday] = useState({})
-    const [tuesday, setTuesday] = useState({})
-    const [wednesday, setWednesday] = useState({})
-    const [thursday, setThursday] = useState({})
-    const [friday, setFriday] = useState({})
-    const [saturday, setSaturday] = useState({})
+  const thisDayMinusSix = thisTimestamp - 6 * 24 * 60 * 60 * 1000
+  const minusSix = new Date(thisDayMinusSix).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
+  const thisDayPlusSix = thisTimestamp + 6 * 24 * 60 * 60 * 1000
+  const plusSix = new Date(thisDayPlusSix).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+
+//EFFECT
   useEffect(()=>{
     if(thisDayOfTheWeekInt === 0) {
-      setSunday(thisDay)
+      setSunday(todayLocal)
       setMonday(plusOne)
       setTuesday(plusTwo)
       setWednesday(plusThree)
@@ -80,7 +120,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     }
     if(thisDayOfTheWeekInt === 1) {
       setSunday(minusOne)
-      setMonday(thisDay)
+      setMonday(todayLocal)
       setTuesday(plusOne)
       setWednesday(plusTwo)
       setThursday(plusThree)
@@ -90,7 +130,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     if(thisDayOfTheWeekInt === 2) {
       setSunday(minusTwo)
       setMonday(minusOne)
-      setTuesday(thisDay)
+      setTuesday(todayLocal)
       setWednesday(plusOne)
       setThursday(plusTwo)
       setFriday(plusThree)
@@ -100,7 +140,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSunday(minusThree)
       setMonday(minusTwo)
       setTuesday(minusOne)
-      setWednesday(thisDay)
+      setWednesday(todayLocal)
       setThursday(plusOne)
       setFriday(plusTwo)
       setSaturday(plusThree)
@@ -110,7 +150,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setMonday(minusThree)
       setTuesday(minusTwo)
       setWednesday(minusOne)
-      setThursday(thisDay)
+      setThursday(todayLocal)
       setFriday(plusOne)
       setSaturday(plusTwo)
     }
@@ -120,7 +160,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setTuesday(minusThree)
       setWednesday(minusTwo)
       setThursday(minusOne)
-      setFriday(thisDay)
+      setFriday(todayLocal)
       setSaturday(plusOne)
     }
     if(thisDayOfTheWeekInt === 6) {
@@ -130,23 +170,111 @@ export const WeeklyExerciseGoalTime = (props) => {
       setWednesday(minusThree)
       setThursday(minusTwo)
       setFriday(minusOne)
-      setSaturday(thisDay)
+      setSaturday(todayLocal)
     }
   }, [])
 
-  // console.log(sunday, "sunday")
-  // console.log(monday, "monday")
-  // console.log(tuesday, "tuesday")
-  // console.log(wednesday, "wednesday")
-  // console.log(thursday, "thursday")
-  // console.log(friday, "friday")
-  // console.log(saturday, "saturday")
+  useEffect(()=>{
+    const sunArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date === sunday) {
+        return pe
+      }})  || []
+    const monArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== monday) {
+        return pe
+      }})|| []
+    const tuesArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== tuesday){
+        return pe
+       }}) || []
+    const wedArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== wednesday) {
+        return pe
+      }}) || []
+    const thursArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== thursday){
+        return pe
+      }}) || []
+    const friArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== friday) {
+        return pe
+      }})|| []
+    const satArray = props.playerExercises.filter(pe => {
+      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+      if(date=== saturday) {
+        return pe
+      }}) || []
+
+    setSunArray(sunArray)
+    setMonArray(monArray)
+    setTuesArray(tuesArray)
+    setWedArray(wedArray)
+    setThursArray(thursArray)
+    setFriArray(friArray)
+    setSatArray(satArray)
+
+  }, [props.playerExercises])
+
+  useEffect(()=>{
+    const totalCount = sunArray.length + monArray.length + tuesArray.length + wedArray.length + thursArray.length + friArray.length + satArray.length
+    setWeekLength(totalCount)
+  }, [sunArray, monArray, tuesArray, wedArray, thursArray, friArray, satArray] )
+
+  useEffect(()=>{
+    const secondsArray = sunArray.map(sun => sun.seconds)
+    const minutesArray = sunArray.map(sun => sun.minutes)
+    const totalSeconds = props.findSum(secondsArray)
+    const totalMinutes = props.findSum(minutesArray)
+    const minutesAsSeconds = totalMinutes * 60
+    const seconds = minutesAsSeconds % 60
+    const minutes = totalMinutes % 60
+    const hours = Math.floor(totalMinutes / 60)
+    setSunSeconds(seconds)
+    setSunMinutes(minutes)
+    setSunHours(hours)
+
+  }, [props.playerExercises, sunArray])
+
+  useEffect(()=>{
+    const secondsArray = monArray.map(mon => mon.seconds)
+    const minutesArray = monArray.map(mon => mon.minutes)
+    const totalSeconds = props.findSum(secondsArray)
+    const totalMinutes = props.findSum(minutesArray)
+    const minutesAsSeconds = totalMinutes * 60
+    const seconds = minutesAsSeconds % 60
+    const minutes = totalMinutes % 60
+    const hours = Math.floor(totalMinutes / 60)
+
+    setMonSeconds(seconds)
+    setMonMinutes(minutes)
+    setMonHours(hours)
+
+  }, [props.playerExercises, monArray])
+
+  const [sunSeconds, setSunSeconds] = useState(0)
+  const [sunMinutes, setSunMinutes] = useState(0)
+  const [sunHours, setSunHours] = useState(0)
+  const [monSeconds, setMonSeconds] = useState(0)
+  const [monMinutes, setMonMinutes] = useState(0)
+  const [monHours, setMonHours] = useState(0)
+  console.log(sunHours, "sunday hours")
+  console.log(sunMinutes, "sunday minutes")
+  console.log(sunSeconds, "sunday seconds")
+  console.log(monHours, "monday hours")
+  console.log(monMinutes, "monday minutes")
+  console.log(monSeconds, "monday seconds")
+  console.log(props.playerExerciseGoal,"player exercise goal" )
+  console.log(weekLength, "week array")
 
 // three
 // hours
 // week
-
-// if today is sunday then sunday is today's date monday is todays date plus one, and tuesday is todays date plus two
 
 // days per week
 // hours per week
@@ -155,32 +283,10 @@ export const WeeklyExerciseGoalTime = (props) => {
 // 30 minutes per day
 // 1 hour per day
 // 3 times per day
-
-  const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
-  const freq = frequency.each
-  // console.log(freq, "frequency")
-
-  const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
-  const measure = meas.plural
-
-  // console.log(props.playerExercises, "ex this week")
-
-  // console.log(Date.now(), "date now ")
-
-  const today = Date.now()
-  const todayDate = new Date(today)
-  const todayDay = todayDate.getDay()
-  const dayToday = weekArray[todayDay]
-
-  // console.log(todayDate , "today date")
-  // console.log(todayDay , "today day")
-  // console.log(dayToday, " day today")
-
-
   return (
     <>
     <div className="goal-statement">
-      Exercise Goal: {props.playerExerciseGoal.goalSet} {measure} every {freq}
+      Exercise Goal: {goal} {measurement} every {frequency}
     </div>
     <div className="goal-acheived">
       Exercise Achieved:

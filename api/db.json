@@ -139,9 +139,9 @@
     },
     {
       "playerId": 4,
-      "goalSet": 3,
+      "goalSet": 2,
       "measurementTypeId": 2,
-      "frequencyId": 2,
+      "frequencyId": 1,
       "timestamp": 1601339954723,
       "date": "9/28/2020",
       "id": 5
@@ -158,7 +158,7 @@
     {
       "id": 2,
       "playerId": 4,
-      "goalSet": "5",
+      "goalSet": 5,
       "timestamp": 1600971551828,
       "date": "9/24/2020"
     }
@@ -218,7 +218,8 @@
     {
       "playerId": 4,
       "exerciseTypeId": 2,
-      "duration": "5-10 min",
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/19/2020",
       "note": "We went for a quick walk.",
       "id": 5,
@@ -227,7 +228,8 @@
     {
       "playerId": 3,
       "exerciseTypeId": 1,
-      "duration": "5-10 min",
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/20/2020",
       "note": "Phoebe had a great time walking! ",
       "id": 1600625381
@@ -235,6 +237,8 @@
     {
       "id": 7,
       "playerId": 5,
+      "minutes": 68,
+      "seconds": 32,
       "exerciseTypeId": 1,
       "date": "9/21/2020",
       "timestamp": 1600711781
@@ -242,7 +246,8 @@
     {
       "playerId": 2,
       "exerciseTypeId": 2,
-      "duration": "5-10 min",
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/23/2020",
       "note": "This is an exercise session added on 9/23",
       "timestamp": 1600912616901,
@@ -251,7 +256,8 @@
     {
       "playerId": 4,
       "exerciseTypeId": 2,
-      "duration": "5-10 min",
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/24/2020",
       "note": "Great!",
       "timestamp": 1600929310499,
@@ -260,6 +266,8 @@
     {
       "playerId": 2,
       "exerciseTypeId": 1,
+      "minutes": 68,
+      "seconds": 32,
       "duration": "5-10 min",
       "date": "9/28/2020",
       "timestamp": 1601341229302,
@@ -268,6 +276,8 @@
     {
       "playerId": 4,
       "exerciseTypeId": 1,
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/28/2020",
       "timestamp": 1601354096296,
       "id": 1600625385
@@ -275,7 +285,8 @@
     {
       "playerId": 4,
       "exerciseTypeId": 1,
-      "duration": 3,
+      "minutes": 68,
+      "seconds": 32,
       "date": "9/29/2020",
       "note": "He did great!",
       "timestamp": 1601392924472,
@@ -290,6 +301,29 @@
       "date": "9/30/2020",
       "timestamp": 1601494528841,
       "id": 1600625387
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "startTime": "9:00:44 PM",
+      "minutes": 34,
+      "seconds": 36,
+      "date": "10/4/2020",
+      "note": "Short walk! ",
+      "timestamp": 1601863480443,
+      "id": 1600625388
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 1,
+      "startTime": "10:32 PM",
+      "endTime": "10:32 PM",
+      "minutes": 68,
+      "seconds": 32,
+      "date": "10/4/2020",
+      "note": "This is a test\n",
+      "timestamp": 1601868779220,
+      "id": 1600625389
     }
   ],
   "trainings": [
