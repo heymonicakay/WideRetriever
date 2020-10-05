@@ -31,7 +31,8 @@ export const ExerciseGoalProvider = (props) => {
             },
             body: JSON.stringify(exerciseGoal)
         })
-            .then(getExerciseGoals)
+          .then(res => res.json())
+          .then(getExerciseGoals)
     }
 
     const editExerciseGoal = exerciseGoal => {

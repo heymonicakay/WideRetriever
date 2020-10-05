@@ -118,6 +118,30 @@
       "name": "Hallie",
       "breed": "Other",
       "age": "7"
+    },
+    {
+      "userId": 1,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
+      "name": "Example",
+      "breed": "example",
+      "age": "8",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
+      "name": "Example",
+      "breed": "example",
+      "age": "8",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png",
+      "name": "Example",
+      "breed": "example",
+      "age": "7",
+      "id": 9
     }
   ],
   "playtimeGoals": [
@@ -134,6 +158,13 @@
       "goalSet": 5,
       "frequencyId": 1,
       "goalSetDate": 1600809829371
+    },
+    {
+      "playerId": 9,
+      "goalSet": 2,
+      "timestamp": 1601918480976,
+      "date": "10/5/2020",
+      "id": 3
     }
   ],
   "exerciseGoals": [
@@ -154,6 +185,15 @@
       "timestamp": 1601339954723,
       "date": "9/28/2020",
       "id": 5
+    },
+    {
+      "playerId": 9,
+      "goalSet": 30,
+      "measurementTypeId": 1,
+      "frequencyId": 1,
+      "timestamp": 1601916331094,
+      "date": "10/5/2020",
+      "id": 6
     }
   ],
   "trainingGoals": [
@@ -170,6 +210,15 @@
       "goalSet": 5,
       "timestamp": 1600971551828,
       "date": "9/24/2020"
+    },
+    {
+      "playerId": 9,
+      "goalSet": 10,
+      "measurementTypeId": 1,
+      "frequencyId": 1,
+      "timestamp": 1601916565987,
+      "date": "10/5/2020",
+      "id": 3
     }
   ],
   "measurementTypes": [

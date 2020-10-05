@@ -1,59 +1,58 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { PlayerContext } from "../players/PlayerProvider"
 import { PlaytimeGoalContext} from "./PlaytimeGoalProvider"
+import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
+import { FrequencyContext } from "../goals/FrequencyProvider"
 
 import "../playtime/PlaytimeForm.css"
 
-
 export const PlaytimeGoalForm = (props) => {
-  // refs
+  // REFS
   const goalSet = useRef(null)
-
+  const measurementType = useRef(null)
+  const frequency = useRef(null)
+  //CONTEXT
+  const { getPlayerByPlayerId, player } = useContext(PlayerContext)
   const { addPlaytimeGoal } = useContext(PlaytimeGoalContext)
-
-  // // declare and set playtime state var
-  // const [frequencyTypes, setFrequencyTypes] = useState({})
-  // const [ measurementTypes]
-
+  const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
+  const { frequencies, getFrequencies } = useContext(FrequencyContext)
+//STATE
   const [ playtimeGoal, setPlaytimeGoal ] = useState({})
-
-  // func to build new playtime obj on input change
-  const handleControlledInputChange = (e) => {
+  const [ singular, setSingular ] = useState(true)
+  const playerId = parseInt(props.match.params.playerId)
+  const todayTimestamp = Date.now()
+  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+//EFFECT
+    useEffect(() => {
+      getMeasurementTypes()
+      getFrequencies()
+      getPlayerByPlayerId(playerId)
+    }, [])
+//HANDLE
+    const handleControlledInputChange = (e) => {
+      if(goalSet.current.value <= 1) {
+        setSingular(true)
+      }
+      else {
+        setSingular(false)
+      }
     const newPlaytimeGoal = Object.assign({}, playtimeGoal)
-
     newPlaytimeGoal[e.target.name] = e.target.value
-
     setPlaytimeGoal(newPlaytimeGoal)
   }
 
   const constructNewPlaytimeGoal = () => {
-    //define player ID
     const playerId = parseInt(props.match.params.playerId)
-
-    // call the func add playtime and pass it the arg of a whole playtime obj and then take the user back to the player details view
     {addPlaytimeGoal({
       playerId,
-      goalSet: playtimeGoal.goalSet,
+      goalSet: parseInt(playtimeGoal.goalSet),
       timestamp: Date.now(),
       date: today,
     })
       .then(() => props.history.push(`/players/${playerId}`))}
   }
 
-  // translate alien timstamp into human date
-  const todayTimestamp = Date.now()
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
-
-  // exposing functionality to get and set player
-  const { getPlayerByPlayerId } = useContext(PlayerContext)
-  const [player, setPlayer] = useState({})
-
-  // get whole player obj then set player
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerByPlayerId(playerId)
-        .then(setPlayer)
-  }, [])
+  const measType = measurementTypes.find(mt => mt.id === 3) || {}
 
   return (
     <div className="cont--form-ex">
@@ -64,17 +63,31 @@ export const PlaytimeGoalForm = (props) => {
 
         <label for="note">How often would you like {player.name} to play?</label>
 
-        <select defaultValue="" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange}>
-          <option value="0">0</option>
-          <option value="1">1 day a week</option>
-          <option value="2">2 days a week</option>
-          <option value="3">3 days a week</option>
-          <option value="4">4 days a week</option>
-          <option value="5">5 days a week</option>
-          <option value="6">6 days a week</option>
-          <option value="7">7 days a week</option>
-        </select>
+        <input type="number" defaultValue="" min="0" max="10" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
 
+        {singular
+          ?
+          <>
+            <span>
+              {measType.measurement}
+            </span>
+          </>
+          :
+          <>
+            <span>
+              {measType.plural}
+            </span>
+          </>
+        }
+        <label forHTML="frequency">every</label>
+
+        <select defaultValue="" name="frequency" ref={frequency} id="frequency" className="select select--fq" onChange={handleControlledInputChange}>
+              {frequencies.map(f => (
+                  <option key={f.id} value={f.id}>
+                      {f.each}
+                  </option>
+              ))}
+          </select>
           <button className="btn btn--submit btn--ex" type="button"
               onClick={e => {
                 e.preventDefault()

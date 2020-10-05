@@ -69,6 +69,7 @@ export const PlayerForm = (props) => {
         name: player.name,
         breed: player.breed,
         age: player.age,
+        weight: player.weight,
       })
       .then(() => props.history.push("/players"))
     }
@@ -79,8 +80,9 @@ export const PlayerForm = (props) => {
         name: player.name,
         breed: player.breed,
         age: player.age,
+        weight: player.weight,
       })
-      .then(() => props.history.push("/players"))
+      .then((id)=>props.history.push(`/players/goals/exercise/add/${id}`))
     }
   }
 

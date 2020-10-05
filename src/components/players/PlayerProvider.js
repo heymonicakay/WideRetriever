@@ -33,7 +33,10 @@ export const PlayerProvider = (props) => {
             },
             body: JSON.stringify(player)
         })
-            .then(getPlayers)
+        .then(res => res.json())
+        .then(newPlayer => {
+              getPlayers()
+              return newPlayer.id })
     }
 
     const editPlayer = player => {

@@ -38,7 +38,8 @@ export const PlaytimeGoalProvider = (props) => {
             },
             body: JSON.stringify(playtimeGoal)
         })
-            .then(getPlaytimeGoals)
+        .then(res => res.json())
+        .then(getPlaytimeGoals)
     }
 
     const editPlaytimeGoal = playtimeGoal => {

@@ -37,7 +37,7 @@ export const ApplicationViews = (props) => {
     <DateProvider>
       <UserProvider >
         <DefaultIconProvider>
-          <PlayerProvider>
+          <PlayerProvider {...props}>
             <FollowingProvider>
               <ReminderProvider>
               <Route
@@ -204,6 +204,8 @@ export const ApplicationViews = (props) => {
               </PlaytimeProvider>
 
               <PlaytimeGoalProvider>
+                <MeasurementTypeProvider>
+                  <FrequencyProvider>
               <Route
                   exact path="/players/goals/playtime/add/:playerId(\d+)"
                   render={
@@ -214,6 +216,8 @@ export const ApplicationViews = (props) => {
                     {...props}/>
                   }
                   />
+                  </FrequencyProvider>
+                </MeasurementTypeProvider>
               </PlaytimeGoalProvider>
 
             <Route
