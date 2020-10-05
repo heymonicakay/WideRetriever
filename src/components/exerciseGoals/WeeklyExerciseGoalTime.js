@@ -13,15 +13,15 @@ export const WeeklyExerciseGoalTime = (props) => {
 
     const thisDay = new Date()
     //date object
-    console.log(thisDay, "this day")
+    // console.log(thisDay, "this day")
 
     const thisTimestamp = Date.now(thisDay)
     //timestamp of date object
-    console.log(thisTimestamp , " this timestamp")
+    // console.log(thisTimestamp , " this timestamp")
 
     const thisDayOfTheWeekInt = thisDay.getDay()
     //integer for current day
-    console.log(thisDayOfTheWeekInt , "this Day Of The Week Int")
+    // console.log(thisDayOfTheWeekInt , "this Day Of The Week Int")
 
 
     const thisDayMinusOne = thisTimestamp - 1 * 24 * 60 * 60 * 1000
@@ -134,13 +134,13 @@ export const WeeklyExerciseGoalTime = (props) => {
     }
   }, [])
 
-  console.log(sunday, "sunday")
-  console.log(monday, "monday")
-  console.log(tuesday, "tuesday")
-  console.log(wednesday, "wednesday")
-  console.log(thursday, "sunday")
-  console.log(friday, "friday")
-  console.log(saturday, "saturday")
+  // console.log(sunday, "sunday")
+  // console.log(monday, "monday")
+  // console.log(tuesday, "tuesday")
+  // console.log(wednesday, "wednesday")
+  // console.log(thursday, "thursday")
+  // console.log(friday, "friday")
+  // console.log(saturday, "saturday")
 
 // three
 // hours
@@ -158,23 +158,23 @@ export const WeeklyExerciseGoalTime = (props) => {
 
   const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
   const freq = frequency.each
-  console.log(freq, "frequency")
+  // console.log(freq, "frequency")
 
   const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
   const measure = meas.plural
 
-  console.log(props.playerExercises, "ex this week")
+  // console.log(props.playerExercises, "ex this week")
 
-  console.log(Date.now(), "date now ")
+  // console.log(Date.now(), "date now ")
 
   const today = Date.now()
   const todayDate = new Date(today)
   const todayDay = todayDate.getDay()
   const dayToday = weekArray[todayDay]
 
-  console.log(todayDate , "today date")
-  console.log(todayDay , "today day")
-  console.log(dayToday, " day today")
+  // console.log(todayDate , "today date")
+  // console.log(todayDay , "today day")
+  // console.log(dayToday, " day today")
 
 
   return (

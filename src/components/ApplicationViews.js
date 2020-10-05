@@ -24,12 +24,10 @@ import { PlaytimeGoalForm } from "./playtimeGoals/PlaytimeGoalForm"
 import { TrainingGoalProvider } from "./trainingGoals/TrainingGoalProvider"
 import { TrainingGoalForm } from "./trainingGoals/TrainingGoalForm"
 import { UserDash } from  "./users/Dashboard"
-import { ReminderForm } from "./reminders/ReminderForm"
 import { ReminderProvider } from "./reminders/ReminderProvider"
 import { MeasurementTypeProvider } from "./goals/MeasurementTypeProvider"
 import { FrequencyProvider } from "./goals/FrequencyProvider"
 import { DateProvider } from "./time/DateProvider"
-import { ReminderList } from "./reminders/ReminderList"
 
 export const ApplicationViews = (props) => {
   const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
@@ -72,14 +70,7 @@ export const ApplicationViews = (props) => {
                           </div>
                       }
                       />
-                      <div className="reminder-list-cont">
-                        <ReminderForm
-                          currentUserId={currentUserId}
-                          {...props}/>
-                          <ReminderList
-                          currentUserId={currentUserId}
-                          {...props} />
-                      </div>
+
                     </div>
                   </>
                 }/>

@@ -6,7 +6,6 @@ export const ReminderProvider = (props) => {
     const [searchTerms, setTerms] = useState("")
     const [playerReminders, setPlayerReminders] = useState([])
 
-
     const getReminders = () => {
         return fetch("http://localhost:8088/reminders")
             .then(res => res.json())
@@ -63,9 +62,6 @@ export const ReminderProvider = (props) => {
         .then(getReminders)
 }
 
-useEffect(()=>{
-  getReminders()
-}, [])
 
     return (
         <ReminderContext.Provider value={{

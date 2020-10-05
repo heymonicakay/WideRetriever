@@ -8,6 +8,21 @@
   padding: 1rem 2rem;
 }
 
+.mark-completed {
+  cursor: pointer;
+}
+
+.red {
+  background-color: rgb(196, 39, 39);
+}
+
+.reminder-card {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: .25rem;
+  margin: .25rem;
+}
+
 .due-date {
   display: flex;
   justify-content: space-evenly;
