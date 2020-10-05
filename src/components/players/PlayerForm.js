@@ -133,11 +133,14 @@ export const PlayerForm = (props) => {
                   )
                 :(
                   <>
+                  <div className="upload--img">
+
                     <img src={image} alt="" className="img-uploaded" onClick={handleClick}/>
                     <span className="img-overlay" hidden={isHidden} alt=""
                       onClick={()=>{
                         handleClick()}}
-                    ></span>
+                        ></span>
+                  </div>
                   </>
                   )
               }

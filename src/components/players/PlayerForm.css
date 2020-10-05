@@ -72,6 +72,7 @@
   justify-self: center;
   align-self: center;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 .upload--img {
@@ -94,8 +95,8 @@
 
 .img-overlay {
   z-index: 3;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 25rem;
   border: 2px solid black;
   overflow: hidden;
@@ -105,12 +106,13 @@
   position: absolute;
   background:url("https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png") 0 0 no-repeat;
   background-size: cover;
+  margin-top: 1rem;
 }
 
 .uploaded-img-container {
   z-index: 3;
-  width: 199px !important;
-  height: 199px !important;
+  width: 200px !important;
+  height: 200px !important;
   border-radius: 25rem;
   border: 2px solid black;
   background-color: transparent;
