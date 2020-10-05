@@ -112,12 +112,12 @@
       "id": 5
     },
     {
-      "userId": 1,
+      "id": 6,
       "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601912440/wideretriever/zrj37vyw73t8m359yreu.jpg",
+      "userId": 1,
       "name": "Hallie",
       "breed": "Other",
-      "age": "7",
-      "id": 6
+      "age": "7"
     }
   ],
   "playtimeGoals": [

@@ -105,14 +105,21 @@
   height: 80px;
 }
 
-/* .pl-card-img-detail {
-  transform: scale(1.5, 1.5) translate(-20px, -20px)
-} */
-
-.btn--red {
-  background-color: rgb(243, 61, 61) !important;
+.btn--remove {
+  background-color:  hsla(173, 22%, 56%, 0.644) !important;
 }
 
-.btn--circle {
-  border-radius: 25rem !important;
+.btn-edit-player {
+  background-color:  hsla(174, 30%, 51%, 0.397) !important;
+  border-radius: none !important;
+  border: 1px solid white;
+  color: hsla(175, 70%, 91%, 0.671) !important;
+  transition: .25s;
+  font-size: smaller;
+}
+
+.btn-edit-player:hover {
+  background-color:  hsla(174, 67%, 54%, 0.493) !important;
+  box-shadow: 2px 2px 4px hsla(172, 93%, 21%, 0.808);
+  color: white !important;
 }

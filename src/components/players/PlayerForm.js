@@ -172,7 +172,7 @@ export const PlayerForm = (props) => {
           </button>
           {editMode
             ? (
-            <button className="btn btn--red"
+            <button className="btn btn--remove"
                   onClick={() => {
                 delDialog.current.showModal()
               }}>
