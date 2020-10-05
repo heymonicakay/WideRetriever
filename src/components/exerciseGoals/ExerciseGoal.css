@@ -2,8 +2,10 @@
 display: flex;
 flex-flow: column nowrap;
 justify-content: center;
+text-align: center;
 align-content: center;
-border: 1ps
+border: 1px solid gray;
+padding: 1rem;
 }
 
 .week-container {
@@ -11,19 +13,42 @@ border: 1ps
   flex-flow: row nowrap;
 }
 
+.day-containter {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
 .goal-container {
   display:flex;
+  flex-flow: column nowrap;
   border: 1px solid black;
   width: 40px;
-  height: 100px;
-  margin: 0 .25rem;
+  margin: 0 1rem;
+  justify-content: flex-end;
+  align-content: flex-end;
 }
 
 .achieved-container {
   display: flex;
   background-color: gray;
   width: 40px;
-  height: 80%;
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
+.goal-container-week {
+  display:flex;
+  border: 1px solid black;
+  height: 20px;
+  margin: 0 1rem;
+}
+
+.achieved-container-week {
+  display: flex;
+  background-color: gray;
+  height: 20px;
   align-self: flex-end;
 }
 

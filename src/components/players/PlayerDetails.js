@@ -184,20 +184,6 @@ const showTraining = () => {
                     playerId={playerId}
                     {...props}/>
                   </div>
-                  <section className="exercise-goal-section">
-                    <WeeklyExerciseGoalTime
-                      findSum={findSum}
-                      player={ player }
-                      exercisesToday={ exercisesToday }
-                      playerId={ playerId }
-                      currentUserId={ props.currentuserId }
-                      exercisesThisWeek={ exercisesThisWeek }
-                      playerExerciseGoal={ playerExerciseGoal }
-                      playerExercises={ playerExercises }
-                      todayObj={ todayObj}
-                      timestamp={ currentTimestamp }
-                      {...props}/>
-                  </section>
                   <section className="daily-progress-section">
                     <TodaysProgress
                       player={ player }
@@ -240,6 +226,22 @@ const showTraining = () => {
               </div>
             </section>
           </div>
+            <div className="middle">
+              <section className="exercise-goal-section">
+                <WeeklyExerciseGoalTime
+                  findSum={findSum}
+                  player={ player }
+                  exercisesToday={ exercisesToday }
+                  playerId={ playerId }
+                  currentUserId={ props.currentuserId }
+                  exercisesThisWeek={ exercisesThisWeek }
+                  playerExerciseGoal={ playerExerciseGoal }
+                  playerExercises={ playerExercises }
+                  todayObj={ todayObj}
+                  timestamp={ currentTimestamp }
+                  {...props}/>
+              </section>
+            </div>
             <div className="button-bar">
               <div className={`playtime ${hideGames ? "" : "active"}`} onClick={()=>{showGames()}}>Games of Catch</div>
               <div className={`training ${hideTraining ? "" : "active"}`} onClick={()=>{showTraining()}}>Training Sessions</div>

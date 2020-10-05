@@ -43,10 +43,11 @@
       "timeDue": "12:00",
       "dateSet": "2020-10-04T23:14:38.191Z",
       "timestamp": 1601853278191,
-      "isCompleted": false,
+      "isCompleted": true,
       "dateCompleted": "",
       "isRecurring": false,
-      "id": 2
+      "id": 2,
+      "completedDate": 1601890702394
     },
     {
       "userId": 1,
@@ -324,6 +325,18 @@
       "note": "This is a test\n",
       "timestamp": 1601868779220,
       "id": 1600625389
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 3,
+      "startTime": "4:20 AM",
+      "endTime": "4:27 AM",
+      "minutes": 55,
+      "seconds": 6,
+      "date": "10/5/2020",
+      "note": "We had so much fun hiking!",
+      "timestamp": 1601890111330,
+      "id": 1600625390
     }
   ],
   "trainings": [
