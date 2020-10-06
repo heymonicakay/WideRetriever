@@ -7,20 +7,27 @@ export const FollowButton = (props) => {
 //REFS
   const unfollowDialog = useRef(null)
 //CONTEXT
-  const { currentUserFollowings, addFollowing, unfollow, getUserFollowings } = useContext(FollowingContext)
+  const { fullFollowings, addFollowing, unfollow, getFullFollowings } = useContext(FollowingContext)
 //STATE
-  const [iAmFollowing, setIAmFollowing] = useState(true)
+  const [iAmFollowing, setIAmFollowing] = useState(false)
   const [followConnectionTBD, setFollowConnectionTBD] = useState({})
 //EFFECT
+const playerId = parseInt(props.match.params.playerId)
+
   useEffect(()=>{
-    getUserFollowings(props.currentUserId)
+    getFullFollowings()
   },[])
   useEffect(()=>{
-    if(currentUserFollowings.includes(props.playerId)){
-      setIAmFollowing(true)}
-    const followConnection = currentUserFollowings.find(uf => uf.followedPlayerId === props.playerId) || {}
-    setFollowConnectionTBD(followConnection.id)
-  }, [currentUserFollowings, props.player])
+    fullFollowings.forEach(ff => {
+      if(props.currentUserId === ff.userId && playerId === ff.player.id ) {
+        setIAmFollowing(true)
+        setFollowConnectionTBD(ff)
+      }
+      else{
+        setIAmFollowing(false)
+      }
+    })
+  }, [fullFollowings])
 
 //HANDLE
   const createNewFollowConnection = () => {
@@ -28,10 +35,10 @@ export const FollowButton = (props) => {
     window.alert("you are already following this player")}
   const newFollowConnection = {
       userId: props.currentUserId,
-      followedPlayerId: props.playerId
+      playerId: props.playerId
     }
     addFollowing(newFollowConnection)
-    .then(getUserFollowings(props.currentUserId))
+    .then(getFullFollowings)
   }
 //RETURN
   return (
@@ -43,8 +50,8 @@ export const FollowButton = (props) => {
       <div className="cont__dialog-btns--unf-check">
         <div className="unfollow-sure" onClick={e => {
             e.preventDefault()
-            unfollow(followConnectionTBD)
-            .then(getUserFollowings(props.currentUserId))
+            unfollow(followConnectionTBD.id)
+            .then(getFullFollowings)
             unfollowDialog.current.close()
         }}>
           Yes, I'm sure.

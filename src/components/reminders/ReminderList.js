@@ -7,10 +7,6 @@ export const ReminderList = (props) => {
   const { reminders, getReminders, removeReminder, patchReminder } = useContext(ReminderContext)
 
   const [sortedList, setSortedList] = useState([])
-  console.log(reminders, "reminders")
-
-  console.log(sortedList, "sorted")
-
 
 useEffect(()=>{
   getReminders()

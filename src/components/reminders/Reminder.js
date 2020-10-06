@@ -38,12 +38,6 @@ export const Reminder = (props) =>{
   },[dueDate, thisDay])
 
   const completedDate = new Date(props.reminder.completedDate)
-  // console.log(props.reminder.id ,"reminder id")
-  // console.log(props.reminder.isCompleted, "is completed")
-  // console.log(props.reminder.isRecurring, "is recurring")
-  // console.log(isDueToday, "is due today")
-  // console.log(dueDate, "due date")
-  // console.log(thisDay, "this day")
 
   return (
     <>

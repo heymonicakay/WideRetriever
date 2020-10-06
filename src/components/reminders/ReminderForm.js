@@ -67,27 +67,11 @@ export const ReminderForm = (props) => {
     })}
     }
 }
-
-  // translate alien timstamp into human date
   const todayTimestamp = Date.now()
   const today = new Date(todayTimestamp)
-  // const test = new Date()
-  // const testIso = new Date().toISOString()
-  // const testTime = test.getTime()
-  // // console.log(test, "test")
-  // console.log(testTime, "test time")
-  // console.log(testIso, "test ISO")
 
-  // exposing functionality to get and set player
   const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
-
-  // get whole player obj then set player
-  // useEffect(() => {
-  //   const playerId = parseInt(props.match.params.playerId)
-  //     getPlayerByPlayerId(playerId)
-  //       .then(setPlayer)
-  // }, [])
 
 //HANDLE
   const handleBlur = () => {
@@ -117,7 +101,6 @@ export const ReminderForm = (props) => {
   }
 
 const changeTime = ()=>{
-  console.log(dueDateTime.current.value, "current time value")
 
   const timeValue = dueDateTime.current.value
 
@@ -125,18 +108,9 @@ const changeTime = ()=>{
 
 const changeDate = () => {
 
-  console.log(dueDate.current.value, "current value")
   const dueDateTimestamp = new Date(dueDate.current.value)
-  console.log(dueDateTimestamp, "new Date(dueDate.current.value")
-  //output date obj
   const localDueDate = dueDateTimestamp.toLocaleDateString('en-US')
-  console.log(localDueDate, "local due date")
-
-  console.log(new Date(), "this day new Date()")
   const tz = new Date().getTimezoneOffset()
-
-  console.log(tz, "timezone offset")
-
 }
   const toggleNotes = () => {
     if(showNotes === false){

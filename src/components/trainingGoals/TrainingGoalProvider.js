@@ -31,7 +31,7 @@ export const TrainingGoalProvider = (props) => {
             },
             body: JSON.stringify(trainingGoal)
         })
-        
+
         .then(getTrainingGoals)
     }
 
@@ -45,6 +45,16 @@ export const TrainingGoalProvider = (props) => {
       })
           .then(getTrainingGoals)
   }
+
+  const patchTrainingGoal = trainingGoal => {
+    return fetch(`http://localhost:8088/trainingGoals/${trainingGoal.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(trainingGoal)
+    }).then(getTrainingGoals);
+  };
 
   const removeTrainingGoal = (trainingGoalId) => {
     return fetch(`http://localhost:8088/trainingGoals/${trainingGoalId}`, {
@@ -66,7 +76,7 @@ export const TrainingGoalProvider = (props) => {
             getPlayerTrainingGoal,
             setPlayerTrainingGoal,
             playerTrainingGoal,
-            noTrGoal, setNoTrGoal
+            noTrGoal, setNoTrGoal, patchTrainingGoal
         }}>
             {props.children}
         </TrainingGoalContext.Provider>

@@ -5,6 +5,7 @@ export const FollowingContext = React.createContext()
 export const FollowingProvider = (props) => {
     const [currentUserFollowings, setCurrentUserFollowings] = useState([])
     const [followings, setFollowings] = useState([])
+    const [fullFollowings, setFullFollowings]=useState([])
 
     const getFollowings = () => {
         return fetch("http://localhost:8088/followings")
@@ -17,6 +18,13 @@ export const FollowingProvider = (props) => {
           .then(res => res.json())
           .then(setCurrentUserFollowings)
   }
+    const getFullFollowings = () => {
+      return fetch('http://localhost:8088/followings?_expand=player')
+      .then(res => res.json())
+      .then(setFullFollowings)
+    }
+
+
 
     const addFollowing = followingObj => {
         return fetch("http://localhost:8088/followings", {
@@ -53,6 +61,8 @@ export const FollowingProvider = (props) => {
                 getUserFollowings,
                 currentUserFollowings,
                 setCurrentUserFollowings,
+                getFullFollowings,
+                fullFollowings
             }
         }>
             {props.children}

@@ -10,8 +10,6 @@ export const Playtime = ( props ) => {
   const average = props.playtime.catches / tosses
   const percent = average.toLocaleString('en', {style: 'percent'})
 
-  console.log(props.isOwner , "IS OWNER")
-
   const toggleHide = () => {
     if(hideDetails === true) {
       setHideDetails(false)

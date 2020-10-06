@@ -52,6 +52,16 @@ export const PlaytimeGoalProvider = (props) => {
           .then(getPlaytimeGoals)
   }
 
+  const patchPlaytimeGoal = playtimeGoal => {
+    return fetch(`http://localhost:8088/playtimeGoals/${playtimeGoal.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(playtimeGoal)
+    }).then(getPlaytimeGoals);
+  };
+
   const removePlaytimeGoal = (playtimeGoalId) => {
     return fetch(`http://localhost:8088/playtimeGoals/${playtimeGoalId}`, {
         method: "DELETE"
@@ -73,7 +83,8 @@ export const PlaytimeGoalProvider = (props) => {
             getPlayerPlaytimeGoal,
             setPlayerPlaytimeGoal,
             playerPlaytimeGoal,
-            noPtGoal, setNoPtGoal
+            noPtGoal, setNoPtGoal,
+            patchPlaytimeGoal
         }}>
             {props.children}
         </PlaytimeGoalContext.Provider>

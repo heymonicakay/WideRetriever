@@ -17,8 +17,7 @@ export const ExerciseForm = (props) => {
   const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)
   const { measurementTypes, getMeasurementTypes } = useContext(MeasurementTypeContext)
   const { getPlayerByPlayerId } = useContext(PlayerContext)
-
-//useEffect
+//EFFECT
 const playerId = parseInt(props.match.params.playerId)
   useEffect(() => {
     getPlayerByPlayerId(playerId)

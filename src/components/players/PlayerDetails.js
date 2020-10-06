@@ -14,6 +14,7 @@
   import { TodaysProgress } from "../goals/TodaysProgress"
   import { WeeksProgress } from "../goals/WeeksProgress"
   import { WeeklyExerciseGoalTime } from "../exerciseGoals/WeeklyExerciseGoalTime"
+  import { WeeklyPlaytimeGoalTime } from "../playtimeGoals/WeeklyPlaytimeGoalTime"
   import { DateContext} from "../time/DateProvider"
   import { PlayerActivityButtons } from "./PlayerActivityButtons"
   import { FollowButton } from "../following/FollowButton"
@@ -178,9 +179,6 @@ const showTraining = () => {
                   <div className="pl-card--age">
                     {player.age} years old
                   </div>
-                  <div className="pl-card--catch-success">
-                    Catch Percentage: {successRate}
-                  </div>
                 </div>
               </section>
             </div>
@@ -204,7 +202,7 @@ const showTraining = () => {
               {isOwner
               ?
               <div className="middle">
-              <section className="exercise-goal-section">
+              <section className={`exercise-goal-section ${hideExercise ? "hidden" : "visible"}`}>
                 <WeeklyExerciseGoalTime
                   findSum={findSum}
                   player={ player }
@@ -218,6 +216,20 @@ const showTraining = () => {
                   timestamp={ currentTimestamp }
                   {...props}/>
               </section>
+              <section className={`playtime-goal-section ${hideGames ? "hidden" : "visible"}`}>
+                <WeeklyPlaytimeGoalTime
+                findSum={findSum}
+                player={ player }
+                playtimesToday={ playtimesToday }
+                playerId={ playerId }
+                currentUserId={ props.currentuserId }
+                playtimesThisWeek={ playtimesThisWeek }
+                playerPlaytimeGoal={ playerPlaytimeGoal }
+                playerPlaytimes={ playerPlaytimes }
+                todayObj={ todayObj}
+                timestamp={ currentTimestamp }
+                {...props}/>
+                </section>
               </div>
               :<> </>
               }

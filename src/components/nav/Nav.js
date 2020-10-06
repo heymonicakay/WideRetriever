@@ -25,15 +25,12 @@ export const Nav = (props) => {
   useEffect(()=>{
     const username = currentUser.username || {}
     const deconUsername = {...username}
-    console.log(deconUsername)
     const letter = deconUsername[0]
-    console.log(letter)
     setLetter(letter)
   }, [currentUser])
 
   useEffect(()=>{
     const matchingIcon = defaultIcons.find(di => di.letter === letter) || {}
-    console.log(matchingIcon)
     setImage(matchingIcon.iconURL)
   }, [letter, defaultIcons])
 

@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect, useRef } from "react"
-import { ExerciseGoalContext } from "./ExerciseGoalProvider"
+import { PlaytimeGoalContext } from "./PlaytimeGoalProvider"
 import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
 import { FrequencyContext } from "../goals/FrequencyProvider"
 import { DateContext } from "../time/DateProvider"
-import "./ExerciseGoal.css"
+import "./PlaytimeGoal.css"
 
-export const WeeklyExerciseGoalTime = (props) => {
+export const WeeklyPlaytimeGoalTime = (props) => {
   // useContext
   const { measurementTypes } = useContext(MeasurementTypeContext)
   const { frequencies } = useContext(FrequencyContext)
   const { weekArray } = useContext(DateContext)
-  const { patchExerciseGoal, getExerciseGoals } = useContext(ExerciseGoalContext)
+  const { patchPlaytimeGoal, getPlaytimeGoals } = useContext(PlaytimeGoalContext)
   const thisDay = new Date()
   const todayLocal = new Date().toLocaleDateString('en-US', {timeZone: "America/Chicago"})
   const thisTimestamp = Date.now(thisDay)
@@ -49,43 +49,42 @@ export const WeeklyExerciseGoalTime = (props) => {
   const [weekLength, setWeekLength] = useState(0)
 /* */
   const [goal, setGoal] = useState(0)
-  const [dailyGoalInSeconds, setDailyGoalInSeconds] = useState(0)
-  const [weeklyGoalInSeconds, setWeeklyGoalInSeconds] = useState(0)
+  const [dailyGoal, setDailyGoal] = useState(0)
   const [frequency, setFrequency] = useState("")
   const [measurement, setMeasurement] = useState("")
 /* set secs for each day in CURRENT week */
-  const [sunSeconds, setSunSeconds] = useState(0)
-  const [monSeconds, setMonSeconds] = useState(0)
-  const [tuesSeconds, setTuesSeconds] = useState(0)
-  const [wedSeconds, setWedSeconds] = useState(0)
-  const [thursSeconds, setThursSeconds] = useState(0)
-  const [friSeconds, setFriSeconds] = useState(0)
-  const [satSeconds, setSatSeconds] = useState(0)
+  const [sunCatches, setSunCatches] = useState(0)
+  const [monCatches, setMonCatches] = useState(0)
+  const [tuesCatches, setTuesCatches] = useState(0)
+  const [wedCatches, setWedCatches] = useState(0)
+  const [thursCatches, setThursCatches] = useState(0)
+  const [friCatches, setFriCatches] = useState(0)
+  const [satCatches, setSatCatches] = useState(0)
 /* set active time in secs for each day in CURRENT*/
-  const [sunMinutesAsSeconds, setSunMinutesAsSeconds] = useState(0)
-  const [monMinutesAsSeconds, setMonMinutesAsSeconds] = useState(0)
-  const [tuesMinutesAsSeconds, setTuesMinutesAsSeconds] = useState(0)
-  const [wedMinutesAsSeconds, setWedMinutesAsSeconds] = useState(0)
-  const [thursMinutesAsSeconds, setThursMinutesAsSeconds] = useState(0)
-  const [friMinutesAsSeconds, setFriMinutesAsSeconds] = useState(0)
-  const [satMinutesAsSeconds, setSatMinutesAsSeconds] = useState(0)
+  const [sunTosses, setSunTosses] = useState(0)
+  const [monTosses, setMonTosses] = useState(0)
+  const [tuesTosses, setTuesTosses] = useState(0)
+  const [wedTosses, setWedTosses] = useState(0)
+  const [thursTosses, setThursTosses] = useState(0)
+  const [friTosses, setFriTosses] = useState(0)
+  const [satTosses, setSatTosses] = useState(0)
 /* set mins for each day in CURRENT week */
-  const [sunMinutes, setSunMinutes] = useState(0)
-  const [monMinutes, setMonMinutes] = useState(0)
-  const [tuesMinutes, setTuesMinutes] = useState(0)
-  const [wedMinutes, setWedMinutes] = useState(0)
-  const [thursMinutes, setThursMinutes] = useState(0)
-  const [friMinutes, setFriMinutes] = useState(0)
-  const [satMinutes, setSatMinutes] = useState(0)
+  const [sunMisses, setSunMisses] = useState(0)
+  const [monMisses, setMonMisses] = useState(0)
+  const [tuesMisses, setTuesMisses] = useState(0)
+  const [wedMisses, setWedMisses] = useState(0)
+  const [thursMisses, setThursMisses] = useState(0)
+  const [friMisses, setFriMisses] = useState(0)
+  const [satMisses, setSatMisses] = useState(0)
 /* set hours for each day in CURRENT week */
-  const [sunHours, setSunHours] = useState(0)
-  const [monHours, setMonHours] = useState(0)
-  const [tuesHours, setTuesHours] = useState(0)
-  const [wedHours, setWedHours] = useState(0)
-  const [thursHours, setThursHours] = useState(0)
-  const [friHours, setFriHours] = useState(0)
-  const [satHours, setSatHours] = useState(0)
-
+  const [sunPercentage, setSunPercentage] = useState(0)
+  const [monPercentage, setMonPercentage] = useState(0)
+  const [tuesPercentage, setTuesPercentage] = useState(0)
+  const [wedPercentage, setWedPercentage] = useState(0)
+  const [thursPercentage, setThursPercentage] = useState(0)
+  const [friPercentage, setFriPercentage] = useState(0)
+  const [satPercentage, setSatPercentage] = useState(0)
+  const [weeklyGoal, setWeeklyGoal] = useState(0)
 // THIS WEEK
   const thisDayMinusOne = thisTimestamp - 1 * 24 * 60 * 60 * 1000
   const minusOne = new Date(thisDayMinusOne).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
@@ -191,37 +190,37 @@ export const WeeklyExerciseGoalTime = (props) => {
   }, [])
 /* sets dates for currrent */
   useEffect(()=>{
-    const sunArray = props.playerExercises.filter(pe => {
+    const sunArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date === sunday) {
         return pe
       }})  || []
-    const monArray = props.playerExercises.filter(pe => {
+    const monArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== monday) {
         return pe
       }})|| []
-    const tuesArray = props.playerExercises.filter(pe => {
+    const tuesArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== tuesday){
         return pe
       }}) || []
-    const wedArray = props.playerExercises.filter(pe => {
+    const wedArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== wednesday) {
         return pe
       }}) || []
-    const thursArray = props.playerExercises.filter(pe => {
+    const thursArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== thursday){
         return pe
       }}) || []
-    const friArray = props.playerExercises.filter(pe => {
+    const friArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== friday) {
         return pe
       }})|| []
-    const satArray = props.playerExercises.filter(pe => {
+    const satArray = props.playerPlaytimes.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== saturday) {
         return pe
@@ -235,7 +234,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setFriArray(friArray)
     setSatArray(satArray)
 
-  }, [props.playerExercises])
+  }, [props.playerPlaytimes])
 
   useEffect(()=>{
     setSundayLength(sunArray.length)
@@ -250,133 +249,115 @@ export const WeeklyExerciseGoalTime = (props) => {
   }, [sunArray, monArray, tuesArray, wedArray, thursArray, friArray, satArray] )
 
   useEffect(()=>{
-    const secondsArray = sunArray.map(sun => sun.seconds)
-    const minutesArray = sunArray.map(sun => sun.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setSunSeconds(seconds)
-    setSunMinutes(minutes)
-    setSunHours(hours)
-    setSunMinutesAsSeconds(minutesAsSeconds)
+    const catchesArray = sunArray.map(sun => sun.catches)
+    const missesArray = sunArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setSunCatches(totalCatches)
+    setSunMisses(totalMisses)
+    setSunPercentage(percentage)
+    setSunTosses(tosses)
 
-  }, [props.playerExercises, sunArray])
-
-  useEffect(()=>{
-    const secondsArray = monArray.map(mon => mon.seconds)
-    const minutesArray = monArray.map(mon => mon.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setMonSeconds(seconds)
-    setMonMinutes(minutes)
-    setMonHours(hours)
-    setMonMinutesAsSeconds(minutesAsSeconds)
-
-  }, [props.playerExercises, monArray])
+  }, [props.playerPlaytimes, sunArray])
 
   useEffect(()=>{
-    const secondsArray = tuesArray.map(tues => tues.seconds)
-    const minutesArray = tuesArray.map(tues => tues.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setTuesSeconds(seconds)
-    setTuesMinutes(minutes)
-    setTuesHours(hours)
-    setTuesMinutesAsSeconds(minutesAsSeconds)
-
-  }, [props.playerExercises, tuesArray])
+    const catchesArray = monArray.map(sun => sun.catches)
+    const missesArray = monArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setMonCatches(totalCatches)
+    setMonMisses(totalMisses)
+    setMonPercentage(percentage)
+    setMonTosses(tosses)
+  }, [props.playerPlaytimes, monArray])
 
   useEffect(()=>{
-    const secondsArray = wedArray.map(wed => wed.seconds)
-    const minutesArray = wedArray.map(wed => wed.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setWedSeconds(seconds)
-    setWedMinutes(minutes)
-    setWedHours(hours)
-    setWedMinutesAsSeconds(minutesAsSeconds)
+    const catchesArray = tuesArray.map(sun => sun.catches)
+    const missesArray = tuesArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setTuesCatches(totalCatches)
+    setTuesMisses(totalMisses)
+    setTuesPercentage(percentage)
+    setTuesTosses(tosses)
 
-  }, [props.playerExercises, wedArray])
+  }, [props.playerPlaytimes, tuesArray])
+  useEffect(()=>{
+    const catchesArray = wedArray.map(sun => sun.catches)
+    const missesArray = wedArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setWedCatches(totalCatches)
+    setWedMisses(totalMisses)
+    setWedPercentage(percentage)
+    setWedTosses(tosses)
+
+  }, [props.playerPlaytimes, wedArray])
 
   useEffect(()=>{
-    const secondsArray = thursArray.map(thurs => thurs.seconds)
-    const minutesArray = thursArray.map(thurs => thurs.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setThursSeconds(seconds)
-    setThursMinutes(minutes)
-    setThursHours(hours)
-    setThursMinutesAsSeconds(minutesAsSeconds)
+    const catchesArray = thursArray.map(sun => sun.catches)
+    const missesArray = thursArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setThursCatches(totalCatches)
+    setThursMisses(totalMisses)
+    setThursPercentage(percentage)
+    setThursTosses(tosses)
 
-  }, [props.playerExercises, thursArray])
-
-  useEffect(()=>{
-    const secondsArray = friArray.map(fri => fri.seconds)
-    const minutesArray = friArray.map(fri => fri.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setFriSeconds(seconds)
-    setFriMinutes(minutes)
-    setFriHours(hours)
-    setFriMinutesAsSeconds(minutesAsSeconds)
-  }, [props.playerExercises, friArray])
+  }, [props.playerPlaytimes, thursArray])
 
   useEffect(()=>{
-    const secondsArray = satArray.map(sat => sat.seconds)
-    const minutesArray = satArray.map(sat => sat.minutes)
-    const totalSeconds = props.findSum(secondsArray)
-    const totalMinutes = props.findSum(minutesArray)
-    const minutesAsSeconds = (totalMinutes * 60) + totalSeconds
-    const seconds = minutesAsSeconds % 60
-    const minutes = totalMinutes % 60
-    const hours = Math.floor(totalMinutes / 60)
-    setSatSeconds(seconds)
-    setSatMinutes(minutes)
-    setSatHours(hours)
-    setSatMinutesAsSeconds(minutesAsSeconds)
-  }, [props.playerExercises, satArray])
+    const catchesArray = friArray.map(sun => sun.catches)
+    const missesArray = friArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setFriCatches(totalCatches)
+    setFriMisses(totalMisses)
+    setFriPercentage(percentage)
+    setFriTosses(tosses)
+
+  }, [props.playerPlaytimes, friArray])
 
   useEffect(()=>{
-    const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
+    const catchesArray = satArray.map(sun => sun.catches)
+    const missesArray = satArray.map(sun => sun.misses)
+    const totalCatches = props.findSum(catchesArray)
+    const totalMisses = props.findSum(missesArray)
+    const tosses = totalCatches + totalMisses
+    const average = totalCatches / tosses
+    const percentage = Math.floor(average)
+    setSatCatches(totalCatches)
+    setSatMisses(totalMisses)
+    setSatPercentage(percentage)
+    setSatTosses(tosses)
+
+  }, [props.playerPlaytimes, satArray])
+  useEffect(()=>{
+    const frequency = frequencies.find(f => f.id === props.playerPlaytimeGoal.frequencyId) || {}
     const freq = frequency.each
-
-    const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
+    const meas = measurementTypes.find(mt => mt.id === props.playerPlaytimeGoal.measurementTypeId) || {}
     const measId = meas.id
     const measure = meas.measurement
     const plural = meas.plural
-    const goal = parseInt(props.playerExerciseGoal.goalSet)
-
-    if(measId === 1){
-      const goalInSeconds = goal * 60
-      setDailyGoalInSeconds(goalInSeconds)
-    }
-    if(measId === 2){
-      const goalInSeconds = goal * 60 * 60
-      setDailyGoalInSeconds(goalInSeconds)
-    }
+    const goal = parseInt(props.playerPlaytimeGoal.goalSet)
 
     if(goal <= 1){
       setMeasurement(measure)
@@ -386,80 +367,78 @@ export const WeeklyExerciseGoalTime = (props) => {
     }
     setGoal(goal)
     setFrequency(freq)
-  }, [props.playerExerciseGoal])
+  }, [props.playerPlaytimeGoal])
 
   useEffect(()=>{
     if(frequency === "day"){
-      setWeeklyGoalInSeconds(dailyGoalInSeconds * 7)
+      setDailyGoal(goal)
     }
     else if(frequency === "week"){
-      setWeeklyGoalInSeconds(dailyGoalInSeconds)
+      setWeeklyGoal(goal)
     }
-  }, [frequency, dailyGoalInSeconds])
+  }, [frequency, goal])
 
   useEffect(()=>{
-    const prog = (sunMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (sundayLength / dailyGoal) * 100
     const sunProg = Math.floor(prog)
     setSundayProgress(sunProg)
-  }, [sunMinutesAsSeconds, dailyGoalInSeconds])
+  }, [sundayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (monMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (mondayLength / dailyGoal) * 100
     const monProg = Math.floor(prog)
     setMondayProgress(monProg)
-  }, [monMinutesAsSeconds, dailyGoalInSeconds])
+  }, [mondayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (tuesMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (tuesdayLength / dailyGoal) * 100
     const tuesProg = Math.floor(prog)
     setTuesdayProgress(tuesProg)
-  }, [tuesMinutesAsSeconds, dailyGoalInSeconds])
+  }, [tuesdayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (wedMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (wednesdayLength / dailyGoal) * 100
     const wedProg = Math.floor(prog)
     setWednesdayProgress(wedProg)
-  }, [wedMinutesAsSeconds, dailyGoalInSeconds])
+  }, [wednesdayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (thursMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (thursdayLength / dailyGoal) * 100
     const thursProg = Math.floor(prog)
     setThursdayProgress(thursProg)
-  }, [thursMinutesAsSeconds, dailyGoalInSeconds])
+  }, [thursdayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (friMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (fridayLength / dailyGoal) * 100
     const friProg = Math.floor(prog)
     setFridayProgress(friProg)
-  }, [friMinutesAsSeconds, dailyGoalInSeconds])
+  }, [fridayLength, dailyGoal])
 
   useEffect(()=>{
-    const prog = (satMinutesAsSeconds / dailyGoalInSeconds) * 100
+    const prog = (saturdayLength / dailyGoal) * 100
     const satProg = Math.floor(prog)
     setSaturdayProgress(satProg)
-  }, [satMinutesAsSeconds, dailyGoalInSeconds])
+  }, [saturdayLength, dailyGoal])
 
   useEffect(()=>{
-    const seconds = sunMinutesAsSeconds + monMinutesAsSeconds + tuesMinutesAsSeconds + wedMinutesAsSeconds + thursMinutesAsSeconds + friMinutesAsSeconds + satMinutesAsSeconds
+    const tosses = sunTosses + monTosses + tuesTosses + wedTosses + thursTosses + friTosses + satTosses
 
-    const weekSeconds = seconds % 60
-    const minutes = Math.floor(seconds / 60)
-    const weekHours = Math.floor(minutes / 60)
-    const weekMinutes = minutes % 60
-    setWeekInSeconds(seconds)
-    setWeeksSeconds(weekSeconds)
-    setWeeksHours(weekHours)
-    setWeeksMinutes(weekMinutes)
-    const prog = (seconds / weeklyGoalInSeconds) * 100
+    const catches = sunCatches + monCatches + tuesCatches + wedCatches + thursCatches + friCatches + satCatches
+
+    const misses = sunMisses + monMisses + tuesMisses + wedMisses + thursMisses + friMisses + satMisses
+
+    setWeeksTosses(tosses)
+    setWeeksCatches(catches)
+    setWeeksMisses(misses)
+    const prog = (weekLength / weeklyGoal) * 100
     const weekProg = Math.floor(prog)
     setWeekProgress(weekProg)
 
-  }, [sunMinutesAsSeconds, monMinutesAsSeconds, tuesMinutesAsSeconds, wedMinutesAsSeconds, thursMinutesAsSeconds, friMinutesAsSeconds, satMinutesAsSeconds, weeklyGoalInSeconds])
+  }, [sunTosses, monTosses, tuesTosses, wedTosses, thursTosses, friTosses, satTosses])
 
-  const [weekInSeconds, setWeekInSeconds] = useState(0)
-  const [weeksSeconds, setWeeksSeconds] = useState(0)
-  const [weeksMinutes, setWeeksMinutes] = useState(0)
-  const [weeksHours, setWeeksHours] = useState(0)
+  const [weeksTosses, setWeeksTosses] = useState(0)
+  const [weeksCatches, setWeeksCatches] = useState(0)
+  const [weeksMisses, setWeeksMisses] = useState(0)
 
   const [sundayProgress, setSundayProgress] = useState(0)
   const [mondayProgress, setMondayProgress] = useState(0)
@@ -475,11 +454,11 @@ export const WeeklyExerciseGoalTime = (props) => {
   }
   const handleGoalKeyPress = (e) => {
     if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
+      {patchPlaytimeGoal({
+        id: props.playerPlaytimeGoal.id,
         goalSet: parseInt(goalEditInput.current.value)
       })
-      .then(getExerciseGoals())
+      .then(getPlaytimeGoals())
       .then(setGoalEdit(false))
     }
   }}
@@ -489,11 +468,11 @@ export const WeeklyExerciseGoalTime = (props) => {
   }
   const handleMeasureKeyPress = (e)=>{
     if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
+      {patchPlaytimeGoal({
+        id: props.playerPlaytimeGoal.id,
         measurementTypeId: parseInt(measurementTypeEditInput.current.value)
       })
-      .then(getExerciseGoals())
+      .then(getPlaytimeGoals())
       .then(setMeasurementTypeEdit(false))
     }
     }}
@@ -505,8 +484,8 @@ export const WeeklyExerciseGoalTime = (props) => {
   return (
     <>
     <div className="goal-statement">
-      <div className="exerciseGoal">
-        Exercise Goal
+    <div className="playtimeGoal">
+      Playtime Goal
       </div>
       {goalEdit
       ? <>
@@ -545,10 +524,10 @@ export const WeeklyExerciseGoalTime = (props) => {
         <div className="heading-container column">
           <div className="day-container">
           <div className="heading">
-          This Week So Far...
+            This Week So Far...
           </div>
           <div className="goal-acheived">
-            {weeksHours}h {weeksMinutes}m {weeksSeconds}s
+            {weekLength} Games {weeksCatches} Catches {weeksMisses} Misses
           </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>

@@ -139,7 +139,7 @@
     },
     {
       "playerId": 4,
-      "goalSet": 2,
+      "goalSet": 3,
       "measurementTypeId": 2,
       "frequencyId": 1,
       "timestamp": 1601339954723,
@@ -151,7 +151,7 @@
     {
       "id": 1,
       "playerId": 2,
-      "goalSet": "1 day a week",
+      "goalSet": 1,
       "timestamp": 1600953905984,
       "date": "9/24/2020"
     },
@@ -429,7 +429,7 @@
   "followings": [
     {
       "userId": 1,
-      "followedPlayerId": 5,
+      "playerId": 5,
       "id": 2
     }
   ],

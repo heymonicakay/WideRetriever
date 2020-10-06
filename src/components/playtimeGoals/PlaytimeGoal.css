@@ -9,8 +9,10 @@ width: 100%;
 height: auto;
 }
 
-.goal{
-  padding: .25rem;
+.playetimeGoal {
+  font-size: larger;
+  font-weight: 400;
+  color: hsla(173, 47%, 27%, 0.801);
 }
 
 .goal-statement,
@@ -20,10 +22,18 @@ height: auto;
   text-align: center;
 }
 
-.day {
-  font-size: smaller;
-  color: white;
-  text-align: center;
+.goal{
+  padding: .25rem;
+}
+
+.footer {
+  margin-top: -1.5rem !important;
+  color:hsla(173, 47%, 27%, 0.801);
+}
+
+.day-label{
+  margin-top: -2.25rem !important;
+  color:hsla(173, 47%, 27%, 0.801);
 }
 
 .heading-container {
@@ -64,27 +74,11 @@ width: -webkit-fill-available;
 
 .achieved-container {
   display: flex;
-  flex-flow: column nowrap;
   background-color:  hsl(174, 47%, 61%);
   width: 30px;
   justify-content: flex-end;
   align-content: flex-end;
   border-radius: .75rem;
-}
-
-.day-label {
-  padding: .25rem;
-  text-align: center;
-}
-
-.footer {
-  margin-top: -1.5rem !important;
-  color:hsla(173, 47%, 27%, 0.801);
-}
-
-.day-label{
-  margin-top: -2.25rem !important;
-  color:hsla(173, 47%, 27%, 0.801);
 }
 
 .goal-container-week {
@@ -97,12 +91,11 @@ width: -webkit-fill-available;
 
 .achieved-container-week {
   display: flex;
-  background-color: hsl(174, 47%, 61%);
+  background-color:   hsl(174, 47%, 61%);
   height: 20px;
   align-self: flex-end;
   border-radius: .75rem;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .day-label {

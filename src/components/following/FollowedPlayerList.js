@@ -6,26 +6,21 @@ import "./Following.css"
 
 export const FollowedPlayerList = props => {
 
-  const { followings, getFollowings, currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
+  const { fullFollowings, getFullFollowings, currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
   const { players } = useContext(PlayerContext)
 
   const [playerIdsFollowed, setPlayerIdsFollowed] = useState([])
-  const [playersFollowed, setPlayersFollowed] = useState("...fetching")
+  const [playersFollowed, setPlayersFollowed] = useState([])
 
   useEffect(()=>{
-    getFollowings()
+    getFullFollowings()
   },[])
-  useEffect(() => {
-  getUserFollowings(props.currentUserId)
-  }, [followings])
-
   useEffect(()=>{
-    const playerIdsFollowed = currentUserFollowings.map(auf=>auf.followedPlayerId)
-    setPlayerIdsFollowed(playerIdsFollowed)
-  }, [currentUserFollowings])
-
-  useEffect(()=>{
-    const playersFollowed = playerIdsFollowed.map(pif => players.find(p=> p.id === pif)) || []
+    const playersFollowed = fullFollowings.map(ff => {
+      if(ff.userId === props.currentUserId){
+        return ff.player
+      }
+    })|| []
     setPlayersFollowed(playersFollowed)
   }, [players])
 
@@ -38,7 +33,7 @@ export const FollowedPlayerList = props => {
     refreshPage()
   }
 
-  if (currentUserFollowings.length < 1) {
+  if (playersFollowed.length < 1) {
     return (
       <>
           <div className="no-followed-pl-msg">

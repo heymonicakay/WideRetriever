@@ -21,13 +21,12 @@
   justify-items: center;
   align-items: center;
   width: 40%;
-  height: auto;
+  height: 20px;
   color:  hsl(173, 27%, 47%);
   padding: .25rem;
   font-size: small;
   transition: .25s;
   transform-origin: center;
-
 }
 
 .click-for-details {

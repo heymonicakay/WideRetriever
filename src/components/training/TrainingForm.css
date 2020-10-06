@@ -22,6 +22,64 @@
   font-size: 15px;
   margin: 0em 0em;
 }
+
+.treat-tracker-wrapper {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  border-radius: 25rem;
+  width:35px;
+  height: 35px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.treat-tracker-img {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  width:30px;
+  height: 30px;
+  transform: scale(.9, .9)
+}
+
+.treat-tracker-wrapper:hover {
+  box-shadow: 0px 0px 3px hsla(172, 97%, 29%, 0.548);
+}
+
+.treat-count{
+  font-size: larger;
+  text-align: center;
+  margin: 1rem;
+}
+.spin {
+  animation: spin 10s;
+  pointer-events: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(500deg);
+    pointer-events: none;
+  }
+  100%{
+    transform: rotate(0deg);
+    pointer-events: none;
+  }
+}
+
+.treat-tracker {
+  display: flex;
+  justify-self: center;
+  justify-content: space-evenly;
+  align-self: center;
+  align-content: center;
+}
+
 .header__form--ex {
   position: absolute;
   top: -25px;
