@@ -38,8 +38,8 @@ export const Exercise = ( props ) => {
       id: props.exercise.id,
       playerId: props.playerId,
       exerciseTypeId,
-      hours: exercise.hours,
       minutes: exercise.minutes,
+      seconds: exercise.seconds,
       date: exercise.date,
       note: exercise.note,
     })

@@ -17,6 +17,13 @@
       "password": "jus",
       "username": "justin",
       "id": 3
+    },
+    {
+      "username": "hilary",
+      "email": "him@hil.com",
+      "password": "hil",
+      "name": "hilary swaim",
+      "id": 4
     }
   ],
   "reminders": [
@@ -151,14 +158,18 @@
     {
       "id": 1,
       "playerId": 2,
-      "goalSet": 1,
+      "goalSet": 3,
+      "measurementTypeId": 2,
+      "frequencyId": 1,
       "timestamp": 1600953905984,
       "date": "9/24/2020"
     },
     {
       "id": 2,
       "playerId": 4,
-      "goalSet": 5,
+      "goalSet": 3,
+      "measurementTypeId": 2,
+      "frequencyId": 1,
       "timestamp": 1600971551828,
       "date": "9/24/2020"
     }
@@ -358,36 +369,43 @@
   ],
   "trainings": [
     {
-      "id": 4,
-      "playerId": 2,
+      "playerId": 4,
+      "trainingTypeId": 2,
+      "startTime": "7:39 AM",
+      "endTime": "7:42 AM",
+      "minutes": 15,
+      "seconds": 38,
+      "treatCount": 3,
+      "date": "10/4/2020",
+      "note": "Kaos did great!",
+      "timestamp": 1601988170150,
+      "id": 7
+    },
+    {
+      "playerId": 4,
       "trainingTypeId": 3,
-      "duration": "20 min",
-      "date": "9/24/2020",
-      "note": "He did a good fetch!"
+      "startTime": "7:39 AM",
+      "endTime": "7:42 AM",
+      "minutes": 10,
+      "seconds": 38,
+      "treatCount": 6,
+      "date": "10/5/2020",
+      "note": "Kaos had a great training session!",
+      "timestamp": 1601988170150,
+      "id": 8
     },
     {
       "playerId": 4,
       "trainingTypeId": 1,
-      "duration": "5 min",
-      "date": "9/20/2020",
-      "note": "He did a great job sitting!",
-      "id": 5
-    },
-    {
-      "playerId": 3,
-      "trainingTypeId": 1,
-      "duration": "5 min",
-      "date": "9/20/2020",
-      "note": "Phoebe was great at sitting!",
-      "id": 7
-    },
-    {
-      "playerId": 5,
-      "trainingTypeId": 2,
-      "duration": "5 min",
-      "date": "9/21/2020",
-      "note": "Jarvis is still working on Stay. He needed lots of treats as incentive! ",
-      "id": 8
+      "startTime": "7:39 AM",
+      "endTime": "7:42 AM",
+      "minutes": 22,
+      "seconds": 38,
+      "treatCount": 1,
+      "date": "10/6/2020",
+      "note": "Kaos barely needed ANY treats to listen!",
+      "timestamp": 1601988170150,
+      "id": 9
     }
   ],
   "trainingTypes": [
@@ -431,6 +449,21 @@
       "userId": 1,
       "playerId": 5,
       "id": 2
+    },
+    {
+      "userId": 4,
+      "playerId": 5,
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "playerId": 4,
+      "id": 4
+    },
+    {
+      "userId": 3,
+      "playerId": 5,
+      "id": 5
     }
   ],
   "defaultIcons": [

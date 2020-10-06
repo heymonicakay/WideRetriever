@@ -15,6 +15,7 @@
   import { WeeksProgress } from "../goals/WeeksProgress"
   import { WeeklyExerciseGoalTime } from "../exerciseGoals/WeeklyExerciseGoalTime"
   import { WeeklyPlaytimeGoalTime } from "../playtimeGoals/WeeklyPlaytimeGoalTime"
+  import { WeeklyTrainingGoalTime } from "../trainingGoals/WeeklyTrainingGoalTime"
   import { DateContext} from "../time/DateProvider"
   import { PlayerActivityButtons } from "./PlayerActivityButtons"
   import { FollowButton } from "../following/FollowButton"
@@ -216,6 +217,20 @@ const showTraining = () => {
                   timestamp={ currentTimestamp }
                   {...props}/>
               </section>
+              <section className={`training-goal-section ${hideTraining ? "hidden" : "visible"}`}>
+                <WeeklyTrainingGoalTime
+                findSum={findSum}
+                player={ player }
+                trainingsToday={ trainingsToday }
+                playerId={ playerId }
+                currentUserId={ props.currentuserId }
+                trainingsThisWeek={ trainingsThisWeek }
+                playerTrainingGoal={ playerTrainingGoal }
+                playerTrainings={ playerTrainings }
+                todayObj={ todayObj}
+                timestamp={ currentTimestamp }
+                {...props}/>
+                </section>
               <section className={`playtime-goal-section ${hideGames ? "hidden" : "visible"}`}>
                 <WeeklyPlaytimeGoalTime
                 findSum={findSum}

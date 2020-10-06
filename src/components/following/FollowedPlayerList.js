@@ -7,22 +7,25 @@ import "./Following.css"
 export const FollowedPlayerList = props => {
 
   const { fullFollowings, getFullFollowings, currentUserFollowings, getUserFollowings } = useContext(FollowingContext)
-  const { players } = useContext(PlayerContext)
+  const { getPlayers , players} = useContext(PlayerContext)
 
   const [playerIdsFollowed, setPlayerIdsFollowed] = useState([])
   const [playersFollowed, setPlayersFollowed] = useState([])
+
+  const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
 
   useEffect(()=>{
     getFullFollowings()
   },[])
   useEffect(()=>{
-    const playersFollowed = fullFollowings.map(ff => {
-      if(ff.userId === props.currentUserId){
-        return ff.player
+    let array=[]
+    fullFollowings.forEach(ff => {
+      if(currentUserId === ff.userId) {
+        array.push(ff.player)
       }
-    })|| []
-    setPlayersFollowed(playersFollowed)
-  }, [players])
+    })
+    setPlayersFollowed(array)
+  }, [fullFollowings])
 
   const refreshPage = ()=>{
     window.location.reload();
@@ -46,15 +49,6 @@ export const FollowedPlayerList = props => {
       </>
     )
   }
-  if (playersFollowed === []) {
-    return (
-      <>
-        <div className="fetching-followed-pl-msg">
-          Fetching...
-        </div>
-      </>
-    )
-  }
   else {
     return (
       <>
@@ -66,7 +60,7 @@ export const FollowedPlayerList = props => {
                 key={p.id}
                 player={p}
                 onClick={()=> handleClick(p.id)}
-                currentUserId={props.currentUserId}
+                currentUserId={currentUserId}
             />
           })
         }

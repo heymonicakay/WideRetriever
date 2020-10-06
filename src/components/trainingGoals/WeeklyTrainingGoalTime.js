@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect, useRef } from "react"
-import { ExerciseGoalContext } from "./ExerciseGoalProvider"
+import { TrainingGoalContext } from "./TrainingGoalProvider"
 import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
 import { FrequencyContext } from "../goals/FrequencyProvider"
 import { DateContext } from "../time/DateProvider"
-import "./ExerciseGoal.css"
+import "./TrainingGoal.css"
 
-export const WeeklyExerciseGoalTime = (props) => {
+export const WeeklyTrainingGoalTime = (props) => {
   // useContext
   const { measurementTypes } = useContext(MeasurementTypeContext)
   const { frequencies } = useContext(FrequencyContext)
   const { weekArray } = useContext(DateContext)
-  const { patchExerciseGoal, getExerciseGoals } = useContext(ExerciseGoalContext)
+  const { patchTrainingGoal, getTrainingGoals } = useContext(TrainingGoalContext)
   const thisDay = new Date()
   const todayLocal = new Date().toLocaleDateString('en-US', {timeZone: "America/Chicago"})
   const thisTimestamp = Date.now(thisDay)
@@ -191,37 +191,37 @@ export const WeeklyExerciseGoalTime = (props) => {
   }, [])
 /* sets dates for currrent */
   useEffect(()=>{
-    const sunArray = props.playerExercises.filter(pe => {
+    const sunArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date === sunday) {
         return pe
       }})  || []
-    const monArray = props.playerExercises.filter(pe => {
+    const monArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== monday) {
         return pe
       }})|| []
-    const tuesArray = props.playerExercises.filter(pe => {
+    const tuesArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== tuesday){
         return pe
       }}) || []
-    const wedArray = props.playerExercises.filter(pe => {
+    const wedArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== wednesday) {
         return pe
       }}) || []
-    const thursArray = props.playerExercises.filter(pe => {
+    const thursArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== thursday){
         return pe
       }}) || []
-    const friArray = props.playerExercises.filter(pe => {
+    const friArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== friday) {
         return pe
       }})|| []
-    const satArray = props.playerExercises.filter(pe => {
+    const satArray = props.playerTrainings.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== saturday) {
         return pe
@@ -235,7 +235,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setFriArray(friArray)
     setSatArray(satArray)
 
-  }, [props.playerExercises])
+  }, [props.playerTrainings])
 
   useEffect(()=>{
     setSundayLength(sunArray.length)
@@ -263,7 +263,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setSunHours(hours)
     setSunMinutesAsSeconds(minutesAsSeconds)
 
-  }, [props.playerExercises, sunArray])
+  }, [props.playerTrainings, sunArray])
 
   useEffect(()=>{
     const secondsArray = monArray.map(mon => mon.seconds)
@@ -279,7 +279,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setMonHours(hours)
     setMonMinutesAsSeconds(minutesAsSeconds)
 
-  }, [props.playerExercises, monArray])
+  }, [props.playerTrainings, monArray])
 
   useEffect(()=>{
     const secondsArray = tuesArray.map(tues => tues.seconds)
@@ -295,7 +295,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setTuesHours(hours)
     setTuesMinutesAsSeconds(minutesAsSeconds)
 
-  }, [props.playerExercises, tuesArray])
+  }, [props.playerTrainings, tuesArray])
 
   useEffect(()=>{
     const secondsArray = wedArray.map(wed => wed.seconds)
@@ -311,7 +311,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setWedHours(hours)
     setWedMinutesAsSeconds(minutesAsSeconds)
 
-  }, [props.playerExercises, wedArray])
+  }, [props.playerTrainings, wedArray])
 
   useEffect(()=>{
     const secondsArray = thursArray.map(thurs => thurs.seconds)
@@ -327,7 +327,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setThursHours(hours)
     setThursMinutesAsSeconds(minutesAsSeconds)
 
-  }, [props.playerExercises, thursArray])
+  }, [props.playerTrainings, thursArray])
 
   useEffect(()=>{
     const secondsArray = friArray.map(fri => fri.seconds)
@@ -342,7 +342,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     setFriMinutes(minutes)
     setFriHours(hours)
     setFriMinutesAsSeconds(minutesAsSeconds)
-  }, [props.playerExercises, friArray])
+  }, [props.playerTrainings, friArray])
 
   useEffect(()=>{
     const secondsArray = satArray.map(sat => sat.seconds)
@@ -357,17 +357,17 @@ export const WeeklyExerciseGoalTime = (props) => {
     setSatMinutes(minutes)
     setSatHours(hours)
     setSatMinutesAsSeconds(minutesAsSeconds)
-  }, [props.playerExercises, satArray])
+  }, [props.playerTrainings, satArray])
 
   useEffect(()=>{
-    const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
+    const frequency = frequencies.find(f => f.id === props.playerTrainingGoal.frequencyId) || {}
     const freq = frequency.each
 
-    const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
+    const meas = measurementTypes.find(mt => mt.id === props.playerTrainingGoal.measurementTypeId) || {}
     const measId = meas.id
     const measure = meas.measurement
     const plural = meas.plural
-    const goal = parseInt(props.playerExerciseGoal.goalSet)
+    const goal = parseInt(props.playerTrainingGoal.goalSet)
 
     if(measId === 1){
       const goalInSeconds = goal * 60
@@ -386,7 +386,7 @@ export const WeeklyExerciseGoalTime = (props) => {
     }
     setGoal(goal)
     setFrequency(freq)
-  }, [props.playerExerciseGoal])
+  }, [props.playerTrainingGoal])
 
   useEffect(()=>{
     if(frequency === "day"){
@@ -475,11 +475,11 @@ export const WeeklyExerciseGoalTime = (props) => {
   }
   const handleGoalKeyPress = (e) => {
     if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
+      {patchTrainingGoal({
+        id: props.playerTrainingGoal.id,
         goalSet: parseInt(goalEditInput.current.value)
       })
-      .then(getExerciseGoals())
+      .then(getTrainingGoals())
       .then(setGoalEdit(false))
     }
   }}
@@ -489,11 +489,11 @@ export const WeeklyExerciseGoalTime = (props) => {
   }
   const handleMeasureKeyPress = (e)=>{
     if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
+      {patchTrainingGoal({
+        id: props.playerTrainingGoal.id,
         measurementTypeId: parseInt(measurementTypeEditInput.current.value)
       })
-      .then(getExerciseGoals())
+      .then(getTrainingGoals())
       .then(setMeasurementTypeEdit(false))
     }
     }}
@@ -505,8 +505,8 @@ export const WeeklyExerciseGoalTime = (props) => {
   return (
     <>
     <div className="goal-statement">
-      <div className="exerciseGoal">
-        Exercise Goal
+      <div className="trainingGoal">
+        Training Goal
       </div>
       {goalEdit
       ? <>

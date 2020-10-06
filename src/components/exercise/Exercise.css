@@ -22,14 +22,15 @@
   display: flex;
   position: relative;
   flex-flow: row nowrap;
-  background-color: hsl(207, 52%, 71%);
+  background-color: hsl(174, 32%, 52%);
   padding: 1em;
   margin: .25rem;
-  width: -webkit-fill-available;
+  width: 225px;
   justify-content: center;
   justify-self: center;
   align-content: center;
   align-self: flex-start;
+  color: white;
 }
 
 /*

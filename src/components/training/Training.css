@@ -24,14 +24,14 @@
   background-color: hsl(174, 32%, 52%);
   padding: 1em;
   margin: .25rem;
-  width: -webkit-fill-available;
+  width: 225px;
   justify-content: center;
   justify-self: center;
   align-content: center;
   align-self: flex-start;
   color: white;
-  text-align: center;
 }
+
 .down-arrow {
   justify-self: center;
   cursor: pointer;

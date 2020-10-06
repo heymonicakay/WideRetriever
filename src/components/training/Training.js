@@ -5,45 +5,42 @@ import { PlayerContext } from "../players/PlayerProvider"
 import "./Training.css"
 
 export const Training = ( props ) => {
-  //define user id
   const userId = parseInt(sessionStorage.getItem("wr__user"))
-
   //refs
-  const duration = useRef(null)
   const trainingType = useRef(null)
-  const note = useRef(null)
   const arrow = useRef(null)
+  const note = useRef(null)
+  const date = useRef(null)
+  const minutes = useRef(null)
+  const treats = useRef(null)
 
   //useContext
-  const {  trainingTypes } = useContext(TrainingTypeContext)
+  const {  trainingTypes, getTrainingTypes } = useContext(TrainingTypeContext)
   const { removeTraining, editTraining } = useContext(TrainingContext)
+//EFFECT
+useEffect(()=>{
+  getTrainingTypes()
+},[])
 
-
-  // func to build new training obj on input change
   const handleControlledInputChange = (e) => {
     const newTraining = Object.assign({}, training)
-
     newTraining[e.target.name] = e.target.value
-
     setTraining(newTraining)
   }
 
   const constructNewTraining = () => {
-    //define player ID
     const playerId = parseInt(props.training.playerId)
-
-    //define trainingTypeId
     const trainingTypeId = parseInt(trainingType.current.value)
-
-    //define trainingId
     const trainingId = parseInt(props.training.id)
 
     {editTraining({
       id: props.training.id,
-      playerId,
+      playerId: props.playerId,
       trainingTypeId,
-      duration: training.duration,
-      date: today,
+      minutes: training.minutes,
+      seconds: training.seconds,
+      treats: training.treats,
+      date: training.date,
       note: training.note,
     })
     .then(() => props.history.push(`/players/${playerId}`))}
@@ -54,22 +51,17 @@ export const Training = ( props ) => {
   const [editMode, setEditMode] = useState(false)
   const [training, setTraining] = useState([])
 
-  //translate alien timestamp into human date
   const todayTimestamp = Date.now()
   const today = new Date(todayTimestamp).toLocaleDateString('en-US')
 
-  //exposing functionality to get an set player
   const { getPlayerByPlayerId } = useContext(PlayerContext)
   const [player, setPlayer] = useState({})
 
-  //useEffect
   useEffect(()=>{
     const playerId = parseInt(props.match.params.playerId)
       getPlayerByPlayerId(playerId)
-        .then(setPlayer)
   }, [])
 
-  //toggle whether the training note is hidden or not
   const toggleHidden = () => {
     if (noteHidden === true) {
       setNoteHidden(false)
@@ -79,7 +71,6 @@ export const Training = ( props ) => {
     }
   }
 
-  //toggles edit mode for individual training session
   const toggleEditMode = () => {
     if (editMode === true) {
       setEditMode(false)
@@ -97,17 +88,6 @@ export const Training = ( props ) => {
         {editMode
           ?
           <>
-            <div className="cont--form-edit-tr">
-              <select ref={duration} name="duration" className="input input--tr-edit input--duration" defaultValue={props.training.duration} onChange={handleControlledInputChange}>
-                <option value="0">How long did you train?</option>
-                <option value="5 min">5 min</option>
-                <option value="10 min">10 min</option>
-                <option value="15 min">15 min</option>
-                <option value="20 min">20 min</option>
-                <option value="25 min">25 min</option>
-                <option value="30 min">30 min</option>
-              </select>
-
               <select defaultValue={props.training.trainingTypeId} name="Type" ref={trainingType} id="trainingType" className="select select--tr" onChange=
                 {handleControlledInputChange}>
                   <option value="0">Select a behavior</option>
@@ -135,7 +115,7 @@ export const Training = ( props ) => {
                   removeTraining(props.training.id)}}>
                     Delete
               </span>
-            </div>
+
           </>
           :
             <section className="tr-card">
@@ -143,10 +123,10 @@ export const Training = ( props ) => {
                 <span className="tr-card--detail tr-card--date">
                   {props.training.date}
                 </span>
+                <span className="tr-card--detail tr-card--type">
+                    {props.training.treatCount}
+                  </span>
                 <div className="tr-card--stats">
-                  <div className="tr-card--detail tr-card--duration">
-                    {props.training.duration}
-                  </div>
                   <span className="tr-card--detail tr-card--type">
                     {props.trainingType.type}
                   </span>
@@ -155,6 +135,12 @@ export const Training = ( props ) => {
                   {noteHidden
                     ? null
                     : <>
+                    <div className="tr-card--detail tr-card--duration">
+                    {props.training.startTime}
+                    </div>
+                    <div className="tr-card--detail tr-card--duration">
+                      {props.training.endTime}
+                    </div>
                         <span className="note">
                           {props.training.note}
                         </span>
