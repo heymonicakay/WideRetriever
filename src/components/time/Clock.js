@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../users/Dashboard.css"
 
 export const Clock = (props) => {
   const [date, setDate] = useState(new Date());
@@ -33,7 +34,7 @@ export const Clock = (props) => {
 
   return (
     <>
-        <div>
+        <div className="time-dash">
           {date.toLocaleTimeString('en-US', {timeStyle: "short"})}
         </div>
 

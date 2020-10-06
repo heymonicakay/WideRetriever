@@ -32,6 +32,14 @@ export const UserDash = (props) => {
             {evening ? `good evening, ${currentUser.username}.` :<></>}
             </p>
           </div>
+            <Clock
+                morning={morning}
+                setMorning={setMorning}
+                afternoon={afternoon}
+                setAfternoon={setAfternoon}
+                evening={evening}
+                setEvening={setEvening}
+            {...props}/>
           <div className="player-list-dash">
             <PlayerList
               {...props}
@@ -42,14 +50,6 @@ export const UserDash = (props) => {
           <p className="welcome-msg summary">
             Here's a summary of your upcoming tasks.
           </p>
-          <Clock
-              morning={morning}
-              setMorning={setMorning}
-              afternoon={afternoon}
-              setAfternoon={setAfternoon}
-              evening={evening}
-              setEvening={setEvening}
-          {...props}/>
           <div className="reminder-list-cont">
           <ReminderForm
             currentUserId={props.currentUserId}

@@ -2,28 +2,27 @@
 .cont__list--ex {
   display: flex;
   flex-flow: column;
-  max-height: 325px;
+  height: 300px;
   padding: .5rem 0;
   overflow-y: auto;
   box-sizing: border-box;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
 }
 
 .list--ex {
   display: flex;
   flex-flow: column;
-  max-height: 325px;
+  height: 300px;
   padding: .5rem 0;
   box-sizing: border-box;
 }
-
 
 .ex-card {
   display: flex;
   position: relative;
   flex-flow: row nowrap;
-  border: 2px solid hsl(207, 98%, 23%);
   background-color: hsl(207, 52%, 71%);
-  border-radius: 2rem;
   padding: 1em;
   margin: .25rem;
   width: -webkit-fill-available;

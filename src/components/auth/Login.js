@@ -79,17 +79,13 @@ export const Login = props => {
             Wide Retriever
           </h1>
 
-          <h2 className="h2 h2__form h2__form--login">
-            Login
-          </h2>
-
           <input ref={username} type="username" id="username" className="input input--username" placeholder="Username" required autoFocus />
 
           <input ref={pw} type="password" id="pw" className="input--pw" placeholder="Password" required />
 
-          <button type="button" className="btn btn--login" onClick={handleLogin}>
+          <div type="button" className="loginbtn" onClick={handleLogin}>
               Login
-          </button>
+          </div>
           <Link className="link link--reg" to="/register">
               I'm new!
           </Link>

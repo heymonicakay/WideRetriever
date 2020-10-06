@@ -1,9 +1,66 @@
+.cont__list--tr {
+  display: flex;
+  flex-flow: column;
+  height: 300px;
+  padding: .5rem 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
+.list--tr {
+  display: flex;
+  flex-flow: column;
+  height: 300px;
+  padding: .5rem 0;
+  box-sizing: border-box;
+}
+
+.tr-card {
+  display: flex;
+  position: relative;
+  flex-flow: row nowrap;
+  background-color: hsl(174, 32%, 52%);
+  padding: 1em;
+  margin: .25rem;
+  width: -webkit-fill-available;
+  justify-content: center;
+  justify-self: center;
+  align-content: center;
+  align-self: flex-start;
+  color: white;
+  text-align: center;
+}
+.down-arrow {
+  justify-self: center;
+  cursor: pointer;
+  width: 25px;
+  height: 15px;
+  position: absolute;
+  bottom: 5%;
+  left: 30%;
+  z-index: 3;
+  transition: .25s;
+}
+
+.down-arrow:hover {
+  width: 26px;
+  height: 16px;
+}
+
+.down-arrow:hover > .down-arrow-img {
+  -webkit-filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
+  filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
+}
+
+/*
 .cont--tr {
   display: flex;
-  flex-flow: row wrap;
-  align-content: left;
-  width: 100%;
-  height: 100%;
+  flex-flow: column;
+  max-height: 300px;
+  padding: .5rem 0;
+  box-sizing: border-box;
 }
 
 .pl-tr-list {
@@ -22,37 +79,12 @@
   align-content: flex-start;
 }
 
-.list--tr {
-  display: flex;
-  flex-flow: column;
-  position: relative;
-  height: 300px;
-  padding: .5rem 0;
-  justify-content: center;
-  align-content: flex-start;
-  overflow-y: scroll;
-}
 
 .list__header--tr {
   display: flex;
   justify-content: center;
 }
 
-.tr-card {
-  display: flex;
-  position: relative;
-  flex-flow: row nowrap;
-  border: 1px solid hsl(207, 98%, 23%);
-  background-color: hsl(207, 52%, 71%);
-  border-radius: 2rem;
-  padding: 1em;
-  margin: .25rem;
-  width: -webkit-fill-available;
-  justify-content: center;
-  justify-self: center;
-  align-content: center;
-  align-self: flex-start;
-}
 
 .tr-card--details {
   display: flex;
@@ -102,25 +134,4 @@
 .btn--red {
   background-color:  hsla(173, 39%, 53%, 0.644) !important;
 }
-
-.down-arrow {
-  justify-self: center;
-  cursor: pointer;
-  width: 25px;
-  height: 15px;
-  position: absolute;
-  bottom: 5%;
-  left: 30%;
-  z-index: 3;
-  transition: .25s;
-}
-
-.down-arrow:hover {
-  width: 26px;
-  height: 16px;
-}
-
-.down-arrow:hover > .down-arrow-img {
-  -webkit-filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
-  filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
-}
+*/

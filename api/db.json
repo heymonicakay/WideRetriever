@@ -96,7 +96,7 @@
     },
     {
       "id": 4,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600546960/wideretriever/xcbbdr2me4voypuobvts.jpg",
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601952758/wideretriever/juvlqnb9lpo2e0jbusuk.jpg",
       "userId": 1,
       "name": "Kaos",
       "breed": "Aussie Shep",
@@ -109,14 +109,6 @@
       "breed": "Cavalier King Charles Spaniel",
       "age": "6",
       "id": 5
-    },
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601920143/wideretriever/oohvnovqc1xrs6t6cuxu.jpg",
-      "name": "bug",
-      "breed": "pug",
-      "age": "5",
-      "id": 6
     }
   ],
   "playtimeGoals": [
@@ -133,13 +125,6 @@
       "goalSet": 5,
       "frequencyId": 1,
       "goalSetDate": 1600809829371
-    },
-    {
-      "playerId": 6,
-      "goalSet": 5,
-      "timestamp": 1601920309302,
-      "date": "10/5/2020",
-      "id": 3
     }
   ],
   "exerciseGoals": [
@@ -160,15 +145,6 @@
       "timestamp": 1601339954723,
       "date": "9/28/2020",
       "id": 5
-    },
-    {
-      "playerId": 6,
-      "goalSet": 2,
-      "measurementTypeId": 2,
-      "frequencyId": 1,
-      "timestamp": 1601920282651,
-      "date": "10/5/2020",
-      "id": 6
     }
   ],
   "trainingGoals": [
@@ -185,15 +161,6 @@
       "goalSet": 5,
       "timestamp": 1600971551828,
       "date": "9/24/2020"
-    },
-    {
-      "playerId": 6,
-      "goalSet": 10,
-      "measurementTypeId": 1,
-      "frequencyId": 1,
-      "timestamp": 1601920304840,
-      "date": "10/5/2020",
-      "id": 3
     }
   ],
   "measurementTypes": [
@@ -245,6 +212,24 @@
       "note": "This was a great playtime!",
       "timestamp": 1601339674842,
       "id": 11
+    },
+    {
+      "playerId": 4,
+      "catches": 2,
+      "misses": 3,
+      "date": "10/5/2020",
+      "note": "Kaos was pretty distracted today.",
+      "timestamp": 1601941026300,
+      "id": 12
+    },
+    {
+      "playerId": 4,
+      "catches": 4,
+      "misses": 1,
+      "date": "10/5/2020",
+      "note": "Great job, Kaos!",
+      "timestamp": 1601950969474,
+      "id": 13
     }
   ],
   "exercises": [
@@ -345,18 +330,6 @@
       "note": "Short walk! ",
       "timestamp": 1601863480443,
       "id": 1600625388
-    },
-    {
-      "playerId": 4,
-      "exerciseTypeId": 1,
-      "startTime": "10:32 PM",
-      "endTime": "10:32 PM",
-      "minutes": 68,
-      "seconds": 32,
-      "date": "10/4/2020",
-      "note": "This is a test\n",
-      "timestamp": 1601868779220,
-      "id": 1600625389
     },
     {
       "playerId": 4,

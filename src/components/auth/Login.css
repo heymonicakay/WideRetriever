@@ -38,9 +38,8 @@
   width: 25%;
   margin: 1em;
   padding: 1em;
-  border: 3px solid hsl(207, 98%, 23%);
-  border-radius: 2rem;
-  background-color: hsl(207, 61%, 61%);
+  border: 1px solid hsl(207, 98%, 23%);
+  background-color: hsla(173, 39%, 53%, 0.801);
   color: white;
   justify-self: center;
   justify-content: space-evenly;
@@ -53,7 +52,6 @@
   justify-self: center;
   justify-content: center;
   text-align: center;
-  font-family: 'Bangers', cursive;
   font-size: larger;
   margin: .5rem;
 }
@@ -108,16 +106,22 @@
   align-self: center
 }
 
-.btn--login,
-{
+.loginbtn {
   background-color: white;
   color: hsl(152, 64%, 45%);
   border: 1px solid hsl(152, 64%, 45%);
   margin: .5rem;
-  border-radius: .25rem;
   transition: .25s;
   font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  align-content: center;
 }
+.loginbtn:hover {
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+
+}
+
 
 .link--reg-dialog {
   text-decoration: none;

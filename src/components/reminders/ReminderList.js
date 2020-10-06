@@ -18,9 +18,10 @@ useEffect(()=>{
 
 useEffect(()=>{
   const sorted = reminders.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate)) || []
-  setSortedList(sorted)
-}, [reminders])
+  const filtered = sorted.filter(s=> s.userId === props.currentUserId)
 
+  setSortedList(filtered)
+}, [reminders])
 
   return(
     <>

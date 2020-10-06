@@ -10,6 +10,32 @@ import "./Nav.css"
 export const Nav = (props) => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false)
   const [ showCreateDropdown, setShowCreateDropdown] = useState(false)
+  const [username, setUsername] = useState({})
+  const [letter, setLetter] = useState("")
+  const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600784857/wideRetriever/7F4591F1-F810-4472-AD7E-F70045A6A887_oq1csy.png")
+
+  const { getCurrentUser, currentUser } = useContext(UserContext)
+  const { getDefaultIcons, defaultIcons} = useContext(DefaultIconContext)
+
+  useEffect(()=>{
+    getCurrentUser(props.currentUserId)
+    getDefaultIcons()
+  }, [])
+
+  useEffect(()=>{
+    const username = currentUser.username || {}
+    const deconUsername = {...username}
+    console.log(deconUsername)
+    const letter = deconUsername[0]
+    console.log(letter)
+    setLetter(letter)
+  }, [currentUser])
+
+  useEffect(()=>{
+    const matchingIcon = defaultIcons.find(di => di.letter === letter) || {}
+    console.log(matchingIcon)
+    setImage(matchingIcon.iconURL)
+  }, [letter, defaultIcons])
 
   const toggleAccount = () => {
     setShowCreateDropdown(false)
@@ -46,11 +72,11 @@ export const Nav = (props) => {
               toggleCreate={toggleCreate}
               {...props} />
             </div>
+          </div>
             <div className="create-icon"
               onClick={toggleCreate}>
               <img className="create-icon-url" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600784857/wideRetriever/7F4591F1-F810-4472-AD7E-F70045A6A887_oq1csy.png" alt="" />
             </div>
-          </div>
 
           <div className="nav-group--account">
             <div className={`cont--account ${showAccountDropdown ? "cont--account--open" : "cont--account--collapsed" }`}>
@@ -59,12 +85,11 @@ export const Nav = (props) => {
               toggleAccount={toggleAccount}
               {...props} />
             </div>
+        </div>
             <div className="home-icon"
               onClick={toggleAccount}>
-              <img className="home-icon-url" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600784430/wideRetriever/90E85FCC-F4DF-4AF1-8A15-844FA8C28E7E_ofq71f.png" alt="" />
+              <img className="home-icon-url" src={image} alt="" />
             </div>
-
-        </div>
       </div>
     </>
   )

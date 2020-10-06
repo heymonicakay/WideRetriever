@@ -1,0 +1,196 @@
+.button-bloom-activity {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  max-height: 50px;
+}
+
+.plus-sign-img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  transition: .25s;
+}
+
+.plus-sign-img:hover,
+.add-exercise:hover,
+.add-playtime:hover,
+.add-training:hover {
+  -webkit-filter: drop-shadow(1px 2px 3px rgba(38, 88, 85, 0.658));
+  filter: drop-shadow(1px 2px 3px rgba(38, 88, 85, 0.63));
+}
+
+.plus-sign {
+  width: 40px;
+  height: 40px;
+  border-radius: 25rem;
+  background-color: hsl(174, 67%, 54%);
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9;
+  position: absolute;
+  top: -20px;
+  left: -80px;
+  transition: .25s;
+}
+
+.rotate {
+  transform-origin: center;
+  transform: rotate(150deg) scale(.9, .9);
+  animation: rotate 1s;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg) scale(1, 1); }
+    100% {transform:  rotate(150deg) scale(.9, .9); }
+}
+
+.add-exercise-img {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.add-exercise {
+  width: 38px;
+  height: 38px;
+  border-radius: 25rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 8;
+  position: absolute;
+  top: -20px;
+  left: -80px;
+  transition: .25s;
+  transform: scale(.5, .5);
+}
+
+.down-left {
+  transform-origin: center;
+  animation: downLeft 1s;
+  left: -110px;
+  top: 18px;
+  transform: rotate(-190deg) scale(1, 1);
+}
+
+  @keyframes downLeft {
+    0% {
+      transform: rotate(0deg) scale(.5, .5);
+      top: -20px;
+      left: -80px;
+    }
+    100% {
+        transform:  rotate(-190deg) scale(1, 1);
+        left: -110px;
+        top: 18px;
+    }
+}
+
+.add-playtime {
+  width: 38px;
+  height: 38px;
+  border-radius: 25rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 7;
+  position: absolute;
+  top: -20px;
+  left: -80px;
+  transition: .25s;
+  transform: scale(.5, .5);
+}
+
+.out-left {
+  transform-origin: center;
+  animation: outLeft 1s;
+  left: -57px;
+  top: 26px;
+  transform: rotate(-190deg) scale(1, 1);
+}
+
+@keyframes outLeft {
+  0% {
+    transform: rotate(0deg) scale(.5, .5);
+    top: -20px;
+    left: -80px;
+  }
+  100% {
+      transform:  rotate(-190deg) scale(1, 1);
+      top: 26px;
+      left: -57px;
+  }
+}
+
+.add-playtime-img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.add-training {
+  width: 38px;
+  height: 38px;
+  border-radius: 25rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 6;
+  position: absolute;
+  top: -20px;
+  left: -80px;
+  transition: .25s;
+}
+
+.up-left {
+  transform-origin: center;
+  animation: upLeft 1s;
+  left: -125px;
+  top: -38px;
+  transform: rotate(-190deg) scale(1, 1);
+}
+
+@keyframes upLeft {
+  0% {
+    transform: rotate(0deg) scale(.5, .5);
+    top: -20px;
+    left: -80px;
+  }
+  100% {
+      transform:  rotate(-190deg) scale(1, 1);
+      top: -38px;
+      left: -125px;
+  }
+}
+
+.add-training-img {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}

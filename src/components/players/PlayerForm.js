@@ -15,8 +15,15 @@ export const PlayerForm = (props) => {
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png")
   const [isHidden, setIsHidden] = useState(true)
+  const [editModeImage, setEditModeImage] = useState("")
 
   const { addPlayer, players, editPlayer, removePlayer } = useContext(PlayerContext)
+
+  useEffect(()=>{
+    if(editMode){
+      setEditModeImage(player.playerImg)
+    }
+  }, [player])
 
   const handleControlledInputChange = (event) => {
     const newPlayer = Object.assign({}, player)
@@ -27,6 +34,11 @@ export const PlayerForm = (props) => {
   const handleClick = e => {
     hiddenFileInput.current.click();
   };
+
+  const handleEditClick = e => {
+    setEditModeImage("")
+    hiddenFileInput.current.click();
+  }
 
   const uploadImage = async e => {
     const files = e.target.files
@@ -45,6 +57,12 @@ export const PlayerForm = (props) => {
     setImage(file.secure_url)
     setLoading(false)
     setIsHidden(false)
+
+    if(editMode){
+      setEditModeImage(file.secure_url)
+      setLoading(false)
+      setIsHidden(false)
+    }
   }
 
   const getPlayerInEditMode = () => {
@@ -64,7 +82,7 @@ export const PlayerForm = (props) => {
     if (editMode) {
       editPlayer({
         id: player.id,
-        playerImg: player.playerImg,
+        playerImg: editModeImage,
         userId: props.currentUserId,
         name: player.name,
         breed: player.breed,
@@ -114,21 +132,21 @@ export const PlayerForm = (props) => {
           {editMode
           ? (
             <div className="upload--img">
-              <img src={player.playerImg} alt="" className="img-uploaded" />
+              <img src={editModeImage} alt="" className="img-uploaded" />
               <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png" alt="" className="img-overlay" onClick={()=>{
-                  handleClick()}}/>
+                  handleEditClick()}}/>
 
               <div className="file-input-container">
                   <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
-                </div>
+              </div>
             </div>
             )
           :
             (
               <>
-                <div className="file-input-container">
+                <span className="file-input-container">
                   <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
-                </div>
+                </span>
               {loading
                 ?(
                     <h3 className="h3 h3--img-load">Fetching..</h3>
@@ -162,7 +180,7 @@ export const PlayerForm = (props) => {
           <input type="text" name="age" required className="form-pl__ctrl form-pl__ctrl--age" placeholder="Ex: 4" defaultValue={player.age} ref={age} onChange={handleControlledInputChange}
           />
 
-          <button type="button" className="btn btn__sbmt btn__sbmt--pl"
+          <button type="button" className="btn__sbmt btn__sbmt--pl"
             onClick={e => {
               e.preventDefault()
               constructNewPlayer()
@@ -174,14 +192,15 @@ export const PlayerForm = (props) => {
           </button>
           {editMode
             ? (
-            <button className="btn btn--remove"
+            <span className="remove"
                   onClick={() => {
                 delDialog.current.showModal()
               }}>
                 Remove From Roster
-            </button>
+            </span>
             )
-            : null
+            : <>
+            </>
           }
       </section>
     </div>

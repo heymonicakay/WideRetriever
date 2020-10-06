@@ -15,9 +15,7 @@
   import { WeeksProgress } from "../goals/WeeksProgress"
   import { WeeklyExerciseGoalTime } from "../exerciseGoals/WeeklyExerciseGoalTime"
   import { DateContext} from "../time/DateProvider"
-  import { PlayerGoalButtons } from "./PlayerGoalButtons"
   import { PlayerActivityButtons } from "./PlayerActivityButtons"
-  import { EditPlayerButton } from "./EditPlayerButton"
   import { FollowButton } from "../following/FollowButton"
 
 export const PlayerDetails = ( props ) => {
@@ -31,6 +29,7 @@ export const PlayerDetails = ( props ) => {
   const { exerciseGoals, getExerciseGoals, getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
   const { date, getCurrentTimestamp,currentTimestamp, todayObj, thisMonthVar, thisWeekstart, filterByThisWeek, filteredByThisWeek, filterByToday, filteredByToday} = useContext(DateContext)
 //STATE
+  const [hidden, setHidden] = useState(true)
   const [exercisesToday, setExercisesToday] = useState([])
   const [exercisesThisWeek, setExercisesThisWeek] = useState([])
   const [playtimesToday, setPlaytimesToday] = useState([])
@@ -113,6 +112,14 @@ export const PlayerDetails = ( props ) => {
     }
   }, [])
 //HANDLE
+  const toggleHide = ()=>{
+    if(hidden===true){
+      setHidden(false)
+    }
+    else{
+      setHidden(true)
+    }
+  }
   const findSum = (arr) => {
     let total = 0
     arr.forEach(k => {total += k})
@@ -142,97 +149,61 @@ const showTraining = () => {
         <div className="player-detail-container">
           <section className="pl-card pl-card-det-sec">
             <div className="pl-card-top">
-              <div className="container">
-                {isOwner
-                ?<>
-                <div className="edit-player-container">
-                    <EditPlayerButton
-                      player={player}
-                      playerId={playerId}
-                      {...props}/>
-                  </div>
 
-                </>
-                :<>
-                  <FollowButton
-                  player={player}
-                  playerId={playerId}
-                  currentUserId={props.currentUserId}
-                  {...props}/>
+              <div className="player-img-edit-follow-contain">
+                <div className={`${isOwner ? "cont--img--detail" : "cont--img--detail-other"}`}>
+                  {isOwner
+                  ?<>
                   </>
-                }
-                <div className="cont--img cont--img--detail">
-                  <img className="pl-card--img pl-card-img-detail" alt="" src={player.playerImg}/>
+                  :<>
+                      <FollowButton
+                        player={player}
+                        playerId={playerId}
+                        currentUserId={props.currentUserId}
+                        {...props}/>
+                  </>
+                  }
+                  <img className={`${isOwner ? "pl-card-img-detail": "pl-card-img-detail-other"}`} alt="" title={isOwner ? "Double click to edit player info." : "Image"} src={player.playerImg} onDoubleClick={isOwner ? () => {props.history.push(`/players/edit/${playerId}`)} : null}/>
                 </div>
               </div>
+                <p className={`header  ${isOwner ? "pl-card__header--name" : "pl-card__header--name-other"}`} onClick={toggleHide}>
+                {player.name}
+                </p>
 
               <section className="pl-card--details">
-                <h1 className="h1 header pl-card__header--name">
-                {player.name}
-                </h1>
-                <div className="pl-card--breed">
-                  Breed: {player.breed}
-                </div>
-                <div className="pl-card--age">
-                  Age: {player.age}
-                </div>
-                <div className="pl-card--catch-success">
-                  Catch Percentage: {successRate}
+                <div className={`more-details ${isOwner ? "" :"more-details-other"}`} hidden={hidden}>
+                  <div className="pl-card--breed">
+                    {player.breed}
+                  </div>
+                  <div className="pl-card--age">
+                    {player.age} years old
+                  </div>
+                  <div className="pl-card--catch-success">
+                    Catch Percentage: {successRate}
+                  </div>
                 </div>
               </section>
+            </div>
 
               {isOwner
               ?<>
-                <div className="container">
-                  <div className="add-activity-buttons">
+              <div className="add-activity-buttons">
                     <PlayerActivityButtons
                     player={player}
                     playerId={playerId}
                     {...props}/>
-                  </div>
-                  <section className="daily-progress-section">
-                    <TodaysProgress
-                      player={ player }
-                      exercisesToday={ exercisesToday }
-                      playtimesToday={ playtimesToday }
-                      trainingsToday={ trainingsToday }
-                      playerId={ playerId }
-                      currentUserId={ props.currentuserId }
-                      {...props}
-                      />
-                  </section>
-
-                  <section className="weekly-progress-section">
-                  <WeeksProgress
-                    player={ player }
-                    playerId={ playerId }
-                    playtimesThisWeek={ playtimesThisWeek }
-                    trainingsThisWeek={ trainingsThisWeek }
-                    exercisesThisWeek={ exercisesThisWeek }
-                    currentUserId={ props.currentuserId }
-                    {...props}
-                    />
-                  </section>
-                  <div hidden={isHidden} className="button-group">
-                    <PlayerGoalButtons
-                      player={ player }
-                      currentUserId={ props.currentuserId }
-                      playerId={playerId}
-                      playerExerciseGoal={ playerExerciseGoal }
-                      playerPlaytimeGoal={ playerPlaytimeGoal }
-                      playerTrainingGoal={ playerTrainingGoal }
-                      {...props}
-                      />
-                  </div>
-                </div>
+              </div>
               </>
               :<>
+              <div className="spacer">
+              </div>
               </>
               }
-              </div>
             </section>
           </div>
-            <div className="middle">
+              {isOwner
+              ?
+              <div className="middle">
               <section className="exercise-goal-section">
                 <WeeklyExerciseGoalTime
                   findSum={findSum}
@@ -247,15 +218,21 @@ const showTraining = () => {
                   timestamp={ currentTimestamp }
                   {...props}/>
               </section>
-            </div>
-            <div className="button-bar">
-              <div className={`playtime ${hideGames ? "" : "active"}`} onClick={()=>{showGames()}}>Games of Catch</div>
-              <div className={`training ${hideTraining ? "" : "active"}`} onClick={()=>{showTraining()}}>Training Sessions</div>
-              <div className={`exercise ${hideExercise ? "" : "active"}`} onClick={()=>{showExercise()}}>Exercise Sessions</div>
+              </div>
+              :<> </>
+              }
+            <div className={`${isOwner ? "button-bar" : "button-bar-other"}`}>
+              <div className={`playtime-btn ${hideGames ? "" : "active"}`} onClick={()=>{showGames()}}>
+                Games of Catch
+              </div>
+              <div className={`training-btn ${hideTraining ? "" : "active"}`} onClick={()=>{showTraining()}}>
+                Training Sessions
+              </div>
+              <div className={`exercise-btn ${hideExercise ? "" : "active"}`} onClick={()=>{showExercise()}}>Exercise Sessions</div>
             </div>
             <div className="activity-section">
 
-              <section className={`playtime ${hideGames ? "hidden" : "visible"}`}>
+              <section className={`playtime ${hideGames ? "hidden" : "visible"} ${isOwner ? "" : "playtime-other"}`}>
                 <PlaytimeList
                   player={ player }
                   playerId={ playerId }
@@ -266,10 +243,11 @@ const showTraining = () => {
                   todayObj={ todayObj}
                   currentTimestamp={ currentTimestamp }
                   currentUserId={ props.currentuserId }
+                  isOwner={isOwner}
                 {...props} />
               </section>
 
-              <section className={`training ${hideTraining ? "hidden" : "visible"}`}>
+              <section className={`training ${hideTraining ? "hidden" : "visible"} ${isOwner ? "" : "training-other"}`}>
                 <TrainingList
                   player={player}
                   playerId={playerId}
@@ -283,7 +261,7 @@ const showTraining = () => {
                 {...props} />
               </section>
 
-              <section className={`exercise ${hideExercise ? "hidden" : "visible"}`}>
+              <section className={`exercise ${hideExercise ? "hidden" : "visible"} ${isOwner ? "" : "exercise-other"}`}>
                 <ExerciseList
                   player={ player }
                   playerId={ playerId }

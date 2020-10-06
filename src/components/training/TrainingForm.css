@@ -22,6 +22,21 @@
   font-size: 15px;
   margin: 0em 0em;
 }
+.header__form--ex {
+  position: absolute;
+  top: -25px;
+  }
+  .how-often{
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-content: center;
+    margin: .75rem 0;
+  }
 
 .cont--form-tr {
   position: absolute;

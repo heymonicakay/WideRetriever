@@ -30,9 +30,6 @@ export const PlaytimeList = (props) => {
       {emptyMsg
         ?<>
           <div className="cont__list cont__list--pl">
-            <h2 className="list__header list__header--pl">
-              Playtime
-            </h2>
             <NoPlaytimes
             player={props.player}
             {...props}/>
@@ -40,9 +37,6 @@ export const PlaytimeList = (props) => {
         </>
         :<>
           <div className="cont__list cont__list--pl">
-            <h2 className="list__header list__header--pl">
-              Playtime
-            </h2>
             <article className="list list--pt">
               {props.playerPlaytimes.map(pt => {
                 return <Playtime {...props}
@@ -55,7 +49,7 @@ export const PlaytimeList = (props) => {
                   toggleEditMode={toggleEditMode}
                   isOwner={props.isOwner}
                   />
-              })
+              }).reverse()
               }
             </article>
           </div>

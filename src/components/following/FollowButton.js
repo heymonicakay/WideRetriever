@@ -1,6 +1,7 @@
 //IMPORTS
   import React, { useContext, useRef, useEffect, useState } from "react"
   import { FollowingContext } from "../following/FollowingProvider"
+  import "../players/Player.css"
 
 export const FollowButton = (props) => {
 //REFS
@@ -35,41 +36,41 @@ export const FollowButton = (props) => {
 //RETURN
   return (
     <>
-    <dialog className="dialog dialog--unf-check" ref={unfollowDialog}>
-      <div className="cont__dialog-msg--unf-check">
+    <dialog className="unf-check" ref={unfollowDialog}>
+      <div className="msg--unf-check">
       Are you sure you want to unfollow {props.player.name}?
       </div>
       <div className="cont__dialog-btns--unf-check">
-        <button className="btn btn-unfollow-sure" onClick={e => {
+        <div className="unfollow-sure" onClick={e => {
             e.preventDefault()
             unfollow(followConnectionTBD)
             .then(getUserFollowings(props.currentUserId))
             unfollowDialog.current.close()
         }}>
           Yes, I'm sure.
-        </button>
-        <button className="btn btn-unf--nvm"
+        </div>
+        <div className="unf--nvm"
               onClick={e => unfollowDialog.current.close()}>
                 Actually, nevermind.
-        </button>
+        </div>
       </div>
     </dialog>
 
     {iAmFollowing
     ?<>
-      <button className="btn btn--unfollow" onClick={() => {
+      <span className="unfollow" onClick={() => {
       unfollowDialog.current.showModal()
         }}>
-        Unfollow {props.player.name}
-      </button>
+        Unfollow
+      </span>
     </>
     :<>
-      <button className="btn btn--follow" onClick={(e) => {
+      <span className="follow" onClick={(e) => {
         e.preventDefault()
         createNewFollowConnection()
       }}>
-        Follow {props.player.name}
-      </button>
+        Follow
+      </span>
     </>
     }
   </>

@@ -1,58 +1,112 @@
-.cont--pt {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: left;
-  width: 100%;
-  height: 100%;
-}
-
-.pl-pt-list {
+.cont__list--pl {
   display: flex;
   flex-flow: column;
-  flex-basis: 20%;
-  max-width: 200px;
-  max-height: 700px;
-  margin: 1em;
-  padding: 1em;
-  border: 3px solid hsl(207, 98%, 23%);
-  border-radius: 2rem;
-  background-color: hsl(207, 61%, 61%);
-  color: white;
-  justify-content: flex-start;
-  align-content: flex-start;
+  height: 300px;
+  padding: .5rem 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
 }
 
 .list--pt {
   display: flex;
   flex-flow: column;
-  position: relative;
   height: 300px;
   padding: .5rem 0;
-  justify-content: center;
-  align-content: flex-start;
-  overflow-y: scroll;
-}
-
-.list__header--pt {
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
 }
 
 .pt-card {
   display: flex;
   position: relative;
   flex-flow: row nowrap;
-  border: 2px solid hsl(207, 98%, 23%);
-  background-color: hsl(207, 52%, 71%);
-  border-radius: 2rem;
+  background-color: hsl(174, 32%, 52%);
   padding: 1em;
   margin: .25rem;
-  width: -webkit-fill-available;
+  width: 225px;
   justify-content: center;
   justify-self: center;
   align-content: center;
   align-self: flex-start;
+  color: white;
 }
+
+.pt-card--detail {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.pt-card--stats {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.date {
+  padding: 0rem .25rem;
+}
+
+.percent {
+  padding: 0rem .25rem;
+  transform-origin: center;
+  transform: scale(1.5, 1.5);
+  position: absolute;
+  top: 15px;
+  left: 25px;
+}
+
+.arrow {
+  padding: 0rem .25rem;
+  transform-origin: center;
+  transform: scale(1.5, 1.3);
+  position: absolute;
+  top: 33px;
+  right: 45px;
+}
+
+.delete-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 20 px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background:url("https://res.cloudinary.com/heymonicakay/image/upload/a_45/v1601928893/wideRetriever/5F802942-7530-4542-B9EC-4097C719F8D3_sbzief.png" ) 0 0 no-repeat;
+  background-size: cover;
+}
+
+.hide {
+  display: none;
+}
+.show{
+  display: flex;
+}
+
+/*
+                .cont--pt {
+                  display: flex;
+                  flex-flow: row wrap;
+                  align-content: left;
+                  width: 100%;
+                  height: 100%;
+                }
+  .pl-pt-list {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 20%;
+    max-width: 200px;
+    max-height: 700px;
+    margin: 1em;
+    padding: 1em;
+    border: 3px solid hsl(207, 98%, 23%);
+    border-radius: 2rem;
+    background-color: hsl(207, 61%, 61%);
+    color: white;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
 
 .pt-card--details {
   display: flex;
@@ -96,4 +150,4 @@
 
 .no-data-msg {
   text-align: center;
-}
+} */

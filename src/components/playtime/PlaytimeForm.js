@@ -6,19 +6,17 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import "./PlaytimeForm.css"
 
 export const PlaytimeForm = (props) => {
-  //useRef
+//REF
   const note = useRef()
   const tossBtn = useRef()
   const missCountText = useRef()
   const missBtn = useRef()
   const catchCountText = useRef()
   const catchBtn = useRef()
-
-  //useContext
+//CONTEXT
   const { addPlaytime, playtimes, getPlaytimes } = useContext(PlaytimeContext)
   const { getPlayerByPlayerId } = useContext(PlayerContext)
-
-  //useState
+//STATE
   const [playtime, setPlaytime] = useState({})
   const [player, setPlayer] = useState({})
   const [tossCount, setTossCount] = useState(0);
@@ -30,20 +28,16 @@ export const PlaytimeForm = (props) => {
   const [isHidden, setIsHidden] = useState(false)
   const [isInProgress, setIsInProgress] = useState(true)
   const [cannotSubmit, setCannotSubmit] = useState(true)
-
-  //useEffect
+  const playerId = parseInt(props.match.params.playerId)
+  const todayTimestamp = Date.now()
+  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
+//EFFECT
   useEffect(() => {
     getPlaytimes()
+    getPlayerByPlayerId(playerId)
   }, [])
-  useEffect(() => {
-    const playerId = parseInt(props.match.params.playerId)
-      getPlayerByPlayerId(playerId)
-        .then(setPlayer)
-  }, [])
-
-  //obj constructor
+//HANDLE
   const constructNewPlaytime = () => {
-
     {addPlaytime({
       playerId,
       catches: catchCount,
@@ -54,13 +48,6 @@ export const PlaytimeForm = (props) => {
     })
       .then(() => props.history.push(`/players/${playerId}`))}
   }
-
-  //define vars
-  const todayTimestamp = Date.now()
-  const today = new Date(todayTimestamp).toLocaleDateString('en-US')
-  const playerId = parseInt(props.match.params.playerId)
-
-  //event handlers
   const handleTossIncrement = () => {
     setTossCount(prevTossCount => prevTossCount + 1);
   };
@@ -86,8 +73,6 @@ export const PlaytimeForm = (props) => {
       setCannotSubmit(true)
     }
   }
-
-  //renders the content inside of the circle timer
   const renderTime = ({ remainingTime }) => {
     if ( remainingTime === 10) {
       return <button type="button" className="behind btn btn--circle btn--green btn--toss" hidden={isHidden} ref={tossBtn} onClick={() => {
@@ -136,7 +121,7 @@ export const PlaytimeForm = (props) => {
 
         <div className="cont--catch-miss">
           <section className="cont--catch">
-            <button className="btn btn--circle btn--green btn--catch" disabled={isDisabled} ref={catchBtn} onClick={() => {
+            <button className="btn btn--circle btn--catch" disabled={isDisabled} ref={catchBtn} onClick={() => {
               setIsPlaying(false)
               handleCannotSubmit()
               handleReset()
@@ -174,7 +159,7 @@ export const PlaytimeForm = (props) => {
             : <textarea className="input input--note" disabled={cannotSubmit} name="note" ref={note} onChange={handleControlledInputChange} placeholder="Add a note about today's playtime...">
             </textarea>
           }
-          <button disabled={cannotSubmit} type="button" className="btn btn-submit submit submit-pt" onClick={e => {
+          <button disabled={cannotSubmit} type="button" className="btn-submit submit submit-pt" onClick={e => {
           e.preventDefault()
           constructNewPlaytime()
           }}>

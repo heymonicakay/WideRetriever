@@ -23,6 +23,24 @@
   margin: 0em 0em;
 }
 
+
+.header__form--ex {
+  position: absolute;
+  top: -25px;
+  }
+
+  .how-often{
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    margin: .75rem 0;
+  }
+
 .cont--form-pt {
   position: absolute;
   top: 10%;
@@ -31,9 +49,8 @@
   width: 25%;
   margin: 1em;
   padding: 1em;
-  border: 3px solid hsl(207, 98%, 23%);
-  border-radius: 2rem;
-  background-color: hsl(207, 61%, 61%);
+  border: 1px solid hsl(207, 98%, 23%);
+  background-color: hsla(173, 39%, 53%, 0.801);
   color: white;
   justify-self: center;
   justify-content: space-evenly;
@@ -85,8 +102,8 @@ div > svg {
 }
 
 .btn--toss {
-  background-color: rgb(255, 152, 56) !important;
-  font-family: 'Bangers';
+  background-color: rgb(233, 149, 75) !important;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
   font-size: 30px;
   height: 160px;
   width: 160px;
@@ -99,25 +116,36 @@ div > svg {
 .btn--catch {
   height: 70px;
   width: 70px;
+  background-color: hsla(175, 90%, 38%, 0.74);
+  border: 2px solid white !important;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+  color: white;
 }
 
 .btn--catch:disabled {
-  background-color: hsla(152, 64%, 45%, 0.411) !important;
+  background-color: hsla(182, 52%, 22%, 0.678) !important;
   color: rgb(182, 179, 179);
+  box-shadow: none;
+  border: none !important;
 }
 
 .btn--miss {
   height: 70px;
   width: 70px;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+  color: white;
+  border: 2px solid white !important;
 }
 
 .btn--red:disabled {
   background-color: rgba(243, 61, 61, 0.438) !important;
   color: rgb(182, 179, 179);
+  border: none !important;
+  box-shadow: none;
 }
 
 .btn--red {
-  background-color: rgb(243, 61, 61) !important;
+  background-color: rgb(230, 80, 80) !important;
 }
 
 .seconds {
@@ -144,9 +172,20 @@ div > svg {
   margin: 0 0;
 }
 
+.btn-submit {
+  background-color: hsla(172, 30%, 52%, 0.61);
+  border: 2px solid white !important;
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+  padding: .5rem !important;
+  color: white !important;
+  cursor: pointer;
+}
+
 .btn-submit:disabled {
   background-color: hsla(152, 64%, 45%, 0.411) !important;
+  border: none !important;
   color: rgb(182, 179, 179);
+  box-shadow: none !important;
 }
 
 .input--note {

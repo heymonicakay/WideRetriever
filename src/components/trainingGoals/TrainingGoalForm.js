@@ -40,7 +40,7 @@ const constructNewTrainingGoal = () => {
     date: today,
   })
     .then(props.history.push(`/players/goals/playtime/add/${playerId}`))}
-    
+
   }
   const handleControlledInputChange = (e) => {
     if(goalSet.current.value <= 1) {
@@ -58,11 +58,13 @@ const constructNewTrainingGoal = () => {
   return (
     <div className="cont--form-ex">
       <section className="form">
-        <h1 className="h1 header__form header__form--ex">
-          Add a New Training Goal for {player.name}
-        </h1>
+        <div className="h1 header__form header__form--ex">
+          Training Goal for {player.name}
+        </div>
 
-        <label for="note">How often would you like {player.name} to train?</label>
+        <div className="how-often">How often would you like {player.name} to train?</div>
+
+        <div className="row">
 
         <input type="number" defaultValue="" min="0" max="60" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
 
@@ -71,7 +73,7 @@ const constructNewTrainingGoal = () => {
           <>
             <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
               {measurementTypes.map(mt => (
-                  <option key={mt.id} value={mt.id}>
+                <option key={mt.id} value={mt.id}>
                       {mt.measurement}
                   </option>
               ))}
@@ -81,8 +83,8 @@ const constructNewTrainingGoal = () => {
           <>
           <select defaultValue="" name="measurementType" ref={measurementType} id="measurementType" className="select select--mt" onChange={handleControlledInputChange}>
               {measurementTypes.map(mt => (
-                  <option key={mt.id} value={mt.id}>
-                      {mt.plural}
+                <option key={mt.id} value={mt.id}>
+                  {mt.plural}
                   </option>
               ))}
           </select>
@@ -92,11 +94,12 @@ const constructNewTrainingGoal = () => {
 
         <select defaultValue="" name="frequency" ref={frequency} id="frequency" className="select select--fq" onChange={handleControlledInputChange}>
               {frequencies.map(f => (
-                  <option key={f.id} value={f.id}>
+                <option key={f.id} value={f.id}>
                       {f.each}
                   </option>
               ))}
           </select>
+          </div>
           <button className="btn btn--submit btn--ex" type="button"
               onClick={e => {
                 e.preventDefault()

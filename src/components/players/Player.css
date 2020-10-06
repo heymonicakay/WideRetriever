@@ -18,17 +18,53 @@
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-content: center;
-  width: 100%;
+  justify-items: center;
+  align-items: center;
+  width: 40%;
   height: auto;
+  color:  hsl(173, 27%, 47%);
+  padding: .25rem;
+  font-size: small;
+  transition: .25s;
+  transform-origin: center;
+
+}
+
+.click-for-details {
+  font-size: smaller;
+  font-style: italic;
+  cursor: pointer;
+  color: hsla(180, 38%, 38%, 0.548)
+}
+
+.more-details {
+  position: absolute;
+  top: 25%;
+  color: hsla(180, 60%, 14%, 0.548);
+  font-size: small;
+  font-style: italic;
+  text-align: center;
+}
+
+.more-details-other {
+  position: absolute;
+  top: 26%;
+  left: 41%;
+  color: hsla(180, 60%, 14%, 0.548);
+  font-size: small;
+  font-style: italic;
+  text-align: center;
 }
 
 .player-detail-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-content: center;
   width: -webkit-fill-available;
-  height: auto;
+  height: 20%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .activity-section {
@@ -39,7 +75,6 @@
 
 .list--pl {
   display: flex;
-  /* position: relative; */
   flex-flow: row wrap;
   padding: 0 0;
   margin: 0 0;
@@ -61,7 +96,13 @@
 
 .pl-card-top {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-content: center;
+  justify-self: center;
+  align-self: center;
 }
 
 .pl-card-bottom {
@@ -72,8 +113,145 @@
 
 .pl-card__header--name {
   display:flex;
+  position: absolute;
   justify-self: center;
   align-self: center;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  font-size: 38px;
+  z-index: 2;
+  top: 16%;
+  -webkit-filter: drop-shadow(1px 3px 3px hsl(207, 97%, 13%));
+  filter: drop-shadow(1px 3px 3px hsl(207, 95%, 15%));
+  cursor: pointer;
+}
+
+.pl-card__header--name-other {
+  display:flex;
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  font-size: 38px;
+  z-index: 2;
+  top: 15%;
+  -webkit-filter: drop-shadow(1px 3px 3px hsl(207, 97%, 13%));
+  filter: drop-shadow(1px 3px 3px hsl(207, 95%, 15%));
+  cursor: pointer;
+}
+
+.edit-player-container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 90%;
+  max-height: 50px;
+  position: absolute;
+}
+
+.unf-check {
+  width: 25%;
+  height: 8%;
+  border: 1px solid hsl(207, 98%, 23%);
+  background-color: hsl(173, 39%, 53%);
+  position: absolute;
+  top: 27%;
+}
+
+.unfollow-sure{
+border: none;
+color: white;
+text-align: center;
+margin: .25rem;
+background-color: hsl(174, 67%, 54%);
+cursor: pointer;
+transition: .25s;
+}
+
+.msg--unf-check {
+  color: white;
+  font-style: italic;
+  text-align: center;
+  font-size: large;
+}
+
+
+.unfollow-sure:hover {
+  -webkit-filter: drop-shadow(1px 3px 3px hsl(207, 97%, 13%));
+  filter: drop-shadow(1px 3px 3px hsl(207, 95%, 15%));
+}
+
+.unf--nvm {
+  color: hsl(207, 95%, 15%);
+  font-style: italic;
+  font-size: smaller;
+  text-align: center;
+  margin: .25rem;
+  transition: .25s;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 150px;
+}
+
+.unf--nvm:hover {
+  color: white;
+  font-size: small;
+}
+
+.button-bar-other {
+  position: absolute;
+  top:35%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 40%;
+  height: auto;
+  color:  hsl(173, 27%, 47%);
+  padding: .25rem;
+  font-size: small;
+  transition: .25s;
+  transform-origin: center;
+}
+
+.playtime-btn,
+.training-btn,
+.exercise-btn {
+  cursor: pointer;
+}
+
+.active {
+  padding: .5rem;
+  font-size: larger;
+  font-weight: 400;
+  color: white;
+  -webkit-filter: drop-shadow(1px 2px 6px hsl(207, 97%, 13%));
+  filter: drop-shadow(1px 2px 6px hsl(207, 95%, 15%));
+  transform-origin: center;
+}
+
+.unfollow,
+.follow {
+  width: 35px;
+  height: 35px;
+  border-radius: 25rem;
+  background-color: hsl(174, 67%, 54%);
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9;
+  position: absolute;
+  top: 70%;
+  left: -15%;
+  transition: .25s;
+  font-size: 7px;
+  color: white;
 }
 
 .pl-card--details {
@@ -81,45 +259,100 @@
   flex-flow: column;
   justify-content: center;
   align-content: center;
+  transform-origin: center;
+  width: 50%;
+  height: auto;
 }
 
-.cont--img {
-  height: 80px;
-  width: 80px;
-  border: 2px solid hsl(207, 98%, 23%);
-  border-radius: 25rem;
+.pl-img-edit-follow-contain {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
   justify-self: center;
+  align-self: center;
+}
+
+.pl-card-det-sec {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-items: center;
   align-self: center;
 }
 
 .cont--img--detail {
-  transform: scale(1.5, 1.5) translate(-20px, -15px)
+  display: flex;
+  height: 80px;
+  width: 80px;
+  border: 3px solid hsla(174, 34%, 44%, 0.712);
+  border-radius: 25rem;
+  justify-self: center;
+  align-self: center;
+  transition: .25s;
 }
 
-.pl-card--img {
+.cont--img--detail:hover {
+  border: 3px solid hsla(174, 66%, 77%, 0.712);
+  box-shadow: 2px 2px 10px hsla(172, 93%, 21%, 0.808);
+}
+
+.cont--img--detail-other {
   display: flex;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  border: 3px solid hsla(174, 34%, 44%, 0.712);
+  border-radius: 25rem;
+  justify-self: center;
+  align-self: center;
+  align-content: center;
+  transform: scale(1.5, 1.5) translateY(-20px);
+  transform-origin: center;
+  position: absolute;
+  top: 14%;
+  left: 44%;
+}
+
+.cont--img--detail {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  align-content: center;
+  transform: scale(1.5, 1.5);
+  transform-origin: center;
+}
+
+.add-activity-buttons {
+  z-index: 3;
+  position: relative;
+}
+
+.pl-card-img-detail {
+  display: flex;
+  height: 100px;
+  width: 100px;
   justify-self: center;
   align-self: center;
   border-radius: 25rem;
-  width: 80px;
-  height: 80px;
+  cursor: pointer;
+}
+
+.pl-card-img-detail-other {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  justify-self: center;
+  align-self: center;
+  border-radius: 25rem;
 }
 
 .btn--remove {
   background-color:  hsla(173, 22%, 56%, 0.644) !important;
-}
-
-.btn-edit-player {
-  background-color:  hsla(174, 30%, 51%, 0.397) !important;
-  border-radius: none !important;
-  border: 1px solid white;
-  color: hsla(175, 70%, 91%, 0.671) !important;
-  transition: .25s;
-  font-size: smaller;
-}
-
-.btn-edit-player:hover {
-  background-color:  hsla(174, 67%, 54%, 0.493) !important;
-  box-shadow: 2px 2px 4px hsla(172, 93%, 21%, 0.808);
-  color: white !important;
 }

@@ -4,15 +4,29 @@ flex-flow: column nowrap;
 justify-content: center;
 text-align: center;
 align-content: center;
-border: 1px solid gray;
-padding: 1rem;
+padding: .25rem;
+width: 100%;
+height: auto;
 }
 
+.heading-container {
+  display: flex;
+flex-flow: column nowrap;
+justify-content: center;
+justify-self: center;
+align-self: center;
+text-align: center;
+align-content: center;
+width: -webkit-fill-available;
+}
 .week-container {
   display: flex;
   flex-flow: row nowrap;
 }
-
+.middle-chunk {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
 .day-containter {
   display: flex;
   flex-flow: column nowrap;
@@ -23,33 +37,38 @@ padding: 1rem;
 .goal-container {
   display:flex;
   flex-flow: column nowrap;
-  border: 1px solid black;
-  width: 40px;
-  margin: 0 1rem;
+  width: 30x;
+  margin: 0 .25rem;
   justify-content: flex-end;
   align-content: flex-end;
+  border-radius: .75rem;
+  background-color: hsl(174, 30%, 73%);
 }
 
 .achieved-container {
   display: flex;
-  background-color: gray;
-  width: 40px;
+  background-color:  hsl(174, 47%, 61%);
+  width: 30px;
   justify-content: flex-end;
   align-content: flex-end;
+  border-radius: .75rem;
 }
 
 .goal-container-week {
   display:flex;
-  border: 1px solid black;
+  background-color: hsl(174, 30%, 73%);
   height: 20px;
   margin: 0 1rem;
+  border-radius: .75rem;
 }
 
 .achieved-container-week {
   display: flex;
-  background-color: gray;
+  background-color:   hsl(174, 47%, 61%);
   height: 20px;
   align-self: flex-end;
+  border-radius: .75rem;
+
 }
 
 .day-label {

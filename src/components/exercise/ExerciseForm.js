@@ -12,7 +12,6 @@ export const ExerciseForm = (props) => {
 // useRef
   const note = useRef(null)
   const exerciseType = useRef(null)
-
 //useContext
   const { addExercise } = useContext(ExerciseContext)
   const { exerciseTypes, getExerciseTypes } = useContext(ExerciseTypeContext)

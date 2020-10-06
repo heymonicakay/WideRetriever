@@ -548,15 +548,15 @@ export const WeeklyExerciseGoalTime = (props) => {
           <div className="heading">
             This Week
           </div>
+          <div className="goal-acheived">
+            {weeksHours}h {weeksMinutes}m {weeksSeconds}s
+          </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>
                 {weekProgress}%
                 </div>
               </div>
         </div>
-      <div className="goal-acheived">
-        {weeksHours}h {weeksMinutes}m {weeksSeconds}s
-      </div>
 
         </div>
 

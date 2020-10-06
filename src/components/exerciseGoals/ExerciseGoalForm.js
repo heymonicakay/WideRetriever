@@ -57,11 +57,13 @@ export const ExerciseGoalForm = (props) => {
   return (
     <div className="cont--form-ex">
       <section className="form">
-        <h1 className="h1 header__form header__form--ex">
-          Add a New Exercise Goal for {player.name}
-        </h1>
+        <div className="h1 header__form header__form--ex">
+          Exercise Goal for {player.name}
+        </div>
 
-        <label forHTML="goalSet">How often would you like {player.name} to exercise?</label>
+        <div className="how-often">How often would you like {player.name} to exercise?</div>
+
+        <div className="row">
 
         <input type="number" defaultValue="" min="0" max="60" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
 
@@ -92,11 +94,12 @@ export const ExerciseGoalForm = (props) => {
 
         <select defaultValue="" name="frequency" ref={frequency} id="frequency" className="select select--fq" onChange={handleControlledInputChange}>
               {frequencies.map(f => (
-                  <option key={f.id} value={f.id}>
+                <option key={f.id} value={f.id}>
                       {f.each}
                   </option>
               ))}
           </select>
+          </div>
 
           <button className="btn btn--submit btn--ex" type="button"
               onClick={e => {

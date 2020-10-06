@@ -65,7 +65,8 @@ export const ExerciseList = (props) => {
                   isOwner={props.isOwner}
                   todayObj={props.todayObj}
                 />
-              })}
+              }).reverse()
+              }
             </article>
           </div>
         </>

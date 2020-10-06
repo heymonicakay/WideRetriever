@@ -57,11 +57,13 @@ export const PlaytimeGoalForm = (props) => {
   return (
     <div className="cont--form-ex">
       <section className="form">
-        <h1 className="h1 header__form header__form--ex">
+        <div className="h1 header__form header__form--ex">
           Add a New Playtime Goal for {player.name}
-        </h1>
+        </div>
 
-        <label for="note">How often would you like {player.name} to play?</label>
+        <div className="how-often">How often would you like {player.name} to play?</div>
+
+        <div className="row">
 
         <input type="number" defaultValue="" min="0" max="10" ref={goalSet} name="goalSet" className="input input--ex input--goalSet" onChange={handleControlledInputChange} />
 
@@ -88,6 +90,8 @@ export const PlaytimeGoalForm = (props) => {
                   </option>
               ))}
           </select>
+
+          </div>
           <button className="btn btn--submit btn--ex" type="button"
               onClick={e => {
                 e.preventDefault()

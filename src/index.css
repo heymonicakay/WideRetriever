@@ -38,13 +38,6 @@ PNG SHADOW
   filter: drop-shadow(1px 2px 2px hsl(207, 98%, 23%));
 */
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: 'Bangers', cursive;
-}
 
 body,
 div,

@@ -169,7 +169,7 @@ export const Training = ( props ) => {
                   onClick={()=>{
                     toggleHidden()
                   }}>
-                    <img className="down-arrow down-arrow-img" src="https://res.cloudinary.com/heymonicakay/image/upload/c_fill,h_15,w_25/v1600727910/wideRetriever/DEAE19D0-DFF7-4B4D-ACC4-59ACB2B62B1D_g75deb.png" alt=""/>
+                    <img className="down-arrow down-arrow-img" src={noteHidden ? "https://res.cloudinary.com/heymonicakay/image/upload/a_90/v1601408603/wideRetriever/FB962FED-6991-4FCE-8D65-1A3A33211BA9_rnqjrl.png" : "https://res.cloudinary.com/heymonicakay/image/upload/a_270/v1601408603/wideRetriever/FB962FED-6991-4FCE-8D65-1A3A33211BA9_rnqjrl.png" } alt=""/>
                 </div>
               </div>
             </section>

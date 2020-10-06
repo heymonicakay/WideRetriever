@@ -32,9 +32,6 @@ export const TrainingList = (props) => {
       ?
       <>
         <div className="cont__list cont__list--tr">
-          <h2 className="list__header list__header--tr">
-            Training
-          </h2>
           <NoTrainings
           player={props.player}
           {...props}/>
@@ -42,9 +39,6 @@ export const TrainingList = (props) => {
       </>
       :<>
       <div className="cont__list cont__list--tr">
-            <h2 className="list__header list__header--tr">
-              Training
-            </h2>
             <article className="list list--tr">
               {props.playerTrainings.map(tr => {
                 const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
@@ -57,7 +51,7 @@ export const TrainingList = (props) => {
                 player={props.player}
                 playerId={props.playerId}
                 />
-              })
+              }).reverse()
             }
             </article>
           </div>

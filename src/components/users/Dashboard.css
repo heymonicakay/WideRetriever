@@ -3,7 +3,7 @@
   flex-flow: column;
   width: 700px;
   height: 750px;
-  justify-self: center;
+  justify-self: space-evenly;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -12,12 +12,52 @@
 .player-list-dash {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
-  margin: -1.5rem;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.pl-card-dash {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 
 .hello {
   font-weight: 500;
   font-size: 40px;
-  color: white;
+  color: hsla(172, 61%, 37%, 0.808);
+}
+
+.cont--img-dash {
+  height: 80px;
+  width: 80px;
+  border: 3px solid hsla(174, 34%, 44%, 0.712);
+  border-radius: 25rem;
+  justify-self: center;
+  align-self: center;
+  transition: .25s;
+}
+
+.cont--img-dash:hover {
+  border: 3px solid hsla(174, 66%, 77%, 0.712);
+  box-shadow: 2px 2px 10px hsla(172, 93%, 21%, 0.808);
+}
+
+.pl-card--img-dash {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  border-radius: 25rem;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.time-dash{
+  color: hsla(172, 61%, 37%, 0.808);
+  font-weight: 200;
+  font-size: large;
 }

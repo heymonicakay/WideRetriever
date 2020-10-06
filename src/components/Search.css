@@ -1,11 +1,16 @@
 .input__nav--search {
   border-radius: 15rem;
-  border: solid 1px hsl(172, 97%, 29%);
+  border: solid 1px white;
   color: hsl(207, 98%, 23%) !important;
   height: 25px;
   width: 25px;
   transition: .5s;
   color: transparent !important;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 
 .input__nav--search:focus {
@@ -26,6 +31,12 @@
   height: 18px;
   justify-self: center;
   align-self: center;
-  transform: translateX(24px);
-  z-index: -4;
+  transform: translateX(7px) translateY(9px);
+  pointer-events: none;
+  position: absolute;
+}
+
+.search-container{
+  padding: .25rem;
+  margin: .25rem;
 }
