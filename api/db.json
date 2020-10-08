@@ -26,73 +26,9 @@
       "id": 4
     }
   ],
-  "reminders": [
-    {
-      "userId": 1,
-      "reminderTitle": "Bathtime",
-      "reminderNote": "Give Kaos a bath.",
-      "dueDate": "2020-10-10",
-      "dueDateTimestamp": 1601853279999,
-      "timeDue": "12:00",
-      "dateSet": "2020-10-04T23:14:38.191Z",
-      "timestamp": 1601853278191,
-      "isCompleted": false,
-      "dateCompleted": "",
-      "isRecurring": false,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "reminderTitle": "Flea & Tick",
-      "reminderNote": "Give Kaos his flea & tick medicine.",
-      "dueDate": "2020-10-10",
-      "dueDateTimestamp": 1601853279999,
-      "timeDue": "12:00",
-      "dateSet": "2020-10-04T23:14:38.191Z",
-      "timestamp": 1601853278191,
-      "isCompleted": true,
-      "dateCompleted": "",
-      "isRecurring": false,
-      "id": 2,
-      "completedDate": 1601890702394
-    },
-    {
-      "userId": 1,
-      "reminderTitle": "Checkup",
-      "reminderNote": "Kaos' vet checkup.",
-      "dueDate": "2020-10-04",
-      "dueDateTimestamp": 1601855613943,
-      "dateSet": "2020-10-04T23:53:32.468Z",
-      "timestamp": 1601855612468,
-      "isCompleted": false,
-      "dateCompleted": "",
-      "isRecurring": false,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "reminderTitle": "Order Food",
-      "dueDate": "2020-10-31",
-      "dueDateTimestamp": 1601855986743,
-      "dateSet": "2020-10-04T23:59:32.990Z",
-      "timestamp": 1601855972990,
-      "isCompleted": true,
-      "dateCompleted": "",
-      "isRecurring": false,
-      "id": 4,
-      "completedDate": 1601862352061
-    }
-  ],
+  "reminders": [],
   "reminderFor": [],
   "players": [
-    {
-      "userId": 1,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600050221/wideretriever/ct20pf4eh0p1aktxqxuf.jpg",
-      "name": "Vinnie",
-      "breed": "Great Pyr",
-      "age": "3",
-      "id": 2
-    },
     {
       "userId": 2,
       "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600196321/wideretriever/bu8esdscxutcz1xxohli.jpg",
@@ -103,7 +39,7 @@
     },
     {
       "id": 4,
-      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1601952758/wideretriever/juvlqnb9lpo2e0jbusuk.jpg",
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1602004541/wideretriever/jxu0mzb256ns0tktwhpz.jpg",
       "userId": 1,
       "name": "Kaos",
       "breed": "Aussie Shep",
@@ -116,16 +52,17 @@
       "breed": "Cavalier King Charles Spaniel",
       "age": "6",
       "id": 5
+    },
+    {
+      "userId": 4,
+      "playerImg": "https://res.cloudinary.com/heymonicakay/image/upload/v1600702175/wideretriever/howo4d83l8ukk98kqsui.jpg",
+      "name": "Bug",
+      "breed": "Pug",
+      "age": "7",
+      "id": 6
     }
   ],
   "playtimeGoals": [
-    {
-      "id": 1,
-      "playerId": 2,
-      "goalSet": 1,
-      "frequencyId": 1,
-      "goalSetDate": 1600809829371
-    },
     {
       "id": 2,
       "playerId": 4,
@@ -135,15 +72,6 @@
     }
   ],
   "exerciseGoals": [
-    {
-      "id": 1,
-      "playerId": 2,
-      "goalSet": 3,
-      "measurementTypeId": 2,
-      "frequencyId": 2,
-      "timestamp": 1601343496175,
-      "date": "9/28/2020"
-    },
     {
       "playerId": 4,
       "goalSet": 3,
@@ -156,18 +84,9 @@
   ],
   "trainingGoals": [
     {
-      "id": 1,
-      "playerId": 2,
-      "goalSet": 3,
-      "measurementTypeId": 2,
-      "frequencyId": 1,
-      "timestamp": 1600953905984,
-      "date": "9/24/2020"
-    },
-    {
       "id": 2,
       "playerId": 4,
-      "goalSet": 3,
+      "goalSet": 1,
       "measurementTypeId": 2,
       "frequencyId": 1,
       "timestamp": 1600971551828,
@@ -216,15 +135,6 @@
       "id": 8
     },
     {
-      "playerId": 2,
-      "catches": 5,
-      "misses": 0,
-      "date": "9/28/2020",
-      "note": "This was a great playtime!",
-      "timestamp": 1601339674842,
-      "id": 11
-    },
-    {
       "playerId": 4,
       "catches": 2,
       "misses": 3,
@@ -241,6 +151,15 @@
       "note": "Great job, Kaos!",
       "timestamp": 1601950969474,
       "id": 13
+    },
+    {
+      "playerId": 4,
+      "catches": 4,
+      "misses": 1,
+      "date": "10/6/2020",
+      "note": "Great Game Kaos!",
+      "timestamp": 1601997892854,
+      "id": 14
     }
   ],
   "exercises": [
@@ -273,16 +192,6 @@
       "timestamp": 1600711781
     },
     {
-      "playerId": 2,
-      "exerciseTypeId": 2,
-      "minutes": 68,
-      "seconds": 32,
-      "date": "9/23/2020",
-      "note": "This is an exercise session added on 9/23",
-      "timestamp": 1600912616901,
-      "id": 1600625382
-    },
-    {
       "playerId": 4,
       "exerciseTypeId": 2,
       "minutes": 68,
@@ -291,16 +200,6 @@
       "note": "Great!",
       "timestamp": 1600929310499,
       "id": 1600625383
-    },
-    {
-      "playerId": 2,
-      "exerciseTypeId": 1,
-      "minutes": 68,
-      "seconds": 32,
-      "duration": "5-10 min",
-      "date": "9/28/2020",
-      "timestamp": 1601341229302,
-      "id": 1600625384
     },
     {
       "playerId": 4,
@@ -334,37 +233,25 @@
     {
       "playerId": 4,
       "exerciseTypeId": 1,
-      "startTime": "9:00:44 PM",
-      "minutes": 34,
-      "seconds": 36,
-      "date": "10/4/2020",
-      "note": "Short walk! ",
-      "timestamp": 1601863480443,
-      "id": 1600625388
+      "startTime": "11:38 AM",
+      "endTime": "11:38 AM",
+      "minutes": 0,
+      "seconds": 10,
+      "date": "10/6/2020",
+      "note": "This was super short\n\n",
+      "timestamp": 1602002332738,
+      "id": 1600625392
     },
     {
-      "playerId": 4,
-      "exerciseTypeId": 3,
-      "startTime": "4:20 PM",
-      "endTime": "4:27 PM",
-      "minutes": 55,
-      "seconds": 6,
-      "date": "10/5/2020",
-      "note": "We had so much fun hiking!",
-      "timestamp": 1601890111330,
-      "id": 1600625390
-    },
-    {
-      "id": 1600625391,
       "playerId": 4,
       "exerciseTypeId": 1,
-      "startTime": "4:20 PM",
-      "endTime": "4:27 PM",
-      "minutes": 55,
-      "seconds": 6,
-      "date": "10/5/2020",
-      "note": "We had so much fun hiking!",
-      "timestamp": 1601890111330
+      "startTime": "2:50 PM",
+      "endTime": "3:21 PM",
+      "minutes": 16,
+      "seconds": 46,
+      "date": "10/6/2020",
+      "timestamp": 1602015670608,
+      "id": 1600625393
     }
   ],
   "trainings": [
@@ -380,32 +267,6 @@
       "note": "Kaos did great!",
       "timestamp": 1601988170150,
       "id": 7
-    },
-    {
-      "playerId": 4,
-      "trainingTypeId": 3,
-      "startTime": "7:39 AM",
-      "endTime": "7:42 AM",
-      "minutes": 10,
-      "seconds": 38,
-      "treatCount": 6,
-      "date": "10/5/2020",
-      "note": "Kaos had a great training session!",
-      "timestamp": 1601988170150,
-      "id": 8
-    },
-    {
-      "playerId": 4,
-      "trainingTypeId": 1,
-      "startTime": "7:39 AM",
-      "endTime": "7:42 AM",
-      "minutes": 22,
-      "seconds": 38,
-      "treatCount": 1,
-      "date": "10/6/2020",
-      "note": "Kaos barely needed ANY treats to listen!",
-      "timestamp": 1601988170150,
-      "id": 9
     }
   ],
   "trainingTypes": [
@@ -424,6 +285,10 @@
     {
       "id": 4,
       "type": "Shake"
+    },
+    {
+      "type": "Roll Over",
+      "id": 5
     }
   ],
   "exerciseTypes": [
@@ -464,6 +329,21 @@
       "userId": 3,
       "playerId": 5,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "playerId": 3,
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "playerId": 4,
+      "id": 7
+    },
+    {
+      "userId": 2,
+      "playerId": 4,
+      "id": 8
     }
   ],
   "defaultIcons": [

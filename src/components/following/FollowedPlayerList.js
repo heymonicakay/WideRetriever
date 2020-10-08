@@ -36,7 +36,7 @@ export const FollowedPlayerList = props => {
     refreshPage()
   }
 
-  if (playersFollowed.length < 1) {
+  if (playersFollowed === undefined) {
     return (
       <>
           <div className="no-followed-pl-msg">

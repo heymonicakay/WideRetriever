@@ -51,8 +51,6 @@ export const Reminder = (props) =>{
 
       {completed
       ? <div className="completed">
-
-          <div> Completed on: {props.reminder.completedDate}</div>
           <div className="mark-incomplete" onClick={()=>{
           if(props.reminder.isCompleted === true){
             const updatedReminder = {
@@ -63,6 +61,7 @@ export const Reminder = (props) =>{
             props.patchReminder(updatedReminder)
             .then(props.getReminders())
             .then(setCompleted(false))
+            setIsDueToday(true)
           }}}> Mark Incomplete </div>
 
         </div>
@@ -77,6 +76,7 @@ export const Reminder = (props) =>{
           }
           props.patchReminder(updatedReminder)
           .then(setCompleted(true))
+          setIsDueToday(false)
         }}}> Mark Complete </div>
       </div>
       }

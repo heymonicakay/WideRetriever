@@ -372,6 +372,7 @@ export const WeeklyPlaytimeGoalTime = (props) => {
   useEffect(()=>{
     if(frequency === "day"){
       setDailyGoal(goal)
+      setWeeklyGoal(goal * 7)
     }
     else if(frequency === "week"){
       setWeeklyGoal(goal)
@@ -432,6 +433,8 @@ export const WeeklyPlaytimeGoalTime = (props) => {
     setWeeksMisses(misses)
     const prog = (weekLength / weeklyGoal) * 100
     const weekProg = Math.floor(prog)
+    console.log(weekLength)
+    console.log(weeklyGoal)
     setWeekProgress(weekProg)
 
   }, [sunTosses, monTosses, tuesTosses, wedTosses, thursTosses, friTosses, satTosses])

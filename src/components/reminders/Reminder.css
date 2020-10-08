@@ -1,26 +1,51 @@
 .reminder-list-cont {
   display: flex;
   flex-flow: column nowrap;
-  width: 15%;
+  width: 30%;
   height: -webkit-fill-available;
-  position: fixed;
-  right: 0;
   padding: 1rem 2rem;
 }
 
-.mark-completed {
+.mark-complete,
+.mark-incomplete {
   cursor: pointer;
 }
 
 .red {
-  background-color: rgb(196, 39, 39);
+  background-color: hsla(174, 48%, 47%, 0.849);
+  box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
+}
+.intput-reminder-title{
+  color: (172, 96%, 18%, 0.61) !important;
+
+}
+.is-recurring{
+  cursor: pointer;
+}
+
+.add-notes-btn{
+  cursor: pointer;
+}
+
+.delete-reminder{
+  cursor: pointer;
+}
+
+.submit {
+  background-color: hsla(174, 39%, 62%, 0.685);
+  cursor: pointer;
 }
 
 .reminder-card {
-  display: flex;
-  flex-flow: column nowrap;
-  padding: .25rem;
+  background-color: hsla(174, 39%, 62%, 0.685);
+  padding: 1em;
   margin: .25rem;
+  width: 225px;
+  justify-content: center;
+  justify-self: center;
+  align-content: center;
+  align-self: flex-start;
+  color: white;
 }
 
 .due-date {

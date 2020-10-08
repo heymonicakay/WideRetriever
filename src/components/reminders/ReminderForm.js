@@ -160,24 +160,24 @@ const changeDate = () => {
             </div>
 
             <div className="recurring">
-              <div name="isRecurring" value={isRecurring} onClick={toggleIsRecurring}>Is Recurring</div>
+              <div className="is-recurring" name="isRecurring" value={isRecurring} onClick={toggleIsRecurring}>Is Recurring</div>
               {isRecurring
               ?
               <select className="select-recurring" value={recurringValue} name="recurrance" onChange={(e)=>{
                 recurringChange(e)
                 handleControlledInputChange(e)
               }}>
-                <option value="none">none</option>
-                <option value="day">day</option>
-                <option value="week">week</option>
-                <option value="month">month</option>
+                <option value="each">none</option>
+                <option value="daily">day</option>
+                <option value="weekly">week</option>
+                <option value="monthly">month</option>
               </select>
               :<></>
               }
 
             </div>
 
-            <button className="btn" type="button"
+            <button className="submit" type="button"
               onClick={(e) => {
               constructNewReminder()
               setShowNotes(false)

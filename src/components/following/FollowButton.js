@@ -13,33 +13,43 @@ export const FollowButton = (props) => {
   const [followConnectionTBD, setFollowConnectionTBD] = useState({})
 //EFFECT
 const playerId = parseInt(props.match.params.playerId)
+const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
+// console.log(playerId, "PLAYER ID")
+// console.log(currentUserId, "USER ID")
 
-  useEffect(()=>{
-    getFullFollowings()
-  },[])
+//   useEffect(()=>{
+//     getFullFollowings()
+//   },[])
   useEffect(()=>{
     fullFollowings.forEach(ff => {
-      if(props.currentUserId === ff.userId && playerId === ff.player.id ) {
+    //   console.log(fullFollowings, "FULL FOLLOWINGS")
+      console.log(ff, "FF")
+        console.log(currentUserId, "CURRENT USER ID")
+        console.log(playerId, "PLAYER ID")
+      if(currentUserId === ff.userId && playerId === ff.player.id ) {
+        console.log("I'M HERE!")
         setIAmFollowing(true)
         setFollowConnectionTBD(ff)
       }
-      else{
-        setIAmFollowing(false)
-      }
+    //   else{
+    //     setIAmFollowing(false)
+    //   }
     })
   }, [fullFollowings])
-
+  console.log(iAmFollowing, "IAMFOLLOWING")
 //HANDLE
   const createNewFollowConnection = () => {
     if(iAmFollowing){
-    window.alert("you are already following this player")}
+    window.alert("you are already following this player")
+  }
+  else {
   const newFollowConnection = {
       userId: props.currentUserId,
       playerId: props.playerId
     }
     addFollowing(newFollowConnection)
     .then(getFullFollowings)
-  }
+  }}
 //RETURN
   return (
     <>
