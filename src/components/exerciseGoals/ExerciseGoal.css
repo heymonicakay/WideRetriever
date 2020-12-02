@@ -60,6 +60,7 @@ width: -webkit-fill-available;
   align-content: flex-end;
   border-radius: .75rem;
   background-color: hsl(174, 30%, 73%);
+  overflow: hidden;
 }
 
 .achieved-container {
@@ -69,7 +70,6 @@ width: -webkit-fill-available;
   width: 30px;
   justify-content: flex-end;
   align-content: flex-end;
-  border-radius: .75rem;
 }
 
 .day-label {
@@ -93,6 +93,7 @@ width: -webkit-fill-available;
   height: 20px;
   margin: 0 1rem;
   border-radius: .75rem;
+  overflow: hidden;
 }
 
 .achieved-container-week {
@@ -100,7 +101,6 @@ width: -webkit-fill-available;
   background-color: hsl(174, 47%, 61%);
   height: 20px;
   align-self: flex-end;
-  border-radius: .75rem;
   justify-content: center;
   align-items: center;
 }
@@ -109,3 +109,6 @@ width: -webkit-fill-available;
   text-align: center;
 }
 
+.percent-text-week {
+    padding-left: 1rem;
+}

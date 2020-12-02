@@ -42,16 +42,42 @@
 .pt-card--stats {
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
+  margin-top: .5rem;
+}
+
+.catches-and-misses {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+.pt-card--misses,
+.pt-card--catches {
+    font-size: larger;
+    letter-spacing: 0.05rem;
+}
+
+.pt-card--misses{
+    margin-left: .35rem;
+}
+
+.pt-card--catches{
+    margin-right: .35rem;
 }
 
 .date {
   padding: 0rem .25rem;
+  margin-left: .5rem;
+  transform-origin: center;
+  transform: scale(1.2, 1.2);
 }
 
 .percent {
   padding: 0rem .25rem;
   transform-origin: center;
-  transform: scale(1.5, 1.5);
+  transform: scale(1.4, 1.4);
   position: absolute;
   top: 15px;
   left: 25px;
@@ -69,12 +95,17 @@
 .delete-button {
   cursor: pointer;
   position: absolute;
-  bottom: 20 px;
-  left: 20px;
-  width: 45px;
-  height: 45px;
+  bottom: 5px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
   background:url("https://res.cloudinary.com/heymonicakay/image/upload/a_45/v1601928893/wideRetriever/5F802942-7530-4542-B9EC-4097C719F8D3_sbzief.png" ) 0 0 no-repeat;
   background-size: cover;
+}
+
+.pt-card-note {
+    width: 80%;
+    font-style: italic;
 }
 
 .hide {
@@ -85,13 +116,13 @@
 }
 
 /*
-                .cont--pt {
-                  display: flex;
-                  flex-flow: row wrap;
-                  align-content: left;
-                  width: 100%;
-                  height: 100%;
-                }
+    .cont--pt {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: left;
+        width: 100%;
+        height: 100%;
+    }
   .pl-pt-list {
     display: flex;
     flex-flow: column;

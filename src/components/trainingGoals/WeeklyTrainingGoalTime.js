@@ -6,6 +6,7 @@ import { DateContext } from "../time/DateProvider"
 import "./TrainingGoal.css"
 
 export const WeeklyTrainingGoalTime = (props) => {
+
   // useContext
   const { measurementTypes } = useContext(MeasurementTypeContext)
   const { frequencies } = useContext(FrequencyContext)
@@ -123,6 +124,15 @@ export const WeeklyTrainingGoalTime = (props) => {
   const thisDayPlusSix = thisTimestamp + 6 * 24 * 60 * 60 * 1000
   const plusSix = new Date(thisDayPlusSix).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
+  console.log(thisTimestamp, "today's timestamp")
+
+    console.log(thisDayMinusOne, "timestamp for this day minus one.")
+
+    console.log(minusOne, "Today minus one.")
+
+    console.log(today, "Date.now() todays date")
+
+    console.log(todayLocal, "Today Local")
 //EFFECT
   useEffect(()=>{
     if(thisDayOfTheWeekInt === 0) {
@@ -191,40 +201,40 @@ export const WeeklyTrainingGoalTime = (props) => {
   }, [])
 /* sets dates for currrent */
   useEffect(()=>{
-    const sunArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const sunArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date === sunday) {
-        return pe
+        return pt
       }})  || []
-    const monArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const monArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== monday) {
-        return pe
+        return pt
       }})|| []
-    const tuesArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const tuesArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== tuesday){
-        return pe
+        return pt
       }}) || []
-    const wedArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const wedArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== wednesday) {
-        return pe
+        return pt
       }}) || []
-    const thursArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const thursArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== thursday){
-        return pe
+        return pt
       }}) || []
-    const friArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const friArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== friday) {
-        return pe
+        return pt
       }})|| []
-    const satArray = props.playerTrainings.filter(pe => {
-      const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
+    const satArray = props.playerTrainings.filter(pt => {
+      const date = new Date(pt.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
       if(date=== saturday) {
-        return pe
+        return pt
       }}) || []
 
     setSunArray(sunArray)
@@ -552,7 +562,7 @@ export const WeeklyTrainingGoalTime = (props) => {
           </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>
-                {weekProgress}%
+                <span className="percent-text-week">{weekProgress}%</span>
                 </div>
               </div>
         </div>
@@ -560,8 +570,7 @@ export const WeeklyTrainingGoalTime = (props) => {
         </div>
 
         <div className="middle-chunk row">
-          <div className="left-margin column">
-          </div>
+          <div className="left-margin column"></div>
           <div className="week-container graph-background row">
             <div className="day-container">
               <div className="day sunday goal-container column" style={{height: "100px"}}>
@@ -605,7 +614,7 @@ export const WeeklyTrainingGoalTime = (props) => {
               <div className="day wednesday goal-container column" style={{height: "100px"}}>
                 <div className="day wednesday achieved percent">
                 </div>
-                <div className="day sunday achieved-container" style={{height: `${tuesdayProgress}%`}}>
+                <div className="day sunday achieved-container" style={{height: `${wednesdayProgress}%`}}>
                 {wednesdayProgress}%
                 </div>
               </div>

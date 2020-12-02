@@ -534,7 +534,7 @@ export const WeeklyPlaytimeGoalTime = (props) => {
           </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>
-                {weekProgress}%
+                <span className="percent-text-week">{weekProgress}%</span>
                 </div>
               </div>
         </div>
@@ -587,7 +587,7 @@ export const WeeklyPlaytimeGoalTime = (props) => {
               <div className="day wednesday goal-container column" style={{height: "100px"}}>
                 <div className="day wednesday achieved percent">
                 </div>
-                <div className="day sunday achieved-container" style={{height: `${tuesdayProgress}%`}}>
+                <div className="day sunday achieved-container" style={{height: `${wednesdayProgress}%`}}>
                 {wednesdayProgress}%
                 </div>
               </div>

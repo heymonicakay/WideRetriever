@@ -131,7 +131,7 @@
       "misses": 4,
       "date": "9/21/2020",
       "timestamp": 1600809829371,
-      "note": "He was so uninterested in catching the treats, but was more than happy to pick them up from the floor haha!",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "id": 8
     },
     {
@@ -139,7 +139,7 @@
       "catches": 2,
       "misses": 3,
       "date": "10/5/2020",
-      "note": "Kaos was pretty distracted today.",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601941026300,
       "id": 12
     },
@@ -148,7 +148,7 @@
       "catches": 4,
       "misses": 1,
       "date": "10/5/2020",
-      "note": "Great job, Kaos!",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601950969474,
       "id": 13
     },
@@ -157,9 +157,27 @@
       "catches": 4,
       "misses": 1,
       "date": "10/6/2020",
-      "note": "Great Game Kaos!",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601997892854,
       "id": 14
+    },
+    {
+      "playerId": 4,
+      "catches": 5,
+      "misses": 0,
+      "date": "12/2/2020",
+      "note": "Doggorino length boy wow very biscit puggo wow very biscit, borkf dat tungg tho.",
+      "timestamp": 1606931698629,
+      "id": 15
+    },
+    {
+      "playerId": 4,
+      "catches": 5,
+      "misses": 0,
+      "date": "12/2/2020",
+      "note": "Doggorino length boy wow very biscit puggo wow very biscit, borkf dat tungg tho.",
+      "timestamp": 1606931792024,
+      "id": 16
     }
   ],
   "exercises": [
@@ -169,7 +187,7 @@
       "minutes": 68,
       "seconds": 32,
       "date": "9/19/2020",
-      "note": "We went for a quick walk.",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "id": 5,
       "timestamp": 1600538981
     },
@@ -179,8 +197,8 @@
       "minutes": 68,
       "seconds": 32,
       "date": "9/20/2020",
-      "note": "Phoebe had a great time walking! ",
-      "id": 1600625381
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
+      "id": 6
     },
     {
       "id": 7,
@@ -189,6 +207,7 @@
       "seconds": 32,
       "exerciseTypeId": 1,
       "date": "9/21/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1600711781
     },
     {
@@ -197,18 +216,19 @@
       "minutes": 68,
       "seconds": 32,
       "date": "9/24/2020",
-      "note": "Great!",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1600929310499,
-      "id": 1600625383
+      "id": 8
     },
     {
       "playerId": 4,
       "exerciseTypeId": 1,
-      "minutes": 68,
+      "minutes": 48,
       "seconds": 32,
       "date": "9/28/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601354096296,
-      "id": 1600625385
+      "id": 9
     },
     {
       "playerId": 4,
@@ -216,9 +236,9 @@
       "minutes": 68,
       "seconds": 32,
       "date": "9/29/2020",
-      "note": "He did great!",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601392924472,
-      "id": 1600625386
+      "id": 10
     },
     {
       "playerId": 4,
@@ -227,8 +247,9 @@
       "minutes": 0,
       "seconds": 4,
       "date": "9/30/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1601494528841,
-      "id": 1600625387
+      "id": 11
     },
     {
       "playerId": 4,
@@ -238,9 +259,9 @@
       "minutes": 0,
       "seconds": 10,
       "date": "10/6/2020",
-      "note": "This was super short\n\n",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1602002332738,
-      "id": 1600625392
+      "id": 12
     },
     {
       "playerId": 4,
@@ -250,8 +271,21 @@
       "minutes": 16,
       "seconds": 46,
       "date": "10/6/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1602015670608,
-      "id": 1600625393
+      "id": 13
+    },
+    {
+      "playerId": 4,
+      "exerciseTypeId": 2,
+      "startTime": "11:14 AM",
+      "endTime": "11:52 AM",
+      "minutes": 38,
+      "seconds": 32,
+      "date": "12/2/2020",
+      "note": "Doggorino length boy wow very biscit puggo wow very biscit, borkf dat tungg tho.",
+      "timestamp": 1606931588378,
+      "id": 14
     }
   ],
   "trainings": [
@@ -263,9 +297,9 @@
       "minutes": 15,
       "seconds": 38,
       "treatCount": 3,
-      "date": "10/4/2020",
-      "note": "Kaos did great!",
-      "timestamp": 1601988170150,
+      "date": "12/2/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
+      "timestamp": 1606841659000,
       "id": 7
     },
     {
@@ -277,23 +311,23 @@
       "seconds": 49,
       "treatCount": 2,
       "date": "12/1/2020",
-      "note": "Kaos listened immediately, but got a bit distracted and needed a couple of treats as incentive to refocus.",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
       "timestamp": 1606870253465,
       "id": 8
     },
     {
-        "playerId": 4,
-        "trainingTypeId": 2,
-        "startTime": "6:49 PM",
-        "endTime": "6:59 PM",
-        "minutes": 10,
-        "seconds": 49,
-        "treatCount": 1,
-        "date": "11/30/2020",
-        "note": "Kaos did a great job",
-        "timestamp": 1606870253879,
-        "id": 9
-      }
+      "id": 9,
+      "playerId": 4,
+      "startTime": "6:49 PM",
+      "endTime": "6:59 PM",
+      "trainingTypeId": 3,
+      "minutes": 10,
+      "seconds": 49,
+      "treatCount": 1,
+      "date": "11/30/2020",
+      "note": "Doggo ipsum h*ck the neighborhood I am borking doggo.",
+      "timestamp": 1606870253879
+    }
   ],
   "trainingTypes": [
     {

@@ -51,6 +51,7 @@ export const TrainingList = (props) => {
                 player={props.player}
                 playerId={props.playerId}
                 currentUserId={props.currentUserId}
+                isOwner={props.isOwner}
                 />
               }).reverse()
             }

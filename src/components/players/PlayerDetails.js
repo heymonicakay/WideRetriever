@@ -285,6 +285,7 @@ const showTraining = () => {
                   todayObj={ todayObj}
                   currentTimestamp={ currentTimestamp }
                   currentUserId={ props.currentuserId }
+                  isOwner={isOwner}
                 {...props} />
               </section>
 

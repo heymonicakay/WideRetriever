@@ -35,18 +35,20 @@ export const Playtime = ( props ) => {
       </div>
 
       <div className={`pt-card--stats ${hideDetails ? "hide" : "show"}`}>
-        <div className="pt-card--detail pt-card--catches">
-          Catches: {props.playtime.catches}
-        </div>
-        <div className="pt-card--detail pt-card--misses">
-          Misses: {props.playtime.misses}
+        <div className="catches-and-misses">
+            <div className="pt-card--detail pt-card--catches">
+            Catches: {props.playtime.catches}
+            </div>
+            <div className="pt-card--detail pt-card--misses">
+            Misses: {props.playtime.misses}
+            </div>
         </div>
         <div className="pt-card-note">
           {props.playtime.note}
         </div>
         {props.isOwner
         ?<>
-        <div className={`delete-button ${hideDetails ? "hide" : "show"}`} onClick={() => {
+        <div title="Delete this game." className={`delete-button ${hideDetails ? "hide" : "show"}`} onClick={() => {
             removePlaytime(props.playtime.id)
             }}>
         </div>
