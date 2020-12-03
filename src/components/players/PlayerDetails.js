@@ -11,14 +11,13 @@
   import { ExerciseContext } from "../exercise/ExerciseProvider"
   import { ExerciseList } from "../exercise/ExerciseList"
   import { ExerciseGoalContext } from "../exerciseGoals/ExerciseGoalProvider"
-  import { TodaysProgress } from "../goals/TodaysProgress"
-  import { WeeksProgress } from "../goals/WeeksProgress"
   import { WeeklyExerciseGoalTime } from "../exerciseGoals/WeeklyExerciseGoalTime"
   import { WeeklyPlaytimeGoalTime } from "../playtimeGoals/WeeklyPlaytimeGoalTime"
   import { WeeklyTrainingGoalTime } from "../trainingGoals/WeeklyTrainingGoalTime"
   import { DateContext} from "../time/DateProvider"
   import { PlayerActivityButtons } from "./PlayerActivityButtons"
   import { FollowButton } from "../following/FollowButton"
+import { PlayerProfileImage } from "./PlayerProfileImage"
 
 export const PlayerDetails = ( props ) => {
 //CONTEXT
@@ -29,24 +28,20 @@ export const PlayerDetails = ( props ) => {
   const { playtimeGoals, getPlaytimeGoals, getPlayerPlaytimeGoal, playerPlaytimeGoal } = useContext(PlaytimeGoalContext)
   const { trainingGoals, getTrainingGoals, getPlayerTrainingGoal, playerTrainingGoal } = useContext(TrainingGoalContext)
   const { exerciseGoals, getExerciseGoals, getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
-  const { date, getCurrentTimestamp,currentTimestamp, todayObj, thisMonthVar, thisWeekstart, filterByThisWeek, filteredByThisWeek, filterByToday, filteredByToday} = useContext(DateContext)
+  const { date, getCurrentTimestamp,currentTimestamp, todayObj, filterByThisWeek} = useContext(DateContext)
 //STATE
-  const [hidden, setHidden] = useState(true)
-  const [exercisesToday, setExercisesToday] = useState([])
-  const [exercisesThisWeek, setExercisesThisWeek] = useState([])
-  const [playtimesToday, setPlaytimesToday] = useState([])
-  const [playtimesThisWeek, setPlaytimesThisWeek] = useState([])
-  const [trainingsToday, setTrainingsToday] = useState([])
-  const [trainingsThisWeek, setTrainingsThisWeek] = useState([])
-  const [catchesArray, setCatchesArray] = useState([])
-  const [tossesArray, setTossesArray] = useState([])
-  const [successRate, setSuccessRate] = useState(0)
-  const [isOwner, setIsOwner] = useState(false)
-  const [isHidden, setIsHidden] = useState(true)
-  const [hideGames, setHideGames] = useState(true)
-  const [hideExercise, setHideExercise] = useState(false)
-  const [hideTraining, setHideTraining] = useState(true)
+    const [exercisesToday, setExercisesToday] = useState([])
+    const [exercisesThisWeek, setExercisesThisWeek] = useState([])
+    const [playtimesToday, setPlaytimesToday] = useState([])
+    const [playtimesThisWeek, setPlaytimesThisWeek] = useState([])
+    const [trainingsToday, setTrainingsToday] = useState([])
+    const [trainingsThisWeek, setTrainingsThisWeek] = useState([])
+    const [isOwner, setIsOwner] = useState(false)
+    const [hideGames, setHideGames] = useState(true)
+    const [hideExercise, setHideExercise] = useState(false)
+    const [hideTraining, setHideTraining] = useState(true)
 
+  const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
   const playerId = parseInt(props.match.params.playerId)
 
   //EFFECT
@@ -55,12 +50,6 @@ export const PlayerDetails = ( props ) => {
     getExerciseGoals()
     getTrainingGoals()
   }, [])
-  useEffect(()=>{
-    if(isOwner){
-      setIsHidden(false)}
-    else{
-      setIsHidden(true)}
-  }, [isOwner])
 
   useEffect(() => {
     const playerId = parseInt(props.match.params.playerId)
@@ -94,39 +83,34 @@ export const PlayerDetails = ( props ) => {
   setExercisesToday(todaysExercises)
   setExercisesThisWeek(thisWeeksEx)
   }, [playerExercises])
-  useEffect(() => {
-    if(playerPlaytimes.length > 0){
-      const catchesArray = playerPlaytimes.map(pp=> pp.catches) || []
-      const tossesArray = playerPlaytimes.map(pp => pp.catches + pp.misses) || []
-      const percentage = (findSum(catchesArray) / findSum(tossesArray)).toLocaleString("en", {style: "percent"}) || 0
-      if(percentage === NaN){
-        setSuccessRate(0)
-      }
-      else{
-        setSuccessRate(percentage)
-      }
-      const todaysPlaytimes = playerPlaytimes.filter(pt => pt.date === todayObj) || []
-      const thisWeeksPt = filterByThisWeek(playerPlaytimes)
-        setPlaytimesToday(todaysPlaytimes)
-        setPlaytimesThisWeek(thisWeeksPt)
-        setCatchesArray(catchesArray)
-        setTossesArray(tossesArray)
-    }
-  }, [])
+//   useEffect(() => {
+//     if(playerPlaytimes.length > 0){
+//       const catchesArray = playerPlaytimes.map(pp=> pp.catches) || []
+//       const tossesArray = playerPlaytimes.map(pp => pp.catches + pp.misses) || []
+//       const percentage = (findSum(catchesArray) / findSum(tossesArray)).toLocaleString("en", {style: "percent"}) || 0
+//       if(percentage === NaN){
+//         setSuccessRate(0)
+//       }
+//       else{
+//         setSuccessRate(percentage)
+//       }
+//       const todaysPlaytimes = playerPlaytimes.filter(pt => pt.date === todayObj) || []
+//       const thisWeeksPt = filterByThisWeek(playerPlaytimes)
+//         setPlaytimesToday(todaysPlaytimes)
+//         setPlaytimesThisWeek(thisWeeksPt)
+//         setCatchesArray(catchesArray)
+//         setTossesArray(tossesArray)
+//     }
+//   }, [])
 //HANDLE
-  const toggleHide = ()=>{
-    if(hidden===true){
-      setHidden(false)
-    }
-    else{
-      setHidden(true)
-    }
-  }
+/* ----> MATH */
   const findSum = (arr) => {
     let total = 0
     arr.forEach(k => {total += k})
-  return total
-  } /* ----> MATH */
+    return total
+  }
+
+
 
   const showGames = () => {
       setHideGames(false)
@@ -149,58 +133,14 @@ const showTraining = () => {
       return (
         <>
         <div className="player-detail-container">
-          <section className="pl-card pl-card-det-sec">
-            <div className="pl-card-top">
-
-              <div className="player-img-edit-follow-contain">
-                <div className={`${isOwner ? "cont--img--detail" : "cont--img--detail-other"}`}>
-                  {isOwner
-                  ?<>
-                  </>
-                  :<>
-                      <FollowButton
-                        player={player}
-                        playerId={playerId}
-                        currentUserId={props.currentUserId}
-                        isOwner={isOwner}
-                        {...props}/>
-                  </>
-                  }
-                  <img className={`${isOwner ? "pl-card-img-detail": "pl-card-img-detail-other"}`} alt="" title={isOwner ? "Double click to edit player info." : "Image"} src={player.playerImg} onDoubleClick={isOwner ? () => {props.history.push(`/players/edit/${playerId}`)} : null}/>
-                </div>
-              </div>
-                <p className={`header  ${isOwner ? "pl-card__header--name" : "pl-card__header--name-other"}`} onClick={toggleHide}>
-                {player.name}
-                </p>
-
-              <section className="pl-card--details">
-                <div className={`more-details ${isOwner ? "" :"more-details-other"}`} hidden={hidden}>
-                  <div className="pl-card--breed">
-                    {player.breed}
-                  </div>
-                  <div className="pl-card--age">
-                    {player.age} years old
-                  </div>
-                </div>
-              </section>
-            </div>
-
-              {isOwner
-              ?<>
-              <div className="add-activity-buttons">
-                    <PlayerActivityButtons
-                    player={player}
-                    playerId={playerId}
-                    {...props}/>
-              </div>
-              </>
-              :<>
-              <div className="spacer">
-              </div>
-              </>
-              }
-            </section>
-          </div>
+        <PlayerProfileImage
+        player={ player }
+        playerId={ playerId }
+        currentuserId={ currentUserId }
+        isOwner={ isOwner }
+        playerImg={ player.playerImg }
+        {...props}/>
+        </div>
               {isOwner
               ?
               <div className="middle">

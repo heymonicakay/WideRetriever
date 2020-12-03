@@ -1,18 +1,17 @@
 import React, { useState, useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
 import { PlayerSearch } from "../players/PlayerSearch"
 import { UserContext } from "../users/UserProvider"
-// import { DefaultIconContext } from "../../../public/icons/DefaultIconProvider"
 import { AccountDropdown } from "./AccountDropdown"
 import { CreateDropdown} from "./CreateDropdown"
+import Default from "../icons/icon_paw_fill.png"
+import Plus from "../icons/plus_wv.png"
 import "./Nav.css"
 
 export const Nav = (props) => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false)
   const [ showCreateDropdown, setShowCreateDropdown] = useState(false)
-  const [username, setUsername] = useState({})
   const [letter, setLetter] = useState("")
-  const [image, setImage] = useState("/icons/icon_paw_fill.png")
+  const [image, setImage] = useState(Default)
 
   const { getCurrentUser, currentUser } = useContext(UserContext)
 
@@ -74,7 +73,7 @@ export const Nav = (props) => {
           </div>
             <div className="create-icon"
               onClick={toggleCreate}>
-              <img className="create-icon-url" src="https://res.cloudinary.com/heymonicakay/image/upload/v1600784857/wideRetriever/7F4591F1-F810-4472-AD7E-F70045A6A887_oq1csy.png" alt="" />
+              <img className="create-icon-url" src={Plus} alt="" />
             </div>
 
           <div className="nav-group--account">
