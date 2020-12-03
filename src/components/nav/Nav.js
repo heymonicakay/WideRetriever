@@ -5,6 +5,7 @@ import { UserContext } from "../users/UserProvider"
 import { DefaultIconContext } from "../icons/DefaultIconProvider"
 import { AccountDropdown } from "./AccountDropdown"
 import { CreateDropdown} from "./CreateDropdown"
+import DefaultIcon from "../icons/icon_paw_fill.png"
 import "./Nav.css"
 
 export const Nav = (props) => {
@@ -12,7 +13,7 @@ export const Nav = (props) => {
   const [ showCreateDropdown, setShowCreateDropdown] = useState(false)
   const [username, setUsername] = useState({})
   const [letter, setLetter] = useState("")
-  const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600784857/wideRetriever/7F4591F1-F810-4472-AD7E-F70045A6A887_oq1csy.png")
+  const [image, setImage] = useState(DefaultIcon)
 
   const { getCurrentUser, currentUser } = useContext(UserContext)
   const { getDefaultIcons, defaultIcons} = useContext(DefaultIconContext)
@@ -24,15 +25,21 @@ export const Nav = (props) => {
 
   useEffect(()=>{
     const username = currentUser.username || {}
-    const deconUsername = {...username}
-    const letter = deconUsername[0]
-    setLetter(letter)
+    if(username){
+        const deconUsername = {...username}
+        const letter = deconUsername[0]
+        setLetter(letter)
+
+    }
   }, [currentUser])
 
   useEffect(()=>{
-    const matchingIcon = defaultIcons.find(di => di.letter === letter) || {}
-    setImage(matchingIcon.iconURL)
-  }, [letter, defaultIcons])
+      if(letter){
+        console.log(letter, "letter")
+        const image = `../icons/letters/icon_${letter}.png`
+        setImage(image)
+    }
+  }, [letter])
 
   const toggleAccount = () => {
     setShowCreateDropdown(false)
@@ -85,7 +92,7 @@ export const Nav = (props) => {
         </div>
             <div className="home-icon"
               onClick={toggleAccount}>
-              <img className="home-icon-url" src={image} alt="" />
+              <img className="home-icon-url" src="../icons/letters/icon_m.png" alt="" />
             </div>
       </div>
     </>

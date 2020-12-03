@@ -124,15 +124,6 @@ export const WeeklyTrainingGoalTime = (props) => {
   const thisDayPlusSix = thisTimestamp + 6 * 24 * 60 * 60 * 1000
   const plusSix = new Date(thisDayPlusSix).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
-  console.log(thisTimestamp, "today's timestamp")
-
-    console.log(thisDayMinusOne, "timestamp for this day minus one.")
-
-    console.log(minusOne, "Today minus one.")
-
-    console.log(today, "Date.now() todays date")
-
-    console.log(todayLocal, "Today Local")
 //EFFECT
   useEffect(()=>{
     if(thisDayOfTheWeekInt === 0) {
