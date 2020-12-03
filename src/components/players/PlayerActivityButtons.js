@@ -21,52 +21,74 @@ export const PlayerActivityButtons = (props) => {
         if(props.isOwner){
             return (
                 <>
-                <div className="button-bloom-activity">
                     <div
                     title="Click to log a new activity."
-                    className={`plus-sign ${isOpen ? "rotate" : ""}`}
-                    onClick={toggleOpen}
-                    >
+                    className={`plus-sign
+                        ${isOpen
+                        ? "rotate"
+                        : ""}
+                    `}
+                    onClick={toggleOpen}>
                         <img
-                            src={Plus}
-                            alt=""
-                            className={`plus-sign-img ${isOpen ? "rotate" : ""}`}
-                        />
+                        src={Plus}
+                        alt=""
+                        className={`plus-sign-img
+                            ${isOpen
+                            ? "rotate"
+                            : ""}
+                        `}/>
                     </div>
                     <div
                     title="Log Exercise"
-                    className={`add-exercise ${isOpen ? "down-left" : ""}`}
-                    onClick={() => handleClick("exercise")}
-                    >
+                    className={`add-exercise
+                        ${isOpen
+                        ? "down-left"
+                        : ""}
+                    `}
+                    onClick={() => handleClick("exercise")}>
                         <img
-                            src={Exercise}
-                            alt=""
-                            className={`add-exercise-img ${isOpen ? "down-left" : ""}`}
-                        />
+                        src={Exercise}
+                        alt=""
+                        className={`add-exercise-img
+                            ${isOpen
+                            ? "down-left"
+                            : ""}
+                        `}/>
                     </div>
                     <div
                     title="Log Playtime"
-                    className={`add-playtime ${isOpen ? "out-left" : ""}`}
-                    onClick={() => handleClick("playtime")}
-                    >
+                    className={`add-playtime
+                        ${isOpen
+                        ? "out-left"
+                        : ""}
+                    `}
+                    onClick={() => handleClick("playtime")}>
                         <img
-                            src={Playtime}
-                            alt=""
-                            className={`add-playtime-img ${isOpen ? "out-left" : ""}`}
-                        />
+                        src={Playtime}
+                        alt=""
+                        className={`add-playtime-img
+                            ${isOpen
+                            ? "out-left"
+                            : ""}
+                        `}/>
                     </div>
                     <div
                     title="Log Training"
-                    className={`add-training ${isOpen ? "up-left" : ""}`}
-                    onClick={() => handleClick("training")}
-                    >
+                    className={`add-training
+                        ${isOpen
+                        ? "up-left"
+                        : ""}
+                    `}
+                    onClick={() => handleClick("training")}>
                         <img
-                            src={Training}
-                            alt=""
-                            className={`add-training-img ${isOpen ? "up-left" : ""}`}
-                        />
+                        src={Training}
+                        alt=""
+                        className={`add-training-img
+                            ${isOpen
+                            ? "up-left"
+                            : ""}
+                        `}/>
                     </div>
-                </div>
             </>
         );
         }

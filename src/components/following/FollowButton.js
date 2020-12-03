@@ -10,75 +10,82 @@ export const FollowButton = (props) => {
   const { fullFollowings, addFollowing, unfollow, getFullFollowings } = useContext(FollowingContext)
 //STATE
   const [iAmFollowing, setIAmFollowing] = useState(false)
-  const [followConnectionTBD, setFollowConnectionTBD] = useState({})
+  const [followConnection, setFollowConnection] = useState({})
 //EFFECT
-const playerId = parseInt(props.match.params.playerId)
-
     useEffect(()=>{
         fullFollowings.forEach(ff => {
-        if(props.currentUserId === ff.userId && props.playerId === ff.player.id ) {
-            setIAmFollowing(true)
-            setFollowConnectionTBD(ff)
-        }
+            if(props.currentUserId === ff.userId && props.playerId === ff.player.id ) {
+                setIAmFollowing(true)
+                setFollowConnection(ff)
+            }
+            else{
+                setIAmFollowing(false)
+                const newFollowConnection = {
+                    userId: props.currentUserId,
+                    playerId: props.playerId
+                }
+                setFollowConnection(newFollowConnection)
+            }
         })
     }, [fullFollowings])
 
 //HANDLE
-    const createNewFollowConnection = () => {
+    const handleClick = () => {
         if(iAmFollowing){
-        window.alert("you are already following this player")
+            unfollowDialog.current.showModal()
         }
-        else {
-            const newFollowConnection = {
-                userId: props.currentUserId,
-                playerId: props.playerId
-            }
-            addFollowing(newFollowConnection)
+        else{
+            addFollowing(followConnection)
             .then(getFullFollowings)
         }
     }
+
+    const handleUnfollow = (e) => {
+        e.preventDefault()
+        unfollow(followConnection.id)
+        .then(()=>{
+            setFollowConnection({})
+            unfollowDialog.current.close()
+        })
+    }
+
 //RETURN
 const FollowButtonValidation = () => {
     if(!props.isOwner){
         return (
             <>
-            <dialog className="unf-check" ref={unfollowDialog}>
-                <div className="msg--unf-check">
+            <dialog
+            className="unf-check"
+            ref={unfollowDialog}>
+                <div
+                className="msg--unf-check">
                     Are you sure you want to unfollow {props.player.name}?
                 </div>
-                <div className="cont__dialog-btns--unf-check">
-                    <div className="unfollow-sure" onClick={e => {
-                        e.preventDefault()
-                        unfollow(followConnectionTBD.id)
-                        .then(getFullFollowings)
-                        unfollowDialog.current.close()
-                    }}>
+                <div
+                className="cont__dialog-btns--unf-check">
+                    <div
+                    className="unfollow-sure"
+                    onClick={handleUnfollow}>
                         Yes, I'm sure.
                     </div>
-                    <div className="unf--nvm"
-                        onClick={e => unfollowDialog.current.close()}>
+                    <div
+                    className="unf--nvm"
+                    onClick={e => unfollowDialog.current.close()}>
                             Actually, nevermind.
                     </div>
                 </div>
             </dialog>
-
-            {iAmFollowing
-            ?<>
-                <span className="unfollow" onClick={() => {
-                unfollowDialog.current.showModal()
-                    }}>
-                    Unfollow
-                </span>
-            </>
-            :<>
-                <span className="follow" onClick={(e) => {
-                    e.preventDefault()
-                    createNewFollowConnection()
-                }}>
-                    Follow
-                </span>
-            </>
-            }
+            <span
+            className={`
+            ${iAmFollowing
+            ? "unfollow"
+            : "follow"}
+            `}
+            onClick={handleClick}>
+                {iAmFollowing
+                ? "Unfollow"
+                : "Follow"}
+            </span>
         </>
         )
     }

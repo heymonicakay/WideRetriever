@@ -15,9 +15,8 @@
   import { WeeklyPlaytimeGoalTime } from "../playtimeGoals/WeeklyPlaytimeGoalTime"
   import { WeeklyTrainingGoalTime } from "../trainingGoals/WeeklyTrainingGoalTime"
   import { DateContext} from "../time/DateProvider"
-  import { PlayerActivityButtons } from "./PlayerActivityButtons"
-  import { FollowButton } from "../following/FollowButton"
-import { PlayerProfileImage } from "./PlayerProfileImage"
+    import { DisplayGoal } from "../exerciseGoals/DisplayGoal"
+    import { PlayerProfileImage } from "./PlayerProfileImage"
 
 export const PlayerDetails = ( props ) => {
 //CONTEXT
@@ -27,8 +26,8 @@ export const PlayerDetails = ( props ) => {
   const { exercises, playerExercises, getPlayerExercises} = useContext(ExerciseContext)
   const { playtimeGoals, getPlaytimeGoals, getPlayerPlaytimeGoal, playerPlaytimeGoal } = useContext(PlaytimeGoalContext)
   const { trainingGoals, getTrainingGoals, getPlayerTrainingGoal, playerTrainingGoal } = useContext(TrainingGoalContext)
-  const { exerciseGoals, getExerciseGoals, getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
-  const { date, getCurrentTimestamp,currentTimestamp, todayObj, filterByThisWeek} = useContext(DateContext)
+  const { getPlayerExerciseGoal, playerExerciseGoal } = useContext(ExerciseGoalContext)
+  const { getCurrentTimestamp,currentTimestamp, todayObj, filterByThisWeek} = useContext(DateContext)
 //STATE
     const [exercisesToday, setExercisesToday] = useState([])
     const [exercisesThisWeek, setExercisesThisWeek] = useState([])
@@ -47,7 +46,7 @@ export const PlayerDetails = ( props ) => {
   //EFFECT
   useEffect(()=>{
     getPlaytimeGoals()
-    getExerciseGoals()
+    getPlayerExerciseGoal(playerId)
     getTrainingGoals()
   }, [])
 
@@ -57,11 +56,11 @@ export const PlayerDetails = ( props ) => {
     getPlayerByPlayerId(playerId)
     getPlayerPlaytimeGoal(playerId)
     getPlayerTrainingGoal(playerId)
-    getPlayerExerciseGoal(playerId)
+
     getPlayerExercises(playerId)
     getPlayerPlaytimes(playerId)
     getPlayerTrainings(playerId)
-  }, [playerId, playtimes, trainings, exercises, exerciseGoals, playtimeGoals, trainingGoals])
+  }, [playerId, playtimes, trainings, exercises, playerExerciseGoal, playtimeGoals, trainingGoals])
 
   useEffect(()=>{
     if(player.userId === props.currentUserId){
@@ -133,18 +132,21 @@ const showTraining = () => {
       return (
         <>
         <div className="player-detail-container">
-        <PlayerProfileImage
-        player={ player }
-        playerId={ playerId }
-        currentuserId={ currentUserId }
-        isOwner={ isOwner }
-        playerImg={ player.playerImg }
-        {...props}/>
+            <PlayerProfileImage
+            player={ player }
+            playerId={ playerId }
+            currentuserId={ currentUserId }
+            isOwner={ isOwner }
+            playerImg={ player.playerImg }
+            {...props}/>
         </div>
-              {isOwner
-              ?
-              <div className="middle">
-              <section className={`exercise-goal-section ${hideExercise ? "hidden" : "visible"}`}>
+                {isOwner
+                ?
+                <div className="middle">
+                    <section className={`exercise-goal-section ${hideExercise ? "hidden" : "visible"}`}>
+                    <DisplayGoal
+                    isOwner={ isOwner }
+                    {...props}/>
                 <WeeklyExerciseGoalTime
                   findSum={findSum}
                   player={ player }

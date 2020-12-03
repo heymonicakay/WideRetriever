@@ -1,16 +1,12 @@
-import React, { useState, useContext, useEffect, useRef } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { ExerciseGoalContext } from "./ExerciseGoalProvider"
-import { MeasurementTypeContext } from "../goals/MeasurementTypeProvider"
-import { FrequencyContext } from "../goals/FrequencyProvider"
 import { DateContext } from "../time/DateProvider"
 import "./ExerciseGoal.css"
 
 export const WeeklyExerciseGoalTime = (props) => {
   // useContext
-  const { measurementTypes } = useContext(MeasurementTypeContext)
-  const { frequencies } = useContext(FrequencyContext)
   const { weekArray } = useContext(DateContext)
-  const { patchExerciseGoal, getExerciseGoals } = useContext(ExerciseGoalContext)
+  const { playerExerciseGoal } = useContext(ExerciseGoalContext)
   const thisDay = new Date()
   const todayLocal = new Date().toLocaleDateString('en-US', {timeZone: "America/Chicago"})
   const thisTimestamp = Date.now(thisDay)
@@ -30,6 +26,36 @@ export const WeeklyExerciseGoalTime = (props) => {
   const [friArray, setFriArray] = useState([])
   const [satArray, setSatArray] = useState([])
 /* set local date of each day of CURRENT week */
+    const [weekdayArray, setWeekdayArray] =useState([
+        {sunday: [
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {monday: [
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {tuesday:[
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {wednesday:[
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {thursday:[
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {friday:[
+            {exArray:[]},
+            {date: ""}
+        ]},
+        {saturday:[
+            {exArray:[]},
+            {date: ""}
+        ]}
+    ])
   const [sunday, setSunday] = useState({})
   const [monday, setMonday] = useState({})
   const [tuesday, setTuesday] = useState({})
@@ -124,8 +150,15 @@ export const WeeklyExerciseGoalTime = (props) => {
   const plusSix = new Date(thisDayPlusSix).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
 
 //EFFECT
+
   useEffect(()=>{
+      const weekdayArray = []
+
     if(thisDayOfTheWeekInt === 0) {
+        const sunday = {
+            "date": todayLocal
+        }
+      weekdayArray.push(sunday)
       setSunday(todayLocal)
       setMonday(plusOne)
       setTuesday(plusTwo)
@@ -135,6 +168,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusSix)
     }
     if(thisDayOfTheWeekInt === 1) {
+        weekdayArray.push(minusOne)
       setSunday(minusOne)
       setMonday(todayLocal)
       setTuesday(plusOne)
@@ -144,6 +178,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusFive)
     }
     if(thisDayOfTheWeekInt === 2) {
+        weekdayArray.push(minusTwo)
       setSunday(minusTwo)
       setMonday(minusOne)
       setTuesday(todayLocal)
@@ -153,6 +188,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusFour)
     }
     if(thisDayOfTheWeekInt === 3) {
+        weekdayArray.push(minusThree)
       setSunday(minusThree)
       setMonday(minusTwo)
       setTuesday(minusOne)
@@ -162,6 +198,63 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusThree)
     }
     if(thisDayOfTheWeekInt === 4) {
+
+        const sunday = {
+            "sunday": {
+                "date": minusFour,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(sunday)
+
+        const monday ={
+            "monday": {
+                "date": minusThree,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(monday)
+
+        const tuesday = {
+            "tuesday": {
+                "date": minusTwo,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(tuesday)
+
+        const wednesday = {
+            "wednesday":{
+                "date":  minusOne,
+                "exercise": []
+            }
+            }
+        weekdayArray.push(wednesday)
+
+        const thursday = {
+            "thursday": {
+                "date": todayLocal,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(thursday)
+
+        const friday = {
+            "friday": {
+                "date": plusOne,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(friday)
+        
+        const saturday = {
+            "saturday": {
+                "date": plusTwo,
+                "exercise": []
+            }
+        }
+        weekdayArray.push(saturday)
+
       setSunday(minusFour)
       setMonday(minusThree)
       setTuesday(minusTwo)
@@ -171,6 +264,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusTwo)
     }
     if(thisDayOfTheWeekInt === 5) {
+        weekdayArray.push(minusFive)
       setSunday(minusFive)
       setMonday(minusFour)
       setTuesday(minusThree)
@@ -180,6 +274,8 @@ export const WeeklyExerciseGoalTime = (props) => {
       setSaturday(plusOne)
     }
     if(thisDayOfTheWeekInt === 6) {
+        weekdayArray.push(minusSix)
+
       setSunday(minusSix)
       setMonday(minusFive)
       setTuesday(minusFour)
@@ -188,8 +284,11 @@ export const WeeklyExerciseGoalTime = (props) => {
       setFriday(minusOne)
       setSaturday(todayLocal)
     }
+    console.log(weekdayArray
+        , "WDARRAY MONDAY")
   }, [])
 /* sets dates for currrent */
+
   useEffect(()=>{
     const sunArray = props.playerExercises.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
@@ -213,7 +312,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       }}) || []
     const thursArray = props.playerExercises.filter(pe => {
       const date = new Date(pe.date).toLocaleDateString('en-US', {timeZone: "America/Chicago"})
-      if(date=== thursday){
+      if(date === thursday){
         return pe
       }}) || []
     const friArray = props.playerExercises.filter(pe => {
@@ -360,42 +459,24 @@ export const WeeklyExerciseGoalTime = (props) => {
   }, [props.playerExercises, satArray])
 
   useEffect(()=>{
-    const frequency = frequencies.find(f => f.id === props.playerExerciseGoal.frequencyId) || {}
-    const freq = frequency.each
-
-    const meas = measurementTypes.find(mt => mt.id === props.playerExerciseGoal.measurementTypeId) || {}
-    const measId = meas.id
-    const measure = meas.measurement
-    const plural = meas.plural
-    const goal = parseInt(props.playerExerciseGoal.goalSet)
-
-    if(measId === 1){
-      const goalInSeconds = goal * 60
-      setDailyGoalInSeconds(goalInSeconds)
+    if(playerExerciseGoal){
+        const goal = parseInt(playerExerciseGoal.goalSet)
+        if(playerExerciseGoal.measurementTypeId == 1){
+            const goalInSeconds = goal * 60
+            setDailyGoalInSeconds(goalInSeconds)
+        }
+        if(playerExerciseGoal.measurementTypeId == 2){
+            const goalInSeconds = goal * 60 * 60
+            setDailyGoalInSeconds(goalInSeconds)
+        }
+        if(playerExerciseGoal.frequencyId == 1){
+            setWeeklyGoalInSeconds(dailyGoalInSeconds * 7)
+        }
+        if(playerExerciseGoal.frequencyId == 2){
+            setWeeklyGoalInSeconds(dailyGoalInSeconds)
+        }
     }
-    if(measId === 2){
-      const goalInSeconds = goal * 60 * 60
-      setDailyGoalInSeconds(goalInSeconds)
-    }
-
-    if(goal <= 1){
-      setMeasurement(measure)
-    }
-    else {
-      setMeasurement(plural)
-    }
-    setGoal(goal)
-    setFrequency(freq)
-  }, [props.playerExerciseGoal])
-
-  useEffect(()=>{
-    if(frequency === "day"){
-      setWeeklyGoalInSeconds(dailyGoalInSeconds * 7)
-    }
-    else if(frequency === "week"){
-      setWeeklyGoalInSeconds(dailyGoalInSeconds)
-    }
-  }, [frequency, dailyGoalInSeconds])
+  }, [playerExerciseGoal])
 
   useEffect(()=>{
     const prog = (sunMinutesAsSeconds / dailyGoalInSeconds) * 100
@@ -470,78 +551,10 @@ export const WeeklyExerciseGoalTime = (props) => {
   const [saturdayProgress, setSaturdayProgress] = useState(0)
   const [weekProgress, setWeekProgress] = useState(0)
 
-  const handleGoalDoubleClick = () => {
-    setGoalEdit(true)
-  }
-  const handleGoalKeyPress = (e) => {
-    if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
-        goalSet: parseInt(goalEditInput.current.value)
-      })
-      .then(getExerciseGoals())
-      .then(setGoalEdit(false))
-    }
-  }}
-
-  const handleMeasureDoubleClick = () => {
-    setMeasurementTypeEdit(true)
-  }
-  const handleMeasureKeyPress = (e)=>{
-    if(e.key === "Enter"){
-      {patchExerciseGoal({
-        id: props.playerExerciseGoal.id,
-        measurementTypeId: parseInt(measurementTypeEditInput.current.value)
-      })
-      .then(getExerciseGoals())
-      .then(setMeasurementTypeEdit(false))
-    }
-    }}
-  const [measurementTypeEdit, setMeasurementTypeEdit]=useState(false)
-  const [goalEdit, setGoalEdit] = useState(false)
-  const goalEditInput = useRef(null)
-  const measurementTypeEditInput = useRef(null)
 
   return (
     <>
-    <div className="goal-statement">
-      <div className="exerciseGoal">
-        Exercise Goal
-      </div>
-      {goalEdit
-      ? <>
-      <input type="number" defaultValue={goal} min="0" max="60" ref={goalEditInput} name="goalEditInput" className="input input--ex input--goalSet" onKeyPress={(e) => {
-        handleGoalKeyPress(e)
-        }} />
-        </>
-      :<>
-        <span className="goal" onDoubleClick={handleGoalDoubleClick}>
-          {goal}
-        </span>
-        </>
-      }
-      {measurementTypeEdit
-      ?<>
-      <select defaultValue={measurement} name="measurementType" ref={measurementTypeEditInput} id="measurementTypeEditInput" className="select select--mt" onKeyPress={(e) => {
-        handleMeasureKeyPress(e)
-        }}>
-              {measurementTypes.map(mt => (
-                  <option key={mt.id} value={mt.id}>
-                      {mt.plural}
-                  </option>
-              ))}
-        </select>
-      </>
-      :<>
-      <span className="measure" onDoubleClick={handleMeasureDoubleClick}>
-        {measurement}
-      </span>
-      </>
-      } every {frequency}
-    </div>
-
       <div className="chart-container column">
-
         <div className="heading-container column">
           <div className="day-container">
           <div className="heading">

@@ -6,28 +6,28 @@ export const FollowingProvider = (props) => {
     const [currentUserFollowings, setCurrentUserFollowings] = useState([])
     const [followings, setFollowings] = useState([])
     const [fullFollowings, setFullFollowings]=useState([])
+    const url = "http://localhost:8088/"
+    const resource = "followings"
 
     const getFollowings = () => {
-        return fetch("http://localhost:8088/followings")
+        return fetch(`${url}${resource}`)
             .then(res => res.json())
             .then(setFollowings)
     }
 
     const getUserFollowings = (currentUserId) => {
-      return fetch(`http://localhost:8088/followings?userId=${currentUserId}`)
-          .then(res => res.json())
-          .then(setCurrentUserFollowings)
-  }
+        return fetch(`${url}${resource}?userId=${currentUserId}`)
+            .then(res => res.json())
+            .then(setCurrentUserFollowings)
+    }
     const getFullFollowings = () => {
-      return fetch('http://localhost:8088/followings?_expand=player')
-      .then(res => res.json())
-      .then(setFullFollowings)
+        return fetch(`${url}${resource}?_expand=player`)
+        .then(res => res.json())
+        .then(setFullFollowings)
     }
 
-
-
     const addFollowing = followingObj => {
-        return fetch("http://localhost:8088/followings", {
+        return fetch(`${url}${resource}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -43,10 +43,10 @@ export const FollowingProvider = (props) => {
     }
 
     const unfollow = followingId => {
-        return fetch(`http://localhost:8088/followings/${followingId}`, {
+        return fetch(`${url}${resource}/${followingId}`, {
             method: "DELETE"
         })
-            .then(getFollowings)
+            .then(getFullFollowings)
     }
 
 

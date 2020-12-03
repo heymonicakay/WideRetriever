@@ -112,34 +112,18 @@
 
 .pl-card__header--name {
   display:flex;
-  position: absolute;
   justify-self: center;
   align-self: center;
   text-align: center;
   color: white;
   font-weight: 500;
-  font-size: 38px;
+  font-size: 20px;
   z-index: 2;
-  top: 16%;
   -webkit-filter: drop-shadow(1px 3px 3px hsl(207, 97%, 13%));
   filter: drop-shadow(1px 3px 3px hsl(207, 95%, 15%));
   cursor: pointer;
-}
-
-.pl-card__header--name-other {
-  display:flex;
   position: absolute;
-  justify-self: center;
-  align-self: center;
-  text-align: center;
-  color: white;
-  font-weight: 500;
-  font-size: 38px;
-  z-index: 2;
-  top: 15%;
-  -webkit-filter: drop-shadow(1px 3px 3px hsl(207, 97%, 13%));
-  filter: drop-shadow(1px 3px 3px hsl(207, 95%, 15%));
-  cursor: pointer;
+  bottom: 15%;
 }
 
 .edit-player-container {
@@ -253,6 +237,12 @@ transition: .25s;
   color: white;
 }
 
+.unfollow:hover,
+.follow:hover {
+    -webkit-filter: drop-shadow(1px 2px 3px rgba(38, 88, 85, 0.658));
+    filter: drop-shadow(1px 2px 3px rgba(38, 88, 85, 0.63));
+}
+
 .pl-card--details {
   display: flex;
   flex-flow: column;
@@ -285,47 +275,29 @@ transition: .25s;
   align-self: center;
 }
 
+
+.cont--img--detail-other,
 .cont--img--detail {
-  display: flex;
-  height: 80px;
-  width: 80px;
-  border: 3px solid hsla(174, 34%, 44%, 0.712);
-  border-radius: 25rem;
-  justify-self: center;
-  align-self: center;
-  transition: .25s;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    border: 3px solid hsla(174, 34%, 44%, 0.712);
+    border-radius: 25rem;
+    justify-self: center;
+    align-self: center;
+    align-content: center;
+    transform: scale(1.5, 1.5) translateY(-20px);
+    transform-origin: center;
+    position: absolute;
+    top: 14%;
+    left: 44%;
 }
 
 .cont--img--detail:hover {
   border: 3px solid hsla(174, 66%, 77%, 0.712);
   box-shadow: 2px 2px 10px hsla(172, 93%, 21%, 0.808);
-}
-
-.cont--img--detail-other {
-  display: flex;
-  width: 100px;
-  height: 100px;
-  justify-content: center;
-  border: 3px solid hsla(174, 34%, 44%, 0.712);
-  border-radius: 25rem;
-  justify-self: center;
-  align-self: center;
-  align-content: center;
-  transform: scale(1.5, 1.5) translateY(-20px);
-  transform-origin: center;
-  position: absolute;
-  top: 14%;
-  left: 44%;
-}
-
-.cont--img--detail {
-  display: flex;
-  width: 100px;
-  height: 100px;
-  justify-content: center;
-  align-content: center;
-  transform: scale(1.5, 1.5);
-  transform-origin: center;
+  cursor: pointer;
 }
 
 .add-activity-buttons {
@@ -334,16 +306,11 @@ transition: .25s;
 }
 
 .pl-card-img-detail {
-  display: flex;
-  height: 100px;
-  width: 100px;
-  justify-self: center;
-  align-self: center;
-  border-radius: 25rem;
-  cursor: pointer;
+    cursor: pointer;
 }
 
-.pl-card-img-detail-other {
+.pl-card-img-detail-other,
+.pl-card-img-detail {
   display: flex;
   height: 100px;
   width: 100px;

@@ -74,7 +74,7 @@
   "exerciseGoals": [
     {
       "playerId": 4,
-      "goalSet": 3,
+      "goalSet": 1,
       "measurementTypeId": 2,
       "frequencyId": 1,
       "timestamp": 1601339954723,
@@ -371,11 +371,6 @@
   ],
   "followings": [
     {
-      "userId": 1,
-      "playerId": 5,
-      "id": 2
-    },
-    {
       "userId": 4,
       "playerId": 5,
       "id": 3
@@ -404,6 +399,11 @@
       "userId": 2,
       "playerId": 4,
       "id": 8
+    },
+    {
+      "userId": 1,
+      "playerId": 5,
+      "id": 9
     }
   ],
   "defaultIcons": [
