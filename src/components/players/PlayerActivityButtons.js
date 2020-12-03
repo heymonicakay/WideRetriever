@@ -16,7 +16,7 @@ export const PlayerActivityButtons = (props) => {
     const id = props.playerId;
     props.history.push(`/players/${activity}/add/${id}`);
     };
-    
+
     const ActButtonValidation = () => {
         if(props.isOwner){
             return (
@@ -69,6 +69,9 @@ export const PlayerActivityButtons = (props) => {
                 </div>
             </>
         );
+        }
+        else{
+            return null
         }
     }
     return (

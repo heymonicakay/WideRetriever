@@ -18,7 +18,6 @@ import { ExerciseGoalProvider } from "./exerciseGoals/ExerciseGoalProvider"
 import { ExerciseGoalForm  } from "./exerciseGoals/ExerciseGoalForm"
 import { FollowingProvider } from "./following/FollowingProvider"
 import { FollowedPlayerList } from "./following/FollowedPlayerList"
-import { DefaultIconProvider } from "./icons/DefaultIconProvider"
 import { PlaytimeGoalProvider } from "./playtimeGoals/PlaytimeGoalProvider"
 import { PlaytimeGoalForm } from "./playtimeGoals/PlaytimeGoalForm"
 import { TrainingGoalProvider } from "./trainingGoals/TrainingGoalProvider"
@@ -36,7 +35,6 @@ export const ApplicationViews = (props) => {
     <>
     <DateProvider>
       <UserProvider >
-        <DefaultIconProvider>
           <PlayerProvider {...props}>
             <FollowingProvider>
               <ReminderProvider>
@@ -234,7 +232,6 @@ export const ApplicationViews = (props) => {
               </ReminderProvider>
             </FollowingProvider>
           </PlayerProvider>
-        </DefaultIconProvider>
       </UserProvider>
     </DateProvider>
     </>

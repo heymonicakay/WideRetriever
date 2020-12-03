@@ -82,6 +82,9 @@ const FollowButtonValidation = () => {
         </>
         )
     }
+    else{
+        return null
+    }
 }
 return (
     <>
