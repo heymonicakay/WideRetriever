@@ -2,10 +2,9 @@ import React, { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { PlayerSearch } from "../players/PlayerSearch"
 import { UserContext } from "../users/UserProvider"
-import { DefaultIconContext } from "../icons/DefaultIconProvider"
+// import { DefaultIconContext } from "../../../public/icons/DefaultIconProvider"
 import { AccountDropdown } from "./AccountDropdown"
 import { CreateDropdown} from "./CreateDropdown"
-import DefaultIcon from "../icons/icon_paw_fill.png"
 import "./Nav.css"
 
 export const Nav = (props) => {
@@ -13,14 +12,12 @@ export const Nav = (props) => {
   const [ showCreateDropdown, setShowCreateDropdown] = useState(false)
   const [username, setUsername] = useState({})
   const [letter, setLetter] = useState("")
-  const [image, setImage] = useState(DefaultIcon)
+  const [image, setImage] = useState("/icons/icon_paw_fill.png")
 
   const { getCurrentUser, currentUser } = useContext(UserContext)
-  const { getDefaultIcons, defaultIcons} = useContext(DefaultIconContext)
 
   useEffect(()=>{
     getCurrentUser(props.currentUserId)
-    getDefaultIcons()
   }, [])
 
   useEffect(()=>{
@@ -29,14 +26,12 @@ export const Nav = (props) => {
         const deconUsername = {...username}
         const letter = deconUsername[0]
         setLetter(letter)
-
     }
   }, [currentUser])
 
   useEffect(()=>{
       if(letter){
-        console.log(letter, "letter")
-        const image = `../icons/letters/icon_${letter}.png`
+        const image = `/icons/letters/icon_${letter}.png`
         setImage(image)
     }
   }, [letter])
@@ -92,7 +87,7 @@ export const Nav = (props) => {
         </div>
             <div className="home-icon"
               onClick={toggleAccount}>
-              <img className="home-icon-url" src="../icons/letters/icon_m.png" alt="" />
+              <img className="home-icon-url" src={image} alt="" />
             </div>
       </div>
     </>
