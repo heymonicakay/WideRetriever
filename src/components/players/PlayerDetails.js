@@ -162,6 +162,7 @@ const showTraining = () => {
                         player={player}
                         playerId={playerId}
                         currentUserId={props.currentUserId}
+                        isOwner={isOwner}
                         {...props}/>
                   </>
                   }

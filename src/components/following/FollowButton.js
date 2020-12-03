@@ -14,26 +14,13 @@ export const FollowButton = (props) => {
 //EFFECT
 const playerId = parseInt(props.match.params.playerId)
 const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
-// console.log(playerId, "PLAYER ID")
-// console.log(currentUserId, "USER ID")
 
-//   useEffect(()=>{
-//     getFullFollowings()
-//   },[])
   useEffect(()=>{
     fullFollowings.forEach(ff => {
-    //   console.log(fullFollowings, "FULL FOLLOWINGS")
-      console.log(ff, "FF")
-        console.log(currentUserId, "CURRENT USER ID")
-        console.log(playerId, "PLAYER ID")
       if(currentUserId === ff.userId && playerId === ff.player.id ) {
-        console.log("I'M HERE!")
         setIAmFollowing(true)
         setFollowConnectionTBD(ff)
       }
-    //   else{
-    //     setIAmFollowing(false)
-    //   }
     })
   }, [fullFollowings])
   console.log(iAmFollowing, "IAMFOLLOWING")
@@ -51,45 +38,54 @@ const currentUserId = parseInt(sessionStorage.getItem("wr__user"))
     .then(getFullFollowings)
   }}
 //RETURN
-  return (
-    <>
-    <dialog className="unf-check" ref={unfollowDialog}>
-      <div className="msg--unf-check">
-      Are you sure you want to unfollow {props.player.name}?
-      </div>
-      <div className="cont__dialog-btns--unf-check">
-        <div className="unfollow-sure" onClick={e => {
-            e.preventDefault()
-            unfollow(followConnectionTBD.id)
-            .then(getFullFollowings)
-            unfollowDialog.current.close()
-        }}>
-          Yes, I'm sure.
-        </div>
-        <div className="unf--nvm"
-              onClick={e => unfollowDialog.current.close()}>
-                Actually, nevermind.
-        </div>
-      </div>
-    </dialog>
+const FollowButtonValidation = () => {
+    if(!props.isOwner){
+        return (
+            <>
+            <dialog className="unf-check" ref={unfollowDialog}>
+              <div className="msg--unf-check">
+              Are you sure you want to unfollow {props.player.name}?
+              </div>
+              <div className="cont__dialog-btns--unf-check">
+                <div className="unfollow-sure" onClick={e => {
+                    e.preventDefault()
+                    unfollow(followConnectionTBD.id)
+                    .then(getFullFollowings)
+                    unfollowDialog.current.close()
+                }}>
+                  Yes, I'm sure.
+                </div>
+                <div className="unf--nvm"
+                      onClick={e => unfollowDialog.current.close()}>
+                        Actually, nevermind.
+                </div>
+              </div>
+            </dialog>
 
-    {iAmFollowing
-    ?<>
-      <span className="unfollow" onClick={() => {
-      unfollowDialog.current.showModal()
-        }}>
-        Unfollow
-      </span>
-    </>
-    :<>
-      <span className="follow" onClick={(e) => {
-        e.preventDefault()
-        createNewFollowConnection()
-      }}>
-        Follow
-      </span>
-    </>
+            {iAmFollowing
+            ?<>
+              <span className="unfollow" onClick={() => {
+              unfollowDialog.current.showModal()
+                }}>
+                Unfollow
+              </span>
+            </>
+            :<>
+              <span className="follow" onClick={(e) => {
+                e.preventDefault()
+                createNewFollowConnection()
+              }}>
+                Follow
+              </span>
+            </>
+            }
+        </>
+        )
     }
-  </>
-  )
+}
+return (
+    <>
+    <FollowButtonValidation />
+    </>
+)
 }
