@@ -52,4 +52,5 @@ Along with this repository, you will need to clone the [Wide Retriever Server](h
 To quickly get to the data, login with the following demo user data:
 
 Username: demo
+
 Password: demo
