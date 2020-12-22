@@ -29,7 +29,6 @@ export const ExerciseGoalProvider = (props) => {
         return fetch(`${url}${resource}?playerId=${playerId}&&_expand=measurementType&&_expand=frequency`)
             .then(res => res.json())
             .then((res)=>{
-                console.log(res[0])
                 setPlayerExerciseGoal(res[0])
             })
     }

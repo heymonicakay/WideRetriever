@@ -284,8 +284,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setFriday(minusOne)
       setSaturday(todayLocal)
     }
-    console.log(weekdayArray
-        , "WDARRAY MONDAY")
+    
   }, [])
 /* sets dates for currrent */
 

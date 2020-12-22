@@ -117,25 +117,6 @@ top: -25px;
   font-weight: 400;
 }
 
-.select--et {
-  padding: .25rem;
-  cursor: pointer;
-  width: 60%;
-  justify-self: center;
-  align-self: center;
-  border: none;
-  background-color: -internal-light-dark(hsla(173, 43%, 68%, 0.548), hsla(172, 97%, 29%, 0.548));
-  color: -internal-light-dark(hsl(207, 98%, 23%), white);
-}
-
-.select--et:focus {
-  outline: none;
-}
-
-.first-option {
-  font-style: italic;
-}
-
 .custom-cont {
   display: flex;
   justify-self: center;
