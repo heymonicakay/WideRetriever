@@ -27,16 +27,17 @@ This application uses mock authentication which is purely for demonstration purp
 
 #### Now that we've cleared that up...
 
-Along with this repository, you will need to clone the [Wide Retriever Server](https://github.com/heymonicakay/wideRetriever-server) repo as well which contains the data.
-
 1. Clone this repository and change to the directory in the terminal.
 
 ```sh
 git clone git@github.com:heymonicakay/wideRetriever.git
 cd wideRetriever
 ```
+2. Access the data.
 
-2. Launch the client.
+<a href="https://www.github.com/heymonicakay/wideRetriever-server" target="_blank"><img src="https://img.shields.io/badge/Click_here%20-%236ae689.svg?&style=for-the-badge&&logoColor=white" alt="Wide Retriever Server Repo" style="height: auto !important; width: auto !important;" /></a>
+
+3. Launch the client.
 
 ```sh
     npm install
