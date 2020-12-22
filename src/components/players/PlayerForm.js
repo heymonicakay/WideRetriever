@@ -149,7 +149,7 @@ export const PlayerForm = (props) => {
                 </span>
               {loading
                 ?(
-                    <h3 className="h3 h3--img-load">Fetching..</h3>
+                    <h3 className="h3 h3--img-load">Fetching...</h3>
                   )
                 :(
                   <>

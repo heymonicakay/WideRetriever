@@ -431,11 +431,15 @@ export const WeeklyPlaytimeGoalTime = (props) => {
     setWeeksTosses(tosses)
     setWeeksCatches(catches)
     setWeeksMisses(misses)
+
     const prog = (weekLength / weeklyGoal) * 100
     const weekProg = Math.floor(prog)
-    console.log(weekLength)
-    console.log(weeklyGoal)
-    setWeekProgress(weekProg)
+    if(weekProg){
+        setWeekProgress(weekProg)
+    }
+    else{
+        setWeekProgress(0)
+    }
 
   }, [sunTosses, monTosses, tuesTosses, wedTosses, thursTosses, friTosses, satTosses])
 
@@ -534,7 +538,9 @@ export const WeeklyPlaytimeGoalTime = (props) => {
           </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>
-                <span className="percent-text-week">{weekProgress}%</span>
+                    <span className="percent-text-week">
+                        {weekProgress}%
+                            </span>
                 </div>
               </div>
         </div>

@@ -11,11 +11,15 @@ export const AccountDropdown = ({toggleAccount})=> {
     <>
         <Link className="nav__link nav__link--home dropdown-item"
           to="/players"
-          onClick={()=>{
-            toggleAccount()
-          }}>
+          onClick={toggleAccount}>
             Home
         </Link>
+        <Link className="dropdown-item nav__link nav__link--add-pl"
+        to="/players/create"
+        onClick={toggleAccount}
+        >
+          Add Player
+      </Link>
         <Link className="nav__link nav__link--logout dropdown-item ddi-logout"
           to="/players"
           onClick={()=>{

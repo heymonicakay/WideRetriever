@@ -447,13 +447,20 @@ export const WeeklyTrainingGoalTime = (props) => {
     const minutes = Math.floor(seconds / 60)
     const weekHours = Math.floor(minutes / 60)
     const weekMinutes = minutes % 60
+
     setWeekInSeconds(seconds)
     setWeeksSeconds(weekSeconds)
     setWeeksHours(weekHours)
     setWeeksMinutes(weekMinutes)
+
     const prog = (seconds / weeklyGoalInSeconds) * 100
     const weekProg = Math.floor(prog)
-    setWeekProgress(weekProg)
+    if(weekProg){
+        setWeekProgress(weekProg)
+    }
+    else{
+        setWeekProgress(0)
+    }
 
   }, [sunMinutesAsSeconds, monMinutesAsSeconds, tuesMinutesAsSeconds, wedMinutesAsSeconds, thursMinutesAsSeconds, friMinutesAsSeconds, satMinutesAsSeconds, weeklyGoalInSeconds])
 
@@ -553,7 +560,9 @@ export const WeeklyTrainingGoalTime = (props) => {
           </div>
               <div className="day week goal-container-week column" style={{width: "90%"}}>
                 <div className="day week achieved-container-week" style={{width: `${weekProgress}%`}}>
-                <span className="percent-text-week">{weekProgress}%</span>
+                    <span className="percent-text-week">
+                        {weekProgress}%
+                            </span>
                 </div>
               </div>
         </div>
