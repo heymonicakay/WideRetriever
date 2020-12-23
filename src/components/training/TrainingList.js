@@ -9,56 +9,32 @@ export const TrainingList = (props) => {
 //CONTEXT
   const { removeTraining } = useContext(TrainingContext)
   const { trainingTypes } = useContext(TrainingTypeContext)
-//STATE
-  const [editMode, setEditMode] = useState(false)
-  const [emptyMsg, setEmptyMsg] = useState(false)
-//EFFECT
-    useEffect(()=>{
-      if(props.playerTrainings === []){
-        setEmptyMsg(true)}
-      else {
-        setEmptyMsg(false)}
-    }, [props.playerTrainings])
-//HANDLE
-  const toggleEditMode = () => {
-    if (editMode === true) {
-      setEditMode(false)}
-    else {
-      setEditMode(true)}}
 //RETURN
-  return (
-    <>
-    {emptyMsg
-      ?
-      <>
-        <div className="cont__list cont__list--tr">
-          <NoTrainings
-          player={props.player}
-          {...props}/>
-        </div>
-      </>
-      :<>
-      <div className="cont__list cont__list--tr">
+    return ( <>
+        {props.playerTrainings.length > 0
+        ? <div className="cont__list cont__list--tr">
             <article className="list list--tr">
-              {props.playerTrainings.map(tr => {
-                const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
-
-                return <Training {...props}
-                key={tr.id}
-                training={tr}
-                trainingType={trainingType}
-                removeTraining={removeTraining}
-                player={props.player}
-                playerId={props.playerId}
-                currentUserId={props.currentUserId}
-                isOwner={props.isOwner}
-                />
-              }).reverse()
-            }
+                {props.playerTrainings.map(tr => {
+                    const trainingType = trainingTypes.find(tt => tt.id === tr.trainingTypeId) || {}
+                    
+                    return <Training {...props}
+                    key={tr.id}
+                    training={tr}
+                    trainingType={trainingType}
+                    removeTraining={removeTraining}
+                    player={props.player}
+                    playerId={props.playerId}
+                    currentUserId={props.currentUserId}
+                    isOwner={props.isOwner}
+                    />
+                }).reverse()}
             </article>
-          </div>
-      </>
-    }
-    </>
-  )
+        </div>
+        : <div className="cont__list cont__list--tr">
+            <NoTrainings
+            player={props.player}
+            {...props}/>
+        </div>
+        }
+    </>)
 }

@@ -16,62 +16,52 @@ export const ExerciseList = (props) => {
     const { frequencies, getFrequencies } = useContext(FrequencyContext)
 //STATE
     const [editMode, setEditMode] = useState(false)
-    const [emptyMsg, setEmptyMsg] = useState(false)
 //EFFECT
     useEffect(() => {
       getExerciseTypes()
       getMeasurementTypes()
       getFrequencies()
     }, [])
-  useEffect(()=>{
-    if(props.playerExercises === []){
-      setEmptyMsg(true)}
-    else {
-      setEmptyMsg(false)}
-  }, [props.playerExercises])
 //HANDLE
-  const toggleEditMode = ()=>{
-    if(editMode === false) {
-      setEditMode(true)}
-    else {
-      setEditMode(false)}}
+  const toggleEditMode = () => setEditMode(!editMode)
 //RETURN
-  return (
-      <>
-        {emptyMsg
-        ?<>
-          <div className="cont__list cont__list--ex">
-            <NoExercises {...props}/>
-          </div>
-        </>
-        :<>
-          <div className="cont__list cont__list--ex">
-            <article className="list list--ex">
-              {props.playerExercises.map(ex => {
-                const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
-                const frequency = frequencies.find(f => f.id === ex.frequencyId) || {}
-                const measuermentType = measurementTypes.find(mt => mt.id === ex.measurementTypeId) || {}
+    return (
+        <>
+            {props.playerExercises.length > 0
+            ? <>
+            <div className="cont__list cont__list--ex">
+                <article className="list list--ex">
+                    {props.playerExercises.map(ex => {
+                        const exerciseType = exerciseTypes.find(et => et.id === ex.exerciseTypeId) || {}
+                        const frequency = frequencies.find(f => f.id === ex.frequencyId) || {}
+                        const measuermentType = measurementTypes.find(mt => mt.id === ex.measurementTypeId) || {}
 
-                return <Exercise {...props}
-                  key={ex.id}
-                  exercise={ex}
-                  player={props.player}
-                  playerId={props.playerId}
-                  exerciseType={exerciseType}
-                  removeExercise={removeExercise}
-                  frequency={frequency}
-                  measurementType={measuermentType}
-                  toggleEditMode={toggleEditMode}
-                  isOwner={props.isOwner}
-                  todayObj={props.todayObj}
-                />
-              }).reverse()
-              }
-            </article>
-          </div>
+                        return <Exercise {...props}
+                        key={ex.id}
+                        exercise={ex}
+                        player={props.player}
+                        playerId={props.playerId}
+                        exerciseType={exerciseType}
+                        removeExercise={removeExercise}
+                        frequency={frequency}
+                        measurementType={measuermentType}
+                        toggleEditMode={toggleEditMode}
+                        isOwner={props.isOwner}
+                        todayObj={props.todayObj}
+                        />
+                    }).reverse()}
+                </article>
+            </div>
+            </>
+            :
+            <>
+            <div className="cont__list cont__list--ex">
+                <NoExercises {...props}/>
+            </div>
+            </>
+            }
         </>
-        }
-    </>
-  )}
+    )
+}
 
 

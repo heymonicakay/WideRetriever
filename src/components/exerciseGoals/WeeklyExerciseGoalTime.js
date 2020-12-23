@@ -284,7 +284,7 @@ export const WeeklyExerciseGoalTime = (props) => {
       setFriday(minusOne)
       setSaturday(todayLocal)
     }
-    
+
   }, [])
 /* sets dates for currrent */
 
@@ -528,13 +528,13 @@ export const WeeklyExerciseGoalTime = (props) => {
     const weekMinutes = minutes % 60
 
     setWeekInSeconds(seconds)
+
     setWeeksSeconds(weekSeconds)
     setWeeksHours(weekHours)
     setWeeksMinutes(weekMinutes)
 
     const prog = (seconds / weeklyGoalInSeconds) * 100
     const weekProg = Math.floor(prog)
-
     if(weekProg){
         setWeekProgress(weekProg)
     }
