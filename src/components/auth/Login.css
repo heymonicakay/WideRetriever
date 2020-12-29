@@ -74,8 +74,7 @@
   transition: .25s;
 }
 
-.link--reg,
-{
+.link--reg {
   display: flex;
   align-self: flex-end;
   text-decoration: none;
@@ -119,7 +118,9 @@
 }
 .loginbtn:hover {
   box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
-
+}
+.loginbtn:focus {
+    outline: none;
 }
 
 
@@ -145,7 +146,7 @@
   outline: none;
 }
 
-.btn--login:hover,{
+.btn--login:hover {
   background-color: hsl(152, 64%, 45%) !important;
   color: white !important;
   border: 1px solid white;

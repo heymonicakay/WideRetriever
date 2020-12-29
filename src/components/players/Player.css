@@ -63,7 +63,6 @@
   width: -webkit-fill-available;
   height: 20%;
   margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 .activity-section {
@@ -311,11 +310,10 @@ transition: .25s;
 
 .pl-card-img-detail-other,
 .pl-card-img-detail {
-  display: flex;
   height: 100px;
   width: 100px;
-  justify-self: center;
-  align-self: center;
+  object-fit: cover;
+  object-position: center;
   border-radius: 25rem;
 }
 

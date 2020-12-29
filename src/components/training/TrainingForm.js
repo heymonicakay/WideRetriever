@@ -76,6 +76,7 @@ export const TrainingForm = (props) => {
     return()=> {
       clearTimeout(hiddenClassTimer)
     }}, [isHidden])
+    
     return (
       <div className={`div ${animationClass} ${divHiddenClass}`}>
         <p>{title}</p>

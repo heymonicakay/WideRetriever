@@ -71,7 +71,7 @@
 }
 
 .btn--login {
-  background-color:hsl(152, 64%, 45%);
+  background-color:hsl(152, 64%, 45%) !important;
   color: white;
   border: none;
   margin: .5rem;

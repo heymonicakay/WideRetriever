@@ -1,42 +1,163 @@
 .reminder-list-cont {
   display: flex;
   flex-flow: column nowrap;
-  width: 30%;
-  height: -webkit-fill-available;
+  width: 40%;
+  height: 575px;
   padding: 1rem 2rem;
+  overflow-y: auto;
+  margin-top: .5rem;
+}
+
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .mark-complete,
-.mark-incomplete {
-  cursor: pointer;
+.mark-incomplete,
+.today-btn,
+.completed-btn,
+.upcoming-btn {
+    cursor: pointer;
+}
+
+div.filter-by-options > .today-btn,
+div.filter-by-options > .completed-btn,
+div.filter-by-options > .upcoming-btn {
+    color: (172, 96%, 18%, 0.61) !important;
+}
+
+.filter-by-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    color: (172, 96%, 18%, 0.61);
+    letter-spacing: 1px;
 }
 
 .red {
   background-color: hsla(174, 48%, 47%, 0.849);
   box-shadow: 3px 3px 5px hsla(172, 96%, 18%, 0.61);
 }
-.intput-reminder-title{
+.input-reminder-title{
   color: (172, 96%, 18%, 0.61) !important;
 
 }
-.is-recurring{
-  cursor: pointer;
+
+.recurring {
+    display: flex;
+    align-items: center;
 }
 
-.add-notes-btn{
-  cursor: pointer;
+.recurring-btn,
+.add-notes-btn {
+    cursor: pointer;
+    border-radius: 1rem;
+    color: hsl(207, 98%, 23%);
+    text-align: center;
+    margin: 0 .5rem .5rem .5rem;
+    transition: .35s;
+    padding: .1rem .65rem .1rem .5rem;
+    justify-self: flex-start;
+}
+
+.recurring-btn.is,
+.notes-vis {
+    background-color: hsl(207, 98%, 23%);
+    color: white;
+}
+
+.left-notes,
+.right-notes {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.left-notes {
+    width: 60%;
+    justify-content: space-between;
+
+}
+
+.right-notes {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 40%;
+    justify-items: flex-start;
+}
+
+.add-notes-btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.select-recurring {
+    display: none;
+    font-size: small;
+    padding: .25rem;
+    margin: .5rem;
+    background-color: transparent;
+    color: hsl(207, 98%, 23%);
+    border-color: hsl(207, 98%, 23%);
+}
+
+.select-recurring.recur-vis {
+    display: flex;
+}
+
+.reminder-notes-recur,
+.reminder-notes-recur-bottom {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.input-reminder-note {
+    display: none;
+    transition: .35s;
+    margin: .5rem;
+    width: 90%;
+    height: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+}
+
+.input-reminder-note.text-area-vis {
+    display: flex;
+    height: 100%;
 }
 
 .delete-reminder{
   cursor: pointer;
 }
 
-.submit {
-  background-color: hsla(174, 39%, 62%, 0.685);
+.reminder-form {
+    width: 60%;
+    margin: .5rem 0;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.reminder-date-and-time {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-reminder {
+  background-color: hsla(174, 39%, 62%, 0.493);
+  border: 1px solid white;
+  color: white;
   cursor: pointer;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .reminder-card {
+    position: relative;
   background-color: hsla(174, 39%, 62%, 0.685);
   padding: 1em;
   margin: .25rem;
@@ -48,30 +169,76 @@
   color: white;
 }
 
-.due-date {
-  display: flex;
-  justify-content: space-evenly;
-  align-content: center;
-  border: none;
-}
-
-.due-date-label {
-  padding-right: .25rem;
-  transform: translateY(3px)
-}
-
-.input-reminder-date {
-  padding-left: 1rem;
-  border: none !important;
-  transform: translateX(10px)
-
-}
-
+.due-date,
 .due-date-time {
-  border: none !important;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-items: center;
+  align-items: center;
 }
 
-.due-date-time-input {
-  border: none !important;
-  border-bottom-color:transparent !important;
+input[type=time],
+input[type=date] {
+    border: 1px solid  hsl(207, 98%, 23%)  !important;
+    text-align: center;
+    margin: .5rem .5rem .25rem .5rem;
+    width: 80%;
+    font-size: small;
+    padding: .25rem;
 }
+
+::placeholder {
+    text-align: center;
+}
+
+.reminder-form .input-reminder-title {
+    text-align: center;
+    width: 65%;
+    display: flex;
+    justify-self: center;
+}
+
+
+input[type=date]:invalid {
+    border: 2px solid rgb(167, 95, 95) !important;
+    transition: .35s;
+}
+
+.validity {
+    font-size: smaller;
+    display: none;
+    font-style: italic;
+    transform: translateY(-5px);
+    color: rgb(167, 95, 95);
+    transition: .35s;
+}
+
+input[type=date]:invalid + .validity {
+    display: flex;
+    transition: .35s;
+}
+
+
+@keyframes fadeAway {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0
+    }
+}
+
+.fade-away {
+    animation: fadeAway 2.2s;
+}
+
+.delete-reminder-button {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    background:url("https://res.cloudinary.com/heymonicakay/image/upload/a_45/v1601928893/wideRetriever/5F802942-7530-4542-B9EC-4097C719F8D3_sbzief.png" ) 0 0 no-repeat;
+    background-size: cover;
+  }

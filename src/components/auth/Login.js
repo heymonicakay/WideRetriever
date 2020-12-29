@@ -79,13 +79,13 @@ export const Login = props => {
             Wide Retriever
           </h1>
 
-          <input ref={username} type="username" id="username" className="input input--username" placeholder="Username" required autoFocus />
+          <input ref={username} style={{"text-align": "center"}} type="username" id="username" className="input input--username" placeholder="Username" defaultValue="demo" required />
 
-          <input ref={pw} type="password" id="pw" className="input--pw" placeholder="Password" required />
+          <input ref={pw} style={{"text-align": "center"}} type="text" id="pw" className="input--pw" placeholder="Password" defaultValue="demo" required />
 
-          <div type="button" className="loginbtn" onClick={handleLogin}>
+          <button type="button" className="loginbtn" autoFocus onClick={handleLogin}>
               Login
-          </div>
+          </button>
           <Link className="link link--reg" to="/register">
               I'm new!
           </Link>

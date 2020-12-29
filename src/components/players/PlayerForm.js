@@ -4,66 +4,67 @@ import { PlayerContext } from "./PlayerProvider"
 import "./PlayerForm.css"
 
 export const PlayerForm = (props) => {
-  const hiddenFileInput = useRef(null)
-  const playerName = useRef(null)
-  const breed = useRef(null)
-  const age = useRef(null)
-  const delDialog = useRef(null)
+    const hiddenFileInput = useRef(null)
+    const playerName = useRef(null)
+    const breed = useRef(null)
+    const age = useRef(null)
+    const delDialog = useRef(null)
 
-  const editMode = props.match.params.hasOwnProperty("playerId")
-  const [player, setPlayer] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png")
-  const [isHidden, setIsHidden] = useState(true)
-  const [editModeImage, setEditModeImage] = useState("")
+    const editMode = props.match.params.hasOwnProperty("playerId")
+    const [player, setPlayer] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [image, setImage] = useState("https://res.cloudinary.com/heymonicakay/image/upload/v1600707287/wideRetriever/693F6F0F-7A84-45D0-A5D5-A7B24C1DC8B6_cayzff.png")
+    const [isHidden, setIsHidden] = useState(true)
+    const [editModeImage, setEditModeImage] = useState("")
 
-  const { addPlayer, players, editPlayer, removePlayer } = useContext(PlayerContext)
+        const { addPlayer, players, editPlayer, removePlayer } = useContext(PlayerContext)
 
-  useEffect(()=>{
-    if(editMode){
-      setEditModeImage(player.playerImg)
+    useEffect(()=>{
+        if(editMode){
+            setEditModeImage(player.playerImg)
+        }
+    }, [player])
+
+    const handleControlledInputChange = (event) => {
+        const newPlayer = Object.assign({}, player)
+        newPlayer[event.target.name] = event.target.value
+        setPlayer(newPlayer)
     }
-  }, [player])
 
-  const handleControlledInputChange = (event) => {
-    const newPlayer = Object.assign({}, player)
-    newPlayer[event.target.name] = event.target.value
-    setPlayer(newPlayer)
-  }
+    const handleClick = (e) => hiddenFileInput.current.click()
 
-  const handleClick = e => {
-    hiddenFileInput.current.click();
-  };
-
-  const handleEditClick = e => {
-    setEditModeImage("")
-    hiddenFileInput.current.click();
-  }
-
-  const uploadImage = async e => {
-    const files = e.target.files
-    const data = new FormData()
-    data.append('file', files[0])
-    data.append('upload_preset', 'wideRetriever')
-    setLoading(true)
-
-    const res = await fetch("	https://api.cloudinary.com/v1_1/heymonicakay/image/upload",
-      {
-        method: 'POST',
-        body: data
-      })
-
-    const file = await res.json()
-    setImage(file.secure_url)
-    setLoading(false)
-    setIsHidden(false)
-
-    if(editMode){
-      setEditModeImage(file.secure_url)
-      setLoading(false)
-      setIsHidden(false)
+    const handleEditClick = (e) => {
+        setEditModeImage("")
+        hiddenFileInput.current.click();
     }
-  }
+
+    const imageUpload = (url, data) => {
+        return fetch(url, {
+            method: 'POST',
+            body: data
+        })
+        .then(res => res.json())
+    }
+
+    const uploadImage = (e) => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'wideRetriever')
+        const url = 'https://api.cloudinary.com/v1_1/heymonicakay/image/upload';
+        setLoading(true)
+        imageUpload(url, data).then(file => {
+            if(editMode){
+                setEditModeImage(file.secure_url)
+            }
+            else{
+                setImage(file.secure_url)
+            }
+        }).then(()=> {
+            setLoading(false)
+            setIsHidden(false)
+        })
+    }
 
   const getPlayerInEditMode = () => {
     if (editMode) {
@@ -77,8 +78,8 @@ export const PlayerForm = (props) => {
     getPlayerInEditMode()
   }, [players])
 
-  const constructNewPlayer = () => {
-
+  const constructNewPlayer = (e) => {
+    e.preventDefault()
     if (editMode) {
       editPlayer({
         id: player.id,
@@ -122,86 +123,48 @@ export const PlayerForm = (props) => {
 
       <div className="cont--form-pl">
         <section className="form">
-          <h2 className="h2 header header__form header__form--pl">
-          {editMode
-            ? "Update Player"
-            : "Add Player"
-          }
-          </h2>
+          <h2 className="h2 header header__form header__form--pl">{editMode ? "Update" : "Create"}</h2>
 
-          {editMode
-          ? (
+          {editMode ?
             <div className="upload--img">
               <img src={editModeImage} alt="" className="img-uploaded" />
-              <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png" alt="" className="img-overlay" onClick={()=>{
-                  handleEditClick()}}/>
+              <img src="https://res.cloudinary.com/heymonicakay/image/upload/v1600721607/wideRetriever/39C3366F-F773-4E49-B179-178B3AF5A19E_hafmwv.png" alt="" className="img-overlay" onClick={()=>handleEditClick()}/>
 
               <div className="file-input-container">
-                  <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
+                  <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" onChange={uploadImage}/>
               </div>
             </div>
-            )
           :
-            (
-              <>
+            <>
                 <span className="file-input-container">
                   <input type="file" style={{display: 'none'}} ref={hiddenFileInput} name="file" size="10" placeholder="upload an image" onChange={uploadImage}/>
                 </span>
-              {loading
-                ?(
+                {loading ?
                     <h3 className="h3 h3--img-load">Fetching...</h3>
-                  )
-                :(
-                  <>
-                  <div className="upload--img">
+                :
+                <div className="upload--img">
 
                     <img src={image} alt="" className="img-uploaded" onClick={handleClick}/>
-                    <span className="img-overlay" hidden={isHidden} alt=""
-                      onClick={()=>{
-                        handleClick()}}
-                        ></span>
-                  </div>
-                  </>
-                  )
-              }
-              </>
-            )
+                    <span className="img-overlay" hidden={isHidden} alt="" onClick={()=>handleClick()}></span>
+                </div>
+                }
+            </>
         }
 
-          <label className="label label__pl-form--name" htmlFor="name">Player Name</label>
+          <label className="label label__pl-form--name" htmlFor="name">Name</label>
           <input type="text" name="name" className="form-pl__ctrl form-pl__ctrl--name" placeholder="Ex: Rufus" defaultValue={player.name} ref={playerName} onChange={handleControlledInputChange}
           />
 
-          <label className="label label__pl-form--name" htmlFor="breed">Player Breed</label>
+          <label className="label label__pl-form--name" htmlFor="breed">Breed</label>
           <input type="text" name="breed" className="form-pl__ctrl form-pl__ctrl--breed" placeholder="Ex: Poodle" defaultValue={player.breed} ref={breed} onChange={handleControlledInputChange}
           />
 
-          <label className="label label__pl-form--name" htmlFor="age">Player Age</label>
+          <label className="label label__pl-form--name" htmlFor="age">Age</label>
           <input type="text" name="age" required className="form-pl__ctrl form-pl__ctrl--age" placeholder="Ex: 4" defaultValue={player.age} ref={age} onChange={handleControlledInputChange}
           />
 
-          <button type="button" className="btn__sbmt btn__sbmt--pl"
-            onClick={e => {
-              e.preventDefault()
-              constructNewPlayer()
-            }}>
-              {editMode
-                ? "Update Player"
-                : "Add Player"
-              }
-          </button>
-          {editMode
-            ? (
-            <span className="remove"
-                  onClick={() => {
-                delDialog.current.showModal()
-              }}>
-                Remove From Roster
-            </span>
-            )
-            : <>
-            </>
-          }
+          <button type="button" className="btn__sbmt btn__sbmt--pl" onClick={constructNewPlayer}> {editMode ? "Update" : "Create" } </button>
+          {editMode && <p className="remove" onClick={()=>delDialog.current.showModal()}> Remove </p>}
       </section>
     </div>
     </>

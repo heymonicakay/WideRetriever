@@ -54,7 +54,6 @@ Password: <i>demo</i>
 
 #### ERD
 
-
 <img src="./erd.png" alt="">
 
 #### Created by Monica Kay
